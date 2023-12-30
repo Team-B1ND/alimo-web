@@ -25,7 +25,7 @@ export const ProfileWrap = styled.div`
 `;
 
 export const CategoryWrap = styled.div`
-  height: 100vh;
+  height: 60vh;
 
   display: flex;
   flex-direction: column;
@@ -38,9 +38,14 @@ export const Categories = styled.div`
   font-family: Pretendard;
   font-size: 25px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
 
   margin-bottom: 10vh;
   margin-left: 2vw;
+
+  cursor: pointer;
+  &:first-child {
+    margin-top: 7vh;
+  }
 `;
