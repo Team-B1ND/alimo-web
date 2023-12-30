@@ -1,0 +1,27 @@
+.LogoWrap {
+  display: flex;
+  flex-direction: row;
+
+  margin: 0 auto;
+}
+
+.Logo-Alimo {
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.Logo-Admin {
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-left: 0.5vw;
+  margin-top: 4vh;
+}
