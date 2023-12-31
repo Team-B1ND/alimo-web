@@ -5,6 +5,8 @@ import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
+import "src/style/Login.style/Login.css";
+import AlimoImage from "src/img/Alimo-image.png";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
