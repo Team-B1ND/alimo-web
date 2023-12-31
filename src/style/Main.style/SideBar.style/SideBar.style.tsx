@@ -14,13 +14,13 @@ export const ProfileWrap = styled.div`
   flex-direction: row;
 
   width: 12vw;
-  height: 10vh;
+  height: 8vh;
 
   border-radius: 20px;
 
   background-color: #f2f2f2;
 
-  margin: 0 auto;
+  margin-left: 1vw;
   margin-top: 3vh;
 `;
 
