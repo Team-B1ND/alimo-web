@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "src/components/Login/Login";
 import Main from "src/components/Main/Main/Main";
@@ -13,8 +14,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/setting" element={<Setting />} />
-          <Route path="/main/write" element={<Write />} />
+          <Route path="/setting" element={<Setting />} />
+          <Route path="/write" element={<Write />} />
         </Routes>
       </div>
     </BrowserRouter>
