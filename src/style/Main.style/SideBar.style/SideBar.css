@@ -3,6 +3,8 @@
   flex-direction: row;
 
   margin: 0 auto;
+
+  height: 7vh;
 }
 
 .Logo-Alimo {
@@ -12,6 +14,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  margin-left: 4vw;
 }
 
 .Logo-Admin {
