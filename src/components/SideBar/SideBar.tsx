@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from "@src/style/Main.style/SideBar.style/SideBar.style";
+import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
 import "src/style/Main.style/SideBar.style/SideBar.css";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
