@@ -49,7 +49,7 @@ const Login = () => {
                   onChange={onChange}
                 />
                 <button className="Login-Id-Btn" onClick={() => setIdValue("")}>
-                  <img src={IdCancel} />
+                  <img src={IdCancel} alt="IdCancelImage" />
                 </button>
               </label>
               <label className="PasswordWrap">
@@ -68,7 +68,7 @@ const Login = () => {
                 <button
                   className="Login-Password-Btn"
                   onClick={() => setShowPswd((current) => !current)}>
-                  <img src={showPswd === true ? PasswordShow : PasswordHide} />
+                  <img src={showPswd === true ? PasswordShow : PasswordHide} alt="PasswordImage" />
                 </button>
               </label>
             </div>
