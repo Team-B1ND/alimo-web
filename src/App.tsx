@@ -1,6 +1,8 @@
 import React from "react";
-import Main from "src/components/Main/Main/Main";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Main from "./components/Main/Main";
+// import Profile from "src/components/Profile/profile";
+// import Setting from "src/components/SettingPage/setting";
 function App() {
   return (
     <div className="App">
