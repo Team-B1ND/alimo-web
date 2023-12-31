@@ -1,33 +1,33 @@
-.LogoWrap {
+.SideBar-LogoWrap {
   display: flex;
   flex-direction: row;
 
-  margin: 0 auto;
+  /* margin: 0 auto; */
 
-  height: 7vh;
+  height: calc(100vh - 90vh);
 }
 
-.Logo-Alimo {
+.SideBar-Logo-Alimo {
   color: var(--Main900, #020202);
   font-family: Pretendard;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 
-  margin-left: 4vw;
+  margin-left: 25%;
 }
 
-.Logo-Admin {
+.SideBar-Logo-Admin {
   color: var(--Gray500, #aaa);
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 
-  margin-left: 0.5vw;
-  margin-top: 4vh;
+  margin-left: 1%;
+  margin-top: calc(100vh - 95vh);
 }
 
 .ProfileImage {
