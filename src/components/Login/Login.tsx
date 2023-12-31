@@ -1,8 +1,16 @@
 import React from "react";
-import "../../../src/style/Login.style/Login.css";
-import AlimoImage from "../../../src/img/Alimo-image.png";
+import { useState } from "react";
+import "src/style/Login.style/Login.css";
+import AlimoImage from "src/img/Alimo-image.png";
+import { click } from "@testing-library/user-event/dist/click";
 
 const Login = () => {
+  const [isInputClicked, setIsInputClicked] = useState(false);
+  const [clickName, setClickName] = useState("");
+  
+  const onFocus = () => setIsInputClicked(true);
+  const onBlur = () => setIsInputClicked(false);
+
   return (
     <div>
       <div className="LoginPage">
@@ -18,11 +26,27 @@ const Login = () => {
               <h2 className="Logo-Text">대소고의 모든 소식</h2>
             </div>
             <div className="LoginInputWrap">
-              <input type="text" className="Login-Id" placeholder="이메일" />
+              <input
+                type="text"
+                className="Login-Id"
+                placeholder={
+                  clickName === "Id" && isInputClicked === true ? "" : "이메일"
+                }
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onClick={() => setClickName("Id")}
+              />
               <input
                 type="password"
                 className="Login-Password"
-                placeholder="비밀번호"
+                placeholder={
+                  clickName === "PassWord" && isInputClicked === true
+                    ? ""
+                    : "비밀번호"
+                }
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onClick={() => setClickName("PassWord")}
               />
             </div>
             <div className="LoginBtnWrap">

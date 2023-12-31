@@ -99,6 +99,7 @@
 
 .Login-Id {
   height: 20px;
+  outline: none;
   border-radius: var(--Large, 12px);
   border: 1px solid var(--Gray300, #e6e6e6);
   background: var(--White, #fff);
@@ -120,6 +121,7 @@
 
 .Login-Password {
   height: 20px;
+  outline: none;
   border-radius: var(--Large, 12px);
   border: 1px solid var(--Gray300, #e6e6e6);
   background: var(--White, #fff);
