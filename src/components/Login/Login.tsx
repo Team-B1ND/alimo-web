@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "src/style/Login.style/Login.css";
+import Null from "src/img/Null-image.png";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
@@ -11,12 +12,22 @@ const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
-  const [showPswd, setShowPswd] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
+  const [isShowPswd, setIsShowPswd] = useState(false);
+  const [isIdButton, setIsIdButton] = useState(false);
+  const [isPasswordButton, setIsPasswordButton] = useState(false);
 
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
-  const onChange = (e: any) => {
+  const onIdChange = (e: any) => {
     setIdValue(e.target.value);
+    e.target.value === "" ? setIsIdButton(false) : setIsIdButton(true);
+  };
+  const onPasswordChange = (e: any) => {
+    setPasswordValue(e.target.value);
+    e.target.value === ""
+      ? setIsPasswordButton(false)
+      : setIsPasswordButton(true);
   };
 
   return (
@@ -47,15 +58,28 @@ const Login = () => {
                   onFocus={onFocus}
                   onBlur={onBlur}
                   onClick={() => setClickName("Id")}
-                  onChange={onChange}
+                  onChange={onIdChange}
                 />
-                <button className="Login-Id-Btn" onClick={() => setIdValue("")}>
-                  <img src={IdCancel} alt="IdCancelImage" />
+                <button
+                  className="Login-Id-Btn"
+                  onClick={() => {
+                    setIdValue("");
+                    setIsIdButton(false);
+                  }}>
+                  <img
+                    src={
+                      clickName === "Id" && isIdButton === true
+                        ? IdCancel
+                        : Null
+                    }
+                    alt=""
+                  />
                 </button>
               </label>
               <label className="PasswordWrap">
                 <input
-                  type={showPswd === true ? "text" : "password"}
+                  type={isShowPswd === true ? "text" : "password"}
+                  value={passwordValue}
                   className="Login-Password"
                   placeholder={
                     clickName === "PassWord" && isInputClicked === true
@@ -65,11 +89,21 @@ const Login = () => {
                   onFocus={onFocus}
                   onBlur={onBlur}
                   onClick={() => setClickName("PassWord")}
+                  onChange={onPasswordChange}
                 />
                 <button
                   className="Login-Password-Btn"
-                  onClick={() => setShowPswd((current) => !current)}>
-                  <img src={showPswd === true ? PasswordShow : PasswordHide} alt="PasswordImage" />
+                  onClick={() => setIsShowPswd((current) => !current)}>
+                  <img
+                    src={
+                      clickName === "PassWord" && isPasswordButton === true
+                        ? isShowPswd === true
+                          ? PasswordShow
+                          : PasswordHide
+                        : Null
+                    }
+                    alt=""
+                  />
                 </button>
               </label>
             </div>
