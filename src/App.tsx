@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "src/components/Main/Main/Main";
-import Profile from "./components/Profile/Profile/profile";
+import Profile from "src/components/Profile/profile";
+import Setting from "src/components/SettingPage/setting";
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +11,7 @@ function App() {
           <Route path="/" element /> {/* 여기는 로그인 */}
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/setting" element={<Setting />} />
         </Routes>
       </div>
     </BrowserRouter>

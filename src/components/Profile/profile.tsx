@@ -1,8 +1,8 @@
 import React from "react";
-export default function(){
+export default function Profile(){
 return(
     <div>
-        
+
     </div>
 )
 }
