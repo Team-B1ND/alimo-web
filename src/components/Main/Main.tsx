@@ -5,7 +5,6 @@ const Main = () => {
   return (
     <>
       <SideBar />
-      <div className=""></div>
     </>
   );
 };
