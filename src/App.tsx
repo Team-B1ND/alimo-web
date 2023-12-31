@@ -4,15 +4,17 @@ import Login from "src/components/Login/Login";
 import Main from "src/components/Main/Main/Main";
 import Profile from "src/components/Profile/profile";
 import Setting from "src/components/SettingPage/setting";
+import Write from "src/components/Write/Write";
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Login/>} /> 
+          <Route path="/" element={<Login />} />
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/setting" element={<Setting />} />
+          <Route path="/profile/setting" element={<Setting />} />
+          <Route path="/main/write" element={<Write />} />
         </Routes>
       </div>
     </BrowserRouter>
