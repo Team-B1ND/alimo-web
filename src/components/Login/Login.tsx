@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import "src/style/Login.style/Login.css";
 import AlimoImage from "src/img/Alimo-image.png";
-import { click } from "@testing-library/user-event/dist/click";
+import IdCancel from "src/img/Id-Cancel.png";
+import PasswordView from "src/img/Password-View.png";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
-  
+
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
 
@@ -26,28 +27,40 @@ const Login = () => {
               <h2 className="Logo-Text">대소고의 모든 소식</h2>
             </div>
             <div className="LoginInputWrap">
-              <input
-                type="text"
-                className="Login-Id"
-                placeholder={
-                  clickName === "Id" && isInputClicked === true ? "" : "이메일"
-                }
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onClick={() => setClickName("Id")}
-              />
-              <input
-                type="password"
-                className="Login-Password"
-                placeholder={
-                  clickName === "PassWord" && isInputClicked === true
-                    ? ""
-                    : "비밀번호"
-                }
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onClick={() => setClickName("PassWord")}
-              />
+              <label className="IdWrap">
+                <input
+                  type="text"
+                  className="Login-Id"
+                  placeholder={
+                    clickName === "Id" && isInputClicked === true
+                      ? ""
+                      : "이메일"
+                  }
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onClick={() => setClickName("Id")}
+                />
+                <button className="Login-Id-Btn">
+                  <img src={IdCancel} />
+                </button>
+              </label>
+              <label className="PasswordWrap">
+                <input
+                  type="password"
+                  className="Login-Password"
+                  placeholder={
+                    clickName === "PassWord" && isInputClicked === true
+                      ? ""
+                      : "비밀번호"
+                  }
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onClick={() => setClickName("PassWord")}
+                />
+                <button className="Login-Password-Btn">
+                  <img src={PasswordView} />
+                </button>
+              </label>
             </div>
             <div className="LoginBtnWrap">
               <button className="Login-Btn">도담도담 계정으로 로그인</button>
