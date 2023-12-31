@@ -37,17 +37,18 @@
   width: 100%;
   height: 40%;
 
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .Logo {
-  height: 40%;
+  height: 100%;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
+  padding-right: 65px;
 }
 
 .Logo-Alimo {
@@ -74,7 +75,7 @@
   font-weight: 700;
   line-height: normal;
 
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .Logo-Text {
@@ -97,15 +98,20 @@
   justify-content: space-between;
 }
 
+.IdWrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .Login-Id {
+  width: 410px;
   height: 20px;
+  outline: none;
   border-radius: var(--Large, 12px);
   border: 1px solid var(--Gray300, #e6e6e6);
   background: var(--White, #fff);
-  background-repeat: no-repeat;
-  background-position: 97% center;
 
-  background-image: url(../../img/Id-Cancel.png);
   padding: 18px 16px;
 }
 
@@ -118,15 +124,29 @@
   line-height: normal;
 }
 
+.Login-Id-Btn {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+
+  top: 16px;
+  right: 10px;
+}
+
+.PasswordWrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .Login-Password {
+  width: 410px;
   height: 20px;
+  outline: none;
   border-radius: var(--Large, 12px);
   border: 1px solid var(--Gray300, #e6e6e6);
   background: var(--White, #fff);
-  background-repeat: no-repeat;
-  background-position: 97% center;
 
-  background-image: url(../../img/Password-View.png);
   padding: 18px 16px;
 }
 
@@ -139,6 +159,15 @@
   line-height: normal;
 }
 
+.Login-Password-Btn {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+
+  top: 16px;
+  right: 10px;
+}
+
 .LoginBtnWrap {
   width: 442px;
   height: 52px;
@@ -147,6 +176,7 @@
 .Login-Btn {
   width: 100%;
   height: 52px;
+  cursor: pointer;
   color: var(--Main50, #fffefc);
   font-family: Pretendard;
   font-size: 16px;
