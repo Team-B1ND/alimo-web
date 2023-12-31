@@ -56,6 +56,8 @@ export const StyledButton = styled.button`
   font-weight: 500;
   line-height: normal;
 
+  cursor: pointer;
+
   &.cancle {
     background: var(--Red200, #ffe8e8);
 
