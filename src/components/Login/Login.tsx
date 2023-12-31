@@ -4,7 +4,7 @@ import "src/style/Login.style/Login.css";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
-import PasswordView from "src/img/Password-View.png";
+import PasswordShow from "src/img/Password-Show.png";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
@@ -68,7 +68,7 @@ const Login = () => {
                 <button
                   className="Login-Password-Btn"
                   onClick={() => setShowPswd((current) => !current)}>
-                  <img src={showPswd === true ? PasswordView : PasswordHide} />
+                  <img src={showPswd === true ? PasswordShow : PasswordHide} />
                 </button>
               </label>
             </div>
