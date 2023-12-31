@@ -1,22 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import "src/style/Login.style/Login.css";
-import AlimoImage from "src/img/Alimo-image.png";
+import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordView from "src/img/Password-View.png";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
+  const [idValue, setIdValue] = useState("");
 
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
+  const onChange = (e:any) => {
+    setIdValue(e.target.value);
+  }
 
   return (
     <div>
       <div className="LoginPage">
         <div className="LoginBox">
-          <img src={AlimoImage} alt="AlimoImage" className="AlimoImage"></img>
+          <img src={Logo} alt="AlimoImage" className="AlimoImage"></img>
           <div className="LoginWrap">
             <div className="LogoWrap">
               <div className="Logo">
@@ -30,6 +34,7 @@ const Login = () => {
               <label className="IdWrap">
                 <input
                   type="text"
+                  value={idValue}
                   className="Login-Id"
                   placeholder={
                     clickName === "Id" && isInputClicked === true
@@ -39,8 +44,9 @@ const Login = () => {
                   onFocus={onFocus}
                   onBlur={onBlur}
                   onClick={() => setClickName("Id")}
+                  onChange={onChange}
                 />
-                <button className="Login-Id-Btn">
+                <button className="Login-Id-Btn" onClick={() => setIdValue("")}>
                   <img src={IdCancel} />
                 </button>
               </label>
