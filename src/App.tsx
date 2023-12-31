@@ -14,7 +14,6 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/setting" element={<Setting />} />
-          <Route path="/main/write" element={<Write />} />
         </Routes>
       </div>
     </BrowserRouter>
