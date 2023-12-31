@@ -3,18 +3,20 @@ import { useState } from "react";
 import "src/style/Login.style/Login.css";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
+import PasswordHide from "src/img/Password-Hide.png";
 import PasswordView from "src/img/Password-View.png";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
+  const [showPswd, setShowPswd] = useState(false);
 
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
-  const onChange = (e:any) => {
+  const onChange = (e: any) => {
     setIdValue(e.target.value);
-  }
+  };
 
   return (
     <div>
@@ -52,7 +54,7 @@ const Login = () => {
               </label>
               <label className="PasswordWrap">
                 <input
-                  type="password"
+                  type={showPswd === true ? "text" : "password"}
                   className="Login-Password"
                   placeholder={
                     clickName === "PassWord" && isInputClicked === true
@@ -63,8 +65,10 @@ const Login = () => {
                   onBlur={onBlur}
                   onClick={() => setClickName("PassWord")}
                 />
-                <button className="Login-Password-Btn">
-                  <img src={PasswordView} />
+                <button
+                  className="Login-Password-Btn"
+                  onClick={() => setShowPswd((current) => !current)}>
+                  <img src={showPswd === true ? PasswordView : PasswordHide} />
                 </button>
               </label>
             </div>
