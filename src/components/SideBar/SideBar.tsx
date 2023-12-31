@@ -15,9 +15,9 @@ const SideBar = () => {
   });
   return (
     <S.SideBarWrap>
-      <div className="LogoWrap">
-        <h1 className="Logo-Alimo">Alimo</h1>
-        <h1 className="Logo-Admin">admin</h1>
+      <div className="SideBar-LogoWrap">
+        <h1 className="SideBar-Logo-Alimo">Alimo</h1>
+        <h1 className="SideBar-Logo-Admin">admin</h1>
       </div>
       <S.ProfileWrap>
         <img src={ProfileImgae} className="ProfileImage" />
