@@ -35,7 +35,7 @@ const Write = () => {
           <input type="text" placeholder="알려줄 내용을 입력해주세요!" className="InputContent" />
         </div>
         <S.ImageInputWrap>
-          <S.H1>2. 첨부하실 파일이 있나요?</S.H1>
+          <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
           <input
             type="file"
             accept="image/*"
@@ -43,19 +43,21 @@ const Write = () => {
             onChange={onChangeImageInput}
             style={{ display: "none" }}
           />
-          <button onClick={handleClickButton} style={{ cursor: "pointer", position: "absolute", zIndex: 1 }}>
-            Select Image
-          </button>
-          {image && (
-            <div>
-              <img src={image} alt="Selected" style={{ maxWidth: "100%", marginTop: "10px" }} />
-              <button onClick={handleCancelImage} style={{ cursor: "pointer", marginTop: "5px" }}>
-                Cancel Image
-              </button>
-            </div>
-          )}
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <S.InputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
+              이미지 선택
+            </S.InputButton>
+            {image && (
+              <div>
+                <img src={image} alt="Selected" style={{ maxWidth: "30%", marginTop: "10px", display: "grid" }} />
+                <button onClick={handleCancelImage} style={{ cursor: "pointer", marginTop: "5px" }}>
+                  선택 취소
+                </button>
+              </div>
+            )}
+            <S.InputButton style={{ display: "inline" }}>파일 선택</S.InputButton>
+          </div>
         </S.ImageInputWrap>
-
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
