@@ -1,7 +1,13 @@
+import React, { useRef, useState } from "react";
 import * as S from "src/style/Write.style/Write.style";
 import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
 const Write = () => {
+  const [image, setImage] = useState<String | null>();
+  const FileSelect = useRef();
+  const onChangeImageInput = (e: any) => {
+    setImage([image, e.target.files[0]]);
+  };
   return (
     <div style={{ display: "flex" }}>
       <SideBar />
