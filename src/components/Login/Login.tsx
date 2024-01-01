@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import "src/style/Login.style/Login.css";
-import Null from "src/img/Null-image.png";
+import NullImage from "src/img/Null-image.png";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
+import * as S from "src/style/Login.style/Login.style";
 import "src/style/Login.style/Login.css";
 
 const Login = () => {
@@ -31,22 +32,22 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="LoginPage">
-        <div className="LoginBox">
-          <img src={Logo} alt="AlimoImage" className="AlimoImage" />
-          <div className="LoginWrap">
-            <div className="LogoWrap">
-              <div className="Logo">
-                <h1 className="Logo-Alimo">ALIMO</h1>
-                <div className="Logo-Dot"></div>
-                <h3 className="Logo-Admin">Admin</h3>
-              </div>
-              <h2 className="Logo-Text">대소고의 모든 소식</h2>
-            </div>
-            <div className="LoginInputWrap">
-              <label className="IdWrap">
-                <input
+    <S.LogoPageWrap>
+      <S.LoginPage>
+        <S.LoginBox>
+          <S.AlimoImg src={Logo} alt="AlimoImage" />
+          <S.LoginWrap>
+            <S.LogoWrap>
+              <S.Logo>
+                <S.LogoAlimo>ALIMO</S.LogoAlimo>
+                <S.LogoDot></S.LogoDot>
+                <S.LogoAdmin>Admin</S.LogoAdmin>
+              </S.Logo>
+              <S.LogoText>대소고의 모든 소식</S.LogoText>
+            </S.LogoWrap>
+            <S.LoginInputWrap>
+              <S.InputWrap>
+                <S.Input
                   type="text"
                   value={idValue}
                   className="Login-Id"
@@ -60,8 +61,7 @@ const Login = () => {
                   onClick={() => setClickName("Id")}
                   onChange={onIdChange}
                 />
-                <button
-                  className="Login-Id-Btn"
+                <S.InputBtn
                   onClick={() => {
                     setIdValue("");
                     setIsIdButton(false);
@@ -70,14 +70,14 @@ const Login = () => {
                     src={
                       clickName === "Id" && isIdButton === true
                         ? IdCancel
-                        : Null
+                        : NullImage
                     }
                     alt=""
                   />
-                </button>
-              </label>
-              <label className="PasswordWrap">
-                <input
+                </S.InputBtn>
+              </S.InputWrap>
+              <S.InputWrap>
+                <S.Input
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
                   className="Login-Password"
@@ -91,8 +91,7 @@ const Login = () => {
                   onClick={() => setClickName("PassWord")}
                   onChange={onPasswordChange}
                 />
-                <button
-                  className="Login-Password-Btn"
+                <S.InputBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
                   <img
                     src={
@@ -100,21 +99,21 @@ const Login = () => {
                         ? isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
-                        : Null
+                        : NullImage
                     }
                     alt=""
                   />
-                </button>
-              </label>
-            </div>
-            <div className="LoginBtnWrap">
-              <button className="Login-Btn">도담도담 계정으로 로그인</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className="Made-By-B1nd">made by B1ND</p>
-    </div>
+                </S.InputBtn>
+              </S.InputWrap>
+            </S.LoginInputWrap>
+            <S.LoginBtnWrap>
+              <S.LoginBtn>도담도담 계정으로 로그인</S.LoginBtn>
+            </S.LoginBtnWrap>
+          </S.LoginWrap>
+        </S.LoginBox>
+      </S.LoginPage>
+      <S.MadeByB1nd>made by B1ND</S.MadeByB1nd>
+    </S.LogoPageWrap>
   );
 };
 
