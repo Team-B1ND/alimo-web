@@ -66,7 +66,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--Main500, #fdc80c);
+  background-color: var(--Main500, #fece23);
 }
 
 .Logo-Admin {
@@ -190,7 +190,7 @@
   line-height: normal;
   border: none;
   border-radius: var(--Large, 12px);
-  background: var(--Main500, #fdc80c);
+  background: var(--Main500, #fece23);
 }
 
 .Made-By-B1nd {
