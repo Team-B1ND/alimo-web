@@ -34,7 +34,7 @@ const Login = () => {
     <div>
       <div className="LoginPage">
         <div className="LoginBox">
-          <img src={Logo} alt="AlimoImage" className="AlimoImage"></img>
+          <img src={Logo} alt="AlimoImage" className="AlimoImage" />
           <div className="LoginWrap">
             <div className="LogoWrap">
               <div className="Logo">
