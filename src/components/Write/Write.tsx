@@ -7,15 +7,16 @@ const Write = () => {
       <SideBar />
       <S.WriteWrap>
         <div>
-          <S.H1>1. 제목을 입력해주세요!</S.H1>
-          <input type="text" placeholder="공지의 주제를 입력해주세요!" className="InputTitle" />
-        </div>
-        <div>
-          <S.H1>2. 내용을 입력해주세요!</S.H1>
+          <S.H1>1. 내용을 입력해주세요!</S.H1>
           <input type="text" placeholder="알려줄 내용을 입력해주세요!" className="InputContent" />
         </div>
         <div>
-          <S.H1>3. 카테고리를 선택해주세요!</S.H1>
+          <S.H1>2. 첨부하실 파일이 있나요?</S.H1>
+          <input type="file" style={{ display: "none" }} />
+          <input type="file" />
+        </div>
+        <div>
+          <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
             <span className="Category">1학년</span>
             <span className="Category">마이스터 홍보부</span>

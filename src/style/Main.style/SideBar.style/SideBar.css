@@ -5,6 +5,8 @@
   /* margin: 0 auto; */
 
   height: calc(100vh - 90vh);
+
+  cursor: pointer;
 }
 
 .SideBar-Logo-Alimo {
@@ -15,7 +17,8 @@
   font-weight: 700;
   line-height: normal;
 
-  margin-left: 25%;
+  margin-left: calc(100vw - 97vw);
+  margin-top: calc(100vh - 97vh);
 }
 
 .SideBar-Logo-Admin {
@@ -31,24 +34,24 @@
 }
 
 .ProfileImage {
-  width: 3vw;
-  height: 3vw;
+  width: calc(100vw - 97vw);
+  height: calc(100vh - 95vh);
   border-radius: 100%;
 
-  margin-left: 2vw;
-  margin-top: 1vh;
+  margin-left: calc(100vw - 98vw);
+  margin-top: calc(100vh - 99vh);
 }
 
 .UserName {
   color: var(--Main900, #020202);
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 
   align-items: flex-end;
   align-self: center;
-  margin-left: 1vw;
-  margin-bottom: 1vh;
+  margin-left: calc(100vw - 99vw);
+  margin-bottom: calc(100vh - 99vh);
 }
