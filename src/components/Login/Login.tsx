@@ -1,13 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import "src/style/Login.style/Login.css";
-import NullImage from "src/img/Null-image.png";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
-import "src/style/Login.style/Login.css";
 
 const Login = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
@@ -17,18 +14,26 @@ const Login = () => {
   const [isShowPswd, setIsShowPswd] = useState(false);
   const [isIdButton, setIsIdButton] = useState(false);
   const [isPasswordButton, setIsPasswordButton] = useState(false);
+  const [idDisplayBlock, setIdDisplayBlock] = useState("none");
+  const [passwordDisplayBlock, setPasswordDisplayBlock] = useState("none");
 
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
   const onIdChange = (e: any) => {
     setIdValue(e.target.value);
     e.target.value === "" ? setIsIdButton(false) : setIsIdButton(true);
+    e.target.value === ""
+      ? setIdDisplayBlock("none")
+      : setIdDisplayBlock("block");
   };
   const onPasswordChange = (e: any) => {
     setPasswordValue(e.target.value);
     e.target.value === ""
       ? setIsPasswordButton(false)
       : setIsPasswordButton(true);
+    e.target.value === ""
+      ? setPasswordDisplayBlock("none")
+      : setPasswordDisplayBlock("block");
   };
 
   return (
@@ -50,7 +55,6 @@ const Login = () => {
                 <S.Input
                   type="text"
                   value={idValue}
-                  className="Login-Id"
                   placeholder={
                     clickName === "Id" && isInputClicked === true
                       ? ""
@@ -67,10 +71,9 @@ const Login = () => {
                     setIsIdButton(false);
                   }}>
                   <img
+                    style={{ display: `${idDisplayBlock}` }}
                     src={
-                      clickName === "Id" && isIdButton === true
-                        ? IdCancel
-                        : NullImage
+                      clickName === "Id" && isIdButton === true ? IdCancel : ""
                     }
                     alt=""
                   />
@@ -80,7 +83,6 @@ const Login = () => {
                 <S.Input
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
-                  className="Login-Password"
                   placeholder={
                     clickName === "PassWord" && isInputClicked === true
                       ? ""
@@ -94,12 +96,13 @@ const Login = () => {
                 <S.InputBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
                   <img
+                    style={{ display: `${passwordDisplayBlock}` }}
                     src={
                       clickName === "PassWord" && isPasswordButton === true
                         ? isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
-                        : NullImage
+                        : ""
                     }
                     alt=""
                   />

@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "src/style/global";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "src/components/Login/Login";
+import Login from "./components/Login/Login";
 import Main from "src/components/Main/Main/Main";
 import Profile from "src/components/Profile/profile";
 import Setting from "src/components/SettingPage/setting";
@@ -9,7 +9,7 @@ import Write from "src/components/Write/Write";
 function App() {
   return (
     <BrowserRouter>
-    <GlobalStyles/>
+      <GlobalStyles />
       <div className="App">
         <Routes>
           <Route path="/" element={<Login />} />
