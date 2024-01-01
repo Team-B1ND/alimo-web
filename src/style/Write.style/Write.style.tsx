@@ -69,3 +69,7 @@ export const StyledButton = styled.button`
     line-height: normal;
   }
 `;
+
+export const ImageInputWrap = styled.div`
+  position: relative;
+`

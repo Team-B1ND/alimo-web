@@ -1,7 +1,31 @@
+import React, { ChangeEvent, useRef, useState } from "react";
 import * as S from "src/style/Write.style/Write.style";
 import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
 const Write = () => {
+  const [image, setImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedFile = e.target.files[0];
+      setImage(URL.createObjectURL(selectedFile));
+    }
+  };
+
+  const handleClickButton = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleCancelImage = () => {
+    setImage(null);
+    // Reset the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
   return (
     <div style={{ display: "flex" }}>
       <SideBar />
@@ -10,11 +34,28 @@ const Write = () => {
           <S.H1>1. 내용을 입력해주세요!</S.H1>
           <input type="text" placeholder="알려줄 내용을 입력해주세요!" className="InputContent" />
         </div>
-        <div>
+        <S.ImageInputWrap>
           <S.H1>2. 첨부하실 파일이 있나요?</S.H1>
-          <input type="file" style={{ display: "none" }} />
-          <input type="file" />
-        </div>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={onChangeImageInput}
+            style={{ display: "none" }}
+          />
+          <button onClick={handleClickButton} style={{ cursor: "pointer", position: "absolute", zIndex: 1 }}>
+            Select Image
+          </button>
+          {image && (
+            <div>
+              <img src={image} alt="Selected" style={{ maxWidth: "100%", marginTop: "10px" }} />
+              <button onClick={handleCancelImage} style={{ cursor: "pointer", marginTop: "5px" }}>
+                Cancel Image
+              </button>
+            </div>
+          )}
+        </S.ImageInputWrap>
+
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
