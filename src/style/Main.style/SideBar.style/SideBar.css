@@ -5,6 +5,8 @@
   /* margin: 0 auto; */
 
   height: calc(100vh - 90vh);
+
+  cursor: pointer;
 }
 
 .SideBar-Logo-Alimo {
