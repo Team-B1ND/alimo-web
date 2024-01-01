@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css"
+import GlobalStyles from "src/style/global";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "src/components/Login/Login";
 import Main from "src/components/Main/Main/Main";
@@ -9,6 +9,7 @@ import Write from "src/components/Write/Write";
 function App() {
   return (
     <BrowserRouter>
+    <GlobalStyles/>
       <div className="App">
         <Routes>
           <Route path="/" element={<Login />} />
