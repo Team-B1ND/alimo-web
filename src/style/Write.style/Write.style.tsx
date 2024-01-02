@@ -72,6 +72,7 @@ export const StyledButton = styled.button`
 
 export const ImageInputWrap = styled.div`
   position: relative;
+  margin-bottom: 10%;
 `;
 
 export const ImageInputButton = styled.button`

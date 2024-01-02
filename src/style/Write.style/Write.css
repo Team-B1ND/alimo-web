@@ -30,7 +30,7 @@
 
 .Category {
   display: inline-flex;
-  padding: 6px var(--Largee, 16px);
+  padding: 10px var(--Largee, 20px);
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -65,4 +65,40 @@
   border: none;
   border-radius: var(--Large, 12px);
   background: var(--Main500, #fece23);
+}
+
+.ViewImageWrap {
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 85vh);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.CancleButton {
+  width: 8vw;
+  height: 4vh;
+
+  padding: var(--Large, 12px);
+  margin-bottom: -5vh;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  background: var(--Red200, #ffe8e8);
+  border: none;
+  border-radius: 10px;
+  color: var(--Red500, #f90707);
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

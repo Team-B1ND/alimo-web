@@ -49,21 +49,26 @@ const Write = () => {
             <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
               이미지 선택
             </S.ImageInputButton>
-            {/* 이미지 미리보기 */}
-            {image && (
-              <div>
-                <img src={image} alt="Selected" style={{ maxWidth: "30%", marginTop: "10px", display: "grid" }} />
-                <button onClick={handleCancelImage} style={{ cursor: "pointer", marginTop: "5px" }}>
-                  선택 취소
-                </button>
-              </div>
-            )}
+
             {/* 파일 선택 */}
             <label className="InputFileButton" htmlFor="input-file">
               파일 선택
             </label>
             <input type="file" id="input-file" style={{ display: "none" }} />
           </div>
+          {/* 이미지 미리보기 */}
+          {image && (
+            <div className="ViewImageWrap">
+              <img src={image} alt="Selected" style={{ marginTop: "10px" }} />
+              <button
+                onClick={handleCancelImage}
+                style={{ cursor: "pointer", marginTop: "5px" }}
+                className="CancleButton"
+              >
+                선택 취소
+              </button>
+            </div>
+          )}
         </S.ImageInputWrap>
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
