@@ -4,6 +4,7 @@ import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
 const Write = () => {
   const [image, setImage] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +37,7 @@ const Write = () => {
         </div>
         <S.ImageInputWrap>
           <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+          {/* 이미지 선택 */}
           <input
             type="file"
             accept="image/*"
@@ -44,9 +46,10 @@ const Write = () => {
             style={{ display: "none" }}
           />
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <S.InputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
+            <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
               이미지 선택
-            </S.InputButton>
+            </S.ImageInputButton>
+            {/* 이미지 미리보기 */}
             {image && (
               <div>
                 <img src={image} alt="Selected" style={{ maxWidth: "30%", marginTop: "10px", display: "grid" }} />
@@ -55,7 +58,11 @@ const Write = () => {
                 </button>
               </div>
             )}
-            <S.InputButton style={{ display: "inline" }}>파일 선택</S.InputButton>
+            {/* 파일 선택 */}
+            <label className="InputFileButton" htmlFor="input-file">
+              파일 선택
+            </label>
+            <input type="file" id="input-file" style={{ display: "none" }} />
           </div>
         </S.ImageInputWrap>
         <div>

@@ -74,7 +74,33 @@ export const ImageInputWrap = styled.div`
   position: relative;
 `;
 
-export const InputButton = styled.button`
+export const ImageInputButton = styled.button`
+  display: flex;
+  width: calc(100vw - 94vw);
+  height: calc(100vh - 95vh);
+  padding: var(--Large, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  color: #000;
+
+  /* Caption */
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+  border-radius: var(--Large, 12px);
+  background: var(--Main500, #fece23);
+`;
+
+export const FileInput = styled.input`
   display: flex;
   width: calc(100vw - 94vw);
   height: calc(100vh - 95vh);
