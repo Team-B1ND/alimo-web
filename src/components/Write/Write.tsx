@@ -4,6 +4,7 @@ import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
 const Write = () => {
   const [image, setImage] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +36,8 @@ const Write = () => {
           <input type="text" placeholder="알려줄 내용을 입력해주세요!" className="InputContent" />
         </div>
         <S.ImageInputWrap>
-          <S.H1>2. 첨부하실 파일이 있나요?</S.H1>
+          <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+          {/* 이미지 선택 */}
           <input
             type="file"
             accept="image/*"
@@ -43,19 +45,31 @@ const Write = () => {
             onChange={onChangeImageInput}
             style={{ display: "none" }}
           />
-          <button onClick={handleClickButton} style={{ cursor: "pointer", position: "absolute", zIndex: 1 }}>
-            Select Image
-          </button>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
+              이미지 선택
+            </S.ImageInputButton>
+
+            {/* 파일 선택 */}
+            <label className="InputFileButton" htmlFor="input-file">
+              파일 선택
+            </label>
+            <input type="file" id="input-file" style={{ display: "none" }} />
+          </div>
+          {/* 이미지 미리보기 */}
           {image && (
-            <div>
-              <img src={image} alt="Selected" style={{ maxWidth: "100%", marginTop: "10px" }} />
-              <button onClick={handleCancelImage} style={{ cursor: "pointer", marginTop: "5px" }}>
-                Cancel Image
+            <div className="ViewImageWrap">
+              <img src={image} alt="Selected" style={{ marginTop: "10px" }} />
+              <button
+                onClick={handleCancelImage}
+                style={{ cursor: "pointer", marginTop: "5px" }}
+                className="CancleButton"
+              >
+                선택 취소
               </button>
             </div>
           )}
         </S.ImageInputWrap>
-
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
