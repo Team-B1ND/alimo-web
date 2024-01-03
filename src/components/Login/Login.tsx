@@ -20,20 +20,29 @@ const Login = () => {
   const onFocus = () => setIsInputClicked(true);
   const onBlur = () => setIsInputClicked(false);
   const onIdChange = (e: any) => {
-    setIdValue(e.target.value);
-    e.target.value === "" ? setIsIdButton(false) : setIsIdButton(true);
-    e.target.value === ""
-      ? setIdDisplayBlock("none")
-      : setIdDisplayBlock("block");
+    console.log(e.target.value)
+    const idRegex = /^[A-Za-z0-9]+$/;
+
+    if (idRegex.test(e.target.value) || e.target.value === "") {
+      setIdValue(e.target.value);
+      e.target.value === "" ? setIsIdButton(false) : setIsIdButton(true);
+      e.target.value === ""
+        ? setIdDisplayBlock("none")
+        : setIdDisplayBlock("block");
+    }
   };
-  const onPasswordChange = (e: any) => {
-    setPasswordValue(e.target.value);
-    e.target.value === ""
-      ? setIsPasswordButton(false)
-      : setIsPasswordButton(true);
-    e.target.value === ""
-      ? setPasswordDisplayBlock("none")
-      : setPasswordDisplayBlock("block");
+  const onPasswordChange = (e: any) => {  
+    const passwordRegex = /^[A-Za-z0-9]+$/;
+
+    if (passwordRegex.test(e.target.value) || e.target.value === "") {
+      setPasswordValue(e.target.value);
+      e.target.value === ""
+        ? setIsPasswordButton(false)
+        : setIsPasswordButton(true);
+      e.target.value === ""
+        ? setPasswordDisplayBlock("none")
+        : setPasswordDisplayBlock("block");
+    }
   };
 
   return (
