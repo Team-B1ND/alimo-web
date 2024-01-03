@@ -8,6 +8,7 @@ const Write = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -24,14 +25,13 @@ const Write = () => {
 
   const handleCancelImage = () => {
     setImage(null);
-    // Reset the file input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
   };
 
-  const onClickCategory = () => {
-    setIsClicked(!isClicked);
+  const onClickCategory = (category: string) => {
+    setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -90,16 +90,20 @@ const Write = () => {
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
-            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+            <span className={selectedCategory === "grad" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("grad")}>
               1학년
             </span>
-            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+            <span className={selectedCategory === "Job" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("Job")}>
               마이스터 홍보부
             </span>
-            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+            <span  className={selectedCategory === "club" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("club")}>
               ALT
             </span>
-            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+            <span  className={selectedCategory === "pyhNotify" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("pyhNotify")}>
               교장선생님이 알립니다.
             </span>
           </S.CatetoryWrap>

@@ -38,11 +38,11 @@
   margin-top: 1vh;
   border-radius: var(--Large, 20px);
   background: var(--Main500, #ffd917);
-
   cursor: pointer;
 }
 
 .SelectCategory {
+  cursor: pointer;
   display: inline-flex;
   padding: 10px var(--Largee, 20px);
   justify-content: center;
