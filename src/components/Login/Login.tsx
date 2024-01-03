@@ -36,7 +36,6 @@ const Login = () => {
   const PasswordChange = (e: any) => {
     const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
 
-
     if (passwordRegex.test(e.target.value) || e.target.value === "") {
       setPasswordValue(e.target.value);
       e.target.value === ""
@@ -76,9 +75,7 @@ const Login = () => {
                   type="text"
                   value={idValue}
                   placeholder={
-                    clickName === "Id" && isInputClicked === true
-                      ? ""
-                      : "이메일"
+                    clickName === "Id" && isInputClicked ? "" : "이메일"
                   }
                   onFocus={Focus}
                   onBlur={Blur}
@@ -92,9 +89,7 @@ const Login = () => {
                   }}>
                   <img
                     style={{ display: `${idDisplayBlock}` }}
-                    src={
-                      clickName === "Id" && isIdButton === true ? IdCancel : ""
-                    }
+                    src={clickName === "Id" && isIdButton ? IdCancel : ""}
                     alt=""
                   />
                 </S.InputBtn>
@@ -104,9 +99,7 @@ const Login = () => {
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
                   placeholder={
-                    clickName === "PassWord" && isInputClicked === true
-                      ? ""
-                      : "비밀번호"
+                    clickName === "PassWord" && isInputClicked ? "" : "비밀번호"
                   }
                   onFocus={Focus}
                   onBlur={Blur}
@@ -118,7 +111,7 @@ const Login = () => {
                   <img
                     style={{ display: `${passwordDisplayBlock}` }}
                     src={
-                      clickName === "PassWord" && isPasswordButton === true
+                      clickName === "PassWord" && isPasswordButton
                         ? isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
