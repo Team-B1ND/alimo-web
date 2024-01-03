@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
@@ -10,7 +9,7 @@ import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
@@ -35,7 +34,8 @@ const Login = () => {
     }
   };
   const PasswordChange = (e: any) => {
-    const passwordRegex = /^[A-Za-z0-9]+$/;
+    const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
+
 
     if (passwordRegex.test(e.target.value) || e.target.value === "") {
       setPasswordValue(e.target.value);
@@ -48,13 +48,13 @@ const Login = () => {
     }
   };
   const LoginButton = () => {
-    if (idValue === "" || passwordValue === ""){
-      showToast("erorr", "로그인 실패")
+    if (idValue === "" || passwordValue === "") {
+      showToast("erorr", "로그인 실패");
     } else {
-      showToast("success", "로그인 성공")
-      navigate("/main")
+      showToast("success", "로그인 성공");
+      navigate("/main");
     }
-  }
+  };
 
   return (
     <S.LogoPageWrap>
