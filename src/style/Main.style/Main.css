@@ -1,0 +1,76 @@
+.MainWrapper {
+  margin: 0 auto;
+  align-items: center;
+  align-self: flex-start;
+}
+.line {
+  border-bottom: 1px solid #000;
+  width: 100px;
+  height: 1px;
+}
+
+.PostDateTime {
+  width: calc(100vw - 80vw);
+  margin-left: 10vw;
+  margin-bottom: 1vh;
+}
+
+.NotifyInfo {
+  margin-top: 1vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.TeacherProfile {
+  height: calc(100vw - 97vw);
+  width: calc(100vw - 97vw);
+  border: none;
+  border-radius: 100%;
+
+  margin-left: 1vw;
+}
+
+.TeacherName {
+  color: var(--Gray700, #333);
+  font-family: Pretendard;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-left: 1vw;
+}
+
+.NotifyContentWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.Content {
+  margin-left: 5vw;
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.More {
+  margin-left: 5vw;
+  margin-top: 1vh;
+
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.PostImage {
+  width: calc(100vw - 70vw);
+
+  margin-left: 5vw;
+  margin-top: 1vh;
+}
