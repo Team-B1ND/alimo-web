@@ -1,5 +1,8 @@
+
 import React from "react";
 import { useState } from "react";
+import { showToast } from "src/lib/Toast/Swal";
+import { useNavigate } from "react-router-dom";
 import Logo from "src/img/Alimo-image.png";
 import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
@@ -7,6 +10,7 @@ import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
 
 const Login = () => {
+  const navigate = useNavigate()
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
@@ -17,10 +21,9 @@ const Login = () => {
   const [idDisplayBlock, setIdDisplayBlock] = useState("none");
   const [passwordDisplayBlock, setPasswordDisplayBlock] = useState("none");
 
-  const onFocus = () => setIsInputClicked(true);
-  const onBlur = () => setIsInputClicked(false);
-  const onIdChange = (e: any) => {
-    console.log(e.target.value)
+  const Focus = () => setIsInputClicked(true);
+  const Blur = () => setIsInputClicked(false);
+  const IdChange = (e: any) => {
     const idRegex = /^[A-Za-z0-9]+$/;
 
     if (idRegex.test(e.target.value) || e.target.value === "") {
@@ -31,7 +34,7 @@ const Login = () => {
         : setIdDisplayBlock("block");
     }
   };
-  const onPasswordChange = (e: any) => {  
+  const PasswordChange = (e: any) => {
     const passwordRegex = /^[A-Za-z0-9]+$/;
 
     if (passwordRegex.test(e.target.value) || e.target.value === "") {
@@ -44,6 +47,14 @@ const Login = () => {
         : setPasswordDisplayBlock("block");
     }
   };
+  const LoginButton = () => {
+    if (idValue === "" || passwordValue === ""){
+      showToast("erorr", "로그인 실패")
+    } else {
+      showToast("success", "로그인 성공")
+      navigate("/main")
+    }
+  }
 
   return (
     <S.LogoPageWrap>
@@ -69,10 +80,10 @@ const Login = () => {
                       ? ""
                       : "이메일"
                   }
-                  onFocus={onFocus}
-                  onBlur={onBlur}
+                  onFocus={Focus}
+                  onBlur={Blur}
                   onClick={() => setClickName("Id")}
-                  onChange={onIdChange}
+                  onChange={IdChange}
                 />
                 <S.InputBtn
                   onClick={() => {
@@ -97,10 +108,10 @@ const Login = () => {
                       ? ""
                       : "비밀번호"
                   }
-                  onFocus={onFocus}
-                  onBlur={onBlur}
+                  onFocus={Focus}
+                  onBlur={Blur}
                   onClick={() => setClickName("PassWord")}
-                  onChange={onPasswordChange}
+                  onChange={PasswordChange}
                 />
                 <S.InputBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
@@ -118,7 +129,7 @@ const Login = () => {
                 </S.InputBtn>
               </S.InputWrap>
             </S.LoginInputWrap>
-            <S.LoginBtnWrap>
+            <S.LoginBtnWrap onClick={LoginButton}>
               <S.LoginBtn>도담도담 계정으로 로그인</S.LoginBtn>
             </S.LoginBtnWrap>
           </S.LoginWrap>
