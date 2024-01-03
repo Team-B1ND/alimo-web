@@ -2,9 +2,10 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import * as S from "src/style/Write.style/Write.style";
 import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
+
 const Write = () => {
   const [image, setImage] = useState<string | null>(null);
-
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +28,11 @@ const Write = () => {
       fileInputRef.current.value = "";
     }
   };
+
+  const onClickCategory = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <SideBar />
@@ -73,10 +79,18 @@ const Write = () => {
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
-            <span className="Category">1학년</span>
-            <span className="Category">마이스터 홍보부</span>
-            <span className="Category">ALT</span>
-            <span className="Category">교장선생님이 알립니다.</span>
+            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+              1학년
+            </span>
+            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+              마이스터 홍보부
+            </span>
+            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+              ALT
+            </span>
+            <span className={isClicked ? "SelectCategory" : "Category"} onClick={onClickCategory}>
+              교장선생님이 알립니다.
+            </span>
           </S.CatetoryWrap>
         </div>
         <S.ButtonWrap>

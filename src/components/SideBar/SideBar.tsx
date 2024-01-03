@@ -35,6 +35,7 @@ const SideBar = () => {
   const ClickCategoryStyle = (itemName: string) => ({
     fontWeight: clickedCategory === itemName ? 900 : 600,
   });
+  
   return (
     <S.SideBarWrap>
       <div className="SideBar-LogoWrap" onClick={onNavigateMain}>
