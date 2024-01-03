@@ -110,10 +110,9 @@
 }
 
 .CancleButton {
-  width: 8vw;
-  height: 4vh;
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 95vh);
 
-  padding: var(--Large, 12px);
   margin-bottom: -5vh;
   justify-content: center;
   align-items: center;
@@ -135,4 +134,5 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-align: center;
 }

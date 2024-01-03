@@ -90,20 +90,28 @@ const Write = () => {
         <div>
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
-            <span className={selectedCategory === "grad" ? "SelectCategory" : "Category"}
-              onClick={() => onClickCategory("grad")}>
+            <span
+              className={selectedCategory === "grad" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("grad")}
+            >
               1학년
             </span>
-            <span className={selectedCategory === "Job" ? "SelectCategory" : "Category"}
-              onClick={() => onClickCategory("Job")}>
+            <span
+              className={selectedCategory === "Job" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("Job")}
+            >
               마이스터 홍보부
             </span>
-            <span  className={selectedCategory === "club" ? "SelectCategory" : "Category"}
-              onClick={() => onClickCategory("club")}>
+            <span
+              className={selectedCategory === "club" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("club")}
+            >
               ALT
             </span>
-            <span  className={selectedCategory === "pyhNotify" ? "SelectCategory" : "Category"}
-              onClick={() => onClickCategory("pyhNotify")}>
+            <span
+              className={selectedCategory === "pyhNotify" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("pyhNotify")}
+            >
               교장선생님이 알립니다.
             </span>
           </S.CatetoryWrap>
