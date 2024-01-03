@@ -6,6 +6,7 @@ import "src/style/Write.style/Write.css";
 const Write = () => {
   const [image, setImage] = useState<string | null>(null);
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +34,16 @@ const Write = () => {
     setIsClicked(!isClicked);
   };
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+
+    if (selectedFile) {
+      setFileName(selectedFile.name);
+    } else {
+      setFileName("");
+    }
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <SideBar />
@@ -43,6 +54,14 @@ const Write = () => {
         </div>
         <S.ImageInputWrap>
           <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+          {/* 파일 선택 */}
+          <div style={{ display: "flex" }}>
+            <label className="InputFileButton" htmlFor="input-file">
+              파일 선택
+            </label>
+            <input className="UploadFileName" value={fileName} placeholder="첨부파일" readOnly />
+            <input type="file" id="input-file" style={{ display: "none" }} onChange={handleFileChange} />
+          </div>
           {/* 이미지 선택 */}
           <input
             type="file"
@@ -51,21 +70,13 @@ const Write = () => {
             onChange={onChangeImageInput}
             style={{ display: "none" }}
           />
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
-              이미지 선택
-            </S.ImageInputButton>
-
-            {/* 파일 선택 */}
-            <label className="InputFileButton" htmlFor="input-file">
-              파일 선택
-            </label>
-            <input type="file" id="input-file" style={{ display: "none" }} />
-          </div>
+          <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
+            이미지 선택
+          </S.ImageInputButton>
           {/* 이미지 미리보기 */}
           {image && (
             <div className="ViewImageWrap">
-              <img src={image} alt="Selected" style={{ marginTop: "10px" }} />
+              <img src={image} alt="Selected" style={{ marginTop: "1vh", marginBottom: "1vh", height: "20vh" }} />
               <button
                 onClick={handleCancelImage}
                 style={{ cursor: "pointer", marginTop: "5px" }}

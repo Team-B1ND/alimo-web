@@ -54,6 +54,26 @@
   background: #ffc061;
 }
 
+.UploadFileName {
+  display: inline-block;
+  height: calc(100vh - 95vh);
+  width: 17%;
+  padding: 0 15px;
+  border: 1px solid #ffd917;
+  border-radius: 12px;
+  outline: none;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.UploadFileName:focus {
+  outline: none;
+}
+
 .InputFileButton {
   display: flex;
   width: calc(100vw - 94vw);
@@ -63,6 +83,8 @@
   gap: 10px;
   flex-shrink: 0;
 
+  margin-bottom: 1vh;
+  margin-right: 10px;
   cursor: pointer;
 
   color: #000;
@@ -81,7 +103,7 @@
 
 .ViewImageWrap {
   width: calc(100vw - 90vw);
-  height: calc(100vh - 85vh);
+  height: calc(100vh - 90vh);
 
   display: flex;
   flex-direction: column;
