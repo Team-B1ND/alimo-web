@@ -42,6 +42,18 @@
   cursor: pointer;
 }
 
+.SelectCategory {
+  display: inline-flex;
+  padding: 10px var(--Largee, 20px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 3vw;
+  margin-top: 1vh;
+  border-radius: var(--Large, 20px);
+  background: #ffc061;
+}
+
 .InputFileButton {
   display: flex;
   width: calc(100vw - 94vw);
