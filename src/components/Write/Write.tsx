@@ -69,11 +69,11 @@ const Write = () => {
 
   const onClickConfirmButton = () => {
     if(contentAllow && categoryAllow) {
-      showToast("success", "게시");
+      showToast("success", "게시되었습니다.");
     } else if(!contentAllow && categoryAllow) {
-      showToast("error", "내용");
+      showToast("error", "내용을 입력해주세요.");
     } else {
-      showToast("error", "카테고리")
+      showToast("error", "카테고리를 선택해주세요.")
     }
   };
 
