@@ -48,7 +48,7 @@ const Main = () => {
             <h1 className="TeacherName">빈살만</h1>
           </div>
           <div className="NotifyContentWrap">
-            <span className="Content">너 좀 수상함... 너 마약함? 암튼 너 우리 갱단 들어오셈</span>
+            <span className="Content">너 좀 수상함... 너 마약함? 암튼 너 우리 갱단 들어오삼</span>
             <span className="More">...더보기</span>
             <img src={PostImage} className="PostImage" />
           </div>
