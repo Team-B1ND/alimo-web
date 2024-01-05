@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "src/style/Write.style/Write.style";
 import SideBar from "../SideBar/SideBar";
 import "src/style/Write.style/Write.css";
@@ -12,6 +13,7 @@ const Write = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentAllow, setContentAllow] = useState<boolean>(false);
   const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
+  const naviagate = useNavigate();
 
   const onChangeContent = (e: any) => {
     setContent(e.target.value);
@@ -68,12 +70,13 @@ const Write = () => {
   };
 
   const onClickConfirmButton = () => {
-    if(contentAllow && categoryAllow) {
+    if (contentAllow && categoryAllow) {
       showToast("success", "게시되었습니다.");
-    } else if(!contentAllow && categoryAllow) {
+      naviagate("/main");
+    } else if (!contentAllow && categoryAllow) {
       showToast("error", "내용을 입력해주세요.");
     } else {
-      showToast("error", "카테고리를 선택해주세요.")
+      showToast("error", "카테고리를 선택해주세요.");
     }
   };
 
