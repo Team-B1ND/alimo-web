@@ -44,6 +44,10 @@
 .NotifyContentWrap {
   display: flex;
   flex-direction: column;
+
+  height: 83vh;
+  width: calc(100vw - 45vw);
+  /* border-right: 1px solid #000; */
 }
 
 .Content {
@@ -83,6 +87,15 @@
 .DetailNotifyInfo {
   display: flex;
   flex-direction: column;
+}
+
+.DetailNotifyContentWrap {
+  display: flex;
+  flex-direction: column;
+
+  height: 83vh;
+  width: calc(100vw - 45vw);
+  border-right: 1px solid #d7d7d7;
 }
 
 .DetailPostImage {

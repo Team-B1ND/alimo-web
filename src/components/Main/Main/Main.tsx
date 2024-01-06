@@ -37,12 +37,13 @@ const Main = () => {
             <img src={PostImage} className="PostImage" />
           </div>
         </S.PostNotifyWrap>
+        {/* 모달시작 */}
         <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="공지 상세보기">
           <span className="closeModalIcon" onClick={closeModal}>
             &times;
           </span>
           <S.ModalPostDetail>
-            <div className="NotifyContentWrap">
+            <div className="DetailNotifyContentWrap">
               <img src={PostImage} className="DetailPostImage" />
             </div>
             <div className="DetailNotifyInfo">
@@ -51,10 +52,11 @@ const Main = () => {
                 <h1 className="TeacherName">빈윤미</h1>
               </div>
               <span className="DetailContent">너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</span>
-              <span className="DetailMore">...더보기</span>
+              <span className="DetailMore">...더보기 </span>
             </div>
           </S.ModalPostDetail>
         </Modal>
+        {/* 모달 끝 */}
         <S.PostNotifyWrap>
           <div className="NotifyInfo">
             <img src={TeacherProfile} className="TeacherProfile" />
