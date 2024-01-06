@@ -161,10 +161,10 @@ const Write = () => {
         </div>
         <S.ButtonWrap>
           <S.StyledButton style={{ marginLeft: "27vw" }} className="cancle">
-            취소하기
+            취소 하기
           </S.StyledButton>
           <S.StyledButton style={{ marginLeft: "2vw" }} onClick={onClickConfirmButton}>
-            게시하기
+            게시 하기
           </S.StyledButton>
         </S.ButtonWrap>
       </S.WriteWrap>
