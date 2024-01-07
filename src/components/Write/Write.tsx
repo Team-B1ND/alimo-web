@@ -134,8 +134,8 @@ const Write = () => {
           <S.H1>2. 카테고리를 선택해주세요!</S.H1>
           <S.CatetoryWrap>
             <span
-              className={selectedCategory === "grad" ? "SelectCategory" : "Category"}
-              onClick={() => onClickCategory("grad")}
+              className={selectedCategory === "grade" ? "SelectCategory" : "Category"}
+              onClick={() => onClickCategory("grade")}
             >
               1학년
             </span>
