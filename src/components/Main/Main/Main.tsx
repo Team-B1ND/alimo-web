@@ -18,11 +18,11 @@ const Main = () => {
   };
 
   return (
-    <div style={{ display: "flex", overflow: "scroll" }}>
+    <div style={{ display: "flex" }}>
       <SideBar />
-      <div className="MainWrapper" style={{ overflow: "hidden" }}>
+      <div className="MainWrapper">
         <S.DateWrapper>
-          <div className="line"></div>
+          <div className="lineLeft"></div>
           <span className="PostDateTime">2024년 1월 3일 오후 22:00</span>
           <div className="line"></div>
         </S.DateWrapper>
@@ -69,7 +69,7 @@ const Main = () => {
           </div>
         </S.PostNotifyWrap>
         <S.DateWrapper>
-          <div className="line"></div>
+          <div className="lineLeft"></div>
           <span className="PostDateTime">2024년 1월 4일 오후 22:99</span>
           <div className="line"></div>
         </S.DateWrapper>
