@@ -44,6 +44,10 @@
 .NotifyContentWrap {
   display: flex;
   flex-direction: column;
+
+  height: 83vh;
+  width: calc(100vw - 45vw);
+  /* border-right: 1px solid #000; */
 }
 
 .Content {
@@ -73,4 +77,66 @@
 
   margin-left: 5vw;
   margin-top: 1vh;
+}
+
+.closeModalIcon {
+  margin-left: 92vw;
+  color: #000;
+}
+
+.DetailNotifyInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.DetailNotifyContentWrap {
+  display: flex;
+  flex-direction: column;
+
+  height: 83vh;
+  width: calc(100vw - 45vw);
+  border-right: 1px solid #d7d7d7;
+}
+
+.DetailPostImage {
+  width: calc(100vw - 60vw);
+  margin-left: 10vw;
+  margin-top: 1vh;
+}
+
+.DetailContent {
+  margin-left: 11vw;
+  margin-top: 1vw;
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.DetailMore {
+  margin-left: 11vw;
+  margin-top: 1vh;
+
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TeacherInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.DetailTeacherProfile {
+  height: calc(100vw - 97vw);
+  width: calc(100vw - 97vw);
+  border: none;
+  border-radius: 100%;
+
+  margin-left: 11vw;
 }

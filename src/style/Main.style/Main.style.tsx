@@ -15,3 +15,9 @@ export const PostNotifyWrap = styled.div`
 
   margin: 5vh auto;
 `;
+
+export const ModalPostDetail = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
