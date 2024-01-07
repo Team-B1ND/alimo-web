@@ -18,9 +18,9 @@ const Main = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", overflow: "scroll" }}>
       <SideBar />
-      <div className="MainWrapper">
+      <div className="MainWrapper" style={{ overflow: "hidden" }}>
         <S.DateWrapper>
           <div className="line"></div>
           <span className="PostDateTime">2024년 1월 3일 오후 22:00</span>
@@ -38,7 +38,7 @@ const Main = () => {
           </div>
         </S.PostNotifyWrap>
         {/* 모달시작 */}
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="공지 상세보기">
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
           <span className="closeModalIcon" onClick={closeModal}>
             &times;
           </span>
