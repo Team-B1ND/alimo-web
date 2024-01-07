@@ -22,7 +22,7 @@ const Main = () => {
       <SideBar />
       <div className="MainWrapper">
         <S.DateWrapper>
-          <div className="line"></div>
+          <div className="lineLeft"></div>
           <span className="PostDateTime">2024년 1월 3일 오후 22:00</span>
           <div className="line"></div>
         </S.DateWrapper>
@@ -38,7 +38,7 @@ const Main = () => {
           </div>
         </S.PostNotifyWrap>
         {/* 모달시작 */}
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="공지 상세보기">
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
           <span className="closeModalIcon" onClick={closeModal}>
             &times;
           </span>
@@ -69,7 +69,7 @@ const Main = () => {
           </div>
         </S.PostNotifyWrap>
         <S.DateWrapper>
-          <div className="line"></div>
+          <div className="lineLeft"></div>
           <span className="PostDateTime">2024년 1월 4일 오후 22:99</span>
           <div className="line"></div>
         </S.DateWrapper>

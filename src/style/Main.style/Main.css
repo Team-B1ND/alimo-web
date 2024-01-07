@@ -3,6 +3,14 @@
   align-items: center;
   align-self: flex-start;
 }
+
+.lineLeft {
+  border-bottom: 1px solid #000;
+  width: calc(100vw - 85vw);
+  height: 1px;
+  margin-left: 10vw;
+}
+
 .line {
   border-bottom: 1px solid #000;
   width: calc(100vw - 85vw);
