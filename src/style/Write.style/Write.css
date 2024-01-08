@@ -9,13 +9,19 @@
 }
 
 .InputContent {
-  width: 70vw;
-  height: 13vh;
+  width: calc(100vw - 31vw);
+  height: calc(100vh - 87vh);
 
   border-radius: 20px;
   border: 1px solid var(--Main400, #f8cf41);
   background: var(--Main50, #fffefc);
   outline: none;
+
+  padding-left: 1vw;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
 }
 
 .Category {
