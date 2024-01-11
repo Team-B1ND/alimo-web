@@ -37,7 +37,7 @@ export const StyledButton = styled.button`
   display: flex;
 
   width: 8vw;
-  height: 4vh;
+  height: 5vh;
 
   padding: var(--Large, 12px);
   margin-bottom: -5vh;

@@ -1,18 +1,19 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "src/style/Write.style/Write.style";
-import SideBar from "../SideBar/SideBar";
-import "src/style/Write.style/Write.css";
 import { showToast } from "src/lib/Toast/Swal";
+import SideBar from "../SideBar/SideBar";
+import * as S from "src/style/Write.style/Write.style";
+
+import "src/style/Write.style/Write.css";
 
 const Write = () => {
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>("");
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentAllow, setContentAllow] = useState<boolean>(false);
   const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const naviagate = useNavigate();
 
   const onChangeContent = (e: any) => {
