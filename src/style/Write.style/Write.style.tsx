@@ -9,7 +9,7 @@ export const WriteWrap = styled.div`
 
   justify-content: space-evenly;
 
-  margin-left: 5vw;
+  margin-left: 20vw;
 `;
 
 export const H1 = styled.h1`
