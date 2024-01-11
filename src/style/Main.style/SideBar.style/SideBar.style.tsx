@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
-
-  position: fixed;
+  position: relative;
 
   width: calc(100vw - 85vw);
   height: 100vh;
