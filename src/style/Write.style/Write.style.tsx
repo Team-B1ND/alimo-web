@@ -77,7 +77,7 @@ export const ImageInputWrap = styled.div`
 
 export const ImageInputButton = styled.button`
   display: flex;
-  width: calc(100vw - 94vw);
+  width: calc(100vw - 90vw);
   height: calc(100vh - 95vh);
   padding: var(--Large, 12px);
   justify-content: center;
