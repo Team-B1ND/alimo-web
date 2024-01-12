@@ -82,8 +82,9 @@ const Write = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="Write_Main">
       <SideBar />
+      <S.MainView>
       <S.WriteWrap>
         <div>
           <S.H1>1. 내용을 입력해주세요!</S.H1>
@@ -169,6 +170,7 @@ const Write = () => {
           </S.StyledButton>
         </S.ButtonWrap>
       </S.WriteWrap>
+      </S.MainView>
     </div>
   );
 };
