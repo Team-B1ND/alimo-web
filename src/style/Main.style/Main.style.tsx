@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Main =styled.div`
+width:100vw;
+height:100vh;
+display: flex;
+`
 export const DateWrapper = styled.div`
   display: flex;
 
@@ -7,6 +12,16 @@ export const DateWrapper = styled.div`
   margin-left: 3vw;
   width: 100%;
 `;
+
+export const MainView = styled.div`
+width: calc(100vw - 15vw);
+height: 100vh;
+display: flex;
+justify-content: center;
+position: relative;
+overflow-x: hidden;
+overflow-y: scroll;
+`
 
 export const PostNotifyWrap = styled.div`
   display: flex;

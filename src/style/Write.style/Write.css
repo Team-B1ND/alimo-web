@@ -1,3 +1,9 @@
+.Write_Main{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
 .InputTitleWrap {
   color: #000;
 

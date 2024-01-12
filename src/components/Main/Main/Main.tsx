@@ -18,8 +18,9 @@ const Main = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <S.Main>
       <SideBar />
+      <S.MainView>
       <div className="MainWrapper">
         <S.DateWrapper>
           <div className="lineLeft"></div>
@@ -85,7 +86,8 @@ const Main = () => {
           </div>
         </S.PostNotifyWrap>
       </div>
-    </div>
+      </S.MainView>
+    </S.Main>
   );
 };
 

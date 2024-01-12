@@ -4,7 +4,6 @@ export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
   width: calc(100vw - 85vw);
   height: 100vh;
   border-right: 1px solid #cccccc;

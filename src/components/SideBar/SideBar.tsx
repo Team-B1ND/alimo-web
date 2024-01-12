@@ -25,6 +25,8 @@ const SideBar = () => {
       case "설정":
         navigate("/setting");
         break;
+      default:
+        navigate("");
     }
   };
 
