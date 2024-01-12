@@ -18,13 +18,14 @@ const Main = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <S.Main>
       <SideBar />
-      <div className="MainWrapper">
-        <S.DateWrapper>
-          <div className="lineLeft"></div>
+      <S.MainView>
+        <div className="MainWrapper">
+         <S.DateWrapper>
+          <S.lineLeft></S.lineLeft>
           <span className="PostDateTime">2024년 1월 3일 오후 22:00</span>
-          <div className="line"></div>
+          <S.lineRight></S.lineRight>
         </S.DateWrapper>
         <S.PostNotifyWrap onClick={onClickNavigatePostDetail}>
           <div className="NotifyInfo">
@@ -37,8 +38,8 @@ const Main = () => {
             <img src={PostImage} className="PostImage" />
           </div>
         </S.PostNotifyWrap>
-        {/* 모달시작 */}
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        {/* 모달시작
+        {/* <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
           <span className="closeModalIcon" onClick={closeModal}>
             &times;
           </span>
@@ -57,7 +58,7 @@ const Main = () => {
           </S.ModalPostDetail>
         </Modal>
         {/* 모달 끝 */}
-        <S.PostNotifyWrap>
+        {/* <S.PostNotifyWrap>
           <div className="NotifyInfo">
             <img src={TeacherProfile} className="TeacherProfile" />
             <h1 className="TeacherName">가득윤미</h1>
@@ -83,9 +84,11 @@ const Main = () => {
             <span className="More">...더보기</span>
             <img src={PostImage} className="PostImage" />
           </div>
-        </S.PostNotifyWrap>
-      </div>
-    </div>
+        </S.PostNotifyWrap> */} 
+        </div>
+      
+      </S.MainView>
+    </S.Main>
   );
 };
 

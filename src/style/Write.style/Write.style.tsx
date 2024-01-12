@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+
+export const MainView = styled.div`
+width: calc(100vw - 15vw);
+height: 100vh;
+display: flex;
+justify-content: center;
+position: relative;
+`
+
+
 export const WriteWrap = styled.div`
   width: 70vw;
   height: 100vh;
@@ -8,8 +18,6 @@ export const WriteWrap = styled.div`
   flex-direction: column;
 
   justify-content: space-evenly;
-
-  margin-left: 3vw;
 `;
 
 export const H1 = styled.h1`
@@ -37,7 +45,7 @@ export const StyledButton = styled.button`
   display: flex;
 
   width: 8vw;
-  height: 4vh;
+  height: 5vh;
 
   padding: var(--Large, 12px);
   margin-bottom: -5vh;
