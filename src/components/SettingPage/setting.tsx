@@ -1,8 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
+import {keyframes} from "styled-components";
 import SideBar from "src/components/SideBar/SideBar";
 import * as s from "src/style/Setting.style/Setting.style";
 
 export default function Setting() {
+const [Alarm, setAlarm]=useState(false)
+  const SettingAlarm = ()=>{
+setAlarm((prevAlarm) => !prevAlarm);
+  }
+  const Logout = ()=>{
+
+  }
+
   return (
     <s.Setting>
       <SideBar />
@@ -15,7 +24,9 @@ export default function Setting() {
             <s.SettingText>
               <s.Texts>알림설정</s.Texts>
               <s.AlarmSetting>
-                <s.Alarm></s.Alarm>
+                <s.Alarm onClick={()=>SettingAlarm()}>
+                  <s.Alarm_Button animate={Alarm}></s.Alarm_Button>
+                </s.Alarm>
               </s.AlarmSetting>
             </s.SettingText>
             <s.SettingText>
@@ -30,7 +41,7 @@ export default function Setting() {
           <s.SettingLogOut>
             <s.SettingLogOutText>
               <s.Texts>로그아웃하기</s.Texts>
-              <s.LogOut>로그아웃</s.LogOut>
+              <s.LogOut onClick={Logout}>로그아웃</s.LogOut>
             </s.SettingLogOutText>
           </s.SettingLogOut>
         </s.Settingview>
