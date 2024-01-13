@@ -21,7 +21,7 @@ function SettingModal() {
   };
 
   return (
-    <div style={{ marginLeft: "-2vw", marginBottom: "3vh" }}>
+    <div style={{ marginBottom: "3vh", position: "absolute" }}>
       <Image src={SettingImg} onClick={handleShow} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header style={{ border: "none" }}>
