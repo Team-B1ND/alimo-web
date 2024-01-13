@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Image } from "react-bootstrap";
 import SettingImg from "../../../img/Category-Setting.svg";
 
@@ -21,23 +21,26 @@ function SettingModal() {
   };
 
   return (
-    <div style={{ marginBottom: "3vh", position: "absolute" }}>
+    <div
+      className="d-flex align-items-center justify-content-center"
+      style={{ position: "absolute", marginTop: "1vh", marginLeft: "30vw" }}
+    >
       <Image src={SettingImg} onClick={handleShow} />
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header style={{ border: "none" }}>
-          <Modal.Title>버튼</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ border: "none" }}>
-          삭제 하시게되면 해당 카테고리의 공지를 보거나 작성하실 수 없게 됩니다. 그래도 삭제 하시겠습니까?
-        </Modal.Body>
-        <Modal.Footer style={{ border: "none" }}>
-          <Button className="Cancle" onClick={handleClose}>
-            취소
-          </Button>
-          <Button className="Delete" onClick={onDelete}>
-            삭제하기
-          </Button>
-        </Modal.Footer>
+      <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
+        <Modal.Dialog style={{ height: "30vh" }}>
+          <Modal.Header style={{ marginTop: "-3vh" }} className="DeleteTitleWrap">
+            <Modal.Title>카테고리 설정</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="DeleteContentWrap">모달로 할까요 따로 페이지를 만들어야할까요..</Modal.Body>
+          <Modal.Footer className="DeleteButtonWrap">
+            <Button className="cancle-button" onClick={handleClose}>
+              취소
+            </Button>
+            <Button className="delete-button" onClick={onDelete}>
+              구현중
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
       </Modal>
     </div>
   );
