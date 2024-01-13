@@ -48,7 +48,6 @@ export const Category = styled.div`
   width: calc(100vw - 30vw);
   height: calc(100vh - 85vh);
 
-  margin-left: 7vw;
   margin-bottom: 5vh;
   padding-left: 2vw;
   border: 1px solid #d7d7d7;
@@ -56,14 +55,16 @@ export const Category = styled.div`
 
   background: var(--White, #fff);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+
   align-items: center;
+  align-self: center;
 
   & span {
     color: #000;
 
     /* Title */
     font-family: Pretendard;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
