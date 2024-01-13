@@ -11,7 +11,7 @@ const CategoryManage = () => {
         <S.CreateButton>카테고리 생성</S.CreateButton>
         <S.Category>
           <span>1학년</span>
-          <SettingModal></SettingModal>
+          <SettingModal />
           <DeleteModal></DeleteModal>
         </S.Category>
         <S.Category>
