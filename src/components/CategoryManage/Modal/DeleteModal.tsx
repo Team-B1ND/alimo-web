@@ -21,7 +21,7 @@ function DeleteModal() {
   };
 
   return (
-    <div style={{ marginLeft: "7vw", marginBottom: "3vh" }}>
+    <div style={{ marginBottom: "3vh", marginLeft: "5vw", position: "absolute" }}>
       <Image src={DeleteImg} onClick={handleShow} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header style={{ border: "none" }}>
