@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import {styled,keyframes} from "styled-components";
 
 export const Setting = styled.div`
   width: 100vw;
@@ -98,6 +98,9 @@ export const AlarmSetting = styled.div`
   height: 100%;
 `;
 export const Alarm = styled.div`
+display: flex;
+position: absolute;
+align-items: center;
   width: 54px;
   height: 28px;
   margin-top: 10px;
@@ -105,6 +108,16 @@ export const Alarm = styled.div`
   border-radius: var(--Infinity, 1000px);
   background: var(--Gray500, #aaa);
   cursor: pointer;
+`;
+export const Alarm_Button = styled.div<{ animate: boolean }>`
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 1px;
+  transition: left 0.5s; /* Add transition for smooth animation */
+  left: ${({ animate }) => (animate ? '27px' : '1px')};
 `;
 export const SettingLink = styled.div`
   cursor: pointer;
