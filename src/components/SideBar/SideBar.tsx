@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
 import "src/style/Main.style/SideBar.style/SideBar.css";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
@@ -7,6 +7,29 @@ import ProfileImgae from "src/img/Profile-Dummy.jpg";
 const SideBar = () => {
   const [clickedCategory, setIsClickCategory] = useState<String | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/main":
+        setIsClickCategory("메인");
+        break;
+      case "/write":
+        setIsClickCategory("글작성");
+        break;
+      case "/category-manage":
+        setIsClickCategory("카테고리 관리");
+        break;
+      case "/wirte-read":
+        setIsClickCategory("작서을 보기");
+        break;
+      case "/setting":
+        setIsClickCategory("설정");
+        break;
+      default:
+        setIsClickCategory("");
+    }
+  }, []);
   const handleCategoryClick = (itemName: string) => {
     setIsClickCategory(itemName === clickedCategory ? null : itemName);
     switch (itemName) {
@@ -17,7 +40,7 @@ const SideBar = () => {
         navigate("/write");
         break;
       case "카테고리 관리":
-        navigate("/category");
+        navigate("/category-manage");
         break;
       case "작성글 보기":
         navigate("/write-read");

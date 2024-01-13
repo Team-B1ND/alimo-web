@@ -6,6 +6,7 @@ import Main from "src/components/Main/Main/Main";
 import Profile from "src/components/Profile/profile";
 import Setting from "src/components/SettingPage/setting";
 import Write from "src/components/Write/Write";
+import CategoryManage from "./components/CategoryManage/CategoryManage";
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/category-manage" element={<CategoryManage />} />
         </Routes>
       </div>
     </BrowserRouter>
