@@ -48,7 +48,7 @@ gap:60%;
 `;
 export const LogOut = styled.div`
 display: flex;
-width: 100px;
+width: 200px;
 height: 50px;
 padding: 1px 50px;
 justify-content: center;
