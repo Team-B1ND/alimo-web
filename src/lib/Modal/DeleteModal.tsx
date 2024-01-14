@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../../style/Category.style/Modal.style/DeleteModal.css";
+import "../../style/Category.style/Modal.style/DeleteModal.css";
 import { Image } from "react-bootstrap";
-import DeleteImg from "../../../img/Category-Delete.svg";
-import { showToast } from "../../../lib/Toast/Swal";
+import DeleteImg from "../../img/Category-Delete.svg";
+import { showToast } from "../Toast/Swal";
 
 function DeleteModal() {
   const [show, setShow] = useState<boolean>(false);
@@ -26,7 +26,7 @@ function DeleteModal() {
   return (
     <div
       className="d-flex align-items-center justify-content-center"
-      style={{ position: "absolute", marginTop: "1vh", marginLeft: "35vw" }}
+      style={{ position: "absolute", marginTop: "1vh", marginLeft: "35vw", cursor: "pointer" }}
     >
       <Image src={DeleteImg} onClick={handleShow} />
       <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">

@@ -39,7 +39,7 @@ export const CreateButton = styled.button`
   line-height: normal;
 
   margin-top: 5vh;
-  margin-left: 70vw;
+  margin-left: 67.5vw;
 `;
 
 export const Category = styled.div`
