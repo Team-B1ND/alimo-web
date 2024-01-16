@@ -3,7 +3,6 @@ import SideBar from "../SideBar/SideBar";
 import * as S from "../../style/CategoryAdd.style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "../../lib/Toast/Swal";
-import { stringify } from "querystring";
 
 interface Student {
   name: string;

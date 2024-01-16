@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { sortAndDeduplicateDiagnostics } from "typescript";
 
 export const CategoryAdd = styled.div`
   width: 100vw;
