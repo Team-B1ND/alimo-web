@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import * as S from "../../style/CategoryAdd.style/CategoryAdd.style";
+import { useNavigate } from "react-router-dom";
+import { showToast } from "../../lib/Toast/Swal";
 
 interface Student {
   name: string;
 }
 
 const CategoryAdd = () => {
+  const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
+
   const onChangeCategoryName = (e: any) => {
     setCategoryName(e.target.value);
   };
@@ -22,6 +25,26 @@ const CategoryAdd = () => {
     } else {
       const newStudent: Student = { name: studentName };
       setSelectedStudents([...selectedStudents, newStudent]);
+    }
+  };
+
+  const onClickNavigate = () => {
+    navigate("/category-manage");
+  };
+
+  const onClickAddCategory = () => {
+    if (categoryName && selectedStudents.length !== 0) {
+      showToast("success", "카테고리가 추가되었습니다.");
+      navigate("/category-manage");
+    } else {
+      if (!categoryName && selectedStudents.length !== 0) {
+        showToast("error", "카테고리 이름을 입력해주세요");
+        setCategoryName("");
+      } else if (categoryName && selectedStudents.length <= 0) {
+        showToast("error", "학생을 선택해주세요");
+      } else {
+        showToast("error", "아무것도 하지않으셨습니다.");
+      }
     }
   };
   return (
@@ -77,8 +100,10 @@ const CategoryAdd = () => {
           </S.AccessWrap>
         </S.GrantAccessWrap>
         <S.ButtonWrap>
-          <S.StyledButton className="cancle">돌아가기</S.StyledButton>
-          <S.StyledButton>추가하기</S.StyledButton>
+          <S.StyledButton className="cancle" onClick={onClickNavigate}>
+            돌아가기
+          </S.StyledButton>
+          <S.StyledButton onClick={onClickAddCategory}>추가하기</S.StyledButton>
         </S.ButtonWrap>
       </S.CategoryAddView>
     </S.CategoryAdd>
