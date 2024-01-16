@@ -116,7 +116,7 @@ export const Alarm_Button = styled.div<{ animate: boolean }>`
   border-radius: 50%;
   background-color: white;
   margin-left: 1px;
-  transition: left 0.5s; /* Add transition for smooth animation */
+  transition: left 0.5s; 
   left: ${({ animate }) => (animate ? '26px' : '1px')};
 `;
 export const SettingLink = styled.div`
