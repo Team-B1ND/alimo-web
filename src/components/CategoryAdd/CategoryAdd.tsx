@@ -13,7 +13,7 @@ const CategoryAdd = () => {
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [selectAccess, setSelectAccess] = useState<string | null>("");
+  const [selectAccess, setSelectAccess] = useState<string | null>(null);
 
   const onChangeCategoryName = (e: any) => {
     setCategoryName(e.target.value);
@@ -39,15 +39,15 @@ const CategoryAdd = () => {
   };
 
   const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess) {
+    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
       showToast("success", "카테고리가 추가되었습니다.");
       navigate("/category-manage");
-    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess) {
+    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
       showToast("error", "카테고리 이름을 입력해주세요");
       setCategoryName("");
-    } else if (categoryName && selectedStudents.length <= 0 && selectAccess) {
+    } else if (categoryName && selectedStudents.length <= 0 && selectAccess !== null) {
       showToast("error", "학생을 선택해주세요");
-    } else if (categoryName && selectedStudents.length !== 0 && !selectAccess) {
+    } else if (categoryName && selectedStudents.length !== 0 && selectAccess === null) {
       showToast("error", "권한을 부여해주세요.");
     } else {
       showToast("error", "아무것도 하지않으셨습니다.");
