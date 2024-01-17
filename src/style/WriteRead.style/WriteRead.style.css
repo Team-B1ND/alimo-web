@@ -1,0 +1,135 @@
+.WriteRead {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.WriteReadView {
+  width: 85vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.WriteReadWrap {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 15vh;
+}
+
+.WriteReadText {
+  width: 90%;
+  height: 12%;
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.WriteReadTitle {
+  color: #000;
+  padding-right: 10px;
+}
+
+.WriteReadCount {
+  color: var(--Main500, #fece23);
+}
+
+.MyPostNotifyWrap {
+  width: 90%;
+  height: 40%;
+}
+
+.MyPostNotify {
+  width: 100%;
+  height: 75%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid var(--Main400, #fbd757);
+}
+
+.MyNotifyTextWrap {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MyInfoWrap {
+  width: 85%;
+  height: 35%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.MyProfile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.MyInfoText {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 0px 10px;
+}
+
+.MyName {
+  color: var(--Gray700, #333);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyNotifyDate {
+  color: var(--Gray500, #888);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyContentWrap {
+  width: 85%;
+  height: 55%;
+}
+
+.MyContent {
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyNotifyImgWrap {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.MyNotifyImg {
+  width: 80%;
+  height: 80%;
+}
