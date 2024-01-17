@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+
+export const MainView = styled.div`
+width: calc(100vw - 15vw);
+height: 100vh;
+display: flex;
+justify-content: center;
+position: relative;
+`
+
+
 export const WriteWrap = styled.div`
   width: 70vw;
   height: 100vh;
@@ -8,8 +18,6 @@ export const WriteWrap = styled.div`
   flex-direction: column;
 
   justify-content: space-evenly;
-
-  margin-left: 3vw;
 `;
 
 export const H1 = styled.h1`
@@ -37,7 +45,7 @@ export const StyledButton = styled.button`
   display: flex;
 
   width: 8vw;
-  height: 4vh;
+  height: 5vh;
 
   padding: var(--Large, 12px);
   margin-bottom: -5vh;
@@ -68,4 +76,61 @@ export const StyledButton = styled.button`
     font-weight: 500;
     line-height: normal;
   }
+`;
+
+export const ImageInputWrap = styled.div`
+  position: relative;
+  margin-bottom: 10%;
+`;
+
+export const ImageInputButton = styled.button`
+  display: flex;
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 95vh);
+  padding: var(--Large, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  color: #000;
+
+  /* Caption */
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+  border-radius: var(--Large, 12px);
+  background: var(--Main500, #fece23);
+`;
+
+export const FileInput = styled.input`
+  display: flex;
+  width: calc(100vw - 94vw);
+  height: calc(100vh - 95vh);
+  padding: var(--Large, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  color: #000;
+
+  /* Caption */
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+  border-radius: var(--Large, 12px);
+  background: var(--Main500, #fece23);
 `;
