@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "../../style/Category.style/Category.style";
 import SideBar from "../SideBar/SideBar";
 import DeleteModal from "../../lib/Modal/DeleteModal";

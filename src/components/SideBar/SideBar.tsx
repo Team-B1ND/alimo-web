@@ -28,10 +28,12 @@ const SideBar = () => {
         break;
       default:
         setIsClickCategory("");
+        break;
     }
-  }, []);
+  }, [location.pathname]);
+
   const handleCategoryClick = (itemName: string) => {
-    setIsClickCategory(itemName === clickedCategory ? null : itemName);
+    setIsClickCategory(itemName);
     switch (itemName) {
       case "메인":
         navigate("/main");

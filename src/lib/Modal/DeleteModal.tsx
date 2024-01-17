@@ -7,7 +7,7 @@ import { Image } from "react-bootstrap";
 import DeleteImg from "../../img/Category-Delete.svg";
 import { showToast } from "../Toast/Swal";
 
-function DeleteModal() {
+const DeleteModal = () => {
   const [show, setShow] = useState<boolean>(false);
 
   const handleShow = () => {

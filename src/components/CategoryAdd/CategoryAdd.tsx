@@ -12,6 +12,7 @@ const CategoryAdd = () => {
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
+  const [selectAccess, setSelectAccess] = useState<string | null>(null);
 
   const onChangeCategoryName = (e: any) => {
     setCategoryName(e.target.value);
@@ -32,19 +33,23 @@ const CategoryAdd = () => {
     navigate("/category-manage");
   };
 
+  const onClickAccess = (access: string) => {
+    setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
+  };
+
   const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0) {
+    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
       showToast("success", "카테고리가 추가되었습니다.");
       navigate("/category-manage");
+    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
+      showToast("error", "카테고리 이름을 입력해주세요");
+      setCategoryName("");
+    } else if (categoryName && selectedStudents.length <= 0 && selectAccess !== null) {
+      showToast("error", "학생을 선택해주세요");
+    } else if (categoryName && selectedStudents.length !== 0 && selectAccess === null) {
+      showToast("error", "권한을 부여해주세요.");
     } else {
-      if (!categoryName && selectedStudents.length !== 0) {
-        showToast("error", "카테고리 이름을 입력해주세요");
-        setCategoryName("");
-      } else if (categoryName && selectedStudents.length <= 0) {
-        showToast("error", "학생을 선택해주세요");
-      } else {
-        showToast("error", "아무것도 하지않으셨습니다.");
-      }
+      showToast("error", "아무것도 하지않으셨습니다.");
     }
   };
   return (
@@ -93,10 +98,27 @@ const CategoryAdd = () => {
         <S.GrantAccessWrap>
           <S.H1 style={{ marginTop: "2vh", marginBottom: "3vh" }}>권한 부여</S.H1>
           <S.AccessWrap>
-            <S.GrantAccess>선생님</S.GrantAccess>
-            <S.GrantAccess>PM</S.GrantAccess>
-            <S.GrantAccess>동아리장</S.GrantAccess>
-            <S.GrantAccess>일반 학생</S.GrantAccess>
+            <S.GrantAccess
+              onClick={() => onClickAccess("선생님")}
+              className={selectAccess === "선생님" ? "selected" : "basic"}
+            >
+              선생님
+            </S.GrantAccess>
+            <S.GrantAccess onClick={() => onClickAccess("PM")} className={selectAccess === "PM" ? "selected" : "basic"}>
+              PM
+            </S.GrantAccess>
+            <S.GrantAccess
+              onClick={() => onClickAccess("동아리장")}
+              className={selectAccess === "동아리장" ? "selected" : "basic"}
+            >
+              동아리장
+            </S.GrantAccess>
+            <S.GrantAccess
+              onClick={() => onClickAccess("일반 학생")}
+              className={selectAccess === "일반 학생" ? "selected" : "basic"}
+            >
+              일반 학생
+            </S.GrantAccess>
           </S.AccessWrap>
         </S.GrantAccessWrap>
         <S.ButtonWrap>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { sortAndDeduplicateDiagnostics } from "typescript";
 
 export const CategoryAdd = styled.div`
   width: 100vw;
@@ -126,6 +125,10 @@ export const GrantAccess = styled.span`
   background: var(--Main500, #ffd917);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  &.selected {
+    background: #FFC909;
+  }
 `;
 
 export const ButtonWrap = styled.div`
