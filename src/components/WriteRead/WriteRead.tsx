@@ -23,7 +23,7 @@ const MyWriteView = () => {
             <div className="MyPostNotify">
               <div className="MyNotifyTextWrap">
                 <div className="MyInfoWrap">
-                  <img src={MyProfile} className="MyProfile" />
+                  <img src={MyProfile} className="MyProfile" alt="내 프로필" />
                   <div className="MyInfoText">
                     <p className="MyName">이진주</p>
                     <p className="MyNotifyDate">2023년 4월 20일(목) 02:56</p>
@@ -50,7 +50,7 @@ const MyWriteView = () => {
             <div className="MyPostNotify">
               <div className="MyNotifyTextWrap">
                 <div className="MyInfoWrap">
-                  <img src={MyProfile} className="MyProfile" />
+                  <img src={MyProfile} className="MyProfile" alt="내 프로필" />
                   <div className="MyInfoText">
                     <p className="MyName">이진주</p>
                     <p className="MyNotifyDate">2023년 4월 20일(목) 02:56</p>
