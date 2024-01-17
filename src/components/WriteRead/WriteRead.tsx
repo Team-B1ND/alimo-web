@@ -11,71 +11,43 @@ const MyWriteView = () => {
     `위 공모전에 관심있는 학생은 이진주 선생님에게 카카오워크로 연락주세요~!`,
   ];
   return (
-    <div className="WriteRead">
+    <S.WriteRead>
       <SideBar />
-      <div className="WriteReadView">
-        <div className="WriteReadWrap">
-          <div className="WriteReadText">
-            <span className="WriteReadTitle">내 공지</span>
-            <span className="WriteReadCount">13</span>
-          </div>
-          <div className="MyPostNotifyWrap">
-            <div className="MyPostNotify">
-              <div className="MyNotifyTextWrap">
-                <div className="MyInfoWrap">
-                  <img src={MyProfile} className="MyProfile" alt="내 프로필" />
-                  <div className="MyInfoText">
-                    <p className="MyName">이진주</p>
-                    <p className="MyNotifyDate">2023년 4월 20일(목) 02:56</p>
-                  </div>
-                </div>
-                <div className="MyContentWrap">
-                  <span className="MyContent">
+      <S.WriteReadView>
+        <S.WriteReadWrap>
+          <S.WriteReadText>
+            <S.WriteReadTitle>내 공지</S.WriteReadTitle>
+            <S.WriteReadCount>13</S.WriteReadCount>
+          </S.WriteReadText>
+          <S.MyPostNotifyWrap>
+            <S.MyPostNotify>
+              <S.MyNotifyTextWrap>
+                <S.MyInfoWrap>
+                  <S.MyProfile src={MyProfile} alt="내 프로필" />
+                  <S.MyInfoText>
+                    <S.MyName>이진주</S.MyName>
+                    <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
+                  </S.MyInfoText>
+                </S.MyInfoWrap>
+                <S.MyContentWrap>
+                  <S.MyContent>
                     {DUMMY_CONTENT[0]}
                     <br />
                     {DUMMY_CONTENT[1]}
-                  </span>
-                </div>
-              </div>
-              <div className="MyNotifyImgWrap">
-                <img
-                  className="MyNotifyImg"
+                  </S.MyContent>
+                </S.MyContentWrap>
+              </S.MyNotifyTextWrap>
+              <S.MyNotifyImgWrap>
+                <S.MyNotifyImg
                   src={MyNotifyImage}
                   alt="공지 이미지"
                 />
-              </div>
-            </div>
-          </div>
-          <div className="MyPostNotifyWrap">
-            <div className="MyPostNotify">
-              <div className="MyNotifyTextWrap">
-                <div className="MyInfoWrap">
-                  <img src={MyProfile} className="MyProfile" alt="내 프로필" />
-                  <div className="MyInfoText">
-                    <p className="MyName">이진주</p>
-                    <p className="MyNotifyDate">2023년 4월 20일(목) 02:56</p>
-                  </div>
-                </div>
-                <div className="MyContentWrap">
-                  <span className="MyContent">
-                    {DUMMY_CONTENT[0]}
-                    <br />
-                    {DUMMY_CONTENT[1]}
-                  </span>
-                </div>
-              </div>
-              <div className="MyNotifyImgWrap">
-                <img
-                  className="MyNotifyImg"
-                  src={MyNotifyImage}
-                  alt="공지 이미지"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </S.MyNotifyImgWrap>
+            </S.MyPostNotify>
+          </S.MyPostNotifyWrap>
+        </S.WriteReadWrap>
+      </S.WriteReadView>
+    </S.WriteRead>
   );
 };
 
