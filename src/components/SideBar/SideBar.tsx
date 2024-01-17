@@ -29,6 +29,7 @@ const SideBar = () => {
       default:
         setIsClickCategory("");
         break;
+        
     }
   }, [location.pathname]);
 
@@ -69,7 +70,7 @@ const SideBar = () => {
         <h1 className="SideBar-Logo-Alimo">Alimo</h1>
         <h1 className="SideBar-Logo-Admin">admin</h1>
       </div>
-      <S.ProfileWrap>
+      <S.ProfileWrap onClick={()=>navigate("/profile")}>
         <img src={ProfileImgae} className="ProfileImage" />
         <span className="UserName">이진주T</span>
       </S.ProfileWrap>
