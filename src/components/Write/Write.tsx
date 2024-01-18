@@ -90,18 +90,15 @@ const Write = () => {
           </S.ContentWrap>
           <S.ImageInputWrap>
             <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
-            {/* 파일 선택 */}
             <S.FileSelectWrap>
               <S.InputFileButton htmlFor="input-file">파일 선택</S.InputFileButton>
               <S.UploadFileName value={fileName} placeholder="첨부파일" readOnly />
               <S.InputFile type="file" id="input-file" onChange={handleFileChange} />
             </S.FileSelectWrap>
-            {/* 이미지 선택 */}
             <S.ImageInput type="file" accept="image/*" ref={fileInputRef} onChange={onChangeImageInput} />
             <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
               이미지 선택
             </S.ImageInputButton>
-            {/* 이미지 미리보기 */}
             {image && (
               <S.ViewImageWrap>
                 <S.ViewImage src={image} alt="Selected" />
