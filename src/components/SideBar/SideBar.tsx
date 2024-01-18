@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
-import "src/style/Main.style/SideBar.style/SideBar.css";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
 const SideBar = () => {
@@ -65,13 +64,13 @@ const SideBar = () => {
 
   return (
     <S.SideBarWrap>
-      <div className="SideBar-LogoWrap" onClick={onNavigateMain}>
-        <h1 className="SideBar-Logo-Alimo">Alimo</h1>
-        <h1 className="SideBar-Logo-Admin">admin</h1>
-      </div>
+      <S.SideBarLogoWrap onClick={onNavigateMain}>
+        <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
+        <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
+      </S.SideBarLogoWrap>
       <S.ProfileWrap>
-        <img src={ProfileImgae} className="ProfileImage" />
-        <span className="UserName">이진주T</span>
+        <S.ProfileImage src={ProfileImgae} />
+        <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
       <S.CategoryWrap>
         <S.Categories style={ClickCategoryStyle("메인")} onClick={() => handleCategoryClick("메인")}>
