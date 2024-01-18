@@ -58,10 +58,6 @@ const SideBar = () => {
     navigate("/main");
   };
 
-  const ClickCategoryStyle = (itemName: string) => ({
-    fontWeight: clickedCategory === itemName ? 900 : 600,
-  });
-
   return (
     <S.SideBarWrap>
       <S.SideBarLogoWrap onClick={onNavigateMain}>
