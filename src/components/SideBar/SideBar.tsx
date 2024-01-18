@@ -73,19 +73,19 @@ const SideBar = () => {
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
       <S.CategoryWrap>
-        <S.Categories style={ClickCategoryStyle("메인")} onClick={() => handleCategoryClick("메인")}>
+        <S.Categories isClicked={clickedCategory === "메인"} onClick={() => handleCategoryClick("메인")}>
           메인
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("글작성")} onClick={() => handleCategoryClick("글작성")}>
+        <S.Categories isClicked={clickedCategory === "글작성"} onClick={() => handleCategoryClick("글작성")}>
           글작성
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("카테고리 관리")} onClick={() => handleCategoryClick("카테고리 관리")}>
+        <S.Categories isClicked={clickedCategory === "카테고리 관리"} onClick={() => handleCategoryClick("카테고리 관리")}>
           카테고리 관리
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("작성글 보기")} onClick={() => handleCategoryClick("작성글 보기")}>
+        <S.Categories isClicked={clickedCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
           작성글 보기
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("설정")} onClick={() => handleCategoryClick("설정")}>
+        <S.Categories isClicked={clickedCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
           설정
         </S.Categories>
       </S.CategoryWrap>

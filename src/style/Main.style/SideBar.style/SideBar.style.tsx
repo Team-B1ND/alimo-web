@@ -89,12 +89,12 @@ export const CategoryWrap = styled.div`
   justify-content: space-evenly;
 `;
 
-export const Categories = styled.div`
+export const Categories = styled.div<{ isClicked: boolean }>`
   color: #ffc909;
   font-family: Pretendard;
   font-size: 1.4rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: ${(props) => (props.isClicked ? 900 : 600)};
   line-height: normal;
 
   margin-bottom: calc(100vh - 90vh);
