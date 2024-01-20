@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
-import "src/style/Main.style/SideBar.style/SideBar.css";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
 const SideBar = () => {
@@ -60,34 +59,30 @@ const SideBar = () => {
     navigate("/main");
   };
 
-  const ClickCategoryStyle = (itemName: string) => ({
-    fontWeight: clickedCategory === itemName ? 900 : 600,
-  });
-
   return (
     <S.SideBarWrap>
-      <div className="SideBar-LogoWrap" onClick={onNavigateMain}>
-        <h1 className="SideBar-Logo-Alimo">Alimo</h1>
-        <h1 className="SideBar-Logo-Admin">admin</h1>
-      </div>
-      <S.ProfileWrap onClick={()=>navigate("/profile")}>
-        <img src={ProfileImgae} className="ProfileImage" />
-        <span className="UserName">이진주T</span>
+      <S.SideBarLogoWrap onClick={onNavigateMain}>
+        <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
+        <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
+      </S.SideBarLogoWrap>
+      <S.ProfileWrap>
+        <S.ProfileImage src={ProfileImgae} />
+        <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
       <S.CategoryWrap>
-        <S.Categories style={ClickCategoryStyle("메인")} onClick={() => handleCategoryClick("메인")}>
+        <S.Categories isClicked={clickedCategory === "메인"} onClick={() => handleCategoryClick("메인")}>
           메인
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("글작성")} onClick={() => handleCategoryClick("글작성")}>
+        <S.Categories isClicked={clickedCategory === "글작성"} onClick={() => handleCategoryClick("글작성")}>
           글작성
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("카테고리 관리")} onClick={() => handleCategoryClick("카테고리 관리")}>
+        <S.Categories isClicked={clickedCategory === "카테고리 관리"} onClick={() => handleCategoryClick("카테고리 관리")}>
           카테고리 관리
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("작성글 보기")} onClick={() => handleCategoryClick("작성글 보기")}>
+        <S.Categories isClicked={clickedCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
           작성글 보기
         </S.Categories>
-        <S.Categories style={ClickCategoryStyle("설정")} onClick={() => handleCategoryClick("설정")}>
+        <S.Categories isClicked={clickedCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
           설정
         </S.Categories>
       </S.CategoryWrap>
