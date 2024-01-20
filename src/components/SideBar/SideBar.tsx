@@ -28,6 +28,7 @@ const SideBar = () => {
       default:
         setIsClickCategory("");
         break;
+        
     }
   }, [location.pathname]);
 
