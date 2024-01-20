@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
+import * as S from "src/style/SideBar.style/SideBar.style";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
 const SideBar = () => {
@@ -28,7 +28,6 @@ const SideBar = () => {
       default:
         setIsClickCategory("");
         break;
-        
     }
   }, [location.pathname]);
 
@@ -76,7 +75,10 @@ const SideBar = () => {
         <S.Categories isClicked={clickedCategory === "글작성"} onClick={() => handleCategoryClick("글작성")}>
           글작성
         </S.Categories>
-        <S.Categories isClicked={clickedCategory === "카테고리 관리"} onClick={() => handleCategoryClick("카테고리 관리")}>
+        <S.Categories
+          isClicked={clickedCategory === "카테고리 관리"}
+          onClick={() => handleCategoryClick("카테고리 관리")}
+        >
           카테고리 관리
         </S.Categories>
         <S.Categories isClicked={clickedCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
