@@ -7,7 +7,11 @@ import { Image } from "react-bootstrap";
 import DeleteImg from "../../img/Category-Delete.svg";
 import { showToast } from "../Toast/Swal";
 
-const DeleteModal = () => {
+interface DeleteModalProps {
+  onDeleteCategory: () => void;
+}
+
+const DeleteModal: React.FC<DeleteModalProps> = ({ onDeleteCategory }) => {
   const [show, setShow] = useState<boolean>(false);
 
   const handleShow = () => {
@@ -20,6 +24,7 @@ const DeleteModal = () => {
 
   const onDelete = () => {
     setShow(false);
+    onDeleteCategory();
     showToast("success", "성공적으로 삭제되었습니다.");
   };
 
@@ -49,6 +54,6 @@ const DeleteModal = () => {
       </Modal>
     </div>
   );
-}
+};
 
 export default DeleteModal;
