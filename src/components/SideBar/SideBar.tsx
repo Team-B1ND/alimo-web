@@ -28,7 +28,6 @@ const SideBar = () => {
       default:
         setIsClickCategory("");
         break;
-        
     }
   }, [location.pathname]);
 
@@ -59,13 +58,17 @@ const SideBar = () => {
     navigate("/main");
   };
 
+  const onNavigateProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <S.SideBarWrap>
       <S.SideBarLogoWrap onClick={onNavigateMain}>
         <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
         <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
       </S.SideBarLogoWrap>
-      <S.ProfileWrap>
+      <S.ProfileWrap onClick={onNavigateProfile}>
         <S.ProfileImage src={ProfileImgae} />
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
@@ -76,7 +79,10 @@ const SideBar = () => {
         <S.Categories isClicked={clickedCategory === "글작성"} onClick={() => handleCategoryClick("글작성")}>
           글작성
         </S.Categories>
-        <S.Categories isClicked={clickedCategory === "카테고리 관리"} onClick={() => handleCategoryClick("카테고리 관리")}>
+        <S.Categories
+          isClicked={clickedCategory === "카테고리 관리"}
+          onClick={() => handleCategoryClick("카테고리 관리")}
+        >
           카테고리 관리
         </S.Categories>
         <S.Categories isClicked={clickedCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
