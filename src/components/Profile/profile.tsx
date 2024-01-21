@@ -1,30 +1,34 @@
 import React from "react";
-import * as s from "src/style/Profile.style/Profile.style"
+import { useNavigate } from "react-router-dom";
+import * as s from "src/style/Profile.style/Profile.style";
 import SideBar from "src/components/SideBar/SideBar";
-import UserImage from "src/img/Profile-Dummy.jpg"
-import SettingImage from "src/img/Vector.png"
-export default function Profile(){
-return(
+import UserImage from "src/img/Profile-Dummy.jpg";
+import SettingImage from "src/img/Vector.png";
+import ProfileImg from "src/img/profileimg.png";
+import ChangImg from "src/img/Group 266.png";
+export default function Profile() {
+  const navigate = useNavigate();
+
+  return (
     <s.Profile>
-    <SideBar/>
-    <s.Main>
-        <s.Mainview>
+      <SideBar />
+      <s.Main>
         <s.UserProfile>
-            <s.User>
-                <img src={UserImage} />
-            </s.User>
-            <s.UserName>
-                이진주.T
-            </s.UserName>
-            <s.ProfileSetting>
-                <img src={SettingImage}/>
-            </s.ProfileSetting>
+          <s.User>
+            <s.SetImg src={ProfileImg}></s.SetImg>
+            <s.ChangeFile  >
+              <label htmlFor="file">
+                <img src={ChangImg}  alt="Change Image"/>
+              </label>
+              <s.Changbutton name="file" type="file" />
+            </s.ChangeFile>
+            <span>이진주</span>
+          </s.User>
+          <s.ChangSucces onClick={() => navigate("/main")}>
+            수정완료
+          </s.ChangSucces>
         </s.UserProfile>
-        <s.UserProfile>
-            <s.UniqueNumber>고유번호복사</s.UniqueNumber>
-        </s.UserProfile>
-        </s.Mainview>
-    </s.Main>
+      </s.Main>
     </s.Profile>
-)
+  );
 }

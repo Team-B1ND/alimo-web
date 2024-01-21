@@ -4,75 +4,71 @@ export const Profile = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
 `;
 export const Main = styled.div`
-  width: calc(100vw - 15vw);
+  background: rgba(217, 217, 217, 0.4);
+  width: 100vw;
   height: 100vh;
   display: flex;
+  position: absolute;
   justify-content: center;
-  position: relative;
-`;
-export const Mainview = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  height: 100%;
-
+  align-items: center;
 `;
 export const UserProfile = styled.div`
   display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 50px;
-  width: 100%;
-  height: 100px;
-  border-radius: 40px;
-  background: var(--White, #fff);
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
-
+  width: 538px;
+  height: 385px;
+  border-radius: 20px;
+  border: var(--Small, 4px) solid var(--Main500, #fece23);
+  background-color: #ffffff;
+  position: absolute;
 `;
 export const User = styled.div`
   display: flex;
-  margin-left: 20px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background-color: #d9d9d9;
-  object-fit: fill;
-  img {
-    width: 100%;
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  justify-content: space-around;
+  span {
+    display: flex;
+    align-items: center;
+    width: 200px;
     height: 100%;
-    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 700;
   }
 `;
-export const UserName = styled.div`
-  display: flex;
-  width: 150px;
-  height: 100px;
-  align-items: center;
-  color: #000;
-  font-family: Inter;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-`;
-export const ProfileSetting =styled.div`
-    margin-left: 450px;
-    display: flex;
-    width: 50px;
-    height: 50px;
+export const ChangeFile = styled.form`
+  position: absolute;
+  z-index: 5;
+  width: 30px;
+  height: 30px;
+  left: 130px;
+  bottom: 50px;
+  cursor: pointer;
+  img{
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+  }
 `
-export const UniqueNumber= styled.div`
-margin-left: 30px;
-color: #000;
-font-family: Inter;
-font-size: 30px;
-font-style: normal;
-font-weight: 900;
-line-height: normal;
-cursor: pointer;
+
+export const SetImg =styled.img`
+  width: 100px;
+  height: 100px;
+`
+export const Changbutton = styled.input`
+display: none;
+`
+export const ChangSucces = styled.button`
+  position: absolute;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(251, 215, 87, 1);
+  color: rgba(255, 255, 255, 1);
+  width: 100px;
+  height: 40px;
+  right: 40px;
+  bottom: 30px;
 `
