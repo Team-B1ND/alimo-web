@@ -46,6 +46,7 @@ align-items: center;
 flex-direction: row;
 gap:60%;
 `;
+
 export const LogOut = styled.div`
 display: flex;
 width: 200px;
@@ -117,7 +118,7 @@ export const Alarm_Button = styled.div<{ animate: boolean }>`
   background-color: white;
   margin-left: 1px;
   transition: left 0.5s; /* Add transition for smooth animation */
-  left: ${({ animate }) => (animate ? '27px' : '1px')};
+  left: ${({ animate }) => (animate ? '26px' : '1px')};
 `;
 export const SettingLink = styled.div`
   cursor: pointer;
