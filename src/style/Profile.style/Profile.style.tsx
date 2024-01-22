@@ -47,20 +47,23 @@ export const ChangeFile = styled.form`
   left: 130px;
   bottom: 50px;
   cursor: pointer;
-  img{
+  img {
     width: 30px;
     height: 30px;
     cursor: pointer;
   }
-`
+`;
 
-export const SetImg =styled.img`
+export const SetImg = styled.img`
   width: 100px;
   height: 100px;
-`
+
+  border-radius: 50%;
+  border: none;
+`;
 export const Changbutton = styled.input`
-display: none;
-`
+  display: none;
+`;
 export const ChangSucces = styled.button`
   position: absolute;
   border: none;
@@ -71,4 +74,4 @@ export const ChangSucces = styled.button`
   height: 40px;
   right: 40px;
   bottom: 30px;
-`
+`;
