@@ -8,17 +8,18 @@ export const WriteRead = styled.div`
 `;
 
 export const WriteReadView = styled.div`
-  width: 80vw;
+  width: 85vw;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
 `;
 
 export const WriteReadWrap = styled.div`
   width: 100%;
-  height: 90%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,9 +121,9 @@ export const MyContentWrap = styled.div`
 `;
 
 export const MyContentTitleBox = styled.div`
-    width: 100%;
-    height: 30%;
-`
+  width: 100%;
+  height: 30%;
+`;
 
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
@@ -134,9 +135,9 @@ export const MyContentTitle = styled.span`
 `;
 
 export const MyContentBox = styled.div`
-    width: 100%;
-    height: 70%;
-`
+  width: 100%;
+  height: 70%;
+`;
 
 export const MyContent = styled.span`
   color: var(--Main900, #020202);

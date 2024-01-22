@@ -15,7 +15,7 @@ const MyWriteView = () => {
           </S.WriteReadText>
           <MyPostNotifyDummy />
           <MyPostNotifyDummy />
-          <MyPostNotifyDummy />
+          <MyPostNotifyDummy /> 
           <MyPostNotifyDummy />
         </S.WriteReadWrap>
       </S.WriteReadView>
