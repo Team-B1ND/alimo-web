@@ -24,12 +24,12 @@ export const WriteReadWrap = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 15vh;
+  margin-top: 10vh;
 `;
 
 export const WriteReadText = styled.div`
   width: 90%;
-  height: 5%;
+  height: auto;
   font-family: Pretendard;
   font-size: 28px;
   font-style: normal;
@@ -43,6 +43,7 @@ export const WriteReadText = styled.div`
 export const WriteReadTitle = styled.span`
   color: #000;
   padding-right: 10px;
+  margin-bottom: 50px;
 `;
 
 export const WriteReadCount = styled.span`
