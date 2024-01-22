@@ -1,30 +1,33 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SideBar from "src/components/SideBar/SideBar";
 import * as s from "src/style/Setting.style/Setting.style";
 
-export default function Setting() {
-const [Alarm, setAlarm]=useState(false);
 
-const SettingAlarm = ()=>{
-setAlarm((prevAlarm) => !prevAlarm);
-  }
-  const Logout = ()=>{
+export default function Setting() {
+  const [Alarm, setAlarm] = useState(false);
+  const naviagate = useNavigate();
+
+  const SettingAlarm = () => {
+    setAlarm((prevAlarm) => !prevAlarm);
+  };
+  const Logout = () => {
     Swal.fire({
-      title: '로그아웃 하시겠습니까?',
-      text: '다시 되돌릴 수 없습니다. 신중하세요.',
-      reverseButtons: true, 
+      title: "로그아웃",
+      text: "진짜 로그아웃 하시겠습니까?",
       showCancelButton: true, 
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33', 
-      confirmButtonText: '확인', 
-      cancelButtonText: '취소', 
-   }).then(result=>{
-    if(result.isConfirmed){
-      
-    }
-   })
-  }
+      reverseButtons: true,
+      cancelButtonText: '취소',
+      cancelButtonColor: '#d33',
+      confirmButtonColor: "#FBE69E",
+      confirmButtonText: '로그아웃하기',
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        naviagate("/")
+     }
+    });
+  };
 
   return (
     <s.Setting>
@@ -38,7 +41,7 @@ setAlarm((prevAlarm) => !prevAlarm);
             <s.SettingText>
               <s.Texts>알림설정</s.Texts>
               <s.AlarmSetting>
-                <s.Alarm onClick={()=>SettingAlarm()}>
+                <s.Alarm animate={Alarm} onClick={() => SettingAlarm()}>
                   <s.Alarm_Button animate={Alarm}></s.Alarm_Button>
                 </s.Alarm>
               </s.AlarmSetting>
