@@ -15,14 +15,17 @@ export default function Setting() {
   const Logout = () => {
     Swal.fire({
       title: "로그아웃",
-      text: "로그아웃 되었습니다",
-      customClass: {
-        confirmButton: "StyledSwalConfirmButton",
-      },
+      text: "진짜 로그아웃 하시겠습니까?",
+      showCancelButton: true, 
+      reverseButtons: true,
+      cancelButtonText: '취소',
+      cancelButtonColor: '#d33',
       confirmButtonColor: "#FBE69E",
-      confirmButtonText: "로그인 화면으로 돌아가기",
-    }).then(() => {
-      naviagate("/");
+      confirmButtonText: '로그아웃하기',
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        naviagate("/")
+     }
     });
   };
 
@@ -38,7 +41,7 @@ export default function Setting() {
             <s.SettingText>
               <s.Texts>알림설정</s.Texts>
               <s.AlarmSetting>
-                <s.Alarm onClick={() => SettingAlarm()}>
+                <s.Alarm animate={Alarm} onClick={() => SettingAlarm()}>
                   <s.Alarm_Button animate={Alarm}></s.Alarm_Button>
                 </s.Alarm>
               </s.AlarmSetting>
