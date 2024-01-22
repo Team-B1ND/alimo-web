@@ -64,7 +64,7 @@ const SideBar = () => {
         <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
         <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
       </S.SideBarLogoWrap>
-      <S.ProfileWrap>
+      <S.ProfileWrap onClick={()=>navigate("/profile")}>
         <S.ProfileImage src={ProfileImgae} />
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>

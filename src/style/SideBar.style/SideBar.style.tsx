@@ -45,7 +45,7 @@ export const SideBarLogoAdmin = styled.h1`
 export const ProfileWrap = styled.div`
   display: flex;
   flex-direction: row;
-
+  cursor: pointer;
   width: calc(100vw - 88vw);
   height: calc(100vh - 92vh);
 
