@@ -66,6 +66,7 @@ export const MyPostNotify = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid #d9d9d9;
+  cursor: pointer;
 `;
 
 export const MyNotifyTextWrap = styled.div`
