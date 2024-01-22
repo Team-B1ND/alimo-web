@@ -20,7 +20,7 @@ const SideBar = () => {
         setIsClickCategory("카테고리 관리");
         break;
       case "/wirte-read":
-        setIsClickCategory("작서을 보기");
+        setIsClickCategory("내 공지글 보기");
         break;
       case "/setting":
         setIsClickCategory("설정");
@@ -43,7 +43,7 @@ const SideBar = () => {
       case "카테고리 관리":
         navigate("/category-manage");
         break;
-      case "작성글 보기":
+      case "내 공지글 보기":
         navigate("/write-read");
         break;
       case "설정":
@@ -81,7 +81,7 @@ const SideBar = () => {
         >
           카테고리 관리
         </S.Categories>
-        <S.Categories isClicked={clickedCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
+        <S.Categories isClicked={clickedCategory === "내 공지글 보기"} onClick={() => handleCategoryClick("내 공지글 보기")}>
           작성글 보기
         </S.Categories>
         <S.Categories isClicked={clickedCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
