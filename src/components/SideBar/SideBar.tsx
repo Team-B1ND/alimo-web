@@ -82,7 +82,7 @@ const SideBar = () => {
           카테고리 관리
         </S.Categories>
         <S.Categories isClicked={clickedCategory === "내 공지글 보기"} onClick={() => handleCategoryClick("내 공지글 보기")}>
-          작성글 보기
+          내 공지글 보기
         </S.Categories>
         <S.Categories isClicked={clickedCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
           설정
