@@ -18,7 +18,6 @@ export default function Profile() {
     reader.onload = () => {
       setSelectedImg(reader.result as string);
     };
-
     if (file) {
       reader.readAsDataURL(file);
     }

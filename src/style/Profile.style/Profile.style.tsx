@@ -1,10 +1,21 @@
-import styled from "styled-components";
+
+import styled,{ keyframes } from "styled-components";
+
+export const Profileani = keyframes`
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`
 
 export const Profile = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
 `;
+
 export const Main = styled.div`
   background: rgba(217, 217, 217, 0.4);
   width: 100vw;
@@ -15,12 +26,14 @@ export const Main = styled.div`
   align-items: center;
 `;
 export const UserProfile = styled.div`
+
   display: flex;
   width: 538px;
   height: 385px;
   border-radius: 20px;
   border: var(--Small, 4px) solid var(--Main500, #fece23);
   background-color: #ffffff;
+  animation: ${Profileani} 1s linear;
   position: absolute;
 `;
 export const User = styled.div`
