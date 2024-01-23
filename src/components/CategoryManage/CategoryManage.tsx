@@ -17,10 +17,6 @@ const CategoryManage = () => {
     { id: 3, name: "ALT" },
   ]);
 
-  const NavigateCategoryAdd = () => {
-    navigate("/category-add");
-  };
-
   const onDeleteCategory = (categoryId: number) => {
     const newCategories = categories.filter((category) => category.id !== categoryId);
     setCategories(newCategories);
@@ -29,7 +25,7 @@ const CategoryManage = () => {
     <S.Main>
       <SideBar />
       <S.ManageView>
-        <S.CreateButton onClick={NavigateCategoryAdd}>카테고리 생성</S.CreateButton>
+        <S.CreateButton onClick={() => navigate("category-add")}>카테고리 생성</S.CreateButton>
         {categories.map((category) => (
           <S.Category key={category.id}>
             <span>{category.name}</span>

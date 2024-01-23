@@ -29,9 +29,6 @@ const CategoryAdd = () => {
     }
   };
 
-  const onClickNavigate = () => {
-    navigate("/category-manage");
-  };
 
   const onClickAccess = (access: string) => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
@@ -122,7 +119,7 @@ const CategoryAdd = () => {
           </S.AccessWrap>
         </S.GrantAccessWrap>
         <S.ButtonWrap>
-          <S.StyledButton className="cancle" onClick={onClickNavigate}>
+          <S.StyledButton className="cancle" onClick={() => navigate("category-ㅡmanage")}>
             돌아가기
           </S.StyledButton>
           <S.StyledButton onClick={onClickAddCategory}>추가하기</S.StyledButton>
