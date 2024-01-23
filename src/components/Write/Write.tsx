@@ -14,7 +14,7 @@ const Write = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const naviagate = useNavigate();
 
-  const onChangeContent = (e: any) => {
+  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 

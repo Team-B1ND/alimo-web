@@ -14,7 +14,7 @@ const CategoryAdd = () => {
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
 
-  const onChangeCategoryName = (e: any) => {
+  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
   };
 
