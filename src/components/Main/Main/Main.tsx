@@ -10,11 +10,7 @@ const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onClickNavigatePostDetail = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -39,8 +35,8 @@ const Main = () => {
             </div>
           </S.PostNotifyWrap>
           {/* 모달시작 */}
-          <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-            <span className="closeModalIcon" onClick={closeModal}>
+          <Modal isOpen={isModalOpen} onRequestClose={onClickNavigatePostDetail}>
+            <span className="closeModalIcon" onClick={onClickNavigatePostDetail}>
               &times;
             </span>
             <S.ModalPostDetail>
