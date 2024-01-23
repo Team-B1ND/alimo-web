@@ -11,21 +11,13 @@ const SideBar = () => {
 
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
 
-  const onNavigateMain = () => {
-    navigate("/main");
-  };
-
-  const onNavigateProfile = () => {
-    navigate("/profile");
-  };
-
   return (
     <S.SideBarWrap>
-      <S.SideBarLogoWrap onClick={onNavigateMain}>
+      <S.SideBarLogoWrap onClick={() => navigate("/main")}>
         <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
         <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
       </S.SideBarLogoWrap>
-      <S.ProfileWrap onClick={onNavigateProfile}>
+      <S.ProfileWrap onClick={() => navigate("/profile")}>
         <S.ProfileImage src={ProfileImgae} />
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
