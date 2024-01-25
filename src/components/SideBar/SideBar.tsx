@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useSideBarNavigation from "src/util/useSideBarNavigation";
-import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
+import * as S from "src/style/SideBar.style/SideBar.style";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
 const SideBar = () => {
