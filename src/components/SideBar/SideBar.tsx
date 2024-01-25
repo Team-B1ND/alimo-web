@@ -5,7 +5,6 @@ import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
 
 const SideBar = () => {
-  
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,8 +33,11 @@ const SideBar = () => {
         >
           카테고리 관리
         </S.Categories>
-        <S.Categories isClicked={isClickCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
-          작성글 보기
+        <S.Categories
+          isClicked={isClickCategory === "내 공지글 보기"}
+          onClick={() => handleCategoryClick("내 공지글 보기")}
+        >
+          내 공지글 보기
         </S.Categories>
         <S.Categories isClicked={isClickCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
           설정
