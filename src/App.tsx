@@ -9,6 +9,7 @@ import Write from "src/components/Write/Write";
 import WriteRead from "./components/WriteRead/WriteRead";
 import CategoryManage from "./components/CategoryManage/CategoryManage";
 import CategoryAdd from "./components/CategoryAdd/CategoryAdd";
+import EditCategory from "./components/CategoryManage/EditCategory";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/write-read" element={<WriteRead />} />
           <Route path="/category-manage" element={<CategoryManage />} />
           <Route path="/category-add" element={<CategoryAdd />} />
+          <Route path="/category-edit" element={<EditCategory />} />
           <Route path="/profile" element={<Profile/>}/>
         </Routes>
       </div>

@@ -83,3 +83,9 @@ export const Category = styled.div`
     margin-top: 5vh;
   }
 `;
+
+export const EditCategoryButton = styled.img`
+  position: absolute;
+  width: calc(100vw - 98vw);
+  margin-top: 2vh;
+`;

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import * as S from "../../style/Category.style/Category.style";
 import SideBar from "../SideBar/SideBar";
-import DeleteModal from "../../lib/Modal/DeleteModal";
+import EditCategory from "./EditCategory";
+import EditButton from "src/img/Vector.png";
+import DeleteModal from "src/lib/Modal/DeleteModal";
 import { useNavigate } from "react-router-dom";
 
 interface Category {
@@ -29,6 +31,7 @@ const CategoryManage = () => {
         {categories.map((category) => (
           <S.Category key={category.id}>
             <span>{category.name}</span>
+            <S.EditCategoryButton src={EditButton} onClick={() => navigate("/category-edit")}/>
             <DeleteModal onDeleteCategory={() => onDeleteCategory(category.id)} />
           </S.Category>
         ))}
