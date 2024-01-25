@@ -46,6 +46,7 @@ align-items: center;
 flex-direction: row;
 gap:60%;
 `;
+
 export const LogOut = styled.div`
 display: flex;
 width: 200px;
@@ -97,16 +98,17 @@ export const AlarmSetting = styled.div`
   width: 54px;
   height: 100%;
 `;
-export const Alarm = styled.div`
-display: flex;
-position: absolute;
-align-items: center;
+export const Alarm = styled.div< {animate : boolean}>`
+  display: flex;
+  position: absolute;
+  align-items: center;
   width: 54px;
   height: 28px;
   margin-top: 10px;
   flex-shrink: 0;
   border-radius: var(--Infinity, 1000px);
-  background: var(--Gray500, #aaa);
+  transition: left 1s;  
+  background:${({animate})=>(animate ? '#FBE69E' : '#AAA')};
   cursor: pointer;
 `;
 export const Alarm_Button = styled.div<{ animate: boolean }>`

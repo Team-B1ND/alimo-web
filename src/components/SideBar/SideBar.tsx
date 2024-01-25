@@ -7,9 +7,8 @@ import ProfileImgae from "src/img/Profile-Dummy.jpg";
 const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
-
+  
   return (
     <S.SideBarWrap>
       <S.SideBarLogoWrap onClick={() => navigate("/main")}>
