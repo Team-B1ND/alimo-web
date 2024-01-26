@@ -4,18 +4,14 @@ import SideBar from "src/components/SideBar/SideBar";
 import TeacherProfile from "src/img/T-Profile.png";
 import PostImage from "src/img/PostImage.svg";
 import Modal from "react-modal";
+import DetailPostModal from "src/lib/Modal/DetailPostModal";
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onClickNavigatePostDetail = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <S.Main>
       <SideBar />
@@ -37,24 +33,13 @@ const Main = () => {
               <S.PostImage src={PostImage} />
             </S.NotifyContentWrap>
           </S.PostNotifyWrap>
-          {/* 모달시작 */}
-          <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-            <S.CloseModalIcon>&times;</S.CloseModalIcon>
-            <S.ModalPostDetail>
-              <S.DetailNotifyContentWrap>
-                <S.DetailPostImage src={PostImage} />
-              </S.DetailNotifyContentWrap>
-              <S.DetailNotifyInfo>
-                <S.TeacherInfo>
-                  <S.DetailTeacherProfile src={TeacherProfile} />
-                  <S.TeacherName>빈윤미</S.TeacherName>
-                </S.TeacherInfo>
-                <S.DetailContent>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.DetailContent>
-                <S.DetailMore>...더보기</S.DetailMore>
-              </S.DetailNotifyInfo>
-            </S.ModalPostDetail>
-          </Modal>
-          {/* 모달 끝 */}
+          <DetailPostModal 
+            isOpen={isModalOpen}
+            onRequestClose={onClickNavigatePostDetail}
+            teacherProfile={TeacherProfile}
+            content="너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈."
+            postImage={PostImage}
+          />
           <S.PostNotifyWrap onClick={onClickNavigatePostDetail}>
             <S.NotifyInfo>
               <S.TeacherProfile src={TeacherProfile} />
