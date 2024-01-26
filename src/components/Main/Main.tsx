@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "src/style/Main.style/Main.css";
 import * as S from "src/style/Main.style/Main.style";
 import SideBar from "src/components/SideBar/SideBar";
 import TeacherProfile from "src/img/T-Profile.png";
 import PostImage from "src/img/PostImage.svg";
 import Modal from "react-modal";
+import DetailPostModal from "src/lib/Modal/DetailPostModal";
 
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -12,76 +12,62 @@ const Main = () => {
   const onClickNavigatePostDetail = () => {
     setIsModalOpen(!isModalOpen);
   };
-
   return (
     <S.Main>
       <SideBar />
       <S.MainView>
-        <div className="MainWrapper">
+        <S.MainWrapper>
           <S.DateWrapper>
-            <div className="lineLeft"></div>
-            <span className="PostDateTime">2024년 1월 3일 오후 22:00</span>
-            <div className="line"></div>
+            <S.lineLeft></S.lineLeft>
+            <S.PostDateTime>2024년 1월 20일 22:00</S.PostDateTime>
+            <S.lineRight></S.lineRight>
           </S.DateWrapper>
           <S.PostNotifyWrap onClick={onClickNavigatePostDetail}>
-            <div className="NotifyInfo">
-              <img src={TeacherProfile} className="TeacherProfile" />
-              <h1 className="TeacherName">빈윤미</h1>
-            </div>
-            <div className="NotifyContentWrap">
-              <span className="Content">너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</span>
-              <span className="More">...더보기</span>
-              <img src={PostImage} className="PostImage" />
-            </div>
+            <S.NotifyInfo>
+              <S.TeacherProfile src={TeacherProfile} />
+              <S.TeacherName>빈윤미</S.TeacherName>
+            </S.NotifyInfo>
+            <S.NotifyContentWrap>
+              <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
+              <S.More>...더보기</S.More>
+              <S.PostImage src={PostImage} />
+            </S.NotifyContentWrap>
           </S.PostNotifyWrap>
-          {/* 모달시작 */}
-          <Modal isOpen={isModalOpen} onRequestClose={onClickNavigatePostDetail}>
-            <span className="closeModalIcon" onClick={onClickNavigatePostDetail}>
-              &times;
-            </span>
-            <S.ModalPostDetail>
-              <div className="DetailNotifyContentWrap">
-                <img src={PostImage} className="DetailPostImage" />
-              </div>
-              <div className="DetailNotifyInfo">
-                <div className="TeacherInfo">
-                  <img src={TeacherProfile} className="DetailTeacherProfile" />
-                  <h1 className="TeacherName">빈윤미</h1>
-                </div>
-                <span className="DetailContent">너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</span>
-                <span className="DetailMore">...더보기 </span>
-              </div>
-            </S.ModalPostDetail>
-          </Modal>
-          {/* 모달 끝 */}
-          <S.PostNotifyWrap>
-            <div className="NotifyInfo">
-              <img src={TeacherProfile} className="TeacherProfile" />
-              <h1 className="TeacherName">가득윤미</h1>
-            </div>
-            <div className="NotifyContentWrap">
-              <span className="Content">너 좀 이상함...아니 그게 아니라 수상함... 문화상품권 받으러오던가 말던가.</span>
-              <span className="More">...더보기</span>
-              <img src={PostImage} className="PostImage" />
-            </div>
+          <DetailPostModal 
+            isOpen={isModalOpen}
+            onRequestClose={onClickNavigatePostDetail}
+            teacherProfile={TeacherProfile}
+            content="너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈."
+            postImage={PostImage}
+          />
+          <S.PostNotifyWrap onClick={onClickNavigatePostDetail}>
+            <S.NotifyInfo>
+              <S.TeacherProfile src={TeacherProfile} />
+              <S.TeacherName>빈윤미</S.TeacherName>
+            </S.NotifyInfo>
+            <S.NotifyContentWrap>
+              <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
+              <S.More>...더보기</S.More>
+              <S.PostImage src={PostImage} />
+            </S.NotifyContentWrap>
           </S.PostNotifyWrap>
           <S.DateWrapper>
-            <div className="lineLeft"></div>
-            <span className="PostDateTime">2024년 1월 4일 오후 22:99</span>
-            <div className="line"></div>
+            <S.lineLeft></S.lineLeft>
+            <S.PostDateTime>2024년 1월 21일 1:00</S.PostDateTime>
+            <S.lineRight></S.lineRight>
           </S.DateWrapper>
-          <S.PostNotifyWrap>
-            <div className="NotifyInfo">
-              <img src={TeacherProfile} className="TeacherProfile" />
-              <h1 className="TeacherName">빈살만</h1>
-            </div>
-            <div className="NotifyContentWrap">
-              <span className="Content">너 좀 수상함... 너 마약함? 암튼 너 우리 갱단 들어오삼</span>
-              <span className="More">...더보기</span>
-              <img src={PostImage} className="PostImage" />
-            </div>
+          <S.PostNotifyWrap onClick={onClickNavigatePostDetail}>
+            <S.NotifyInfo>
+              <S.TeacherProfile src={TeacherProfile} />
+              <S.TeacherName>빈윤미</S.TeacherName>
+            </S.NotifyInfo>
+            <S.NotifyContentWrap>
+              <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
+              <S.More>...더보기</S.More>
+              <S.PostImage src={PostImage} />
+            </S.NotifyContentWrap>
           </S.PostNotifyWrap>
-        </div>
+        </S.MainWrapper>
       </S.MainView>
     </S.Main>
   );

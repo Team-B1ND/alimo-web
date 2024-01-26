@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useSideBarNavigation from "src/util/useSideBarNavigation";
-import * as S from "src/style/Main.style/SideBar.style/SideBar.style";
+import * as S from "src/style/SideBar.style/SideBar.style";
 import ProfileImgae from "src/img/Profile-Dummy.jpg";
-
+import useSideBarNavigation from "src/util/useSideBarNavigation";
 const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
-  
+
   return (
     <S.SideBarWrap>
       <S.SideBarLogoWrap onClick={() => navigate("/main")}>
         <S.SideBarLogoAlimo>Alimo</S.SideBarLogoAlimo>
         <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
       </S.SideBarLogoWrap>
-      <S.ProfileWrap onClick={() => navigate("/profile")}>
+      <S.ProfileWrap>
         <S.ProfileImage src={ProfileImgae} />
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
@@ -32,11 +31,8 @@ const SideBar = () => {
         >
           카테고리 관리
         </S.Categories>
-        <S.Categories
-          isClicked={isClickCategory === "내 공지글 보기"}
-          onClick={() => handleCategoryClick("내 공지글 보기")}
-        >
-          내 공지글 보기
+        <S.Categories isClicked={isClickCategory === "작성글 보기"} onClick={() => handleCategoryClick("작성글 보기")}>
+          작성글 보기
         </S.Categories>
         <S.Categories isClicked={isClickCategory === "설정"} onClick={() => handleCategoryClick("설정")}>
           설정
