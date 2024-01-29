@@ -4,6 +4,7 @@ import * as S from "src/style/CategoryAdd.style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 
+
 interface Student {
   name: string;
 }
