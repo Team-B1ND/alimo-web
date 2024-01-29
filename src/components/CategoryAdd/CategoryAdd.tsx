@@ -1,54 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBar from "../SideBar/SideBar";
 import * as S from "src/style/CategoryAdd.style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "src/lib/Toast/Swal";
-
-
-interface Student {
-  name: string;
-}
+import useCategoryAdd from "src/Hooks/common/useCategoryAdd";
 
 const CategoryAdd = () => {
+  const {
+    categoryName,
+    selectedStudents,
+    selectAccess,
+    onChangeCategoryName,
+    onClickAddStudent,
+    onClickAccess,
+    onClickAddCategory,
+  } = useCategoryAdd();
+
   const navigate = useNavigate();
-  const [categoryName, setCategoryName] = useState<string>("");
-  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [selectAccess, setSelectAccess] = useState<string | null>(null);
-
-  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
-  };
-
-  const onClickAddStudent = (studentName: string) => {
-    const isSelected = selectedStudents.some((student) => student.name === studentName);
-
-    if (isSelected) {
-      setSelectedStudents(selectedStudents.filter((student) => student.name !== studentName));
-    } else {
-      const newStudent: Student = { name: studentName };
-      setSelectedStudents([...selectedStudents, newStudent]);
-    }
-  };
-
-  const onClickAccess = (access: string) => {
-    setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
-  };
-
-  const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("success", "카테고리가 추가되었습니다.");
-      navigate("/category-manage");
-    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("error", "카테고리 이름을 입력해주세요");
-      setCategoryName("");
-    } else if (categoryName && selectedStudents.length <= 0 && selectAccess !== null) {
-      showToast("error", "학생을 선택해주세요");
-    } else if (categoryName && selectedStudents.length !== 0 && selectAccess === null) {
-      showToast("error", "권한을 부여해주세요.");
-    } else {
-      showToast("error", "아무것도 하지않으셨습니다.");
-    }
-  };
   return (
     <S.CategoryAdd>
       <SideBar />
