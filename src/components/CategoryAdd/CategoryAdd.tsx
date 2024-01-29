@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import SideBar from "../SideBar/SideBar";
-import * as S from "../../style/CategoryAdd.style/CategoryAdd.style";
+import * as S from "src/style/CategoryAdd.style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "../../lib/Toast/Swal";
+import { showToast } from "src/lib/Toast/Swal";
 
 interface Student {
   name: string;
@@ -28,7 +28,6 @@ const CategoryAdd = () => {
       setSelectedStudents([...selectedStudents, newStudent]);
     }
   };
-
 
   const onClickAccess = (access: string) => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
