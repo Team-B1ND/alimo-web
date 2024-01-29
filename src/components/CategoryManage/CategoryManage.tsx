@@ -27,7 +27,7 @@ const CategoryManage = () => {
     <S.Main>
       <SideBar />
       <S.ManageView>
-        <S.CreateButton onClick={() => navigate("category-add")}>카테고리 생성</S.CreateButton>
+        <S.CreateButton onClick={() => navigate("/category-add")}>카테고리 생성</S.CreateButton>
         {categories.map((category) => (
           <S.Category key={category.id}>
             <span>{category.name}</span>
