@@ -3,7 +3,7 @@ import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
-import uselogin from "src/Hooks/auth/useLogin"
+import Uselogin from "src/Hooks/auth/useLogin"
 
 const Login = () => {
   const {
@@ -25,7 +25,7 @@ const Login = () => {
     IdChange,
     PasswordChange,
     LoginButton
-  } = uselogin();
+  } = Uselogin();
   
 
   return (

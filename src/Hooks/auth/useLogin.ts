@@ -2,7 +2,7 @@ import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 
-const uselogin = ()=>{
+const Uselogin = ()=>{
     const navigate = useNavigate();
     const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
@@ -69,4 +69,4 @@ return{
     LoginButton
 }
 }
-export default uselogin
+export default Uselogin
