@@ -1,11 +1,30 @@
-import React, { ChangeEvent, useRef, useState } from "react";
-import * as S from "src/style/Write.style/Write.style";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { showToast } from "src/lib/Toast/Swal";
 import SideBar from "../SideBar/SideBar";
-import "src/style/Write.style/Write.css";
-const Write = () => {
-  const [image, setImage] = useState<string | null>(null);
+import * as S from "src/style/Write.style/Write.style";
 
+const Write = () => {
+  const [content, setContent] = useState<string>("");
+  const [image, setImage] = useState<string | null>(null);
+  const [fileName, setFileName] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [contentAllow, setContentAllow] = useState<boolean>(false);
+  const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const naviagate = useNavigate();
+
+  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setContent(e.target.value);
+  };
+
+  useEffect(() => {
+    if (content.length > 0) {
+      setContentAllow(true);
+    } else {
+      setContentAllow(false);
+    }
+  }, [content]);
 
   const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -22,71 +41,111 @@ const Write = () => {
 
   const handleCancelImage = () => {
     setImage(null);
-    // Reset the file input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
   };
+
+  const onClickCategory = (category: string) => {
+    setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
+  };
+
+  useEffect(() => {
+    if (selectedCategory === null) {
+      setCategoryAllow(false);
+    } else {
+      setCategoryAllow(true);
+    }
+  }, [selectedCategory]);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+
+    if (selectedFile) {
+      setFileName(selectedFile.name);
+    } else {
+      setFileName("");
+    }
+  };
+
+  const onClickConfirmButton = () => {
+    if (contentAllow && categoryAllow) {
+      showToast("success", "게시되었습니다.");
+      naviagate("/main");
+    } else if (!contentAllow && categoryAllow) {
+      showToast("error", "내용을 입력해주세요.");
+    } else {
+      showToast("error", "카테고리를 선택해주세요.");
+    }
+  };
+
   return (
-    <div style={{ display: "flex" }}>
+    <S.WriteMain>
       <SideBar />
-      <S.WriteWrap>
-        <div>
-          <S.H1>1. 내용을 입력해주세요!</S.H1>
-          <input type="text" placeholder="알려줄 내용을 입력해주세요!" className="InputContent" />
-        </div>
-        <S.ImageInputWrap>
-          <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
-          {/* 이미지 선택 */}
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={onChangeImageInput}
-            style={{ display: "none" }}
-          />
-          <div style={{ display: "flex", flexDirection: "row" }}>
+      <S.MainView>
+        <S.WriteWrap>
+          <S.ContentWrap>
+            <S.H1>1. 내용을 입력해주세요!</S.H1>
+            <S.InputContent placeholder="알려줄 내용을 입력해주세요" value={content} onChange={onChangeContent} />
+          </S.ContentWrap>
+          <S.ImageInputWrap>
+            <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+            <S.FileSelectWrap>
+              <S.InputFileButton htmlFor="input-file">파일 선택</S.InputFileButton>
+              <S.UploadFileName value={fileName} placeholder="첨부파일" readOnly />
+              <S.InputFile type="file" id="input-file" onChange={handleFileChange} />
+            </S.FileSelectWrap>
+            <S.ImageInput type="file" accept="image/*" ref={fileInputRef} onChange={onChangeImageInput} />
             <S.ImageInputButton onClick={handleClickButton} style={{ marginRight: "1vw" }}>
               이미지 선택
             </S.ImageInputButton>
-
-            {/* 파일 선택 */}
-            <label className="InputFileButton" htmlFor="input-file">
-              파일 선택
-            </label>
-            <input type="file" id="input-file" style={{ display: "none" }} />
-          </div>
-          {/* 이미지 미리보기 */}
-          {image && (
-            <div className="ViewImageWrap">
-              <img src={image} alt="Selected" style={{ marginTop: "10px" }} />
-              <button
-                onClick={handleCancelImage}
-                style={{ cursor: "pointer", marginTop: "5px" }}
-                className="CancleButton"
+            {image && (
+              <S.ViewImageWrap>
+                <S.ViewImage src={image} alt="Selected" />
+                <S.CancleButton onClick={handleCancelImage}>선택 취소</S.CancleButton>
+              </S.ViewImageWrap>
+            )}
+          </S.ImageInputWrap>
+          <S.CategorySelectWrap>
+            <S.H1>2. 카테고리를 선택해주세요!</S.H1>
+            <S.CatetoryWrap>
+              <S.Category
+                className={selectedCategory === "grade" ? "SelectCategory" : "Category"}
+                onClick={() => onClickCategory("grade")}
               >
-                선택 취소
-              </button>
-            </div>
-          )}
-        </S.ImageInputWrap>
-        <div>
-          <S.H1>2. 카테고리를 선택해주세요!</S.H1>
-          <S.CatetoryWrap>
-            <span className="Category">1학년</span>
-            <span className="Category">마이스터 홍보부</span>
-            <span className="Category">ALT</span>
-            <span className="Category">교장선생님이 알립니다.</span>
-          </S.CatetoryWrap>
-        </div>
-        <S.ButtonWrap>
-          <S.StyledButton style={{ marginLeft: "27vw" }} className="cancle">
-            취소하기
-          </S.StyledButton>
-          <S.StyledButton style={{ marginLeft: "2vw" }}>게시하기</S.StyledButton>
-        </S.ButtonWrap>
-      </S.WriteWrap>
-    </div>
+                1학년
+              </S.Category>
+              <S.Category
+                className={selectedCategory === "Job" ? "SelectCategory" : "Category"}
+                onClick={() => onClickCategory("Job")}
+              >
+                마이스터 홍보부
+              </S.Category>
+              <S.Category
+                className={selectedCategory === "club" ? "SelectCategory" : "Category"}
+                onClick={() => onClickCategory("club")}
+              >
+                ALT
+              </S.Category>
+              <S.Category
+                className={selectedCategory === "pyhNotify" ? "SelectCategory" : "Category"}
+                onClick={() => onClickCategory("pyhNotify")}
+              >
+                교장선생님이 알립니다.
+              </S.Category>
+            </S.CatetoryWrap>
+          </S.CategorySelectWrap>
+          <S.ButtonWrap>
+            <S.StyledButton style={{ marginLeft: "23vw" }} className="cancle">
+              취소 하기
+            </S.StyledButton>
+            <S.StyledButton style={{ marginLeft: "2vw" }} onClick={onClickConfirmButton}>
+              게시 하기
+            </S.StyledButton>
+          </S.ButtonWrap>
+        </S.WriteWrap>
+      </S.MainView>
+    </S.WriteMain>
   );
 };
 
