@@ -27,7 +27,7 @@ const Write = () => {
         <S.WriteWrap>
           <S.TitleWrap>
             <S.H1>1. 제목을 입력해주세요!</S.H1>
-            <S.TitleInput />
+            <S.TitleInput value={title} onChange={onChangeTitle} />
           </S.TitleWrap>
           <S.ContentWrap>
             <S.H1>2. 내용을 입력해주세요!</S.H1>
