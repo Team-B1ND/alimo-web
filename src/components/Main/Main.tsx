@@ -36,6 +36,7 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문상받으러 오세요 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />
@@ -54,6 +55,7 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문상이나 받으러 온나 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />
@@ -70,6 +72,7 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문화상품권 선착순 3명 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />

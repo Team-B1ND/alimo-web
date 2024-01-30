@@ -77,6 +77,18 @@ export const NotifyContentWrap = styled.div`
   width: calc(100vw - 45vw);
 `;
 
+export const Title = styled.h1`
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+
+  margin-left: 5vw;
+  margin-bottom: 2vh;
+`;
+
 export const Content = styled.span`
   margin-left: 5vw;
   color: var(--Main900, #020202);

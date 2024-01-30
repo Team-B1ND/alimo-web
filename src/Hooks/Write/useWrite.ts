@@ -80,7 +80,6 @@ const useWrite = () => {
           role: [`${selectedCategory}`],
         },
         image: `${image}`,
-        file: `${file}`,
       });
     } else if (!contentAllow && categoryAllow) {
       showToast("error", "내용을 입력해주세요.");

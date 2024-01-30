@@ -35,22 +35,22 @@ const useCategoryAdd = () => {
 
   const onClickAddCategory = () => {
     if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      const requestBody = {
-        memberList: [1],
-        isWrite: true,
-        roleName: `${selectAccess}`,
-      };
-      axios
-        .post(`${CONFIG.serverUrl}role/create`, requestBody, {
-          headers: {
-            Authorization: `Bearer ${ACCESSTOKEN}`,
-          },
-        })
-        .then((response) => {
-          showToast("success", "카테고리가 추가되었습니다.");
-          navigate("/category-manage");
-          console.log(response);
-        });
+      // const requestBody = {
+      //   memberList: [1],
+      //   isWrite: true,
+      //   roleName: `${selectAccess}`,
+      // };
+      // axios
+      //   .post(`${CONFIG.serverUrl}role/create`, requestBody, {
+      //     headers: {
+      //       Authorization: `Bearer ${ACCESSTOKEN}`,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     showToast("success", "카테고리가 추가되었습니다.");
+      //     navigate("/category-manage");
+      //     console.log(response);
+      //   });
     } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
       showToast("error", "카테고리 이름을 입력해주세요");
       setCategoryName("");
