@@ -3,6 +3,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config.json";
+
 interface Student {
   name: string;
 }
@@ -42,7 +43,7 @@ const useCategoryAdd = () => {
       axios
         .post(`${CONFIG.serverUrl}role/create`, requestBody, {
           headers: {
-            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6Ik1FTUJFUiIsImlhdCI6MTcwNjU5MjMzOSwiZXhwIjoxNzA2NTk0MTM5fQ.uZ-kId2ryjIPBm4JPRDFjGDHyRp_ZGe7dwr0eojwPiP-GFoOx1jvSG5TMwW6LWqU_x77KCsjYGCNVPkAC-IKZA`,
+            Authorization: `Bearer ${ACCESSTOKEN}`,
           },
         })
         .then((response) => {
