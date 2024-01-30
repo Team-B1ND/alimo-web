@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "src/style/Main.style/Main.style";
 import SideBar from "src/components/SideBar/SideBar";
 import TeacherProfile from "src/img/T-Profile.png";
 import PostImage from "src/img/PostImage.svg";
-import Modal from "react-modal";
 import DetailPostModal from "src/lib/Modal/DetailPostModal";
-
+import axios from "axios";
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onClickNavigatePostDetail = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  // useEffect(() => {
+  //   const LoadNotification = async () => {
+  //     await axios.get("http://13.125.37.125/notification/load");
+  //   };
+
+  //   LoadNotification();
+  // }, []);
+
   return (
     <S.Main>
       <SideBar />
@@ -28,12 +36,13 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문상받으러 오세요 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />
             </S.NotifyContentWrap>
           </S.PostNotifyWrap>
-          <DetailPostModal 
+          <DetailPostModal
             isOpen={isModalOpen}
             onRequestClose={onClickNavigatePostDetail}
             teacherProfile={TeacherProfile}
@@ -46,6 +55,7 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문상이나 받으러 온나 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />
@@ -62,6 +72,7 @@ const Main = () => {
               <S.TeacherName>빈윤미</S.TeacherName>
             </S.NotifyInfo>
             <S.NotifyContentWrap>
+              <S.Title>＜ 문화상품권 선착순 3명 ＞</S.Title>
               <S.Content>너 좀 수상함...아니 그게 아니라 수상함... 문화상품권 받으러오셈.</S.Content>
               <S.More>...더보기</S.More>
               <S.PostImage src={PostImage} />

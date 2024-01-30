@@ -15,6 +15,7 @@ const EditCategory = () => {
     onClickAccess,
     onClickAddCategory,
   } = useCategoryEdit();
+  
   return (
     <S.CategoryEdit>
       <SideBar />
@@ -85,7 +86,7 @@ const EditCategory = () => {
           </S.AccessWrap>
         </S.GrantAccessWrap>
         <S.ButtonWrap>
-          <S.StyledButton className="cancle" onClick={() => navigate("category-ㅡmanage")}>
+          <S.StyledButton className="cancle" onClick={() => navigate("/category-manage")}>
             돌아가기
           </S.StyledButton>
           <S.StyledButton onClick={onClickAddCategory}>추가하기</S.StyledButton>

@@ -1,95 +1,40 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { showToast } from "src/lib/Toast/Swal";
+import React from "react";
 import SideBar from "../SideBar/SideBar";
 import * as S from "src/style/Write.style/Write.style";
-
+import useWrite from "src/Hooks/Write/useWrite";
 const Write = () => {
-  const [content, setContent] = useState<string>("");
-  const [image, setImage] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [contentAllow, setContentAllow] = useState<boolean>(false);
-  const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const naviagate = useNavigate();
-
-  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
-
-  useEffect(() => {
-    if (content.length > 0) {
-      setContentAllow(true);
-    } else {
-      setContentAllow(false);
-    }
-  }, [content]);
-
-  const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const selectedFile = e.target.files[0];
-      setImage(URL.createObjectURL(selectedFile));
-    }
-  };
-
-  const handleClickButton = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const handleCancelImage = () => {
-    setImage(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
-  const onClickCategory = (category: string) => {
-    setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
-  };
-
-  useEffect(() => {
-    if (selectedCategory === null) {
-      setCategoryAllow(false);
-    } else {
-      setCategoryAllow(true);
-    }
-  }, [selectedCategory]);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-
-    if (selectedFile) {
-      setFileName(selectedFile.name);
-    } else {
-      setFileName("");
-    }
-  };
-
-  const onClickConfirmButton = () => {
-    if (contentAllow && categoryAllow) {
-      showToast("success", "게시되었습니다.");
-      naviagate("/main");
-    } else if (!contentAllow && categoryAllow) {
-      showToast("error", "내용을 입력해주세요.");
-    } else {
-      showToast("error", "카테고리를 선택해주세요.");
-    }
-  };
+  const {
+    title,
+    content,
+    image,
+    fileName,
+    selectedCategory,
+    fileInputRef,
+    onChangeTitle,
+    onChangeContent,
+    onChangeImageInput,
+    handleClickButton,
+    handleCancelImage,
+    onClickCategory,
+    handleFileChange,
+    onClickConfirmButton,
+  } = useWrite();
 
   return (
     <S.WriteMain>
       <SideBar />
       <S.MainView>
         <S.WriteWrap>
+          <S.TitleWrap>
+            <S.H1>1. 제목을 입력해주세요!</S.H1>
+            <S.TitleInput />
+          </S.TitleWrap>
           <S.ContentWrap>
-            <S.H1>1. 내용을 입력해주세요!</S.H1>
+            <S.H1>2. 내용을 입력해주세요!</S.H1>
             <S.InputContent placeholder="알려줄 내용을 입력해주세요" value={content} onChange={onChangeContent} />
           </S.ContentWrap>
           <S.ImageInputWrap>
-            <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+            <S.H1 style={{ marginBottom: "1vh" }}>3. 첨부하실 파일이 있나요?</S.H1>
             <S.FileSelectWrap>
               <S.InputFileButton htmlFor="input-file">파일 선택</S.InputFileButton>
               <S.UploadFileName value={fileName} placeholder="첨부파일" readOnly />
@@ -107,7 +52,7 @@ const Write = () => {
             )}
           </S.ImageInputWrap>
           <S.CategorySelectWrap>
-            <S.H1>2. 카테고리를 선택해주세요!</S.H1>
+            <S.H1>4. 카테고리를 선택해주세요!</S.H1>
             <S.CatetoryWrap>
               <S.Category
                 className={selectedCategory === "grade" ? "SelectCategory" : "Category"}
