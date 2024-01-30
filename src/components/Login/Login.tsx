@@ -20,8 +20,6 @@ const Login = () => {
     isPasswordButton,
     idDisplayBlock,
     passwordDisplayBlock,
-    Focus,
-    Blur,
     IdChange,
     PasswordChange,
     LoginButton
@@ -50,8 +48,6 @@ const Login = () => {
                   placeholder={
                     clickName === "Id" && isInputClicked ? "" : "이메일"
                   }
-                  onFocus={Focus}
-                  onBlur={Blur}
                   onClick={() => setClickName("Id")}
                   onChange={IdChange}
                 />
@@ -74,8 +70,6 @@ const Login = () => {
                   placeholder={
                     clickName === "PassWord" && isInputClicked ? "" : "비밀번호"
                   }
-                  onFocus={Focus}
-                  onBlur={Blur}
                   onClick={() => setClickName("PassWord")}
                   onChange={PasswordChange}
                 />

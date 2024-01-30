@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 // import CONFIG from "config.json"
 
-const Uselogin = ()=>{
-    const navigate = useNavigate();
-    const [isInputClicked, setIsInputClicked] = useState(false);
+const Uselogin = () => {
+  const navigate = useNavigate();
+  const [isInputClicked, setIsInputClicked] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -16,8 +16,6 @@ const Uselogin = ()=>{
   const [idDisplayBlock, setIdDisplayBlock] = useState("none");
   const [passwordDisplayBlock, setPasswordDisplayBlock] = useState("none");
 
-  const Focus = () => setIsInputClicked(true);
-  const Blur = () => setIsInputClicked(false);
   const IdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const idRegex = /^[A-Za-z0-9]+$/;
 
@@ -29,7 +27,7 @@ const Uselogin = ()=>{
         : setIdDisplayBlock("block");
     }
   };
-  const PasswordChange = (e:  React.ChangeEvent<HTMLInputElement>) => {
+  const PasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
 
     if (passwordRegex.test(e.target.value) || e.target.value === "") {
@@ -42,32 +40,27 @@ const Uselogin = ()=>{
         : setPasswordDisplayBlock("block");
     }
   };
-  const LoginButton = async() => {
+  const LoginButton = async () => {
     if (idValue === "" || passwordValue === "") {
       showToast("erorr", "아이디와 비밀번호를 써주세요");
     } else {
-        try{
-            const response = await axios.post(`#`,{
-                email : idValue,
-                password: passwordValue
-            }) 
-            if(response.status === 200){
-                showToast("success", "로그인 성공");
-            navigate("/main");
-            }
-            else{
-                showToast("error", "로그인 실패");
-            }
-            
-        }catch(error){
-            showToast("error", "통신오류")
+      try {
+        const response = await axios.post(`#`, {
+          email: idValue,
+          password: passwordValue,
+        });
+        if (response.status === 200) {
+          showToast("success", "로그인 성공");
+          navigate("/main");
+        } else {
+          showToast("error", "로그인 실패");
         }
-       
-   
-      
+      } catch (error) {
+        showToast("error", "통신오류");
+      }
     }
   };
-return{
+  return {
     idValue,
     setIdValue,
     setIsIdButton,
@@ -81,11 +74,9 @@ return{
     isPasswordButton,
     idDisplayBlock,
     passwordDisplayBlock,
-    Focus,
-    Blur,
     IdChange,
     PasswordChange,
-    LoginButton
-}
-}
-export default Uselogin
+    LoginButton,
+  };
+};
+export default Uselogin;
