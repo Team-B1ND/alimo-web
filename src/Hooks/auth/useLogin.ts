@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import CONFIG from "config.json"
 
 const Uselogin = ()=>{
     const navigate = useNavigate();
@@ -40,12 +42,29 @@ const Uselogin = ()=>{
         : setPasswordDisplayBlock("block");
     }
   };
-  const LoginButton = () => {
+  const LoginButton = async() => {
     if (idValue === "" || passwordValue === "") {
-      showToast("erorr", "로그인 실패");
+      showToast("erorr", "아이디와 비밀번호를 써주세요");
     } else {
-      showToast("success", "로그인 성공");
-      navigate("/main");
+        try{
+            const response = await axios.post(`${CONFIG.serverUrl}/sign-in/test`,{
+                email : idValue,
+                password: passwordValue
+            }) 
+            if(response.status === 200){
+                showToast("success", "로그인 성공");
+            navigate("/main");
+            }
+            else{
+                showToast("error", "로그인 실패");
+            }
+            
+        }catch(error){
+            showToast("error", "통신오류")
+        }
+       
+   
+      
     }
   };
 return{
