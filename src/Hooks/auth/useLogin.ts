@@ -2,7 +2,7 @@ import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
-import CONFIG from "config.json"
+// import CONFIG from "config.json"
 
 const Uselogin = ()=>{
     const navigate = useNavigate();
@@ -47,7 +47,7 @@ const Uselogin = ()=>{
       showToast("erorr", "아이디와 비밀번호를 써주세요");
     } else {
         try{
-            const response = await axios.post(`${CONFIG.serverUrl}/sign-in/test`,{
+            const response = await axios.post(`#`,{
                 email : idValue,
                 password: passwordValue
             }) 
