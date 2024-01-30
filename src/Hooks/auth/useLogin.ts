@@ -47,7 +47,7 @@ const Uselogin = ()=>{
       showToast("erorr", "아이디와 비밀번호를 써주세요");
     } else {
         try{
-            const response = await axios.post(`${CONFIG}/sign-in/test`,{
+            const response = await axios.post(`${CONFIG.serverUrl}/sign-in/test`,{
                 email : idValue,
                 password: passwordValue
             }) 
