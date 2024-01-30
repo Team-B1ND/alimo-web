@@ -1,44 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SideBar from "../SideBar/SideBar";
 import * as S from "src/components/CategoryManage/EditCategory.style";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "../../lib/Toast/Swal";
-
-interface Student {
-  name: string;
-}
+import useCategoryEdit from "src/Hooks/Category/useCategoryEdit";
 
 const EditCategory = () => {
   const navigate = useNavigate();
-  const [categoryName, setCategoryName] = useState<string>("");
-  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  
-  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
-  };
-
-  const onClickAddStudent = (studentName: string) => {
-    const isSelected = selectedStudents.some((student) => student.name === studentName);
-
-    if (isSelected) {
-      setSelectedStudents(selectedStudents.filter((student) => student.name !== studentName));
-    } else {
-      const newStudent: Student = { name: studentName };
-      setSelectedStudents([...selectedStudents, newStudent]);
-    }
-  };
-
-  const onClickAccess = (access: string) => {
-    setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
-  };
-
-  const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("success", "카테고리가 수정되었습니다.");
-      navigate("/category-manage");
-    }
-  };
+  const {
+    categoryName,
+    selectedStudents,
+    selectAccess,
+    onChangeCategoryName,
+    onClickAddStudent,
+    onClickAccess,
+    onClickAddCategory,
+  } = useCategoryEdit();
   return (
     <S.CategoryEdit>
       <SideBar />
