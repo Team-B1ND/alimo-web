@@ -18,17 +18,6 @@ const Login = () => {
     LoginButton,
   } = uselogin();
 
-    isIdButton,
-    isPasswordButton,
-    idDisplayBlock,
-    passwordDisplayBlock,
-    Focus,
-    Blur,
-    IdChange,
-    PasswordChange,
-    LoginButton
-  } = Uselogin();
-
   return (
     <S.LogoPageWrap>
       <S.LoginPage>
