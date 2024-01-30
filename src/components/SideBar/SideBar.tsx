@@ -15,7 +15,7 @@ const SideBar = () => {
         <S.SideBarLogoAdmin>Admin</S.SideBarLogoAdmin>
       </S.SideBarLogoWrap>
       <S.ProfileWrap>
-        <S.ProfileImage src={ProfileImgae} />
+        <S.ProfileImage src={ProfileImgae} onClick={() => navigate("/profile")} />
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
       <S.CategoryWrap>

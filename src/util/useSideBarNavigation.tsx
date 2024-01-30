@@ -48,7 +48,7 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
       case "카테고리 관리":
         navigate("/category-manage");
         break;
-      case "작서을 보기":
+      case "작성글 보기":
         navigate("/write-read");
         break;
       case "설정":
