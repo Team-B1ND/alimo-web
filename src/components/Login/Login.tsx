@@ -3,28 +3,20 @@ import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
-import uselogin from "src/Hooks/auth/useLogin"
+import uselogin from "src/Hooks/auth/useLogin";
 
 const Login = () => {
   const {
     idValue,
     setIdValue,
-    setIsIdButton,
     passwordValue,
-    isInputClicked,
     clickName,
     setClickName,
     isShowPswd,
     setIsShowPswd,
-    isIdButton,
-    isPasswordButton,
-    idDisplayBlock,
-    passwordDisplayBlock,
-    IdChange,
-    PasswordChange,
-    LoginButton
+    InputChange,
+    LoginButton,
   } = uselogin();
-  
 
   return (
     <S.LogoPageWrap>
@@ -45,20 +37,17 @@ const Login = () => {
                 <S.Id
                   type="text"
                   value={idValue}
-                  placeholder={
-                    clickName === "Id" && isInputClicked ? "" : "이메일"
-                  }
+                  placeholder={clickName === "Id" && idValue !== "" ? "" : "이메일"}
                   onClick={() => setClickName("Id")}
-                  onChange={IdChange}
+                  onChange={InputChange}
                 />
                 <S.IdBtn
                   onClick={() => {
                     setIdValue("");
-                    setIsIdButton(false);
                   }}>
                   <img
-                    style={{ display: `${idDisplayBlock}` }}
-                    src={clickName === "Id" && isIdButton ? IdCancel : ""}
+                    style={{ display: `${idValue !== "" ? "block" : "none"}` }}
+                    src={clickName === "Id" && idValue !== "" ? IdCancel : ""}
                     alt=""
                   />
                 </S.IdBtn>
@@ -67,18 +56,18 @@ const Login = () => {
                 <S.Password
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
-                  placeholder={
-                    clickName === "PassWord" && isInputClicked ? "" : "비밀번호"
-                  }
+                  placeholder={clickName === "PassWord" && passwordValue !== "" ? "" : "비밀번호"}
                   onClick={() => setClickName("PassWord")}
-                  onChange={PasswordChange}
+                  onChange={InputChange}
                 />
                 <S.PasswordBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
                   <img
-                    style={{ display: `${passwordDisplayBlock}` }}
+                    style={{
+                      display: `${passwordValue !== "" ? "block" : "none"}`,
+                    }}
                     src={
-                      clickName === "PassWord" && isPasswordButton
+                      clickName === "PassWord" && passwordValue !== ""
                         ? isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
