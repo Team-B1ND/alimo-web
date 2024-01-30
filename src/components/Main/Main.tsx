@@ -3,7 +3,6 @@ import * as S from "src/style/Main.style/Main.style";
 import SideBar from "src/components/SideBar/SideBar";
 import TeacherProfile from "src/img/T-Profile.png";
 import PostImage from "src/img/PostImage.svg";
-import Modal from "react-modal";
 import DetailPostModal from "src/lib/Modal/DetailPostModal";
 
 const Main = () => {
@@ -12,6 +11,7 @@ const Main = () => {
   const onClickNavigatePostDetail = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   return (
     <S.Main>
       <SideBar />
@@ -33,7 +33,7 @@ const Main = () => {
               <S.PostImage src={PostImage} />
             </S.NotifyContentWrap>
           </S.PostNotifyWrap>
-          <DetailPostModal 
+          <DetailPostModal
             isOpen={isModalOpen}
             onRequestClose={onClickNavigatePostDetail}
             teacherProfile={TeacherProfile}

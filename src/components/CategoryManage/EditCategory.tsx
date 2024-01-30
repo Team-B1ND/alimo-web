@@ -15,6 +15,7 @@ const EditCategory = () => {
     onClickAccess,
     onClickAddCategory,
   } = useCategoryEdit();
+  
   return (
     <S.CategoryEdit>
       <SideBar />
