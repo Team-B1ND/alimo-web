@@ -4,11 +4,13 @@ import * as S from "src/style/Write.style/Write.style";
 import useWrite from "src/Hooks/Write/useWrite";
 const Write = () => {
   const {
+    title,
     content,
     image,
     fileName,
     selectedCategory,
     fileInputRef,
+    onChangeTitle,
     onChangeContent,
     onChangeImageInput,
     handleClickButton,
@@ -23,12 +25,16 @@ const Write = () => {
       <SideBar />
       <S.MainView>
         <S.WriteWrap>
+          <S.TitleWrap>
+            <S.H1>1. 제목을 입력해주세요!</S.H1>
+            <S.TitleInput />
+          </S.TitleWrap>
           <S.ContentWrap>
-            <S.H1>1. 내용을 입력해주세요!</S.H1>
+            <S.H1>2. 내용을 입력해주세요!</S.H1>
             <S.InputContent placeholder="알려줄 내용을 입력해주세요" value={content} onChange={onChangeContent} />
           </S.ContentWrap>
           <S.ImageInputWrap>
-            <S.H1 style={{ marginBottom: "1vh" }}>2. 첨부하실 파일이 있나요?</S.H1>
+            <S.H1 style={{ marginBottom: "1vh" }}>3. 첨부하실 파일이 있나요?</S.H1>
             <S.FileSelectWrap>
               <S.InputFileButton htmlFor="input-file">파일 선택</S.InputFileButton>
               <S.UploadFileName value={fileName} placeholder="첨부파일" readOnly />
@@ -46,7 +52,7 @@ const Write = () => {
             )}
           </S.ImageInputWrap>
           <S.CategorySelectWrap>
-            <S.H1>2. 카테고리를 선택해주세요!</S.H1>
+            <S.H1>4. 카테고리를 선택해주세요!</S.H1>
             <S.CatetoryWrap>
               <S.Category
                 className={selectedCategory === "grade" ? "SelectCategory" : "Category"}

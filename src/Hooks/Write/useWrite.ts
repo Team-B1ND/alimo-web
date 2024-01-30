@@ -1,9 +1,10 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import CONFIG from "src/config.json";
 import axios from "axios";
 const useWrite = () => {
+  const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>("");
@@ -13,6 +14,10 @@ const useWrite = () => {
   const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const naviagate = useNavigate();
+
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  }
 
   const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
@@ -89,11 +94,13 @@ const useWrite = () => {
   };
 
   return {
+    title,
     content,
     image,
     fileName,
     selectedCategory,
     fileInputRef,
+    onChangeTitle,
     onChangeContent,
     onChangeImageInput,
     handleClickButton,

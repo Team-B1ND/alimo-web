@@ -26,6 +26,27 @@ export const WriteWrap = styled.div`
 
 export const ContentWrap = styled.div``;
 
+export const TitleWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const TitleInput = styled.input`
+  width: calc(100vw - 80vw);
+  border: none;
+  border-bottom: 1px solid var(--Main400, #f8cf41);
+
+  margin-left: 3vw;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 600;
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const InputContent = styled.input`
   width: calc(100vw - 31vw);
   height: calc(100vh - 87vh);
@@ -102,7 +123,7 @@ export const StyledButton = styled.button`
 
 export const ImageInputWrap = styled.div`
   position: relative;
-  margin-bottom: 10%;
+  margin-bottom: 3vh;
 `;
 
 export const ImageInputButton = styled.button`
