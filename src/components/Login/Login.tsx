@@ -41,8 +41,8 @@ const Login = () => {
               <S.LogoText>대소고의 모든 소식</S.LogoText>
             </S.LogoWrap>
             <S.LoginInputWrap>
-              <S.InputWrap>
-                <S.Input
+              <S.IdWrap>
+                <S.Id
                   type="text"
                   value={idValue}
                   placeholder={
@@ -51,7 +51,7 @@ const Login = () => {
                   onClick={() => setClickName("Id")}
                   onChange={IdChange}
                 />
-                <S.InputBtn
+                <S.IdBtn
                   onClick={() => {
                     setIdValue("");
                     setIsIdButton(false);
@@ -61,10 +61,10 @@ const Login = () => {
                     src={clickName === "Id" && isIdButton ? IdCancel : ""}
                     alt=""
                   />
-                </S.InputBtn>
-              </S.InputWrap>
-              <S.InputWrap>
-                <S.Input
+                </S.IdBtn>
+              </S.IdWrap>
+              <S.PasswordWrap>
+                <S.Password
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
                   placeholder={
@@ -73,7 +73,7 @@ const Login = () => {
                   onClick={() => setClickName("PassWord")}
                   onChange={PasswordChange}
                 />
-                <S.InputBtn
+                <S.PasswordBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
                   <img
                     style={{ display: `${passwordDisplayBlock}` }}
@@ -86,8 +86,8 @@ const Login = () => {
                     }
                     alt=""
                   />
-                </S.InputBtn>
-              </S.InputWrap>
+                </S.PasswordBtn>
+              </S.PasswordWrap>
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={LoginButton}>
               <S.LoginBtn>도담도담 계정으로 로그인</S.LoginBtn>
