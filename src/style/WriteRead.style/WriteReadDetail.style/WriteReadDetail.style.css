@@ -1,0 +1,252 @@
+.WriteReadDetail {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.WriteReadDetailWrap {
+  width: 85vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.WriteReadDetailBox {
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #ccc;
+  overflow: scroll;
+}
+
+.MyPostNotifyWrap {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+}
+
+.MyNotifyInfoWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.MyProfile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.MyInfoWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 0px 10px;
+}
+
+.MyName {
+  color: var(--Gray700, #333);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyNotifyDate {
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyNotifyTitleWrap {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.MyNotifyTitle {
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.MyNotifyImgWrap {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.MyNotifyContentWrap {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.MyNotifyContent {
+  color: var(--Main900, #020202);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyNotifyEmoticonWrap {
+  width: 95%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: #f4f5f9;
+  margin: 20px 0 30px 0;
+}
+
+.MyNotifyEmoticonBox {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.EmoticonBox {
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Emoticon {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 5px;
+}
+
+.EmoticonCnt {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.WriteReadDetailComment {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.MyPostCommentWrap {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
+.CommentProfile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.CommentInfoWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 0px 20px;
+}
+
+.CommentInfo {
+  width: 85px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CommentName {
+  color: var(--Gray700, #333);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.CommentDate {
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.CommentContentWrap {
+  width: auto;
+  height: auto;
+  margin-top: 5px;
+}
+
+.CommentContent {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.ReplyCommentWrap {
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.ReplyCommentWrite {
+  color: var(--Gray500, #aaa);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+.ReplyCommentView {
+  color: var(--Gray500, #aaa);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}

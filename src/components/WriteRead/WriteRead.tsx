@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "src/components/SideBar/SideBar";
-import MyPostNotifyDummy from "src/components/WriteRead/MyPostNotify.dummy"
+import MyPostNotifyDummy from "src/components/WriteRead/MyPostNotify.dummy";
 import * as S from "src/style/WriteRead.style/WriteRead.style";
 
 const MyWriteView = () => {
@@ -15,7 +15,7 @@ const MyWriteView = () => {
           </S.WriteReadText>
           <MyPostNotifyDummy />
           <MyPostNotifyDummy />
-          <MyPostNotifyDummy /> 
+          <MyPostNotifyDummy />
           <MyPostNotifyDummy />
         </S.WriteReadWrap>
       </S.WriteReadView>
