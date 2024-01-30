@@ -3,19 +3,21 @@ import IdCancel from "src/img/Id-Cancel.png";
 import PasswordHide from "src/img/Password-Hide.png";
 import PasswordShow from "src/img/Password-Show.png";
 import * as S from "src/style/Login.style/Login.style";
-import Uselogin from "src/Hooks/auth/useLogin"
+import uselogin from "src/Hooks/auth/useLogin";
 
 const Login = () => {
   const {
     idValue,
     setIdValue,
-    setIsIdButton,
     passwordValue,
-    isInputClicked,
     clickName,
     setClickName,
     isShowPswd,
     setIsShowPswd,
+    InputChange,
+    LoginButton,
+  } = uselogin();
+
     isIdButton,
     isPasswordButton,
     idDisplayBlock,
@@ -26,7 +28,6 @@ const Login = () => {
     PasswordChange,
     LoginButton
   } = Uselogin();
-  
 
   return (
     <S.LogoPageWrap>
@@ -43,48 +44,41 @@ const Login = () => {
               <S.LogoText>대소고의 모든 소식</S.LogoText>
             </S.LogoWrap>
             <S.LoginInputWrap>
-              <S.InputWrap>
-                <S.Input
+              <S.IdWrap>
+                <S.Id
                   type="text"
                   value={idValue}
-                  placeholder={
-                    clickName === "Id" && isInputClicked ? "" : "이메일"
-                  }
-                  onFocus={Focus}
-                  onBlur={Blur}
+                  placeholder={clickName === "Id" && idValue !== "" ? "" : "이메일"}
                   onClick={() => setClickName("Id")}
-                  onChange={IdChange}
+                  onChange={InputChange}
                 />
-                <S.InputBtn
+                <S.IdBtn
                   onClick={() => {
                     setIdValue("");
-                    setIsIdButton(false);
                   }}>
                   <img
-                    style={{ display: `${idDisplayBlock}` }}
-                    src={clickName === "Id" && isIdButton ? IdCancel : ""}
+                    style={{ display: `${idValue !== "" ? "block" : "none"}` }}
+                    src={clickName === "Id" && idValue !== "" ? IdCancel : ""}
                     alt=""
                   />
-                </S.InputBtn>
-              </S.InputWrap>
-              <S.InputWrap>
-                <S.Input
+                </S.IdBtn>
+              </S.IdWrap>
+              <S.PasswordWrap>
+                <S.Password
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
-                  placeholder={
-                    clickName === "PassWord" && isInputClicked ? "" : "비밀번호"
-                  }
-                  onFocus={Focus}
-                  onBlur={Blur}
+                  placeholder={clickName === "PassWord" && passwordValue !== "" ? "" : "비밀번호"}
                   onClick={() => setClickName("PassWord")}
-                  onChange={PasswordChange}
+                  onChange={InputChange}
                 />
-                <S.InputBtn
+                <S.PasswordBtn
                   onClick={() => setIsShowPswd((current) => !current)}>
                   <img
-                    style={{ display: `${passwordDisplayBlock}` }}
+                    style={{
+                      display: `${passwordValue !== "" ? "block" : "none"}`,
+                    }}
                     src={
-                      clickName === "PassWord" && isPasswordButton
+                      clickName === "PassWord" && passwordValue !== ""
                         ? isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
@@ -92,8 +86,8 @@ const Login = () => {
                     }
                     alt=""
                   />
-                </S.InputBtn>
-              </S.InputWrap>
+                </S.PasswordBtn>
+              </S.PasswordWrap>
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={LoginButton}>
               <S.LoginBtn>도담도담 계정으로 로그인</S.LoginBtn>
