@@ -1,27 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "../../style/Category.style/Category.style";
 import SideBar from "../SideBar/SideBar";
 import EditButton from "src/img/Vector.png";
 import DeleteModal from "src/lib/Modal/DeleteModal";
 import { useNavigate } from "react-router-dom";
-
-interface Category {
-  id: number;
-  name: string;
-}
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
 const CategoryManage = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState<Category[]>([
-    { id: 1, name: "1학년" },
-    { id: 2, name: "교장선생님이 알립니다." },
-    { id: 3, name: "ALT" },
-  ]);
+  const { categories, onDeleteCategory } = useCategoryManage();
 
-  const onDeleteCategory = (categoryId: number) => {
-    const newCategories = categories.filter((category) => category.id !== categoryId);
-    setCategories(newCategories);
-  };
   return (
     <S.Main>
       <SideBar />
