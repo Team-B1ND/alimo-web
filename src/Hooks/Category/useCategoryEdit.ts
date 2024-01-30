@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
@@ -34,10 +35,10 @@ const useCategoryEdit = () => {
   const onClickAddCategory = () => {
     if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
       showToast("success", "카테고리가 수정되었습니다.");
-      navigate("/category-manage");
+      navigate("/main");
     }
   };
-
+  
   return {
     categoryName,
     selectedStudents,

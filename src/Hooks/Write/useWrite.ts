@@ -1,11 +1,13 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-
+import CONFIG from "src/config.json";
+import axios from "axios";
 const useWrite = () => {
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>("");
+  const [file, setFile] = useState<File>();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentAllow, setContentAllow] = useState<boolean>(false);
   const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
@@ -64,12 +66,22 @@ const useWrite = () => {
     } else {
       setFileName("");
     }
+
+    setFile(selectedFile);
   };
 
   const onClickConfirmButton = () => {
     if (contentAllow && categoryAllow) {
       showToast("success", "게시되었습니다.");
       naviagate("/main");
+      axios.post(`${CONFIG.serverUrl}/notification/generate`, {
+        data: {
+          content: `${content}`,
+          role: [`${selectedCategory}`],
+        },
+        image: `${image}`,
+        file: `${file}`,
+      });
     } else if (!contentAllow && categoryAllow) {
       showToast("error", "내용을 입력해주세요.");
     } else {

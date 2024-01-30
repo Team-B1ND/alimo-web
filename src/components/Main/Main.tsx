@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "src/style/Main.style/Main.style";
 import SideBar from "src/components/SideBar/SideBar";
 import TeacherProfile from "src/img/T-Profile.png";
 import PostImage from "src/img/PostImage.svg";
 import DetailPostModal from "src/lib/Modal/DetailPostModal";
-
+import axios from "axios";
 const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onClickNavigatePostDetail = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  // useEffect(() => {
+  //   const LoadNotification = async () => {
+  //     await axios.get("http://13.125.37.125/notification/load");
+  //   };
+
+  //   LoadNotification();
+  // }, []);
 
   return (
     <S.Main>

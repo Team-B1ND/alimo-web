@@ -3,7 +3,7 @@ import SideBar from "../SideBar/SideBar";
 import * as S from "src/style/CategoryAdd.style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
 import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
-
+import axios from "axios";
 const CategoryAdd = () => {
   const {
     categoryName,
@@ -16,6 +16,8 @@ const CategoryAdd = () => {
   } = useCategoryAdd();
 
   const navigate = useNavigate();
+
+
   return (
     <S.CategoryAdd>
       <SideBar />
