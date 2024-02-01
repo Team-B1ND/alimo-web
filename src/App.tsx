@@ -7,6 +7,7 @@ import Profile from "src/components/Profile/profile";
 import Setting from "src/components/SettingPage/setting";
 import Write from "src/components/Write/Write";
 import WriteRead from "./components/WriteRead/WriteRead";
+import WriteReadDetail from "./components/WriteRead/WriteReadDetail/WriteReadDetail";
 import CategoryManage from "./components/CategoryManage/CategoryManage";
 import CategoryAdd from "./components/CategoryAdd/CategoryAdd";
 import EditCategory from "./components/CategoryManage/EditCategory";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/write" element={<Write />} />
           <Route path="/write-read" element={<WriteRead />} />
+          <Route path="/write-read/detail" element={<WriteReadDetail />} />
           <Route path="/category-manage" element={<CategoryManage />} />
           <Route path="/category-add" element={<CategoryAdd />} />
           <Route path="/category-edit" element={<EditCategory />} />
