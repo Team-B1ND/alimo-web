@@ -19,9 +19,6 @@ const SideBar = () => {
         <S.UserName>이진주T</S.UserName>
       </S.ProfileWrap>
       <S.CategoryWrap>
-        <S.Categories isClicked={isClickCategory === "메인"} onClick={() => handleCategoryClick("메인")}>
-          메인
-        </S.Categories>
         <S.Categories isClicked={isClickCategory === "글작성"} onClick={() => handleCategoryClick("글작성")}>
           글작성
         </S.Categories>
