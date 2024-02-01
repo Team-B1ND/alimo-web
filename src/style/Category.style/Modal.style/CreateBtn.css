@@ -1,0 +1,30 @@
+.CreateBtn {
+  display: flex;
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 95vh);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--Large, 12px);
+  background: var(--Main500, #fece23);
+  border: none;
+
+  color: #000;
+
+  /* Body */
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-top: 5vh;
+  margin-left: 67.5vw;
+  margin-bottom: 5vh;
+}
+
+.CreateBtn:focus {
+  outline: none;
+}
+

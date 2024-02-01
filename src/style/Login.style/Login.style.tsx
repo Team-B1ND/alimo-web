@@ -108,13 +108,13 @@ export const LoginInputWrap = styled.div`
   margin-top: 50px;
 `;
 
-export const InputWrap = styled.label`
+export const IdWrap = styled.label`
   width: 100%;
   height: 100%;
   position: relative;
 `;
 
-export const Input = styled.input`
+export const Id = styled.input`
   width: 410px;
   height: 20px;
   outline: none;
@@ -135,7 +135,43 @@ export const Input = styled.input`
   }
 `;
 
-export const InputBtn = styled.button`
+export const IdBtn = styled.button`
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+
+  top: 16px;
+  right: 10px;
+`;
+
+export const PasswordWrap = styled.label`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+export const Password = styled.input`
+  width: 410px;
+  height: 20px;
+  outline: none;
+  font-size: 1rem;
+  border-radius: var(--Large, 12px);
+  border: 1px solid var(--Gray300, #e6e6e6);
+  background: var(--White, #fff);
+
+  padding: 18px 16px;
+
+  &::placeholder {
+    color: var(--Gray500, #aaa);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+`;
+
+export const PasswordBtn = styled.button`
   all: unset;
   cursor: pointer;
   position: absolute;
