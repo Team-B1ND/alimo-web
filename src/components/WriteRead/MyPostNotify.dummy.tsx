@@ -35,7 +35,7 @@ const MyPostNotifyDummy = () => {
           </S.MyContentWrap>
         </S.MyNotifyTextWrap>
         <S.MyNotifyImgWrap>
-          {/* <S.MyNotifyImg src={MyNotifyImage} alt="공지 이미지" /> */}
+          <S.MyNotifyImg src={MyNotifyImage} alt="공지 이미지" />
         </S.MyNotifyImgWrap>
       </S.MyPostNotify>
     </S.MyPostNotifyWrap>
