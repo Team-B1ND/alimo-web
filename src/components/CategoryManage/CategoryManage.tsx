@@ -1,29 +1,27 @@
 import React from "react";
 import * as S from "../../style/Category.style/Category.style";
 import SideBar from "../SideBar/SideBar";
-import SettingImg from "../../img/Category-Setting.svg";
-import DeleteImg from "../../img/Category-Delete.svg";
+import EditButton from "src/img/Vector.png";
+import DeleteModal from "src/lib/Modal/DeleteModal";
+import { useNavigate } from "react-router-dom";
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+
 const CategoryManage = () => {
+  const navigate = useNavigate();
+  const { categories, onDeleteCategory } = useCategoryManage();
+
   return (
     <S.Main>
       <SideBar />
       <S.ManageView>
-        <S.CreateButton>카테고리 생성</S.CreateButton>
-        <S.Category>
-          <span>1학년</span>
-          <img src={SettingImg} className="SettingImg" />
-          <img src={DeleteImg} className="DeleteImg" />
-        </S.Category>
-        <S.Category>
-          <span>마이스터 홍보부</span>
-          <img src={SettingImg} className="SettingImg" />
-          <img src={DeleteImg} className="DeleteImg" />
-        </S.Category>
-        <S.Category>
-          <span>ALT</span>
-          <img src={SettingImg} className="SettingImg" />
-          <img src={DeleteImg} className="DeleteImg" />
-        </S.Category>
+        <S.CreateButton onClick={() => navigate("/category-add")}>카테고리 생성</S.CreateButton>
+        {categories.map((category) => (
+          <S.Category key={category.id}>
+            <span>{category.name}</span>
+            <S.EditCategoryButton src={EditButton} onClick={() => navigate("/category-edit")} />
+            <DeleteModal onDeleteCategory={() => onDeleteCategory(category.id)} />
+          </S.Category>
+        ))}
       </S.ManageView>
     </S.Main>
   );
