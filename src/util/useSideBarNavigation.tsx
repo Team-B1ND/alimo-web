@@ -12,9 +12,6 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
   useEffect(() => {
     const handleNavigation = () => {
       switch (location.pathname) {
-        case "/main":
-          setIsClickCategory("메인");
-          break;
         case "/write":
           setIsClickCategory("글작성");
           break;
@@ -39,9 +36,6 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
   const handleCategoryClick = (itemName: string) => {
     setIsClickCategory(itemName);
     switch (itemName) {
-      case "메인":
-        navigate("/main");
-        break;
       case "글작성":
         navigate("/write");
         break;
