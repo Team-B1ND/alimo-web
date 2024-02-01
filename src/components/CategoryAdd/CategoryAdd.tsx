@@ -17,7 +17,6 @@ const CategoryAdd = () => {
 
   const navigate = useNavigate();
 
-
   return (
     <S.CategoryAdd>
       <SideBar />
@@ -88,7 +87,7 @@ const CategoryAdd = () => {
           </S.AccessWrap>
         </S.GrantAccessWrap>
         <S.ButtonWrap>
-          <S.StyledButton className="cancle" onClick={() => navigate("category-ㅡmanage")}>
+          <S.StyledButton className="cancle" onClick={() => navigate("/category-ㅡmanage")}>
             돌아가기
           </S.StyledButton>
           <S.StyledButton onClick={onClickAddCategory}>추가하기</S.StyledButton>

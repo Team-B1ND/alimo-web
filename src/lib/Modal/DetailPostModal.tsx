@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import "src/lib/Modal/DetailPostModal.css";
 
 interface DetailPostModalProps {
   isOpen: boolean;

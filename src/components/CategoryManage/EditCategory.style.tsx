@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
-export const CategoryEdit = styled.div`
+export const EditCategoryWrap = styled.div`
   width: 100vw;
   height: 100vh;
+
   display: flex;
 `;
 
-export const CategoryEditView = styled.div`
-  width: 70vw;
-  height: 100vh;
-
+export const EditCategoryView = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -18,164 +16,155 @@ export const CategoryNameWrap = styled.div`
   display: flex;
   flex-direction: row;
 
+  margin-top: 7vh;
   margin-left: 3vw;
-
-  margin-top: 15vh;
 `;
 
-export const H1 = styled.h1`
+export const CategoryName = styled.h1`
   color: #000;
 
+  /* Title */
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+export const CategoryNameInput = styled.input`
+  width: calc(100vw - 85vw);
+  height: 1px;
+
+  border: none;
+
+  background: var(--Main500, #fece23);
+
+  margin-left: 1vw;
+  margin-top: 3vh;
+`;
+
+export const CategoryMemberWrap = styled.div``;
+
+export const NavigatoinBar = styled.div`
+  width: calc(100vw - 30vw);
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  margin-left: 10vw;
+  margin-top: 5vh;
+`;
+
+export const CategoryMemberSortByName = styled.span`
+  color: #000;
+
+  /* Subtitle */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+export const MemberAddButton = styled.button`
+  color: #00d1ff;
+
+  /* Subtitle */
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 
-  margin-bottom: 10vh;
-`;
-
-export const CategoryNameInput = styled.input`
-  width: calc(100vw - 70vw);
-  height: calc(100vh - 95vh);
-
   border: none;
-  border-bottom: 1px solid var(--Main400, #f8cf41);
-  background: var(--Main50, #fffefc);
-  outline: none;
 
-  padding-left: 1vw;
-
-  margin-left: 3vw;
-  /* margin-top: 13vh; */
-
-  color: #000;
-  font-family: Pretendard;
-  font-size: 1rem;
-
-  &:focus {
-    outline: none;
-  }
+  background-color: transparent;
 `;
 
-export const SelectMemberWrap = styled.div`
+export const CategoryMembers = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: calc(100vw - 18vw);
+  height: calc(100vh - 50vh);
+  margin-left: 3vw;
+  margin-top: 2vh;
+
+  border: 1px solid #000;
+  border-left: none;
+  border-right: none;
+`;
+
+export const CategoryMember = styled.div`
+  width: calc(100vw - 18vw);
+  height: calc(100vh - 90vh);
+
   display: flex;
   flex-direction: row;
 
-  margin-left: 3vw;
+  margin-top: 2vh;
 `;
 
-export const DropDownContentWrap = styled.div`
-  border: 1px solid #ffc909;
+export const CategoryMemberInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
 
   width: calc(100vw - 90vw);
-  height: calc(100vh - 75vh);
-
-  margin-left: 5vw;
-
-  border-collapse: collapse;
+  margin-left: 1vw;
 `;
 
-export const DropDownContent = styled.div`
-  width: calc(100vw - 90vw);
-  height: calc(100vh - 95vh);
+export const CategoryMemberProfile = styled.img`
+  width: calc(100vw - 98vw);
+  height: calc(100vw - 98vw);
 
-  display: flex;
-
-  border: none;
-  border-bottom: 1px solid #ffc909;
-
-  padding-left: 1vw;
-
-  align-items: center;
-
-  font-family: Pretendard;
-  font-weight: 600;
-  font-size: 1rem;
-
-  cursor: pointer;
-
-  &.changeBG {
-    background-color: #fbe69e;
-  }
+  background-color: grey;
+  border-radius: 50%;
 `;
 
-export const GrantAccessWrap = styled.div`
-  margin-left: 3vw;
-
-  margin-top: 10vh;
-
-  display: grid;
-`;
-
-export const AccessWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const GrantAccess = styled.span`
-  display: inline-flex;
-  padding: 10px var(--Largee, 20px);
-  justify-content: center;
-  align-items: center;
-
-  margin-right: 3vw;
-
-  border-radius: var(--Large, 20px);
-  background: var(--Main500, #ffd917);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-
-  &.selected {
-    background: #ffc909;
-  }
-`;
-
-export const ButtonWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  margin-top: 15vh;
-
-  align-items: center;
-  align-self: center;
-`;
-
-export const StyledButton = styled.button`
-  display: flex;
-
-  width: 8vw;
-  height: 5vh;
-
-  padding: var(--Large, 12px);
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-
-  border-radius: var(--Large, 12px);
-  background: var(--Main500, #ffd917);
-  border: none;
-
+export const CategoryMemberName = styled.span`
   color: #000;
+
+  /* Subtitle */
   font-family: Pretendard;
-  font-size: 17px;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-top: 5px;
+`;
+
+export const CategoryMemberManage = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  margin-left: 55vw;
+`;
+
+export const Authorization = styled.span`
+  color: #000;
+
+  /* Subtitle */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
   line-height: normal;
 
   margin-right: 2vw;
+`;
 
-  cursor: pointer;
+export const GetExitedMember = styled.span`
+  color: var(--Red500, #f90707);
 
-  &.cancle {
-    background: var(--Red200, #ffe8e8);
-
-    color: var(--Red500, #f90707);
-    font-family: Pretendard;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-left: 5vw;
-  }
+  /* Subtitle */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 `;
