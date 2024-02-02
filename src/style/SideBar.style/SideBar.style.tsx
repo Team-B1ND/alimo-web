@@ -1,107 +1,110 @@
 import styled from "styled-components";
 
 export const SideBarWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
   width: calc(100vw - 85vw);
-  height: 100vh;
-  border-right: 1px solid #cccccc;
+  height: 100%;
+
+  background: var(--Gray100, #f4f5f9);
+
+  overflow: hidden;
 `;
 
 export const SideBarLogoWrap = styled.div`
   display: flex;
   flex-direction: row;
 
-  height: calc(100vh - 90vh);
-
-  cursor: pointer;
+  justify-content: center;
+  margin-top: 7vh;
 `;
 
-export const SideBarLogoAlimo = styled.h1`
-  color: var(--Main900, #020202);
+export const AlimoLogoTitle = styled.h1`
   font-family: Pretendard;
-  font-size: 2.5rem;
-  font-style: normal;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: normal;
+  color: #000;
 
-  margin-left: calc(100vw - 97vw);
-  margin-top: calc(100vh - 97vh);
+  & > span {
+    color: var(--Main500, #fece23);
+  }
 `;
 
-export const SideBarLogoAdmin = styled.h1`
+export const AlimoLogoAdmin = styled.h1`
+  font-family: Pretendard;
+  font-size: 1rem;
+  margin-top: 1.2vh;
+  margin-left: 0.3vw;
+`;
+
+export const SideBarMenuWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SideBarCategory = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 3vh;
+  margin-left: 2vw;
+
+  & > img {
+    width: calc(100vw - 98vw);
+    height: calc(100vw - 98vw);
+  }
+`;
+
+export const SideBarMenu = styled.span`
   color: var(--Gray500, #aaa);
+
+  /* Label */
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
+  text-align: center;
 
-  margin-left: 1%;
-  margin-top: calc(100vh - 95vh);
+  margin-left: 1vw;
+  margin-top: 0.5vh;
 `;
 
-export const ProfileWrap = styled.div`
+export const SideBarProfileWrap = styled.div`
+  width: 100%;
+  height: calc(100vh - 90vh);
+
+  margin-top: 67vh;
+
+  border: none;
+  border-top: 1px solid #e6e6e6;
+
   display: flex;
   flex-direction: row;
-  cursor: pointer;
-  width: calc(100vw - 88vw);
-  height: calc(100vh - 92vh);
-
-  border-radius: 20px;
-
-  background-color: #f2f2f2;
-
-  margin-left: calc(100vw - 99vw);
-  margin-top: calc(100vh - 97vh);
 `;
 
-export const ProfileImage = styled.img`
+export const SideBarTeacherProfileImg = styled.img`
   width: calc(100vw - 97vw);
-  height: calc(100vh - 95vh);
-  border-radius: 100%;
+  height: calc(100vw - 97vw);
 
-  margin-left: calc(100vw - 98vw);
-  margin-top: calc(100vh - 99vh);
+  border: none;
+  border-radius: 50%;
+
+  margin-top: 2vh;
+  margin-left: 1vw;
 `;
 
-export const UserName = styled.span`
-  color: var(--Main900, #020202);
+export const SideBarTeacherName = styled.span`
   font-family: Pretendard;
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
 
-  align-items: flex-end;
-  align-self: center;
-  margin-left: calc(100vw - 99vw);
-  margin-bottom: calc(100vh - 99vh);
+  margin-top: 3.3vh;
+  margin-left: 1vw;
 `;
 
-export const CategoryWrap = styled.div`
-  height: calc(100vh - 40vh);
+export const SideBarProfileSetting = styled.img`
+  width: calc(100vw - 98vw);
+  height: calc(100vw - 98vw);
 
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-evenly;
-`;
-
-export const Categories = styled.div<{ isClicked: boolean }>`
-  color: #ffc909;
-  font-family: Pretendard;
-  font-size: 1.4rem;
-  font-style: normal;
-  font-weight: ${(props) => (props.isClicked ? 900 : 600)};
-  line-height: normal;
-
-  margin-bottom: calc(100vh - 90vh);
-  margin-left: calc(100vw - 98vw);
-
-  cursor: pointer;
-  &:first-child {
-    margin-top: calc(100vh - 85vh);
-  }
+  margin-top: 2.5vh;
+  margin-left: 3vw;
 `;
