@@ -14,20 +14,22 @@ const SideBar = () => {
         <S.AlimoLogoAdmin>Admin</S.AlimoLogoAdmin>
       </S.SideBarLogoWrap>
       <S.SideBarMenuWrap>
-        <S.SideBarCategory>
-          <img src={SideBarCategoryManageImg} />
-          <S.SideBarMenu>카테고리 관리</S.SideBarMenu>
-        </S.SideBarCategory>
-        <S.SideBarCategory>
-          <img src={SideBarHome} />
-          <S.SideBarMenu>내가 쓴 공지보기</S.SideBarMenu>
-        </S.SideBarCategory>
+        <S.SideBarMenuFlex>
+          <S.SideBarCategory>
+            <img src={SideBarCategoryManageImg} />
+            <S.SideBarMenu>카테고리 관리</S.SideBarMenu>
+          </S.SideBarCategory>
+          <S.SideBarCategory>
+            <img src={SideBarHome} />
+            <S.SideBarMenu>내가 쓴 공지보기</S.SideBarMenu>
+          </S.SideBarCategory>
+        </S.SideBarMenuFlex>
+        <S.SideBarProfileWrap>
+          <S.SideBarTeacherProfileImg src={TeacherProfileDummy} />
+          <S.SideBarTeacherName>이진주</S.SideBarTeacherName>
+          <S.SideBarProfileSetting src={SideBarProfileSetting} />
+        </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
-      <S.SideBarProfileWrap>
-        <S.SideBarTeacherProfileImg src={TeacherProfileDummy} />
-        <S.SideBarTeacherName>이진주</S.SideBarTeacherName>
-        <S.SideBarProfileSetting src={SideBarProfileSetting} />
-      </S.SideBarProfileWrap>
     </S.SideBarWrap>
   );
 };

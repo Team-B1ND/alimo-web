@@ -1,20 +1,21 @@
 import styled from "styled-components";
 
 export const SideBarWrap = styled.div`
+  display: flex;
+  flex-direction: column;
   width: calc(100vw - 85vw);
-  height: 100%;
-
+  height: 100vh;
   background: var(--Gray100, #f4f5f9);
-
   overflow: hidden;
 `;
 
 export const SideBarLogoWrap = styled.div`
+width: 100%;
+height: 100px;
   display: flex;
   flex-direction: row;
-
   justify-content: center;
-  margin-top: 7vh;
+  align-items: center;
 `;
 
 export const AlimoLogoTitle = styled.h1`
@@ -37,16 +38,26 @@ export const AlimoLogoAdmin = styled.h1`
 
 export const SideBarMenuWrap = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
+  
+  justify-content: space-between;
   flex-direction: column;
 `;
+export const SideBarMenuFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
 
 export const SideBarCategory = styled.div`
   display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
   flex-direction: row;
-
-  margin-top: 3vh;
-  margin-left: 2vw;
-
+  margin-left: 10px;
+  cursor: pointer;
   & > img {
     width: calc(100vw - 98vw);
     height: calc(100vw - 98vw);
@@ -55,7 +66,7 @@ export const SideBarCategory = styled.div`
 
 export const SideBarMenu = styled.span`
   color: var(--Gray500, #aaa);
-
+  margin-left: 10px;
   /* Label */
   font-family: Pretendard;
   font-size: 1rem;
@@ -63,20 +74,13 @@ export const SideBarMenu = styled.span`
   font-weight: 500;
   line-height: normal;
   text-align: center;
-
-  margin-left: 1vw;
-  margin-top: 0.5vh;
 `;
 
 export const SideBarProfileWrap = styled.div`
   width: 100%;
   height: calc(100vh - 90vh);
-
-  margin-top: 67vh;
-
   border: none;
   border-top: 1px solid #e6e6e6;
-
   display: flex;
   flex-direction: row;
 `;
