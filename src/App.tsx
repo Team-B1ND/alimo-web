@@ -21,7 +21,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/write" element={<Write />} />
           <Route path="/write-read" element={<WriteRead />} />
-          <Route path="/category-manage" element={<CategoryManage />} />
+          <Route path="/main" element={<CategoryManage />} />
           <Route path="/category-add" element={<CategoryAdd />} />
           <Route path="/category-edit" element={<EditCategory />} />
           <Route path="/profile" element={<Profile />} />
