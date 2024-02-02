@@ -1,52 +1,31 @@
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { showToast } from "src/lib/Toast/Swal";
-
-interface Student {
-  name: string;
-}
-
+import Swal from "sweetalert2";
 const useCategoryEdit = () => {
-  const navigate = useNavigate();
-  const [categoryName, setCategoryName] = useState<string>("");
-  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [selectAccess, setSelectAccess] = useState<string | null>(null);
+  const [nameChangeAllow, setNameChangeAllow] = useState<boolean>(false);
 
-  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
-  };
+  const onClickInputPrompt = async () => {
+    const { value: inputValue } = await Swal.fire({
+      title: "",
+      input: "text",
+      inputLabel: "주의: 즉시 모든유저에게 반영됩니다!",
+      inputPlaceholder: "카테고리 이름을 입력해주세요",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return "카테고리 이름을 입력해주세요.";
+        }
+      },
+      confirmButtonColor: "#"
+    });
 
-  const onClickAddStudent = (studentName: string) => {
-    const isSelected = selectedStudents.some((student) => student.name === studentName);
-
-    if (isSelected) {
-      setSelectedStudents(selectedStudents.filter((student) => student.name !== studentName));
-    } else {
-      const newStudent: Student = { name: studentName };
-      setSelectedStudents([...selectedStudents, newStudent]);
+    if (inputValue) {
+      Swal.fire(`카테고리 이름이 ${inputValue}로 변경되었습니다.`);
     }
   };
 
-  const onClickAccess = (access: string) => {
-    setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
-  };
-
-  const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("success", "카테고리가 수정되었습니다.");
-      navigate("/main");
-    }
-  };
-  
   return {
-    categoryName,
-    selectedStudents,
-    selectAccess,
-    onChangeCategoryName,
-    onClickAddStudent,
-    onClickAccess,
-    onClickAddCategory,
+    nameChangeAllow,
+    onClickInputPrompt,
   };
 };
 
