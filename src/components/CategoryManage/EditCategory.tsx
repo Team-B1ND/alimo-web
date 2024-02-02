@@ -2,8 +2,12 @@ import React from "react";
 import * as S from "src/components/CategoryManage/EditCategory.style";
 import SideBar from "src/components/SideBar/SideBar";
 import CategoryDummyMembers from "./CategoryDummyMembers";
+import ChangeCategoryNameImg from "src/img/Write.svg";
+import useCategoryEdit from "src/Hooks/Category/useCategoryEdit";
 
 const EditCategory = () => {
+  const { onClickInputPrompt } = useCategoryEdit();
+
   return (
     <S.EditCategoryWrap>
       <SideBar />
@@ -11,6 +15,7 @@ const EditCategory = () => {
         <S.CategoryNameWrap>
           <S.CategoryName>카테고리 이름</S.CategoryName>
           <S.CategoryNameInput type="text" />
+          <img src={ChangeCategoryNameImg} onClick={onClickInputPrompt} />
         </S.CategoryNameWrap>
         <S.CategoryMemberWrap>
           <S.NavigatoinBar>

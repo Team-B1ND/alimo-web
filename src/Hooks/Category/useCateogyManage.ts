@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 
 interface Category {
@@ -16,7 +15,6 @@ const useCategoryManage = () => {
   const onDeleteCategory = (categoryId: number) => {
     const newCategories = categories.filter((category) => category.id !== categoryId);
     setCategories(newCategories);
-    
   };
 
   return {

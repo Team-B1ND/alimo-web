@@ -43,6 +43,10 @@ export const CategoryNameInput = styled.input`
   margin-top: 3vh;
 `;
 
+export const CategoryNameChangeButton = styled.button`
+  
+`
+
 export const CategoryMemberWrap = styled.div``;
 
 export const NavigatoinBar = styled.div`
@@ -81,6 +85,8 @@ export const MemberAddButton = styled.button`
   border: none;
 
   background-color: transparent;
+
+  cursor: pointer;
 `;
 
 export const CategoryMembers = styled.div`
@@ -156,6 +162,8 @@ export const Authorization = styled.span`
   line-height: normal;
 
   margin-right: 2vw;
+
+  cursor: pointer;
 `;
 
 export const GetExitedMember = styled.span`
@@ -167,4 +175,6 @@ export const GetExitedMember = styled.span`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  cursor: pointer;
 `;
