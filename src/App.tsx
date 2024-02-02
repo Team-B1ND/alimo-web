@@ -6,6 +6,7 @@ import Profile from "src/components/Profile/profile";
 import Setting from "src/components/SettingPage/setting";
 import Write from "src/components/Write/Write";
 import WriteRead from "./components/WriteRead/WriteRead";
+import WriteReadDetail from "./components/WriteRead/WriteReadDetail/WriteReadDetail";
 import CategoryManage from "./components/CategoryManage/CategoryManage";
 import CategoryAdd from "./components/CategoryAdd/CategoryAdd";
 import EditCategory from "./components/CategoryManage/EditCategory";
