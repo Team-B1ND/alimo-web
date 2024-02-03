@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "../../style/Category.style/Category.style";
 import SideBar from "../SideBar/SideBar";
+import Header from "../Header/Header";
 import EditButton from "src/img/Vector.png";
 import DeleteModal from "src/lib/Modal/DeleteModal";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ const CategoryManage = () => {
   return (
     <S.Main>
       <SideBar />
+      <Header />
       <S.ManageView>
         <S.CreateButton onClick={() => navigate("/category-add")}>카테고리 생성</S.CreateButton>
         {categories.map((category) => (

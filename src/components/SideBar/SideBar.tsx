@@ -23,7 +23,7 @@ const SideBar = () => {
       <S.SideBarMenuWrap>
         <S.SideBarMenuFlex>
           <S.SideBarCategory>
-            <img src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
+            <img src={isClickCategory ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}
               onClick={() => handleCategoryClick("카테고리 관리")}
@@ -32,7 +32,7 @@ const SideBar = () => {
             </S.SideBarMenu>
           </S.SideBarCategory>
           <S.SideBarCategory>
-            <img src={isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
+            <img src={isClickCategory ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "내가 쓴 공지보기"}
               onClick={() => handleCategoryClick("내가 쓴 공지보기")}

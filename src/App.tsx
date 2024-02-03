@@ -10,6 +10,7 @@ import WriteReadDetail from "./components/WriteRead/WriteReadDetail/WriteReadDet
 import CategoryManage from "./components/CategoryManage/CategoryManage";
 import CategoryAdd from "./components/CategoryAdd/CategoryAdd";
 import EditCategory from "./components/CategoryManage/EditCategory";
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/category-add" element={<CategoryAdd />} />
           <Route path="/category-edit" element={<EditCategory />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="sidebar" element={<SideBar />} />
         </Routes>
       </div>
     </BrowserRouter>
