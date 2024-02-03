@@ -6,86 +6,50 @@ export const Main = styled.div`
   display: flex;
 `;
 
-export const ManageView = styled.div`
-  width: calc(100vw - 15vw);
-  height: 100vh;
+export const CategoryManageView = styled.div`
   display: flex;
   flex-direction: column;
 
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  margin-top: 10vh;
 `;
 
-export const CreateButton = styled.button`
+export const CateogyManageUtilityWrap = styled.div`
   display: flex;
-  width: calc(100vw - 90vw);
+  flex-direction: row;
+`;
+
+export const SearchCateogy = styled.input`
+  width: calc(100vw - 60vw);
   height: calc(100vh - 95vh);
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
 
-  border-radius: var(--Large, 12px);
-  background: var(--Main500, #fece23);
-  border: none;
+  border: 1px solid #e6e6e6;
+  border-radius: 15px;
 
-  color: #000;
+  margin-top: 3vh;
+  margin-left: 3vw;
 
-  /* Body */
+  padding-left: 2vw;
+
+  color: #787878;
   font-family: Pretendard;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-
-  margin-top: 5vh;
-  margin-left: 67.5vw;
+  font-weight: 400;
 `;
 
-export const Category = styled.div`
-  display: flex;
+export const CreateCategoryButton = styled.button`
+  width: calc(100vw - 93vw);
+  height: calc(100vh - 95vh);
 
-  width: calc(100vw - 30vw);
-  height: calc(100vh - 85vh);
+  background-color: #000;
 
-  margin-bottom: 5vh;
-  padding-left: 2vw;
-  border: 1px solid #d7d7d7;
-  border-radius: 40px;
+  color: #fff;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
 
-  background: var(--White, #fff);
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 15px;
 
-  align-items: center;
-  align-self: center;
-
-  & span {
-    color: #000;
-
-    /* Title */
-    font-family: Pretendard;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  & img {
-    position: absolute;
-    margin-left: 55vw;
-
-    &.DeleteImg {
-      margin-left: 65vw;
-    }
-  }
-
-  &:first-of-type {
-    margin-top: 5vh;
-  }
-`;
-
-export const EditCategoryButton = styled.img`
-  position: absolute;
-  width: calc(100vw - 98vw);
-  margin-top: 2vh;
+  margin-top: 3vh;
+  margin-left: 2vw;
 `;

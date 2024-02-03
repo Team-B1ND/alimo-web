@@ -45,6 +45,8 @@ export const SideBarMenuWrap = styled.div`
 
   justify-content: space-between;
   flex-direction: column;
+
+  margin-top: 3vh;
 `;
 export const SideBarMenuFlex = styled.div`
   display: flex;

@@ -20,7 +20,7 @@ export const UploadNewNotifyButton = styled.button`
   border-radius: 10px;
 
   margin-left: 82.5vw;
-  margin-top: 5vh;
+  margin-top: 3vh;
 
   background-color: #f4f5f9;
 
