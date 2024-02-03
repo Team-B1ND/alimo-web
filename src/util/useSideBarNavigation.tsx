@@ -12,17 +12,11 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
   useEffect(() => {
     const handleNavigation = () => {
       switch (location.pathname) {
-        case "/write":
-          setIsClickCategory("글작성");
-          break;
-        case "/category-manage":
+        case "/main":
           setIsClickCategory("카테고리 관리");
           break;
         case "/write-read":
-          setIsClickCategory("작성글 보기");
-          break;
-        case "/setting":
-          setIsClickCategory("설정");
+          setIsClickCategory("내가 쓴 공지보기");
           break;
         default:
           setIsClickCategory("");
@@ -36,17 +30,11 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
   const handleCategoryClick = (itemName: string) => {
     setIsClickCategory(itemName);
     switch (itemName) {
-      case "글작성":
-        navigate("/write");
-        break;
       case "카테고리 관리":
-        navigate("/category-manage");
+        navigate("/main");
         break;
-      case "작성글 보기":
+      case "내가 쓴 공지보기":
         navigate("/write-read");
-        break;
-      case "설정":
-        navigate("/setting");
         break;
       default:
         navigate("");

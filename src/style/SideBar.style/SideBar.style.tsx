@@ -10,12 +10,14 @@ export const SideBarWrap = styled.div`
 `;
 
 export const SideBarLogoWrap = styled.div`
-width: 100%;
-height: 100px;
+  width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 export const AlimoLogoTitle = styled.h1`
@@ -40,7 +42,7 @@ export const SideBarMenuWrap = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  
+
   justify-content: space-between;
   flex-direction: column;
 `;
@@ -48,7 +50,7 @@ export const SideBarMenuFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`
+`;
 
 export const SideBarCategory = styled.div`
   display: flex;
@@ -64,14 +66,14 @@ export const SideBarCategory = styled.div`
   }
 `;
 
-export const SideBarMenu = styled.span`
-  color: var(--Gray500, #aaa);
+export const SideBarMenu = styled.span<{ isClicked: boolean }>`
+  color: ${(props) => (props.isClicked ? "#000" : "#aaa")};
   margin-left: 10px;
   /* Label */
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   text-align: center;
 `;
@@ -105,10 +107,12 @@ export const SideBarTeacherName = styled.span`
   margin-left: 1vw;
 `;
 
-export const SideBarProfileSetting = styled.img`
+export const SideBarSetting = styled.img`
   width: calc(100vw - 98vw);
   height: calc(100vw - 98vw);
 
   margin-top: 2.5vh;
   margin-left: 3vw;
+
+  cursor: pointer;
 `;
