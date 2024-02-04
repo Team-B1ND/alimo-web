@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "src/style/Category.style/Category.style";
-import SideBar from "../SideBar/SideBar";
-import Header from "../Header/Header";
+import SideBar from "src/components/SideBar/SideBar";
+import Header from "src/components/SideBar/Header";
 
 const CategoryManage = () => {
   return (
