@@ -79,12 +79,51 @@ export const FileWrap = styled.div`
 
   display: flex;
   flex-direction: row;
+`;
 
+export const ImageUploadImg = styled.img`
+  width: calc(100vw - 98vw);
+  height: calc(100vw - 98vw);
+
+  margin-top: 2vh;
+  margin-right: 1vw;
+
+  cursor: pointer;
+`;  
+
+export const ImageInputRef = styled.input`
+  display: none;
+`;
+
+export const FileChangeLabel = styled.label`
   & > img {
     width: calc(100vw - 98vw);
     height: calc(100vw - 98vw);
 
     margin-top: 2vh;
     margin-right: 1vw;
+
+    cursor: pointer;
   }
+`;
+
+export const ViewFileName = styled.input`
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 90vh);
+  border: none;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+`;
+
+export const FileChange = styled.input`
+  display: none;
+`;
+
+export const SelectCategoryWrap = styled.div`
+  width: calc(100vw - 70vw);
+  height: calc(100vh - 10vh);
+
+  background: red;
 `;
