@@ -27,7 +27,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .MyNotifyInfoWrap {
@@ -35,7 +35,7 @@
   height: auto;
   display: flex;
   flex-direction: row;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .MyProfile {
@@ -71,7 +71,7 @@
 .MyNotifyTitleWrap {
   width: 100%;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .MyNotifyTitle {
@@ -86,13 +86,13 @@
 .MyNotifyImgWrap {
   width: 100%;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .MyNotifyContentWrap {
   width: 100%;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .MyNotifyContent {
@@ -113,7 +113,6 @@
   align-items: center;
   border-radius: 15px;
   background-color: #f4f5f9;
-  margin: 20px 0 30px 0;
 }
 
 .MyNotifyEmoticonBox {
@@ -163,8 +162,33 @@
   width: 90%;
   height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 40px;
+}
+
+.MyPostComment {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.MyPostReplyComment {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 40px 55px;
+}
+
+.CommentInfoWrap {
+  width: 12%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .CommentProfile {
@@ -173,18 +197,9 @@
   border-radius: 50%;
 }
 
-.CommentInfoWrap {
+.CommentContentWrap {
   display: flex;
   flex-direction: column;
-  margin: 0px 0px 0px 20px;
-}
-
-.CommentInfo {
-  width: 85px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .CommentName {
@@ -196,55 +211,37 @@
   line-height: normal;
 }
 
-.CommentDate {
-  color: var(--Gray500, #aaa);
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.CommentContentWrap {
-  width: auto;
-  height: auto;
-  margin-top: 5px;
-}
-
 .CommentContent {
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-top: 5px;
 }
 
-.ReplyCommentWrap {
-  width: 120px;
+.CommentWrap {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 5px;
+}
+
+.CommentDate {
+  color: var(--Gray500, #aaa);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: 15px;
 }
 
 .ReplyCommentWrite {
   color: var(--Gray500, #aaa);
   font-family: Inter;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  cursor: pointer;
-  border: 0;
-  background-color: transparent;
-}
-
-.ReplyCommentView {
-  color: var(--Gray500, #aaa);
-  font-family: Inter;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   cursor: pointer;
   border: 0;
