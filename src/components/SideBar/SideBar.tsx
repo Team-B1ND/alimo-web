@@ -7,6 +7,7 @@ import SideBarWriteReadImg from "src/img/SideBarHome.svg";
 import TeacherProfileDummy from "src/img/Profile-Dummy.jpg";
 import SideBarProfileSetting from "src/img/SideBarSetting.svg";
 import useSideBarNavigation from "src/util/useSideBarNavigation";
+import Header from "./Header";
 import { useLocation, useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const SideBar = () => {
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
   return (
     <S.SideBarWrap>
+      <Header/>
       <S.SideBarLogoWrap>
         <S.AlimoLogoTitle>
           ALIMO<span>.</span>
@@ -23,7 +25,7 @@ const SideBar = () => {
       <S.SideBarMenuWrap>
         <S.SideBarMenuFlex>
           <S.SideBarCategory>
-            <img src={isClickCategory ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
+            <img src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}
               onClick={() => handleCategoryClick("카테고리 관리")}
@@ -32,7 +34,7 @@ const SideBar = () => {
             </S.SideBarMenu>
           </S.SideBarCategory>
           <S.SideBarCategory>
-            <img src={isClickCategory ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
+            <img src={isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "내가 쓴 공지보기"}
               onClick={() => handleCategoryClick("내가 쓴 공지보기")}
