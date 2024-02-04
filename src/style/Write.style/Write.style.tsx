@@ -89,7 +89,7 @@ export const ImageUploadImg = styled.img`
   margin-right: 1vw;
 
   cursor: pointer;
-`;  
+`;
 
 export const ImageInputRef = styled.input`
   display: none;
@@ -124,6 +124,84 @@ export const FileChange = styled.input`
 export const SelectCategoryWrap = styled.div`
   width: calc(100vw - 70vw);
   height: calc(100vh - 10vh);
+`;
 
-  background: red;
+export const SendCategoryWrap = styled.div`
+  width: calc(100vw - 70vw);
+  height: calc(100vh - 20vh);
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SendCategoryTitle = styled.h1`
+  font-family: Prentendard;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-left: 2vw;
+  margin-top: 3vh;
+`;
+
+export const CategoryWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+export const Cateogory = styled.span<{ isClicked: boolean }>`
+  display: inline-flex;
+  padding: 7px var(--Largee, 20px);
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 2vw;
+  margin-top: 2vh;
+
+  border-radius: var(--Large, 20px);
+  border: ${(props) => (props.isClicked ? "1px solid #FECE23" : "none")};
+  background: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+`;
+
+export const UplaodButtonWrap = styled.div`
+  width: calc(100vw - 70vw);
+  height: calc(100vh - 90vh);
+
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SendShowMember = styled.span`
+  font-family: Prentendard;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #787878;
+
+  margin-top: 4vh;
+  margin-left: 2vw;
+
+  & > span {
+    color: #fece23;
+  }
+`;
+
+export const UploadButton = styled.button`
+  width: calc(100vw - 93vw);
+  height: calc(100vh - 95vh);
+
+  background-color: #000;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
+
+  border: none;
+  border-radius: 15px;
+
+  margin-top: 3vh;
+  margin-left: 8vw;
+
+  cursor: pointer;
 `;

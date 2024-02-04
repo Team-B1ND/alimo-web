@@ -7,7 +7,8 @@ import ImageUploadImg from "src/img/ImageUpload.svg";
 import FileUplaod from "src/img/FileUpload.svg";
 
 const Write = () => {
-  const { title, onChangeTitle, imageInputRef, handleImageClick, handleFileChange, fileName } = useWrite();
+  const { title, onChangeTitle, imageInputRef, handleFileChange, fileName, selectedCategory, onClickAddCategory } =
+    useWrite();
 
   return (
     <S.WriteMain>
@@ -27,7 +28,49 @@ const Write = () => {
             <S.FileChange type="file" id="file-change" onChange={handleFileChange} />
           </S.FileWrap>
         </S.InputWrap>
-        <S.SelectCategoryWrap></S.SelectCategoryWrap>
+        <S.SelectCategoryWrap>
+          <S.SendCategoryWrap>
+            <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
+            <S.CategoryWrap>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B1ND")}
+                isClicked={selectedCategory.some((student) => student.name === "B1ND")}
+              >
+                B1ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B2ND")}
+                isClicked={selectedCategory.some((student) => student.name === "B2ND")}
+              >
+                B2ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("32ND")}
+                isClicked={selectedCategory.some((student) => student.name === "B3ND")}
+              >
+                B3ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B4ND")}
+                isClicked={selectedCategory.some((student) => student.name === "B4ND")}
+              >
+                B4ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B5ND")}
+                isClicked={selectedCategory.some((student) => student.name === "B5ND")}
+              >
+                B5ND
+              </S.Cateogory>
+            </S.CategoryWrap>
+          </S.SendCategoryWrap>
+          <S.UplaodButtonWrap>
+            <S.SendShowMember>
+              총 <span>120</span>명에게 전송돼요
+            </S.SendShowMember>
+            <S.UploadButton>게시하기</S.UploadButton>
+          </S.UplaodButtonWrap>
+        </S.SelectCategoryWrap>
       </S.WriteView>
     </S.WriteMain>
   );
