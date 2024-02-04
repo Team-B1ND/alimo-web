@@ -1,28 +1,18 @@
 import React from "react";
-import * as S from "../../style/Category.style/Category.style";
-import SideBar from "../SideBar/SideBar";
-import EditButton from "src/img/Vector.png";
-import DeleteModal from "src/lib/Modal/DeleteModal";
-import { useNavigate } from "react-router-dom";
-import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import * as S from "src/style/Category.style/Category.style";
+import SideBar from "src/components/SideBar/SideBar";
+
 
 const CategoryManage = () => {
-  const navigate = useNavigate();
-  const { categories, onDeleteCategory } = useCategoryManage();
-
   return (
     <S.Main>
       <SideBar />
-      <S.ManageView>
-        <S.CreateButton onClick={() => navigate("/category-add")}>카테고리 생성</S.CreateButton>
-        {categories.map((category) => (
-          <S.Category key={category.id}>
-            <span>{category.name}</span>
-            <S.EditCategoryButton src={EditButton} onClick={() => navigate("/category-edit")} />
-            <DeleteModal onDeleteCategory={() => onDeleteCategory(category.id)} />
-          </S.Category>
-        ))}
-      </S.ManageView>
+      <S.CategoryManageView>
+        <S.CateogyManageUtilityWrap>
+          <S.SearchCateogy placeholder="카테고리 검색" />
+          <S.CreateCategoryButton>새 카테고리 </S.CreateCategoryButton>
+        </S.CateogyManageUtilityWrap>
+      </S.CategoryManageView>
     </S.Main>
   );
 };
