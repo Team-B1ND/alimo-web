@@ -9,8 +9,8 @@ import WriteRead from "./components/WriteRead/WriteRead";
 import WriteReadDetail from "./components/WriteRead/WriteReadDetail/WriteReadDetail";
 import CategoryManage from "./components/CategoryManage/CategoryManage";
 import CategoryAdd from "./components/CategoryAdd/CategoryAdd";
-import EditCategory from "./components/CategoryManage/EditCategory";
-import SideBar from "./components/SideBar/SideBar";
+import EditCategory from "./components/CategoryEdit/EditCategory";
+import SideBar from "./constants/SideBar/SideBar";
 
 function App() {
   return (

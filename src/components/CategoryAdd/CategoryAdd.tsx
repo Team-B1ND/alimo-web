@@ -1,6 +1,6 @@
 import React from "react";
-import SideBar from "../SideBar/SideBar";
-import * as S from "src/style/CategoryAdd.style/CategoryAdd.style";
+import SideBar from "../../constants/SideBar/SideBar";
+import * as S from "src/components/CategoryAdd/style/CategoryAdd.style";
 import { useNavigate } from "react-router-dom";
 import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
 import axios from "axios";

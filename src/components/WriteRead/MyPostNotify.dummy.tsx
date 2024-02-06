@@ -1,6 +1,6 @@
-import MyProfile from "src/img/Profile-Dummy.jpg";
-import MyNotifyImage from "src/img/MyNotifyImg.svg";
-import * as S from "src/style/WriteRead.style/WriteRead.style";
+import MyProfile from "src/assets/img/Profile-Dummy.jpg";
+import MyNotifyImage from "src/assets/img/MyNotifyImg.svg";
+import * as S from "src/components/WriteRead/style/WriteRead.style";
 import { useNavigate } from "react-router-dom";
 
 const MyPostNotifyDummy = () => {
@@ -15,7 +15,7 @@ const MyPostNotifyDummy = () => {
   };
   return (
     <S.MyPostNotifyWrap>
-      <S.MyPostNotify onClick={()=>navigate("/write-read/detail")}>
+      <S.MyPostNotify onClick={() => navigate("/write-read/detail")}>
         <S.MyNotifyTextWrap>
           <S.MyInfoWrap>
             <S.MyProfile src={MyProfile} alt="내 프로필" />

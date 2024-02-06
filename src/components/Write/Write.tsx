@@ -1,9 +1,9 @@
 import React from "react";
-import * as S from "src/style/Write.style/Write.style";
-import SideBar from "../SideBar/SideBar";
-import Header from "../SideBar/Header";
-import ImageUploadImg from "src/img/ImageUpload.svg";
-import FileUplaod from "src/img/FileUpload.svg";
+import * as S from "src/components/Write/style/Write.style";
+import SideBar from "../../constants/SideBar/SideBar";
+import Header from "../../constants/Header/Header";
+import ImageUploadImg from "src/assets/img/ImageUpload.svg";
+import FileUplaod from "src/assets/img/FileUpload.svg";
 
 const Write = () => {
   return (

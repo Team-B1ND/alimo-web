@@ -1,4 +1,4 @@
-import SideBar from "src/components/SideBar/SideBar";
+import SideBar from "@src/constants/SideBar/SideBar";
 import "src/style/WriteRead.style/WriteReadDetail.style/WriteReadDetail.style.css";
 import MyProfile from "src/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/img/MyNotifyDetailImg.svg";
@@ -65,57 +65,39 @@ const WriteReadDetail = () => {
           <div className="MyPostCommentWrap">
             <div className="MyPostComment">
               <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={ExampleProfile}
-                  alt="예시 프로필"
-                />
+                <img className="CommentProfile" src={ExampleProfile} alt="예시 프로필" />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">2예진</p>
                 <p className="CommentContent">팀인가여?</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
+                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>
             </div>
             <div className="MyPostReplyComment">
               <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={MyProfile}
-                  alt="내 프로필"
-                />
+                <img className="CommentProfile" src={MyProfile} alt="내 프로필" />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">이진주</p>
                 <p className="CommentContent">얍</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
+                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>
             </div>
             <div className="MyPostReplyComment">
               <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={ExampleProfile}
-                  alt="예시 프로필"
-                />
+                <img className="CommentProfile" src={ExampleProfile} alt="예시 프로필" />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">이예진</p>
                 <p className="CommentContent">|</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
+                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>

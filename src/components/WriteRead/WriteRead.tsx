@@ -1,7 +1,7 @@
 import React from "react";
-import SideBar from "src/components/SideBar/SideBar";
+import SideBar from "src/constants/SideBar/SideBar";
 import MyPostNotifyDummy from "src/components/WriteRead/MyPostNotify.dummy";
-import * as S from "src/style/WriteRead.style/WriteRead.style";
+import * as S from "src/components/WriteRead/style/WriteRead.style";
 
 const MyWriteView = () => {
   return (

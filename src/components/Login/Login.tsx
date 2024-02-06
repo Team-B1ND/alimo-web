@@ -1,8 +1,8 @@
-import Logo from "src/img/Alimo-image.png";
-import IdCancel from "src/img/Id-Cancel.png";
-import PasswordHide from "src/img/Password-Hide.png";
-import PasswordShow from "src/img/Password-Show.png";
-import * as S from "src/style/Login.style/Login.style";
+import Logo from "src/assets/img/Alimo-image.png";
+import IdCancel from "src/assets/img/Id-Cancel.png";
+import PasswordHide from "src/assets/img/Password-Hide.png";
+import PasswordShow from "src/assets/img/Password-Show.png";
+import * as S from "src/components/Login/style/Login.style";
 import uselogin from "src/Hooks/auth/useLogin";
 
 const Login = () => {

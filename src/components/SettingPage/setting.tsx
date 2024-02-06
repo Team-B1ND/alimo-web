@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import SideBar from "src/components/SideBar/SideBar";
-import * as s from "src/style/Setting.style/Setting.style";
-
+import SideBar from "src/constants/SideBar/SideBar";
+import * as s from "src/components/SettingPage/style/Setting.style";
 
 export default function Setting() {
   const [Alarm, setAlarm] = useState(false);
@@ -16,16 +15,16 @@ export default function Setting() {
     Swal.fire({
       title: "로그아웃",
       text: "진짜 로그아웃 하시겠습니까?",
-      showCancelButton: true, 
+      showCancelButton: true,
       reverseButtons: true,
-      cancelButtonText: '취소',
-      cancelButtonColor: '#d33',
+      cancelButtonText: "취소",
+      cancelButtonColor: "#d33",
       confirmButtonColor: "#FBE69E",
-      confirmButtonText: '로그아웃하기',
+      confirmButtonText: "로그아웃하기",
     }).then((result) => {
-      if (result.isConfirmed) { 
-        naviagate("/")
-     }
+      if (result.isConfirmed) {
+        naviagate("/");
+      }
     });
   };
 

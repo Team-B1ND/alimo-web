@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "src/components/CategoryManage/EditCategory.style";
-import ProfileImg from "src/img/53.jpeg";
+import * as S from "src/components/CategoryEdit/style/EditCategory.style";
+import ProfileImg from "src/assets/img/53.jpeg";
 const CategoryDummyMembers = () => {
   return (
     <>

@@ -1,7 +1,6 @@
 import React from "react";
-import * as S from "src/style/Category.style/Category.style";
-import SideBar from "src/components/SideBar/SideBar";
-
+import * as S from "src/components/CategoryManage/style/Category.style";
+import SideBar from "src/constants/SideBar/SideBar";
 
 const CategoryManage = () => {
   return (

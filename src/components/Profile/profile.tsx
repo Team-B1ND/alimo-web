@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as s from "src/style/Profile.style/Profile.style";
-import SideBar from "src/components/SideBar/SideBar";
-import UserImage from "src/img/Profile-Dummy.jpg";
-import SettingImage from "src/img/Vector.png";
-import ProfileImg from "src/img/profileimg.png";
-import ChangeImg from "src/img/Group 266.png";
+import * as s from "src/components/Profile/style/Profile.style";
+import SideBar from "src/constants/SideBar/SideBar";
+import ProfileImg from "src/assets/img/profileimg.png";
+import ChangeImg from "src/assets/img/Group 266.png";
 
 export default function Profile() {
   const navigate = useNavigate();

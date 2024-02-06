@@ -1,13 +1,13 @@
 import React from "react";
-import * as S from "src/style/SideBar.style/SideBar.style";
-import ClickSideBarCategoryManageImg from "src/img/ClickSideBarCateogryManage.svg";
-import SideBarCategoryManageImg from "src/img/SideBarCategoryManage.png";
-import ClickSideBarWriteReadImg from "src/img/ClickSideBarHome.svg";
-import SideBarWriteReadImg from "src/img/SideBarHome.svg";
-import TeacherProfileDummy from "src/img/Profile-Dummy.jpg";
-import SideBarProfileSetting from "src/img/SideBarSetting.svg";
+import * as S from "src/constants/SideBar/style/SideBar.style";
+import ClickSideBarCategoryManageImg from "src/assets/img/ClickSideBarCateogryManage.svg";
+import SideBarCategoryManageImg from "src/assets/img/SideBarCategoryManage.png";
+import ClickSideBarWriteReadImg from "src/assets/img/ClickSideBarHome.svg";
+import SideBarWriteReadImg from "src/assets/img/SideBarHome.svg";
+import TeacherProfileDummy from "src/assets/img/Profile-Dummy.jpg";
+import SideBarProfileSetting from "src/assets/img/SideBarSetting.svg";
 import useSideBarNavigation from "src/util/useSideBarNavigation";
-import Header from "./Header";
+import Header from "../Header/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const SideBar = () => {
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
   return (
     <S.SideBarWrap>
-      <Header/>
+      <Header />
       <S.SideBarLogoWrap>
         <S.AlimoLogoTitle>
           ALIMO<span>.</span>
