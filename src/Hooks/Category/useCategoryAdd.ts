@@ -43,7 +43,7 @@ const useCategoryAdd = () => {
       axios
         .post(`${CONFIG.serverUrl}role/create`, requestBody, {
           headers: {
-            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFTVAiLCJpYXQiOjE3MDY2NzA5ODAsImV4cCI6MTcwNjY3Mjc4MH0._O1PBkCfGdNi9hudCGyRBn456P70vzpfDy9HZrbzbvLvP6cu1hPzTNGFuN0XThgyox7edTwxmlKPG4D38SUKSg`,
+            Authorization: `#`,
           },
         })
         .then((response) => {

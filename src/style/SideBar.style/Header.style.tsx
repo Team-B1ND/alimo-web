@@ -10,7 +10,7 @@ export const HeaderBarWrap = styled.div`
 `;
 
 export const UploadNewNotifyButton = styled.button`
-position: absolute;
+  position: absolute;
   width: calc(100vw - 90vw);
   height: calc(100vh - 95vh);
   gap: 10px;
@@ -18,9 +18,9 @@ position: absolute;
   border-radius: 10px;
   margin-left: 82.5vw;
   margin-top: 3vh;
-  background-color: #f4f5f9;
+  background-color: #fece23;
 
-  color: #aaaaaa;
-
+  color: #000
   cursor: pointer;
+
 `;
