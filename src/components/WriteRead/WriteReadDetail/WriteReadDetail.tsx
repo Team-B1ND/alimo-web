@@ -1,8 +1,8 @@
-import SideBar from "@src/constants/SideBar/SideBar";
-import "src/style/WriteRead.style/WriteReadDetail.style/WriteReadDetail.style.css";
-import MyProfile from "src/img/Profile-Dummy.jpg";
-import MyNotifyImage from "src/img/MyNotifyDetailImg.svg";
-import ExampleProfile from "src/img/ExampleProfile.png";
+import SideBar from "src/constants/SideBar/SideBar";
+import "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style.css";
+import MyProfile from "src/assets/img/Profile-Dummy.jpg";
+import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
+import ExampleProfile from "src/assets/img/ExampleProfile.png";
 
 const WriteReadDetail = () => {
   interface Dummy {
