@@ -9,10 +9,7 @@ const MyWriteView = () => {
       <SideBar />
       <S.WriteReadView>
         <S.WriteReadWrap>
-          <S.WriteReadText>
-            <S.WriteReadTitle>나의 공지</S.WriteReadTitle>
-            <S.WriteReadCount>13</S.WriteReadCount>
-          </S.WriteReadText>
+          <MyPostNotifyDummy />
           <MyPostNotifyDummy />
           <MyPostNotifyDummy />
           <MyPostNotifyDummy />

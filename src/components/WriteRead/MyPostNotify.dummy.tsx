@@ -1,5 +1,5 @@
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
-import MyNotifyImage from "src/assets/img/MyNotifyImg.svg";
+// import MyNotifyImage from "src/assets/img/MyNotifyImg.svg";
 import * as S from "src/components/WriteRead/style/WriteRead.style";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const MyPostNotifyDummy = () => {
           <S.MyInfoWrap>
             <S.MyProfile src={MyProfile} alt="내 프로필" />
             <S.MyInfoText>
-              <S.MyName>이진주</S.MyName>
+              <S.MyName>이진주T</S.MyName>
               <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
             </S.MyInfoText>
           </S.MyInfoWrap>
@@ -33,10 +33,8 @@ const MyPostNotifyDummy = () => {
               <S.MyContent>{DUMMY_CONTENT.contents}</S.MyContent>
             </S.MyContentBox>
           </S.MyContentWrap>
+          <S.MyNotifyLine></S.MyNotifyLine>
         </S.MyNotifyTextWrap>
-        <S.MyNotifyImgWrap>
-          <S.MyNotifyImg src={MyNotifyImage} alt="공지 이미지" />
-        </S.MyNotifyImgWrap>
       </S.MyPostNotify>
     </S.MyPostNotifyWrap>
   );

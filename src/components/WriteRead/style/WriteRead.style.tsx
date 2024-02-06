@@ -27,59 +27,34 @@ export const WriteReadWrap = styled.div`
   margin-top: 10vh;
 `;
 
-export const WriteReadText = styled.div`
-  width: 90%;
-  height: auto;
-  font-family: Pretendard;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-
-export const WriteReadTitle = styled.span`
-  color: #000;
-  padding-right: 10px;
-  margin-bottom: 50px;
-`;
-
-export const WriteReadCount = styled.span`
-  color: var(--Main500, #fece23);
-`;
-
 export const MyPostNotifyWrap = styled.div`
-  width: 90%;
-  height: 30%;
+  width: 98%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const MyPostNotify = styled.div`
-  width: 100%;
-  height: 90%;
-  flex-shrink: 0;
+  width: 95%;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #d9d9d9;
   cursor: pointer;
 `;
 
 export const MyNotifyTextWrap = styled.div`
-  width: 70%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
 `;
 
 export const MyInfoWrap = styled.div`
   width: 95%;
-  height: 35%;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -94,20 +69,20 @@ export const MyProfile = styled.img`
 export const MyInfoText = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 5px 0px 0px 10px;
+  margin-left: 10px;
 `;
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotifyDate = styled.p`
-  color: var(--Gray500, #888);
+  color: #aaaaaa;
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
@@ -117,9 +92,10 @@ export const MyNotifyDate = styled.p`
 
 export const MyContentWrap = styled.div`
   width: 95%;
-  height: 65%;
+  height: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 export const MyContentTitleBox = styled.div`
@@ -130,36 +106,28 @@ export const MyContentTitleBox = styled.div`
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   line-height: normal;
 `;
 
 export const MyContentBox = styled.div`
   width: 100%;
-  height: 70%;
+  height: 30%;
 `;
 
 export const MyContent = styled.span`
-  color: var(--Main900, #020202);
+  color: var(--Main600, #787878);
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
-export const MyNotifyImgWrap = styled.div`
-  width: 30%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-export const MyNotifyImg = styled.img`
-  width: 80%;
-  height: 80%;
+export const MyNotifyLine = styled.div`
+  width: 93%;
+  height: 1px;
+  background-color: #f4f5f9;
 `;
