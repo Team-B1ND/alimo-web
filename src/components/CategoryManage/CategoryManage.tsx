@@ -11,6 +11,10 @@ const CategoryManage = () => {
           <S.SearchCateogy placeholder="카테고리 검색" />
           <S.CreateCategoryButton>새 카테고리 </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
+        <S.CategoryInfoWrap>
+          <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
+          <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
+        </S.CategoryInfoWrap>
       </S.CategoryManageView>
     </S.Main>
   );

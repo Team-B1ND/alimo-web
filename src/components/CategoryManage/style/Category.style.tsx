@@ -53,3 +53,27 @@ export const CreateCategoryButton = styled.button`
   margin-top: 3vh;
   margin-left: 2vw;
 `;
+
+export const CategoryInfoWrap = styled.div`
+  width: calc(100vw - 15vw);
+  height: calc(100vh - 95vh);
+  display: flex;
+  flex-direction: row;
+  margin-top: 2vh;
+`;
+
+export const CategoryNameInfo = styled.span`
+  color: #aaaaaa;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 10vw;
+`;
+
+export const CategoryMemberInfo = styled.span`
+  color: #aaaaaa;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 10vw;
+`;
