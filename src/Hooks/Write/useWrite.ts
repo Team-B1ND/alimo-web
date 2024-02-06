@@ -1,113 +1,77 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-import CONFIG from "src/config.json";
-import axios from "axios";
+interface Category {
+  name: string;
+}
+
 const useWrite = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const [image, setImage] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>("");
+  const [context, setContext] = useState<string>("");
   const [file, setFile] = useState<File>();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [contentAllow, setContentAllow] = useState<boolean>(false);
-  const [categoryAllow, setCategoryAllow] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const naviagate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
+  const [fileName, setFileName] = useState<string>("");
+  const [notAllow, setNotAllow] = useState<boolean>(true);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (title && context && selectedCategory.length !== 0) {
+      setNotAllow(false);
+    } else {
+      setNotAllow(true);
+    }
+  }, [title, context, selectedCategory]);
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-  }
-
-  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
   };
 
-  useEffect(() => {
-    if (content.length > 0) {
-      setContentAllow(true);
-    } else {
-      setContentAllow(false);
-    }
-  }, [content]);
-
-  const onChangeImageInput = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const selectedFile = e.target.files[0];
-      setImage(URL.createObjectURL(selectedFile));
-    }
+  const onChangeContext = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContext(e.target.value);
   };
 
-  const handleClickButton = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+  const handleImageClick = () => {
+    imageInputRef.current?.click();
   };
-
-  const handleCancelImage = () => {
-    setImage(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
-  const onClickCategory = (category: string) => {
-    setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
-  };
-
-  useEffect(() => {
-    if (selectedCategory === null) {
-      setCategoryAllow(false);
-    } else {
-      setCategoryAllow(true);
-    }
-  }, [selectedCategory]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
-
-    if (selectedFile) {
-      setFileName(selectedFile.name);
-    } else {
-      setFileName("");
-    }
-
     setFile(selectedFile);
   };
 
-  const onClickConfirmButton = () => {
-    if (contentAllow && categoryAllow) {
-      showToast("success", "게시되었습니다.");
-      naviagate("/main");
-      axios.post(`${CONFIG.serverUrl}/notification/generate`, {
-        data: {
-          content: `${content}`,
-          role: [`${selectedCategory}`],
-        },
-        image: `${image}`,
-      });
-    } else if (!contentAllow && categoryAllow) {
-      showToast("error", "내용을 입력해주세요.");
+  const onClickAddCategory = (CategoryName: string) => {
+    const isSelected = selectedCategory.some((category) => category.name === CategoryName);
+    if (isSelected) {
+      setSelectedCategory(selectedCategory.filter((category) => category.name !== CategoryName));
     } else {
-      showToast("error", "카테고리를 선택해주세요.");
+      const newCategory: Category = { name: CategoryName };
+      setSelectedCategory([...selectedCategory, newCategory]);
+    }
+  };
+
+  const allowWriteButton = () => {
+    if (!notAllow) {
+      showToast("success", "공지가 등록되었습니다!");
+      navigate("/main");
+    } else {
+      showToast("error", "정확히 작성하여주십시오.");
     }
   };
 
   return {
     title,
-    content,
-    image,
+    context,
+    notAllow,
+    onChangeTitle,
+    onChangeContext,
+    imageInputRef,
+    handleImageClick,
+    handleFileChange,
     fileName,
     selectedCategory,
-    fileInputRef,
-    onChangeTitle,
-    onChangeContent,
-    onChangeImageInput,
-    handleClickButton,
-    handleCancelImage,
-    onClickCategory,
-    handleFileChange,
-    onClickConfirmButton,
+    onClickAddCategory,
+    allowWriteButton,
   };
 };
 
