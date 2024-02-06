@@ -7,8 +7,21 @@ import ImageUploadImg from "src/img/ImageUpload.svg";
 import FileUplaod from "src/img/FileUpload.svg";
 
 const Write = () => {
-  const { title, onChangeTitle, imageInputRef, handleFileChange, fileName, selectedCategory, onClickAddCategory } =
-    useWrite();
+  const {
+    title,
+    context,
+    notAllow,
+    onChangeTitle,
+    onChangeContext,
+    imageInputRef,
+    FileInputRef,
+    handleImageClick,
+    handleFileChange,
+    fileName,
+    selectedCategory,
+    onClickAddCategory,
+    handleWriteAllow,
+  } = useWrite();
 
   return (
     <S.WriteMain>
@@ -17,9 +30,9 @@ const Write = () => {
       <S.WriteView>
         <S.InputWrap>
           <S.WriteTitleInput placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
-          <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" />
+          <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
           <S.FileWrap>
-            <S.ImageUploadImg src={ImageUploadImg} />
+            <S.ImageUploadImg src={ImageUploadImg} onClick={handleImageClick} />
             <S.ImageInputRef type="file" accept="image/*" ref={imageInputRef} />
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
@@ -68,7 +81,9 @@ const Write = () => {
             <S.SendShowMember>
               총 <span>120</span>명에게 전송돼요
             </S.SendShowMember>
-            <S.UploadButton>게시하기</S.UploadButton>
+            <S.UploadButton disabled={notAllow} onClick={handleWriteAllow}>
+              게시하기
+            </S.UploadButton>
           </S.UplaodButtonWrap>
         </S.SelectCategoryWrap>
       </S.WriteView>

@@ -204,4 +204,8 @@ export const UploadButton = styled.button`
   margin-left: 8vw;
 
   cursor: pointer;
+
+  &:disabled {
+    background: #e6e6e6;
+  }
 `;
