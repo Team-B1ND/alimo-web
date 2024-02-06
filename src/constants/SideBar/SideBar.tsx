@@ -16,7 +16,7 @@ const SideBar = () => {
   return (
     <S.SideBarWrap>
       <Header />
-      <S.SideBarLogoWrap>
+      <S.SideBarLogoWrap onClick={() => navigate("/main")}>
         <S.AlimoLogoTitle>
           ALIMO<span>.</span>
         </S.AlimoLogoTitle>

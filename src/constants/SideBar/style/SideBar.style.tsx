@@ -26,6 +26,8 @@ export const AlimoLogoTitle = styled.h1`
   font-weight: 700;
   color: #000;
 
+  cursor: pointer;
+
   & > span {
     color: var(--Main500, #fece23);
   }
@@ -36,6 +38,8 @@ export const AlimoLogoAdmin = styled.h1`
   font-size: 1rem;
   margin-top: 1.2vh;
   margin-left: 0.3vw;
+
+  cursor: pointer;
 `;
 
 export const SideBarMenuWrap = styled.div`
