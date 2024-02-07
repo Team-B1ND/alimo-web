@@ -77,3 +77,37 @@ export const CategoryMemberInfo = styled.span`
   font-size: 1rem;
   margin-left: 10vw;
 `;
+
+export const CategoryInfo = styled.div`
+  width: calc(100vw - 20vw);
+  height: calc(100vh - 90vh);
+
+  background: #f4f5f9;
+  border: none;
+  border-radius: 15px;
+
+  margin-top: -2vh;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+`;
+
+export const CategoryName = styled.span`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  margin-left: 8vw;
+`;
+
+export const CategoryInMember = styled.span`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  margin-left: 11vw;
+`;

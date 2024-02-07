@@ -1,26 +1,22 @@
 import { useState } from "react";
 
-interface Category {
-  id: number;
-  name: string;
-}
+const useCategory = () => {
+  const [categoryClicked, setCategoryClicked] = useState<boolean>(false);
+  const [categoryName, setCategoryName] = useState<string>("");
 
-const useCategoryManage = () => {
-  const [categories, setCategories] = useState<Category[]>([
-    { id: 1, name: "1학년" },
-    { id: 2, name: "교장선생님이 알립니다." },
-    { id: 3, name: "ALT" },
-  ]);
+  const handleCategoryName = (categoryName: string) => {
+    setCategoryName(categoryName);
+  };
 
-  const onDeleteCategory = (categoryId: number) => {
-    const newCategories = categories.filter((category) => category.id !== categoryId);
-    setCategories(newCategories);
+  const handleCategoryClick = () => {
+    setCategoryClicked(!categoryClicked);
   };
 
   return {
-    categories,
-    onDeleteCategory,
+    categoryClicked,
+    handleCategoryName,
+    handleCategoryClick,
   };
 };
 
-export default useCategoryManage;
+export default useCategory;
