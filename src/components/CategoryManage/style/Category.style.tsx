@@ -78,20 +78,22 @@ export const CategoryMemberInfo = styled.span`
   margin-left: 10vw;
 `;
 
-export const CategoryInfo = styled.div`
+export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   width: calc(100vw - 20vw);
   height: calc(100vh - 90vh);
 
-  background: #f4f5f9;
+  background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
   border: none;
   border-radius: 15px;
-
-  margin-top: -2vh;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   align-self: center;
+
+  &:first {
+    margin-top: -2vh;
+  }
 `;
 
 export const CategoryName = styled.span`

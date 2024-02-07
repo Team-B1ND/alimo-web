@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/constants/SideBar/SideBar";
-import useCategory from "src/Hooks/Category/useCateogyManage";
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
 const CategoryManage = () => {
-
+  const { isClickedCategory, handleCategoryClick } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
@@ -17,19 +17,19 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        <S.CategoryInfo>
+        <S.CategoryInfo onClick={() => handleCategoryClick("B1ND")} isClicked={isClickedCategory === "B1ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
         </S.CategoryInfo>
-        <S.CategoryInfo>
+        <S.CategoryInfo onClick={() => handleCategoryClick("B2ND")} isClicked={isClickedCategory === "B2ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
         </S.CategoryInfo>
-        <S.CategoryInfo>
+        <S.CategoryInfo onClick={() => handleCategoryClick("B3ND")} isClicked={isClickedCategory === "B3ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
         </S.CategoryInfo>
-        <S.CategoryInfo>
+        <S.CategoryInfo onClick={() => handleCategoryClick("B4ND")} isClicked={isClickedCategory === "B4ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
         </S.CategoryInfo>

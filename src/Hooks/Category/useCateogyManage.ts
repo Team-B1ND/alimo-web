@@ -1,22 +1,16 @@
 import { useState } from "react";
 
-const useCategory = () => {
-  const [categoryClicked, setCategoryClicked] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string>("");
+const useCategoryManage = () => {
+  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
 
-  const handleCategoryName = (categoryName: string) => {
-    setCategoryName(categoryName);
-  };
-
-  const handleCategoryClick = () => {
-    setCategoryClicked(!categoryClicked);
+  const handleCategoryClick = (categoryName: string) => {
+    setIsClickedCategory(categoryName);
   };
 
   return {
-    categoryClicked,
-    handleCategoryName,
+    isClickedCategory,
     handleCategoryClick,
   };
 };
 
-export default useCategory;
+export default useCategoryManage;
