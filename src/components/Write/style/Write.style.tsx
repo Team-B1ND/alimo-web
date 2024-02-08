@@ -160,10 +160,14 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   margin-left: 2vw;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${(props) => (props.isClicked ? "1px solid #FECE23" : "none")};
+  border: ${(props) => (props.isClicked ? "1px solid #FECE23" : "1px solid #fff")};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
 `;
 
 export const UplaodButtonWrap = styled.div`
