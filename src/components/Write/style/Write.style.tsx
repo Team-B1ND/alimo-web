@@ -114,17 +114,11 @@ export const FileChangeLabel = styled.label`
 `;
 export const ViewFileName = styled.input`
   width: calc(100vw - 90vw);
-  height: calc(100vh - 95vh);
+  height: calc(100vh - 90vh);
   border: none;
   font-family: Pretendard;
   font-size: 1rem;
-  font-weight: 600;
-
-  margin-top: 2vh;
-
-  &:focus {
-    outline: none;
-  }
+  font-weight: 400;
 `;
 
 export const FileChange = styled.input`

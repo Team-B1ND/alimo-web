@@ -15,7 +15,6 @@ const Write = () => {
     onChangeContext,
     imageInputRef,
     handleFileChange,
-    handleImageChange,
     handleImageClick,
     fileName,
     selectedCategory,
@@ -33,7 +32,7 @@ const Write = () => {
           <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
           <S.FileWrap>
             <S.ImageUploadImg src={ImageUploadImg} onClick={handleImageClick} />
-            <S.ImageInputRef type="file" accept="image/*" ref={imageInputRef} onChange={handleImageChange} />
+            <S.ImageInputRef type="file" accept="image/*" ref={imageInputRef} />
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
