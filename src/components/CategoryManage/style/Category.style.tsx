@@ -19,7 +19,7 @@ export const CateogyManageUtilityWrap = styled.div`
 `;
 
 export const SearchCateogy = styled.input`
-  width: calc(100vw - 60vw);
+  width: calc(100vw - 80vw);
   height: calc(100vh - 95vh);
 
   border: 1px solid #e6e6e6;
@@ -59,8 +59,6 @@ export const CreateCategoryButton = styled.button`
 `;
 
 export const CategoryInfoWrap = styled.div`
-  width: calc(100vw - 15vw);
-  height: calc(100vh - 95vh);
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
@@ -71,7 +69,7 @@ export const CategoryNameInfo = styled.span`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1rem;
-  margin-left: 10vw;
+  margin-left: 5vw;
 `;
 
 export const CategoryMemberInfo = styled.span`
@@ -82,8 +80,16 @@ export const CategoryMemberInfo = styled.span`
   margin-left: 10vw;
 `;
 
+export const CategoryWrap = styled.div`
+  width: calc(100vw - 65vw);
+  height: 100%;
+
+  border: none;
+  border-right: 1px solid #e6e6e6;
+`;
+
 export const CategoryInfo = styled.div<{ isClicked: boolean }>`
-  width: calc(100vw - 20vw);
+  width: calc(100vw - 69vw);
   height: calc(100vh - 90vh);
 
   background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
@@ -95,12 +101,11 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   align-items: center;
   align-self: center;
 
-  &:first {
-    margin-top: -2vh;
-  }
+  margin-left: 3vw;
+  margin-top: 1vh;
 
   & > img {
-    margin-left: 30vw;
+    margin-left: 10vw;
   }
 `;
 
@@ -110,7 +115,7 @@ export const CategoryName = styled.span`
   font-size: 1.2rem;
   font-weight: 400;
 
-  margin-left: 8vw;
+  margin-left: 2vw;
 `;
 
 export const CategoryInMember = styled.span`
