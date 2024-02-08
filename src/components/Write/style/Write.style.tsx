@@ -113,12 +113,18 @@ export const FileChangeLabel = styled.label`
   }
 `;
 export const ViewFileName = styled.input`
-  width: calc(100vw - 90vw);
-  height: calc(100vh - 90vh);
+  width: calc(100vw - 80vw);
+  height: calc(100vh - 95vh);
   border: none;
   font-family: Pretendard;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
+
+  margin-top: 1vh;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const FileChange = styled.input`
