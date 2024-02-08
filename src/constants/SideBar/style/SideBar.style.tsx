@@ -56,6 +56,11 @@ export const SideBarMenuFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  align-items: flex-start;
+  align-self: center;
+
+  margin-left: -2vw;
 `;
 
 export const SideBarCategory = styled.div`
@@ -64,7 +69,6 @@ export const SideBarCategory = styled.div`
   width: 100%;
   height: 50px;
   flex-direction: row;
-  margin-left: 10px;
   cursor: pointer;
   & > img {
     width: calc(100vw - 98vw);
