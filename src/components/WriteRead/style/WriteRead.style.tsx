@@ -14,7 +14,8 @@ export const WriteReadView = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const WriteReadWrap = styled.div`
@@ -28,7 +29,7 @@ export const WriteReadWrap = styled.div`
 `;
 
 export const MyPostNotifyWrap = styled.div`
-  width: 98%;
+  width: 95%;
   height: 20%;
   display: flex;
   flex-direction: column;
@@ -39,21 +40,28 @@ export const MyPostNotify = styled.div`
   width: 95%;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 `;
 
-export const MyNotifyTextWrap = styled.div`
+export const MyNotifyWrap = styled.div`
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
+  flex-direction: row;
+`;
+
+export const MyNotifyTextWrap = styled.div`
+  width: 80%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-`;
+`
 
 export const MyInfoWrap = styled.div`
-  width: 95%;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -126,8 +134,22 @@ export const MyContent = styled.span`
   line-height: normal;
 `;
 
+export const MyNotifyImgWrap = styled.div`
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
+export const MyNotifyImg = styled.img`
+  width: auto;
+  height: 90%;
+`
+
 export const MyNotifyLine = styled.div`
-  width: 93%;
+  width: 98%;
   height: 1px;
   background-color: #f4f5f9;
 `;

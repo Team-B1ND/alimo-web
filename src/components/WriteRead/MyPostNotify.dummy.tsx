@@ -1,5 +1,5 @@
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
-// import MyNotifyImage from "src/assets/img/MyNotifyImg.svg";
+import MyNotifyImg from "src/assets/img/MyNotifyImg.svg";
 import * as S from "src/components/WriteRead/style/WriteRead.style";
 import { useNavigate } from "react-router-dom";
 
@@ -16,25 +16,30 @@ const MyPostNotifyDummy = () => {
   return (
     <S.MyPostNotifyWrap>
       <S.MyPostNotify onClick={() => navigate("/read")}>
-        <S.MyNotifyTextWrap>
-          <S.MyInfoWrap>
-            <S.MyProfile src={MyProfile} alt="내 프로필" />
-            <S.MyInfoText>
-              <S.MyName>이진주T</S.MyName>
-              <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
-            </S.MyInfoText>
-          </S.MyInfoWrap>
-          <S.MyContentWrap>
-            <S.MyContentTitleBox>
-              <S.MyContentTitle>{DUMMY_CONTENT.title}</S.MyContentTitle>
-              <br />
-            </S.MyContentTitleBox>
-            <S.MyContentBox>
-              <S.MyContent>{DUMMY_CONTENT.contents}</S.MyContent>
-            </S.MyContentBox>
-          </S.MyContentWrap>
-          <S.MyNotifyLine></S.MyNotifyLine>
-        </S.MyNotifyTextWrap>
+        <S.MyNotifyWrap>
+          <S.MyNotifyTextWrap>
+            <S.MyInfoWrap>
+              <S.MyProfile src={MyProfile} alt="내 프로필" />
+              <S.MyInfoText>
+                <S.MyName>이진주T</S.MyName>
+                <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
+              </S.MyInfoText>
+            </S.MyInfoWrap>
+            <S.MyContentWrap>
+              <S.MyContentTitleBox>
+                <S.MyContentTitle>{DUMMY_CONTENT.title}</S.MyContentTitle>
+                <br />
+              </S.MyContentTitleBox>
+              <S.MyContentBox>
+                <S.MyContent>{DUMMY_CONTENT.contents}</S.MyContent>
+              </S.MyContentBox>
+            </S.MyContentWrap>
+          </S.MyNotifyTextWrap>
+          <S.MyNotifyImgWrap>
+            <S.MyNotifyImg src={MyNotifyImg} alt="공지 이미지" />
+          </S.MyNotifyImgWrap>
+        </S.MyNotifyWrap>
+        <S.MyNotifyLine></S.MyNotifyLine>
       </S.MyPostNotify>
     </S.MyPostNotifyWrap>
   );
