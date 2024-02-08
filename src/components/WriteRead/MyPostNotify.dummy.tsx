@@ -15,7 +15,7 @@ const MyPostNotifyDummy = () => {
   };
   return (
     <S.MyPostNotifyWrap>
-      <S.MyPostNotify onClick={() => navigate("/write-read/detail")}>
+      <S.MyPostNotify onClick={() => navigate("/read")}>
         <S.MyNotifyTextWrap>
           <S.MyInfoWrap>
             <S.MyProfile src={MyProfile} alt="내 프로필" />
