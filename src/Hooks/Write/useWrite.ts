@@ -81,7 +81,7 @@ const useWrite = () => {
       showToast("error", "빈곳이 없게 작성하여주세요");
     } else {
       try {
-        const response = await axios.post(`${CONFIG.serverUrl}notification/generate`, {
+        const response = await axios.post(`#`, {
           data: {
             title: `${title}`,
             content: `${context}`,
