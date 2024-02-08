@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
+import MoreImg from "src/assets/img/MoreImg.svg";
 import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
@@ -20,18 +21,22 @@ const CategoryManage = () => {
         <S.CategoryInfo onClick={() => handleCategoryClick("B1ND")} isClicked={isClickedCategory === "B1ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
+          <img src={MoreImg} />
         </S.CategoryInfo>
         <S.CategoryInfo onClick={() => handleCategoryClick("B2ND")} isClicked={isClickedCategory === "B2ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
+          <img src={MoreImg} />
         </S.CategoryInfo>
         <S.CategoryInfo onClick={() => handleCategoryClick("B3ND")} isClicked={isClickedCategory === "B3ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
+          <img src={MoreImg} />
         </S.CategoryInfo>
         <S.CategoryInfo onClick={() => handleCategoryClick("B4ND")} isClicked={isClickedCategory === "B4ND"}>
           <S.CategoryName>B1ND</S.CategoryName>
           <S.CategoryInMember>42</S.CategoryInMember>
+          <img src={MoreImg} />
         </S.CategoryInfo>
       </S.CategoryManageView>
     </S.Main>

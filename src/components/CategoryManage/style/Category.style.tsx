@@ -34,6 +34,10 @@ export const SearchCateogy = styled.input`
   font-family: Pretendard;
   font-size: 1rem;
   font-weight: 400;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const CreateCategoryButton = styled.button`
@@ -93,6 +97,10 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
   &:first {
     margin-top: -2vh;
+  }
+
+  & > img {
+    margin-left: 30vw;
   }
 `;
 

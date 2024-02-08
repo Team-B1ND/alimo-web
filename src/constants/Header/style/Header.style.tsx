@@ -28,4 +28,8 @@ export const UploadNewNotifyButton = styled.button`
   font-size: 1rem;
 
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
