@@ -5,14 +5,14 @@ import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
 const CategoryManage = () => {
-  const { isClickedCategory, handleCategoryClick } = useCategoryManage();
+  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
       <S.CategoryManageView>
         <S.CateogyManageUtilityWrap>
           <S.SearchCateogy placeholder="카테고리 검색" />
-          <S.CreateCategoryButton>새 카테고리 </S.CreateCategoryButton>
+          <S.CreateCategoryButton onClick={onClickNewCategoryButton}>새 카테고리 </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>

@@ -56,6 +56,12 @@ export const CreateCategoryButton = styled.button`
 
   margin-top: 3vh;
   margin-left: 2vw;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const CategoryInfoWrap = styled.div`
@@ -106,6 +112,7 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
   & > img {
     margin-left: 10vw;
+    cursor: pointer;
   }
 `;
 
