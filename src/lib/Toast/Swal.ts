@@ -12,9 +12,10 @@ const Toast = Swal.mixin({
   },
 });
 
-export const showToast = (icon:any, title:string) => {
+export const showToast = (icon: any, title: string) => {
   Toast.fire({
     icon,
     title,
   });
 };
+

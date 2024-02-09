@@ -126,3 +126,10 @@ export const CategoryInMember = styled.span`
 
   margin-left: 11vw;
 `;
+
+export const CategoryMemberWrap = styled.div`
+  width: calc(100vw - 46vw);
+  height: calc(100vh - 10vh);
+
+  margin-top: 10vh;
+`;

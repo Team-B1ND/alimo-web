@@ -41,6 +41,7 @@ const CategoryManage = () => {
           </S.CategoryInfo>
         </S.CategoryWrap>
       </S.CategoryManageView>
+      {isClickedCategory === "B1ND" && <S.CategoryMemberWrap></S.CategoryMemberWrap>}
     </S.Main>
   );
 };

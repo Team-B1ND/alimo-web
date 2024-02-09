@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import CONFIG from "src/config.json";
-
+import Swal from "sweetalert2";
 interface Category {
   name: string;
 }
@@ -92,8 +92,25 @@ const useWrite = () => {
           file: `${file}`,
         });
         if (response.status === 200) {
-          showToast("success", "공지가 성공적으로 등록되었습니다.");
-          navigate("/main");
+          Swal.fire({
+            title: "확성기 기능을 사용하시겠습니까?",
+            text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
+            showCancelButton: true,
+            confirmButtonColor: "#FECE23",
+            focusConfirm: true,
+            cancelButtonColor: "#AAAAAA",
+            focusCancel: false,
+            confirmButtonText: "사용하기",
+            cancelButtonText: "사용안함",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              showToast("success", "확성기가 사용되었습니다!");
+              navigate("/main");
+            } else {
+              showToast("success", "공지가 등록되었습니다!");
+              navigate("/main");
+            }
+          });
         } else {
           showToast("error", "공지 등록 실패");
         }
