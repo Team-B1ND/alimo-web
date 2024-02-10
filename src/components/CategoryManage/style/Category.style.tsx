@@ -135,8 +135,43 @@ export const CategoryInMember = styled.span`
 `;
 
 export const CategoryMemberWrap = styled.div`
-  width: calc(100vw - 46vw);
+  width: calc(100vw - 50vw);
   height: calc(100vh - 10vh);
 
   margin-top: 10vh;
+`;
+
+export const MemberManageWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  margin-top: 3vh;
+`;
+
+export const MemberSearch = styled.input`
+  width: calc(100vw - 90vw);
+  height: calc(100vh - 95vh);
+
+  border: 1px solid #e6e6e6;
+  border-radius: 15px;
+
+  padding-left: 2vw;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #aaaaaa;
+  }
+`;
+
+export const AddMemberButton = styled.button`
+  width: calc(100vw - 90vw);
+  height: calc(100vh);
 `;

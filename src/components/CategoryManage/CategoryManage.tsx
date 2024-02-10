@@ -41,7 +41,11 @@ const CategoryManage = () => {
           </S.CategoryInfo>
         </S.CategoryWrap>
       </S.CategoryManageView>
-      {isClickedCategory === "B1ND" && <S.CategoryMemberWrap></S.CategoryMemberWrap>}
+      <S.CategoryMemberWrap>
+        <S.MemberManageWrap>
+          <S.MemberSearch placeholder="멤버 검색" />
+        </S.MemberManageWrap>
+      </S.CategoryMemberWrap>
     </S.Main>
   );
 };
