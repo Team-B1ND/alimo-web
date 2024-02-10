@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as s from "src/components/Profile/style/Profile.style";
+import * as S from "src/components/Profile/style/Profile.style";
 import SideBar from "src/constants/SideBar/SideBar";
 import ProfileImg from "src/assets/img/profileimg.png";
-import ChangeImg from "src/assets/img/Group 266.png";
+import ChangeImg from "src/assets/img/Group 263.png";
+import CloseImg from "src/assets/img/Closeimg.png"
 
-export default function Profile() {
-  const navigate = useNavigate();
+const Profile = ({ onClose }: { onClose: () => void }) =>{
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
-
+  
   const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
@@ -22,23 +21,35 @@ export default function Profile() {
   };
 
   return (
-    <s.Profile>
+    <S.Profile>
       <SideBar />
-      <s.Main>
-        <s.UserProfile>
-          <s.User>
-            <s.SetImg src={selectedImg || ProfileImg}></s.SetImg>
-            <s.ChangeFile>
+      <S.Main>
+        <S.UserProfile>
+          <S.ProfilePageNanme>프로필</S.ProfilePageNanme>
+          <S.User>
+            <S.profileImg>
+          <S.SetImg src={selectedImg || ProfileImg}></S.SetImg>
+            <S.ChangeFile>
               <label htmlFor="change-img">
                 <img src={ChangeImg} alt="Change Image" />
               </label>
-              <s.Changbutton name="file" type="file" id="change-img" onChange={handleChangeImg} />
-            </s.ChangeFile>
+              <S.Changbutton name="file" type="file" id="change-img" onChange={handleChangeImg} />
+            </S.ChangeFile>
             <span>이진주</span>
-          </s.User>
-          <s.ChangSucces onClick={() => navigate("/main")}>수정완료</s.ChangSucces>
-        </s.UserProfile>
-      </s.Main>
-    </s.Profile>
+            </S.profileImg>
+          </S.User>
+          <S.Category>
+            <S.IndividualCategories>1학년</S.IndividualCategories>
+            <S.IndividualCategories>2학년</S.IndividualCategories>
+            <S.IndividualCategories>2학년</S.IndividualCategories>
+            <S.IndividualCategories>2학년</S.IndividualCategories>
+            <S.IndividualCategories>2학년 dsdsdsd</S.IndividualCategories>
+          </S.Category>
+          <S.ChangSucces src={CloseImg}  onClick={onClose}></S.ChangSucces>
+        </S.UserProfile>
+      </S.Main>
+    </S.Profile>
   );
 }
+
+export default Profile

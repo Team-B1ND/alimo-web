@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import * as S from "src/constants/SideBar/style/SideBar.style";
 import ClickSideBarCategoryManageImg from "src/assets/img/ClickSideBarCateogryManage.svg";
 import SideBarCategoryManageImg from "src/assets/img/SideBarCategoryManage.png";
@@ -8,10 +8,15 @@ import TeacherProfileDummy from "src/assets/img/Profile-Dummy.jpg";
 import SideBarProfileSetting from "src/assets/img/SideBarSetting.svg";
 import useSideBarNavigation from "src/util/useSideBarNavigation";
 import Header from "../Header/Header";
+import Profile from "src/components/Profile/profile"
 import { useLocation, useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isProfile, setProfile] = useState<boolean>(false);
+  const OpenProfile =()=>{
+    setProfile((prev) => !prev);
+  }
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({ location, navigate });
   return (
     <S.SideBarWrap>
@@ -43,12 +48,13 @@ const SideBar = () => {
             </S.SideBarMenu>
           </S.SideBarCategory>
         </S.SideBarMenuFlex>
-        <S.SideBarProfileWrap>
+        <S.SideBarProfileWrap onClick={OpenProfile}>
           <S.SideBarTeacherProfileImg src={TeacherProfileDummy} />
           <S.SideBarTeacherName>이진주</S.SideBarTeacherName>
           <S.SideBarSetting src={SideBarProfileSetting} />
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
+      {isProfile && <Profile onClose={OpenProfile} />}
     </S.SideBarWrap>
   );
 };
