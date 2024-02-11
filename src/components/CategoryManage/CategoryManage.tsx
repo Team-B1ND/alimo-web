@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import MoreImg from "src/assets/img/MoreImg.svg";
+import MemberProfileImg from "src/assets/img/53.jpeg";
 import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
@@ -44,7 +45,30 @@ const CategoryManage = () => {
       <S.CategoryMemberWrap>
         <S.MemberManageWrap>
           <S.MemberSearch placeholder="멤버 검색" />
+          <S.AddMemberButton>새 멤버</S.AddMemberButton>
         </S.MemberManageWrap>
+        <S.MemberUtilityWrap>
+          <S.MemberNameInfo>이름</S.MemberNameInfo>
+          <S.MemberClassNumberInfo>학번</S.MemberClassNumberInfo>
+        </S.MemberUtilityWrap>
+        <S.MemberWrap>
+          {isClickedCategory === "B1ND" && (
+            <>
+              <S.Member>
+                <S.MemeberProfileImg src={MemberProfileImg} />
+                <S.MemeberName>김가영</S.MemeberName>
+                <S.MemberClassNumber>1103</S.MemberClassNumber>
+                <S.MoreImg src={MoreImg} />
+              </S.Member>
+              <S.Member>
+                <S.MemeberProfileImg src={MemberProfileImg} />
+                <S.MemeberName>김가영</S.MemeberName>
+                <S.MemberClassNumber>1103</S.MemberClassNumber>
+                <S.MoreImg src={MoreImg} />
+              </S.Member>
+            </>
+          )}
+        </S.MemberWrap>
       </S.CategoryMemberWrap>
     </S.Main>
   );

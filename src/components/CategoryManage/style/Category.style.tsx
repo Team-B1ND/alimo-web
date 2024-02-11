@@ -139,6 +139,7 @@ export const CategoryMemberWrap = styled.div`
   height: calc(100vh - 10vh);
 
   margin-top: 10vh;
+  background-color: #f4f5f9;
 `;
 
 export const MemberManageWrap = styled.div`
@@ -172,6 +173,99 @@ export const MemberSearch = styled.input`
 `;
 
 export const AddMemberButton = styled.button`
-  width: calc(100vw - 90vw);
-  height: calc(100vh);
+  width: calc(100vw - 95vw);
+  height: calc(100vh - 95vh);
+
+  border: none;
+  border-radius: 15px;
+
+  background-color: #000;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+
+  margin-left: 2vw;
+  margin-right: 3vw;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const MemberUtilityWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 2vh;
+  margin-left: 8vw;
+`;
+
+export const MemberNameInfo = styled.span`
+  color: #aaaaaa;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+`;
+
+export const MemberClassNumberInfo = styled.span`
+  color: #aaaaaa;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+
+  margin-left: 15vw;
+`;
+
+export const MemberWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 1vh;
+
+  margin-left: 1vw;
+`;
+
+export const MemeberProfileImg = styled.img`
+  width: calc(100vw - 97vw);
+  height: calc(100vw - 97vw);
+
+  border-radius: 50%;
+
+  margin-left: 1vw;
+`;
+
+export const Member = styled.div`
+  width: calc(100vw - 52vw);
+  height: calc(100vh - 90vh);
+
+  border: none;
+  border-top: 1px solid #e6e6e6;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  align-self: center;
+`;
+
+export const MemeberName = styled.span`
+  font-family: Prentendard;
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  margin-left: 2vw;
+`;
+
+export const MemberClassNumber = styled.span`
+  font-family: Prentendard;
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  margin-left: 13.5vw;
+`;
+
+export const MoreImg = styled.img`
+  margin-left: 15vw;
 `;
