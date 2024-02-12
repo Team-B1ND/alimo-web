@@ -4,9 +4,10 @@ import MoreImg from "src/assets/img/MoreImg.svg";
 import MemberProfileImg from "src/assets/img/53.jpeg";
 import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import AddStudent from "./AddStudent";
 
 const CategoryManage = () => {
-  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton } = useCategoryManage();
+  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
@@ -57,7 +58,7 @@ const CategoryManage = () => {
               <S.Member>
                 <S.MemeberProfileImg src={MemberProfileImg} />
                 <S.MemeberName>김가영</S.MemeberName>
-                <S.MemberClassNumber>1103</S.MemberClassNumber>
+                <S.MemberClassNumber>1102</S.MemberClassNumber>
                 <S.MoreImg src={MoreImg} />
               </S.Member>
               <S.Member>
@@ -70,6 +71,7 @@ const CategoryManage = () => {
           )}
         </S.MemberWrap>
       </S.CategoryMemberWrap>
+      {showStudentList && <AddStudent />}
     </S.Main>
   );
 };

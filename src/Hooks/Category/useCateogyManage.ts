@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
+  const [showStudentList, setShowStudentList] = useState<boolean>(false);
 
   const handleCategoryClick = (categoryName: string) => {
     setIsClickedCategory(categoryName);
@@ -14,12 +15,15 @@ const useCategoryManage = () => {
       title: "카테고리명을 입력해주세요.",
       input: "text",
       inputPlaceholder: "카테고리명",
+      showCancelButton: true,
+      cancelButtonColor: "#787878",
+      cancelButtonText: "취소",
       confirmButtonText: "다음",
-      cancelButtonColor: "#000",
+      confirmButtonColor: "#FECE23",
     });
 
     if (getName) {
-      showToast("success", "카테고리가 성공적으로 생성되었습니다!");
+      setShowStudentList(true);
     }
   };
 
@@ -27,6 +31,7 @@ const useCategoryManage = () => {
     isClickedCategory,
     handleCategoryClick,
     onClickNewCategoryButton,
+    showStudentList,
   };
 };
 
