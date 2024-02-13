@@ -3,6 +3,8 @@ import "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style.css
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
 import ExampleProfile from "src/assets/img/ExampleProfile.png";
+import axios from "axios";
+import { useEffect } from "react";
 
 const WriteReadDetail = () => {
   interface Dummy {
@@ -65,39 +67,57 @@ const WriteReadDetail = () => {
           <div className="MyPostCommentWrap">
             <div className="MyPostComment">
               <div className="CommentInfoWrap">
-                <img className="CommentProfile" src={ExampleProfile} alt="예시 프로필" />
+                <img
+                  className="CommentProfile"
+                  src={ExampleProfile}
+                  alt="예시 프로필"
+                />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">2예진</p>
                 <p className="CommentContent">팀인가여?</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
+                  <span className="CommentDate">
+                    2023년 (-1)월 33일 오후 25:sqrt(3)
+                  </span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>
             </div>
             <div className="MyPostReplyComment">
               <div className="CommentInfoWrap">
-                <img className="CommentProfile" src={MyProfile} alt="내 프로필" />
+                <img
+                  className="CommentProfile"
+                  src={MyProfile}
+                  alt="내 프로필"
+                />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">이진주</p>
                 <p className="CommentContent">얍</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
+                  <span className="CommentDate">
+                    2023년 (-1)월 33일 오후 25:sqrt(3)
+                  </span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>
             </div>
             <div className="MyPostReplyComment">
               <div className="CommentInfoWrap">
-                <img className="CommentProfile" src={ExampleProfile} alt="예시 프로필" />
+                <img
+                  className="CommentProfile"
+                  src={ExampleProfile}
+                  alt="예시 프로필"
+                />
               </div>
               <div className="CommentContentWrap">
                 <p className="CommentName">이예진</p>
                 <p className="CommentContent">|</p>
                 <div className="CommentWrap">
-                  <span className="CommentDate">2023년 (-1)월 33일 오후 25:sqrt(3)</span>
+                  <span className="CommentDate">
+                    2023년 (-1)월 33일 오후 25:sqrt(3)
+                  </span>
                   <button className="ReplyCommentWrite">답글달기</button>
                 </div>
               </div>
