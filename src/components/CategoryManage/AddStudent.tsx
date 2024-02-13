@@ -4,7 +4,12 @@ import CheckStudent from "src/assets/img/CheckStudent.png";
 import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
 import CloseImg from "src/assets/img/CloseImg.png";
+import DenyStudent from "src/assets/img/DenyStudent.svg";
+import useAddStudent from "src/Hooks/Category/useAddStudent";
+
 const AddStudent = () => {
+  const { isClicked, onClickClickedStudent } = useAddStudent();
+
   return (
     <S.AddStudentWrap>
       <S.Main>
@@ -41,27 +46,48 @@ const AddStudent = () => {
                 <S.AllSelect>전체선택</S.AllSelect>
               </S.UtilityWrap>
               <S.StudentList>
-                <img src={CheckStudent} />
+                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={CheckStudent} />
+                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={CheckStudent} />
+                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={CheckStudent} />
+                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
             </S.StudentSelectionWrap>
+            <S.ViewSelectedStudentWrap>
+              <S.ViewSelectedStudent>
+                <img src={ProfileImg} />
+                <S.ViewStudentName>김가영</S.ViewStudentName>
+                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
+              </S.ViewSelectedStudent>
+              <S.ViewSelectedStudent>
+                <img src={ProfileImg} />
+                <S.ViewStudentName>김가영</S.ViewStudentName>
+                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
+              </S.ViewSelectedStudent>
+              <S.ViewSelectedStudent>
+                <img src={ProfileImg} />
+                <S.ViewStudentName>김가영</S.ViewStudentName>
+                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
+              </S.ViewSelectedStudent>
+            </S.ViewSelectedStudentWrap>
           </S.SelectionWrap>
+          <S.ButtonWrap>
+            <S.CancleButton>취소</S.CancleButton>
+            <S.ConfirmButton>선택</S.ConfirmButton>
+          </S.ButtonWrap>
         </S.SelectStudentDialog>
       </S.Main>
     </S.AddStudentWrap>

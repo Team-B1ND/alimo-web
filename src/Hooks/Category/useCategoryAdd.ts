@@ -2,7 +2,7 @@ import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import CONFIG from "src/config.json";
+import CONFIG from "src/config/config.json";
 
 interface Student {
   name: string;

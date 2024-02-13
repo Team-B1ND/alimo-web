@@ -248,3 +248,89 @@ export const StudentName = styled.span`
 
   margin-left: 1vw;
 `;
+
+export const ViewSelectedStudentWrap = styled.div`
+  width: 25%;
+  height: 100%;
+
+  border-bottom: 1px solid #e6e6e6;
+  background: var(--Gray100, #f4f5f9);
+`;
+
+export const ViewSelectedStudent = styled.div`
+  background: transparent;
+
+  width: 100%;
+  height: 13%;
+
+  display: flex;
+
+  align-items: center;
+
+  img {
+    width: calc(100vw - 98vw);
+    height: calc(100vw - 98vw);
+
+    margin-left: 1vw;
+  }
+`;
+
+export const ViewStudentName = styled.span`
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  margin-left: 1vw;
+`;
+
+export const DenyStudent = styled.img`
+  width: calc(100vw - 99vw);
+  height: calc(100vw - 99vw);
+
+  position: relative;
+`;
+
+export const ButtonWrap = styled.div`
+  width: 100%;
+  height: 14%;
+
+  border: none;
+  border-radius: 0px 0px 8px 8px;
+
+  background-color: white;
+
+  display: flex;
+
+  align-items: center;
+  align-self: center;
+  justify-content: flex-end;
+`;
+
+export const CancleButton = styled.button`
+  width: calc(100vw - 93vw);
+  height: calc(100vh - 95vh);
+
+  border: none;
+  background: #fff;
+  color: #787878;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+`;
+
+export const ConfirmButton = styled.button`
+  width: calc(100vw - 93vw);
+  height: calc(100vh - 95vh);
+
+  border: none;
+  border-radius: 8px;
+  background: #fece23;
+
+  margin-right: 2vw;
+  margin-left: 1vw;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+`;
