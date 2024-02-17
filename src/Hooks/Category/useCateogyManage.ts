@@ -1,10 +1,10 @@
-import { showToast } from "src/lib/Toast/Swal";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
+  const [isAddStudent, setIsAddStudent] = useState<boolean>(false);
 
   const handleCategoryClick = (categoryName: string) => {
     setIsClickedCategory(categoryName);
@@ -24,7 +24,12 @@ const useCategoryManage = () => {
 
     if (getName) {
       setShowStudentList(true);
+      setIsAddStudent(!isAddStudent);
     }
+  };
+
+  const onClose = () => {
+    setShowStudentList(false);
   };
 
   return {
@@ -32,6 +37,8 @@ const useCategoryManage = () => {
     handleCategoryClick,
     onClickNewCategoryButton,
     showStudentList,
+    setShowStudentList,
+    onClose,
   };
 };
 

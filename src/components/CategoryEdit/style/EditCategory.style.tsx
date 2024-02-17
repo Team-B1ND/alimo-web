@@ -151,21 +151,6 @@ export const CategoryMemberManage = styled.div`
   margin-left: 55vw;
 `;
 
-export const Authorization = styled.span`
-  color: #000;
-
-  /* Subtitle */
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-
-  margin-right: 2vw;
-
-  cursor: pointer;
-`;
-
 export const GetExitedMember = styled.span`
   color: var(--Red500, #f90707);
 

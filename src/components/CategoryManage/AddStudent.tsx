@@ -7,8 +7,8 @@ import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
 import useAddStudent from "src/Hooks/Category/useAddStudent";
 
-const AddStudent = () => {
-  const { isClicked, onClickClickedStudent } = useAddStudent();
+const AddStudent = ({ onClose }: { onClose: () => void }) => {
+  const { isClicked, onClickClickedStudent, onClickConfirmButton } = useAddStudent();
 
   return (
     <S.AddStudentWrap>
@@ -16,7 +16,6 @@ const AddStudent = () => {
         <S.SelectStudentDialog>
           <S.TopNav>
             <S.SelectedStudnetTitle>학생을 선택해주세요</S.SelectedStudnetTitle>
-            <img src={CloseImg} />
           </S.TopNav>
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
@@ -46,24 +45,36 @@ const AddStudent = () => {
                 <S.AllSelect>전체선택</S.AllSelect>
               </S.UtilityWrap>
               <S.StudentList>
-                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
+                <img
+                  src={isClicked.some((student) => student.name === "김가영") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickClickedStudent("김가영")}
+                />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
+                <img
+                  src={isClicked.some((student) => student.name === "이해준") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickClickedStudent("이해준")}
+                />
                 <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>김가영</S.StudentName>
+                <S.StudentName>이해준</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
+                <img
+                  src={isClicked.some((student) => student.name === "이강현") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickClickedStudent("이강현")}
+                />
                 <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>김가영</S.StudentName>
+                <S.StudentName>이강현</S.StudentName>
               </S.StudentList>
               <S.StudentList>
-                <img src={isClicked ? CheckStudent : NoneCheckStudent} onClick={onClickClickedStudent} />
+                <img
+                  src={isClicked.some((student) => student.name === "전민찬") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickClickedStudent("전민찬")}
+                />
                 <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>김가영</S.StudentName>
+                <S.StudentName>전민찬</S.StudentName>
               </S.StudentList>
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
@@ -85,9 +96,10 @@ const AddStudent = () => {
             </S.ViewSelectedStudentWrap>
           </S.SelectionWrap>
           <S.ButtonWrap>
-            <S.CancleButton>취소</S.CancleButton>
-            <S.ConfirmButton>선택</S.ConfirmButton>
+            <S.CancleButton onClick={onClose}>취소</S.CancleButton>
+            <S.ConfirmButton onClick={onClose}>선택</S.ConfirmButton>
           </S.ButtonWrap>
+          <S.CloseButton src={CloseImg} onClick={onClose}></S.CloseButton>
         </S.SelectStudentDialog>
       </S.Main>
     </S.AddStudentWrap>

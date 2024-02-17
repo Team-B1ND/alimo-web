@@ -110,6 +110,8 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   margin-left: 3vw;
   margin-top: 1vh;
 
+  cursor: pointer;
+
   & > img {
     margin-left: 10vw;
     cursor: pointer;

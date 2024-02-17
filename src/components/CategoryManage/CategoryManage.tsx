@@ -7,7 +7,7 @@ import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import AddStudent from "./AddStudent";
 
 const CategoryManage = () => {
-  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList } = useCategoryManage();
+  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList, onClose } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
@@ -71,7 +71,7 @@ const CategoryManage = () => {
           )}
         </S.MemberWrap>
       </S.CategoryMemberWrap>
-      {showStudentList && <AddStudent />}
+      {showStudentList && <AddStudent onClose={onClose} />}
     </S.Main>
   );
 };

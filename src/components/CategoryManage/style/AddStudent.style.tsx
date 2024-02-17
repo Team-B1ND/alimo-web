@@ -334,3 +334,10 @@ export const ConfirmButton = styled.button`
   font-size: 1rem;
   font-weight: 400;
 `;
+
+export const CloseButton = styled.img`
+  position: absolute;
+  left: 52vw;
+  top: 2vh;
+  cursor: pointer;
+`;
