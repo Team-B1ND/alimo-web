@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
+import token from "src/lib/token/token";
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+} from "src/constants/token/token.constants";
 
 const Uselogin = () => {
   const navigate = useNavigate();
@@ -48,13 +53,15 @@ const Uselogin = () => {
         const url = DAuth.data.data.location;
         const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
-        console.log(lastElement);
         const response = await axios.post(`${CONFIG.serverUrl}sign-in/dodam`, {
           code: lastElement,
           fcmToken: "",
         });
-        localStorage.setItem("accestoken",response.data.accessToken)
-        
+        console.log(response);
+        const refreshToken =response.data.data.refreshToken; 
+        const accessToken = response.data.data.accessToken;
+        token.setToken(ACCESS_TOKEN_KEY, accessToken);
+        token.setToken(REFRESH_TOKEN_KEY, refreshToken);
         showToast("success", "로그인 성공");
         navigate("/main");
       } catch (error) {

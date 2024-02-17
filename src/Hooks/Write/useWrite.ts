@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-import CONFIG from "src/config.json";
+import CONFIG from "src/config/config.json";
 import axios from "axios";
 const useWrite = () => {
   const [title, setTitle] = useState<string>("");
