@@ -4,20 +4,13 @@ import SideBar from "src/constants/SideBar/SideBar";
 import ProfileImg from "src/assets/img/profileimg.png";
 import ChangeImg from "src/assets/img/Group 263.png";
 import CloseImg from "src/assets/img/Closeimg.png"
+import UseProfile from "src/Hooks/Profile/useProfile";
 
 const Profile = ({ onClose }: { onClose: () => void }) =>{
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
-  
-  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSelectedImg(reader.result as string);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+  const {
+    selectedImg,
+    handleChangeImg,
+  } = UseProfile();
 
   return (
     <S.Profile>

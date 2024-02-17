@@ -110,7 +110,7 @@ export const IndividualCategories = styled.div`
   width: auto;
   min-width: 50px; 
   height: 20px;
-  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+  white-space: nowrap;
   overflow: hidden;
   padding: 6px var(--ExtraLarge, 16px);
   justify-content: center;
@@ -126,5 +126,5 @@ export const ChangSucces = styled.img`
   width: 24px;
   height: 24px;
   right: 15px;
-  top: 10px;
+  top: 20px;
 `;
