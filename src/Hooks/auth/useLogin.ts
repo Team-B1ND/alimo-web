@@ -34,28 +34,31 @@ const Uselogin = () => {
     if (idValue === "" || passwordValue === "") {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
+      const DAuthPromise = axios.post(`${CONFIG.DAuth}`, {
+        id: idValue,
+        pw: hash,
+        clientId: `${CONFIG.clientId}`,
+        redirectUrl: redirectUrlvalue,
+      });
+      
       try {
-        const DAuth = await axios.post(`${CONFIG.DAuth}`, {
-          id: idValue,
-          pw: hash,
-          clientId: `${CONFIG.clientId}`,
-          redirectUrl: redirectUrlvalue,
-        });
+        const [DAuth] = await Promise.all([DAuthPromise]);
         const url = DAuth.data.data.location;
-        const location = url.split("=")[1]; 
+        const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
         console.log(lastElement);
         const response = await axios.post(`${CONFIG.serverUrl}sign-in/dodam`, {
           code: lastElement,
-          fcmToken : "",
+          fcmToken: "",
         });
-        console.log(response);
+        localStorage.setItem("accestoken",response.data.accessToken)
+        
         showToast("success", "로그인 성공");
         navigate("/main");
       } catch (error) {
         showToast("error", "통신 오류가 발생했습니다.");
       }
-    }
+    }      
   };
 
   return {
