@@ -8,7 +8,6 @@ export const LogoPageWrap = styled.div`
 export const LoginPage = styled.div`
   width: 100%;
   height: 85vh;
-
   display: flex;
   flex-direction: row;
   justify-content: center;

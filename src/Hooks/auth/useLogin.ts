@@ -7,6 +7,7 @@ import { SHA512 } from "crypto-js";
 
 const Uselogin = () => {
   const navigate = useNavigate();
+  const [Loginloading, SetLoginloading] = useState(false);
   const [clickName, setClickName] = useState("");
   const [idValue, setIdValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -31,6 +32,7 @@ const Uselogin = () => {
 
   const redirectUrlvalue = `${CONFIG.serverUrl}redirect`;
   const LoginButton = async () => {
+    SetLoginloading(true);
     if (idValue === "" || passwordValue === "") {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
@@ -62,6 +64,7 @@ const Uselogin = () => {
   };
 
   return {
+    Loginloading,
     idValue,
     setIdValue,
     passwordValue,
