@@ -71,7 +71,6 @@ export const SideBarCategory = styled.div`
 export const SideBarMenu = styled.span<{ isClicked: boolean }>`
   color: ${(props) => (props.isClicked ? "#000" : "#aaa")};
   margin-left: 10px;
-  /* Label */
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
@@ -82,39 +81,35 @@ export const SideBarMenu = styled.span<{ isClicked: boolean }>`
 
 export const SideBarProfileWrap = styled.div`
   width: 100%;
-  height: calc(100vh - 90vh);
+  height: 80px;
   border: none;
   border-top: 1px solid #e6e6e6;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 `;
 
-export const SideBarTeacherProfileImg = styled.img`
+export const SideBarTeacherProfileImg = styled.div`
+  display: flex;
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);
-
   border: none;
-  border-radius: 50%;
-
-  margin-top: 2vh;
-  margin-left: 1vw;
+  img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const SideBarTeacherName = styled.span`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1.2rem;
-
-  margin-top: 3.3vh;
-  margin-left: 1vw;
 `;
 
 export const SideBarSetting = styled.img`
   width: calc(100vw - 98vw);
   height: calc(100vw - 98vw);
-
-  margin-top: 2.5vh;
-  margin-left: 3vw;
-
   cursor: pointer;
 `;

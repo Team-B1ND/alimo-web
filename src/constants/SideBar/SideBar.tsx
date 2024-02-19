@@ -1,32 +1,27 @@
-import React, { useState } from "react";
 import * as S from "src/constants/SideBar/style/SideBar.style";
 import ClickSideBarCategoryManageImg from "src/assets/img/ClickSideBarCateogryManage.svg";
 import SideBarCategoryManageImg from "src/assets/img/SideBarCategoryManage.png";
 import ClickSideBarWriteReadImg from "src/assets/img/ClickSideBarHome.svg";
 import SideBarWriteReadImg from "src/assets/img/SideBarHome.svg";
-import TeacherProfileDummy from "src/assets/img/Profile-Dummy.jpg";
 import SideBarProfileSetting from "src/assets/img/SideBarSetting.svg";
-import useSideBarNavigation from "src/util/useSideBarNavigation";
 import Profile from "src/components/Profile/profile";
+import DefaultPrfoile from "src/assets/img/profileimg.png";
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
-import { useLocation, useNavigate } from "react-router-dom";
+import UseSidebar from "src/Hooks/Sidbar/useSiebar";
+
 const SideBar = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [isProfileAlert, setProfileAlert] = useState(false); 
-  const [isProfile, setProfile] = useState(false);
-  const OpenProfileSetting = () => {
-    setProfileAlert((prev) => !prev);
-  };
-  const openProfile = ()=>{
-    setProfile((prev) => !prev);
-  }
-  const { handleCategoryClick, isClickCategory } = useSideBarNavigation({
-    location,
-    navigate,
-  });
-  
+  const {
+    Name,
+    image,
+    isProfileAlert,
+    isProfile,
+    OpenProfileSetting,
+    openProfile,
+    handleCategoryClick,
+    isClickCategory,
+  } = UseSidebar();
+
   return (
     <S.SideBarWrap>
       <Header />
@@ -70,13 +65,15 @@ const SideBar = () => {
           </S.SideBarCategory>
         </S.SideBarMenuFlex>
         <S.SideBarProfileWrap onClick={OpenProfileSetting}>
-          <S.SideBarTeacherProfileImg src={TeacherProfileDummy} />
-          <S.SideBarTeacherName>이진주</S.SideBarTeacherName>
+          <S.SideBarTeacherProfileImg>{image.length >0 ? <img src={image}/> : <img src={DefaultPrfoile}/>}</S.SideBarTeacherProfileImg>
+          <S.SideBarTeacherName>{Name}</S.SideBarTeacherName>
           <S.SideBarSetting src={SideBarProfileSetting} />
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
-      {isProfileAlert && <ProfileAlert onOpen={openProfile} onClose={OpenProfileSetting} />}
-      {isProfile && <Profile onClose={openProfile}/>}
+      {isProfileAlert && (
+        <ProfileAlert onOpen={openProfile} onClose={OpenProfileSetting} />
+      )}
+      {isProfile && <Profile onClose={openProfile} />}
     </S.SideBarWrap>
   );
 };
