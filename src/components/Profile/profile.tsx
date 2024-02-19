@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as S from "src/components/Profile/style/Profile.style";
 import SideBar from "src/constants/SideBar/SideBar";
 import ProfileImg from "src/assets/img/profileimg.png";

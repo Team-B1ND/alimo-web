@@ -14,15 +14,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isProfile, setProfile] = useState<boolean>(false); //드롭바 생성
-
+  const [isProfileAlert, setProfileAlert] = useState(false); 
+  const [isProfile, setProfile] = useState(false);
   const OpenProfileSetting = () => {
-    setProfile((prev) => !prev);
+    setProfileAlert((prev) => !prev);
   };
+  const openProfile = ()=>{
+    setProfile((prev) => !prev);
+  }
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({
     location,
     navigate,
   });
+  
   return (
     <S.SideBarWrap>
       <Header />
@@ -71,7 +75,8 @@ const SideBar = () => {
           <S.SideBarSetting src={SideBarProfileSetting} />
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
-      {isProfile && <ProfileAlert onClose={OpenProfileSetting} />}
+      {isProfileAlert && <ProfileAlert onOpen={openProfile} onClose={OpenProfileSetting} />}
+      {isProfile && <Profile onClose={openProfile}/>}
     </S.SideBarWrap>
   );
 };
