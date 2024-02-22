@@ -166,7 +166,7 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   margin-left: 2vw;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${(props) => (props.isClicked ? "1px solid #FECE23" : "1px solid #fff")};
+  border: ${({ isClicked }) => (isClicked ? "1px solid #FECE23" : "1px solid #fff")};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
