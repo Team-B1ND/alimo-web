@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-import CONFIG from "src/config.json";
+import CONFIG from "src/config/config.json";
 import Swal from "sweetalert2";
+import { customAxios } from "src/lib/Axios/CustomAxios";
+
 interface Category {
   name: string;
 }
@@ -22,6 +24,7 @@ const useWrite = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [fileName, setFileName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
+  const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -80,42 +83,45 @@ const useWrite = () => {
     if (notAllow) {
       showToast("error", "빈곳이 없게 작성하여주세요");
     } else {
+      await Swal.fire({
+        title: "확성기 기능을 사용하시겠습니까?",
+        text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
+        showCancelButton: true,
+        confirmButtonColor: "#FECE23",
+        focusConfirm: true,
+        cancelButtonColor: "#AAAAAA",
+        focusCancel: false,
+        confirmButtonText: "사용하기",
+        cancelButtonText: "사용안함",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          showToast("success", "확성기가 사용되었습니다.");
+          setIsSpeaker(true);
+        } else {
+          showToast("success", "확성기를 사용하지 않습니다.");
+          setIsSpeaker(false);
+        }
+      });
+
       try {
-        const response = await axios.post(`#`, {
+        const response = await customAxios.post("category/generate", {
           data: {
-            title: `${title}`,
-            content: `${context}`,
-            speaker: true,
-            role: `${selectedCategory}`,
+            title: title,
+            content: context,
+            speaker: isSpeaker,
+            role: selectedCategory,
           },
-          image: `${image}`,
-          file: `${file}`,
+          image: [image],
+          file: [file],
         });
         if (response.status === 200) {
-          Swal.fire({
-            title: "확성기 기능을 사용하시겠습니까?",
-            text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
-            showCancelButton: true,
-            confirmButtonColor: "#FECE23",
-            focusConfirm: true,
-            cancelButtonColor: "#AAAAAA",
-            focusCancel: false,
-            confirmButtonText: "사용하기",
-            cancelButtonText: "사용안함",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              showToast("success", "확성기가 사용되었습니다!");
-              navigate("/main");
-            } else {
-              showToast("success", "공지가 등록되었습니다!");
-              navigate("/main");
-            }
-          });
+          showToast("success", "공지가 등록되었습니다.");
+          navigate("/main");
         } else {
-          showToast("error", "공지 등록 실패");
+          showToast("error", "공지 등록에 실패하였습니다.");
         }
-      } catch (erorr) {
-        showToast("error", "통신오류");
+      } catch (error) {
+        showToast("erorr", "통신 오류");
       }
     }
   };
