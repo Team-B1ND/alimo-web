@@ -112,6 +112,13 @@ export const FileChangeLabel = styled.label`
     cursor: pointer;
   }
 `;
+
+export const ViewImage = styled.img`
+  position: absolute;
+
+  top: 60vh;
+`;
+
 export const ViewFileName = styled.input`
   width: calc(100vw - 80vw);
   height: calc(100vh - 95vh);

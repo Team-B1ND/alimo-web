@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import CONFIG from "src/config/config.json";
 import Swal from "sweetalert2";
@@ -15,8 +15,9 @@ const useWrite = () => {
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
   const [file, setFile] = useState<File>();
-  const [image, setImage] = useState<File>();
+  const [image, setImage] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
+  const [viewImage, setViewImage] = useState<File | undefined>();
   const [fileName, setFileName] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
@@ -49,10 +50,21 @@ const useWrite = () => {
     setFileName(selectedFile?.name || "");
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedImage = e.target.files?.[0];
-    setImage(selectedImage);
-    setImageName(selectedImage?.name || "");
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const viewImage = e.target.files?.[0];
+    setViewImage(viewImage);
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result as string);
+    };
+    if (viewImage) {
+      reader.readAsDataURL(viewImage);
+    }
+  };
+
+  const handleDeleteViewImage = () => {
+    setImage("");
+    setViewImage(undefined);
   };
 
   const onClickAddCategory = (CategoryName: string) => {
@@ -91,13 +103,12 @@ const useWrite = () => {
 
       try {
         const formData = new FormData();
-        if (image) {
-          formData.append("image", imageName);
+        if (viewImage) {
+          formData.append("image", viewImage);
         }
         if (file) {
-          formData.append("file", fileName);
+          formData.append("file", file);
         }
-        console.log(formData);
         const response = await customAxios.post(
           "notification/generate",
           {
@@ -133,12 +144,15 @@ const useWrite = () => {
     title,
     context,
     notAllow,
+    viewImage,
+    image,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
     handleImageClick,
     handleFileChange,
     handleImageChange,
+    handleDeleteViewImage,
     fileName,
     selectedCategory,
     onClickAddCategory,

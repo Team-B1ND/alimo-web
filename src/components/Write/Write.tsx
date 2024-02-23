@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "src/components/Write/style/Write.style";
+import DeleteViewImageButton from "src/assets/img/ic_round-clear.svg";
 import SideBar from "../../constants/SideBar/SideBar";
 import Header from "../../constants/Header/Header";
 import useWrite from "src/Hooks/Write/useWrite";
@@ -11,11 +12,14 @@ const Write = () => {
     title,
     context,
     notAllow,
+    viewImage,
+    image,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
     handleFileChange,
     handleImageChange,
+    handleDeleteViewImage,
     handleImageClick,
     fileName,
     selectedCategory,
@@ -37,6 +41,9 @@ const Write = () => {
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
+            {viewImage && (
+              <S.ViewImage src={image} style={{ width: "8vw", height: "15vh" }} onClick={handleDeleteViewImage} />
+            )}
             <S.ViewFileName value={fileName} readOnly />
             <S.FileChange type="file" id="file-change" onChange={handleFileChange} />
           </S.FileWrap>
