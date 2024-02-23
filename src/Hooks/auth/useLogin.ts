@@ -35,7 +35,7 @@ const Uselogin = () => {
     }
   };
 
-  const redirectUrlvalue = `${CONFIG.serverUrl}redirect`;
+  const redirectUrlvalue = `${CONFIG.serverUrl}/redirect`;
   const LoginButton = async () => {
     SetLoginloading(true);
     if (idValue === "" || passwordValue === "") {
@@ -53,11 +53,10 @@ const Uselogin = () => {
         const url = DAuth.data.data.location;
         const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
-        const response = await axios.post(`${CONFIG.serverUrl}sign-in/dodam`, {
+        const response = await axios.post(`${CONFIG.serverUrl}/sign-in/dodam`, {
           code: lastElement,
           fcmToken: "",
         });
-        console.log(response);
         const refreshToken =response.data.data.refreshToken; 
         const accessToken = response.data.data.accessToken;
         token.setToken(ACCESS_TOKEN_KEY, accessToken);
