@@ -103,12 +103,11 @@ const useWrite = () => {
 
       try {
         const formData = new FormData();
-        if (viewImage) {
+        if (viewImage && file) {
           formData.append("image", viewImage);
-        }
-        if (file) {
           formData.append("file", file);
         }
+
         const response = await customAxios.post(
           "notification/generate",
           {
