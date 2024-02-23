@@ -55,6 +55,12 @@ export const profileImg = styled.div`
   width: 100px;
   height: 150px;
   gap: 10px;
+  span{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+  }
 `;
 export const User = styled.div`
   display: flex;
@@ -87,11 +93,15 @@ export const ChangeFile = styled.form`
     cursor: pointer;
   }
 `;
-export const SetImg = styled.img`
+export const SetImg = styled.div`
   width: 100px;
   height: 100px;
-  border-radius: 50%;
   border: none;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
 `;
 export const Changbutton = styled.input`
   display: none;
@@ -108,7 +118,7 @@ export const IndividualCategories = styled.div`
   display: flex;
   position: relative;
   width: auto;
-  min-width: 50px; 
+  min-width: 50px;
   height: 20px;
   white-space: nowrap;
   overflow: hidden;
