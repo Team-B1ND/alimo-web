@@ -10,19 +10,15 @@ interface Category {
   name: string;
 }
 
-interface ImageState {
-  file: File | null;
-  fileName: string;
-}
-
 const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
   const [file, setFile] = useState<File>();
-  const [image, setImage] = useState<ImageState>({ file: null, fileName: "" });
+  const [image, setImage] = useState<File>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [fileName, setFileName] = useState<string>("");
+  const [imageName, setImageName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -55,18 +51,8 @@ const useWrite = () => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
-
-    if (selectedImage) {
-      setImage({
-        file: selectedImage,
-        fileName: selectedImage.name,
-      });
-    } else {
-      setImage({
-        file: null,
-        fileName: "",
-      });
-    }
+    setImage(selectedImage);
+    setImageName(selectedImage?.name || "");
   };
 
   const onClickAddCategory = (CategoryName: string) => {
@@ -104,16 +90,32 @@ const useWrite = () => {
       });
 
       try {
-        const response = await customAxios.post("category/generate", {
-          data: {
-            title: title,
-            content: context,
-            speaker: isSpeaker,
-            role: selectedCategory,
+        const formData = new FormData();
+        if (image) {
+          formData.append("image", imageName);
+        }
+        if (file) {
+          formData.append("file", fileName);
+        }
+        console.log(formData);
+        const response = await customAxios.post(
+          "notification/generate",
+          {
+            data: {
+              title: title,
+              content: context,
+              speaker: isSpeaker,
+              role: selectedCategory,
+            },
+            image: formData.get("image"),
+            file: formData.get("file"),
           },
-          image: [image],
-          file: [file],
-        });
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
         if (response.status === 200) {
           showToast("success", "공지가 등록되었습니다.");
           navigate("/main");
@@ -121,6 +123,7 @@ const useWrite = () => {
           showToast("error", "공지 등록에 실패하였습니다.");
         }
       } catch (error) {
+        console.error(error);
         showToast("erorr", "통신 오류");
       }
     }
