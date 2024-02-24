@@ -9,6 +9,7 @@ import DefaultPrfoile from "src/assets/img/profileimg.png";
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
 import UseSidebar from "src/Hooks/Sidbar/useSiebar";
+import Setting from "src/components/SettingPage/setting";
 
 const SideBar = () => {
   const {
@@ -16,8 +17,10 @@ const SideBar = () => {
     image,
     isProfileAlert,
     isProfile,
+    isSetting,
     OpenProfileSetting,
     openProfile,
+    openSetting,
     handleCategoryClick,
     isClickCategory,
   } = UseSidebar();
@@ -64,16 +67,19 @@ const SideBar = () => {
             </S.SideBarMenu>
           </S.SideBarCategory>
         </S.SideBarMenuFlex>
-        <S.SideBarProfileWrap onClick={OpenProfileSetting}>
+        <S.SideBarProfileWrap >
+          <S.SidbarClickarea onClick={OpenProfileSetting}>
           <S.SideBarTeacherProfileImg>{image.length >0 ? <img src={image}/> : <img src={DefaultPrfoile}/>}</S.SideBarTeacherProfileImg>
           <S.SideBarTeacherName>{Name}</S.SideBarTeacherName>
-          <S.SideBarSetting src={SideBarProfileSetting} />
+          </S.SidbarClickarea>
+          <S.SideBarSetting src={SideBarProfileSetting} onClick={openSetting}/>
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
       {isProfileAlert && (
         <ProfileAlert onOpen={openProfile} onClose={OpenProfileSetting} />
       )}
       {isProfile && <Profile onClose={openProfile} />}
+      {isSetting && <Setting onClose={openSetting}/>}
     </S.SideBarWrap>
   );
 };

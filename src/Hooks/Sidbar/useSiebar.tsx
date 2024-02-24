@@ -9,9 +9,11 @@ const Sidbar = () => {
   const location = useLocation();
   const [isProfileAlert, setProfileAlert] = useState(false);
   const [isProfile, setProfile] = useState(false);
+  const [isSetting, setSetting] = useState(false);
   const [Name, setName] = useState("");
   const [image, setimage] = useState("");
     const ProfileInfo = async()=>{
+      
         try{
             const response = await axios.get(`${CONFIG.serverUrl}/member/info`,{
                 headers: {
@@ -32,6 +34,9 @@ const Sidbar = () => {
   const openProfile = () => {
     setProfile((prev) => !prev);
   };
+  const openSetting = () => {
+    setSetting((prev) => !prev);
+  };
   const { handleCategoryClick, isClickCategory } = useSideBarNavigation({
     location,
     navigate,
@@ -44,8 +49,10 @@ const Sidbar = () => {
     image,
     isProfileAlert,
     isProfile,
+    isSetting,
     OpenProfileSetting,
     openProfile,
+    openSetting,
     handleCategoryClick,
     isClickCategory,
   };

@@ -85,13 +85,21 @@ export const SideBarProfileWrap = styled.div`
   border: none;
   border-top: 1px solid #e6e6e6;
   display: flex;
+  align-items: center;
+  
+`;
+export const SidbarClickarea = styled.div`
+  display: flex;
+  width: 80%;
+  height: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-`;
-
+  gap: 10px;
+  cursor: pointer;
+`
 export const SideBarTeacherProfileImg = styled.div`
   display: flex;
+  margin-left: 10px;
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);
   border: none;
@@ -109,7 +117,8 @@ export const SideBarTeacherName = styled.span`
 `;
 
 export const SideBarSetting = styled.img`
-  width: calc(100vw - 98vw);
+  display: flex;
+  width: 20%;
   height: calc(100vw - 98vw);
   cursor: pointer;
 `;
