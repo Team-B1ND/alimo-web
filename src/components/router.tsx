@@ -18,7 +18,6 @@ const Router = () => {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/setting" element={<Setting />} />
         <Route path="/write" element={<Write />} />
         <Route path="/write-read" element={<WriteRead />} />
         <Route path="/main" element={<CategoryManage />} />
