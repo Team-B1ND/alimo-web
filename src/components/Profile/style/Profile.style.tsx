@@ -37,6 +37,8 @@ export const UserProfile = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-width: 250px;
+  min-height: 250px;
   width: calc(100vw - 75vw);
   height: calc(100vw - 75vw);
   border-radius: 20px;
@@ -79,20 +81,7 @@ export const User = styled.div`
     line-height: normal;
   }
 `;
-export const ChangeFile = styled.form`
-  position: absolute;
-  z-index: 5;
-  width: 30px;
-  height: 30px;
-  right: 5px;
-  top: 80px;
-  cursor: pointer;
-  img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-`;
+
 export const SetImg = styled.div`
   width: 100px;
   height: 100px;
@@ -103,11 +92,9 @@ export const SetImg = styled.div`
     border-radius: 50%;
   }
 `;
-export const Changbutton = styled.input`
-  display: none;
-`;
 export const Category = styled.div`
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
   position: relative;
   width: 90%;

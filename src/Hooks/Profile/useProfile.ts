@@ -7,10 +7,8 @@ import ProfileImg from "src/assets/img/profileimg.png";
 const UseProfile = () => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
   const { Name, image } = SidbarInfo();
-  const [file, setFile] = useState<File | undefined>(); // 파일 형식으로 상태 초기화
-
+  const [file, setFile] = useState<File | undefined>();
   const finalImage = image.length > 0 ? image : ProfileImg;
-
   const handleChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setFile(file);
@@ -25,7 +23,7 @@ const UseProfile = () => {
     try {
       const formData = new FormData();
       if (file) {
-        formData.append("images", file); 
+        formData.append("images", file);
       }
       const response = await axios.patch(
         `${CONFIG.serverUrl}/member/modify`,
