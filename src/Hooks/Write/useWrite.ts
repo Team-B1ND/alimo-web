@@ -5,6 +5,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import CONFIG from "src/config/config.json";
 import Swal from "sweetalert2";
 import { customAxios } from "src/lib/Axios/CustomAxios";
+import { json } from "stream/consumers";
 
 interface Category {
   name: string;
@@ -101,31 +102,29 @@ const useWrite = () => {
         }
       });
 
-      try {
-        const formData = new FormData();
-        if (viewImage && file) {
-          formData.append("image", viewImage);
-          formData.append("file", file);
-        }
+      const data = {
+        title: title,
+        content: context,
+        speaker: isSpeaker,
+        role: selectedCategory.map((category) => category.name),
+      };
 
-        const response = await customAxios.post(
-          "notification/generate",
-          {
-            data: {
-              title: title,
-              content: context,
-              speaker: isSpeaker,
-              role: selectedCategory,
-            },
-            image: formData.get("image"),
-            file: formData.get("file"),
+      const formData = new FormData();
+      const JSONDATA = JSON.stringify(data);
+      formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
+      if (viewImage) {
+        formData.append("image", viewImage);
+      }
+      if (file) {
+        formData.append("file", file);
+      }
+
+      try {
+        const response = await customAxios.post("notification/generate", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          },
-        );
+        });
         if (response.status === 200) {
           showToast("success", "공지가 등록되었습니다.");
           navigate("/main");
@@ -134,7 +133,7 @@ const useWrite = () => {
         }
       } catch (error) {
         console.error(error);
-        showToast("erorr", "통신 오류");
+        showToast("error", "통신 오류");
       }
     }
   };
