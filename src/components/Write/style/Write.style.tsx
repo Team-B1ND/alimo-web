@@ -113,10 +113,19 @@ export const FileChangeLabel = styled.label`
   }
 `;
 
-export const ViewImage = styled.img`
-  position: absolute;
+export const ViewImageWrap = styled.div`
+  display: flex;
+  flex-direction: row;
 
-  top: 60vh;
+  width: 100%;
+`;
+
+export const ViewImage = styled.img`
+  margin-top: 1vh;
+  margin-left: 2vw;
+
+  width: calc(100vw - 93vw);
+  height: calc(100vw - 93vw);
 `;
 
 export const ViewFileName = styled.input`
