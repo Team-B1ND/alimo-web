@@ -24,7 +24,6 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
             {Category.map((Categorys)=>(
                <S.IndividualCategories><span>{Categorys}</span></S.IndividualCategories>
             ))}
-           
           </S.Category>
           <S.ChangSucces src={CloseImg} onClick={onClose}></S.ChangSucces>
         </S.UserProfile>
