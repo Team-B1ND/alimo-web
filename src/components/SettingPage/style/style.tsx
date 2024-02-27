@@ -1,17 +1,34 @@
 import styled from "styled-components";
 
 export const Setting = styled.div`
+  position: absolute;
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
 `;
 export const SettingMain = styled.div`
-  width: calc(100vw - 15vw);
-  height: 100vh;
+  position: absolute;
+  z-index: 5;
   display: flex;
-  justify-content: center;
-  position: relative;
+  align-items: center;
+  flex-direction: column;
+  bottom: 10%;
+  left: 50px;
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  border-radius: var(--Small, 4px);
+  background: #fff;
+  box-shadow: 0px 6px 18px 0px rgba(0, 0, 0, 0.08);
+  img{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+  cursor: pointer;
+  }
 `;
 export const Settingview = styled.div`
   display: flex;
@@ -19,51 +36,47 @@ export const Settingview = styled.div`
   height: 100%;
   flex-direction: column;
 `;
-export const SettingFunction = styled.div`
+export const SettingTitle = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-around;
-  border-bottom: 2px solid #ccc;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  span {
+    margin-left: 30px;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
 `;
-export const SettingLogOut = styled.div`
+export const Settingexplanation = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  height: 450px;
+  height: 100px;
 `;
 
-export const SettingLogOutText = styled.div`
-display: flex;
-margin-top:10px;
-margin-left:35px;
-width: 95%;
-height: 100px;
-align-items: center;
-flex-direction: row;
-gap:60%;
-`;
-
-export const LogOut = styled.div`
-display: flex;
-width: 200px;
-height: 50px;
-padding: 1px 50px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-border-radius: var(--Large, 12px);
-background: var(--Gray100, #F4F5F9);
+export const SettingDetail = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100px;
+  span{
+    margin-left: 30px;
+    color: var(--Gray600, #787878);
 font-family: Pretendard;
+font-size: 0.9rem;
 font-style: normal;
-font-weight: 700;
+font-weight: 500;
 line-height: normal;
-color: var(--Red500, #F90707);
-cursor: pointer;
-`
+text-decoration-line: underline;
+  }
+`;
+
 
 export const SettingText = styled.div`
   display: flex;
@@ -71,17 +84,7 @@ export const SettingText = styled.div`
   height: 100px;
   gap: 70%;
 `;
-export const SettingTitle = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100px;
-  height: 100%;
-  font-family: Pretendard;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
+
 export const Texts = styled.div`
   display: flex;
   width: 200px;
@@ -98,7 +101,7 @@ export const AlarmSetting = styled.div`
   width: 54px;
   height: 100%;
 `;
-export const Alarm = styled.div< {animate : boolean}>`
+export const Alarm = styled.div<{ animate: boolean }>`
   display: flex;
   position: absolute;
   align-items: center;
@@ -107,8 +110,8 @@ export const Alarm = styled.div< {animate : boolean}>`
   margin-top: 10px;
   flex-shrink: 0;
   border-radius: var(--Infinity, 1000px);
-  transition: left 1s;  
-  background:${({animate})=>(animate ? '#FBE69E' : '#AAA')};
+  transition: left 1s;
+  background: ${({ animate }) => (animate ? "#FBE69E" : "#AAA")};
   cursor: pointer;
 `;
 export const Alarm_Button = styled.div<{ animate: boolean }>`
@@ -118,8 +121,8 @@ export const Alarm_Button = styled.div<{ animate: boolean }>`
   border-radius: 50%;
   background-color: white;
   margin-left: 1px;
-  transition: left 0.5s; 
-  left: ${({ animate }) => (animate ? '26px' : '1px')};
+  transition: left 0.5s;
+  left: ${({ animate }) => (animate ? "26px" : "1px")};
 `;
 export const SettingLink = styled.div`
   cursor: pointer;
