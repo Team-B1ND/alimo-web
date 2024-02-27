@@ -1,10 +1,8 @@
 import SideBar from "src/constants/SideBar/SideBar";
-import "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style.css";
+import * as S from "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style";
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
 import ExampleProfile from "src/assets/img/ExampleProfile.png";
-import axios from "axios";
-import { useEffect } from "react";
 
 const WriteReadDetail = () => {
   interface Dummy {
@@ -16,116 +14,102 @@ const WriteReadDetail = () => {
     contents: `위 공모전에 관심있는 학생은 이진주 선생님에게 카카오워크로 연락주세요~!`,
   };
   return (
-    <div className="WriteReadDetail">
+    <S.WriteReadDetailWrap>
       <SideBar />
-      <div className="WriteReadDetailWrap">
-        <div className="WriteReadDetailBox">
-          <div className="MyPostNotifyWrap">
-            <div className="MyNotifyInfoWrap">
-              <img className="MyProfile" src={MyProfile} alt="내 프로필" />
-              <div className="MyInfoWrap">
-                <p className="MyName">이진주</p>
-                <p className="MyNotifyDate">2023년 4월 20일(목) 02:56</p>
-              </div>
-            </div>
-            <div className="MyNotifyTitleWrap">
-              <span className="MyNotifyTitle">{DUMMY_CONTENT.title}</span>
-            </div>
-            <div className="MyNotifyImgWrap">
-              <img src={MyNotifyImage} alt="공지 이미지" />
-            </div>
-            <div className="MyNotifyContentWrap">
-              <span className="MyNotifyContent">{DUMMY_CONTENT.contents}</span>
-            </div>
-            <div className="MyNotifyEmoticonWrap">
-              <div className="MyNotifyEmoticonBox">
-                <div className="EmoticonBox">
-                  <span className="Emoticon">👌</span>
-                  <span className="EmoticonCnt">1</span>
-                </div>
-                <div className="EmoticonBox">
-                  <span className="Emoticon">😍</span>
-                  <span className="EmoticonCnt">0</span>
-                </div>
-                <div className="EmoticonBox">
-                  <span className="Emoticon">😂</span>
-                  <span className="EmoticonCnt">30</span>
-                </div>
-                <div className="EmoticonBox">
-                  <span className="Emoticon">😢</span>
-                  <span className="EmoticonCnt">15</span>
-                </div>
-                <div className="EmoticonBox">
-                  <span className="Emoticon">😡</span>
-                  <span className="EmoticonCnt">30</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="WriteReadDetailComment">
-          <div className="MyPostCommentWrap">
-            <div className="MyPostComment">
-              <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={ExampleProfile}
-                  alt="예시 프로필"
-                />
-              </div>
-              <div className="CommentContentWrap">
-                <p className="CommentName">2예진</p>
-                <p className="CommentContent">팀인가여?</p>
-                <div className="CommentWrap">
-                  <span className="CommentDate">
+      <S.WriteReadDetailBox>
+        <S.WriteReadDetail>
+          <S.MyPostNotifyWrap>
+            <S.MyNotifyInfoWrap>
+              <S.MyProfile src={MyProfile} alt="내 프로필" />
+              <S.MyInfoWrap>
+                <S.MyName>이진주</S.MyName>
+                <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
+              </S.MyInfoWrap>
+            </S.MyNotifyInfoWrap>
+            <S.MyNotifyTitleWrap>
+              <S.MyNotifyTitle>{DUMMY_CONTENT.title}</S.MyNotifyTitle>
+            </S.MyNotifyTitleWrap>
+            <S.MyNotifyImgWrap>
+              <S.MyNotifyImg src={MyNotifyImage} alt="공지 이미지" />
+            </S.MyNotifyImgWrap>
+            <S.MyNotifyContentWrap>
+              <S.MyNotifyContent>{DUMMY_CONTENT.contents}</S.MyNotifyContent>
+            </S.MyNotifyContentWrap>
+            <S.MyNotifyEmoticonWrap>
+              <S.MyNotifyEmoticonBox>
+                <S.EmoticonBox>
+                  <S.Emoticon>👌</S.Emoticon>
+                  <S.EmoticonCnt>1</S.EmoticonCnt>
+                </S.EmoticonBox>
+                <S.EmoticonBox>
+                  <S.Emoticon>😍</S.Emoticon>
+                  <S.EmoticonCnt>0</S.EmoticonCnt>
+                </S.EmoticonBox>
+                <S.EmoticonBox>
+                  <S.Emoticon>😂</S.Emoticon>
+                  <S.EmoticonCnt>30</S.EmoticonCnt>
+                </S.EmoticonBox>
+                <S.EmoticonBox>
+                  <S.Emoticon>😢</S.Emoticon>
+                  <S.EmoticonCnt>15</S.EmoticonCnt>
+                </S.EmoticonBox>
+                <S.EmoticonBox>
+                  <S.Emoticon>😡</S.Emoticon>
+                  <S.EmoticonCnt>30</S.EmoticonCnt>
+                </S.EmoticonBox>
+              </S.MyNotifyEmoticonBox>
+            </S.MyNotifyEmoticonWrap>
+          </S.MyPostNotifyWrap>
+        </S.WriteReadDetail>
+        <S.WriteReadDetailComment>
+          <S.MyPostCommentWrap>
+            <S.MyPostComment>
+              <S.CommentInfoWrap>
+                <S.CommentProfile src={ExampleProfile} alt="예시 프로필" />
+              </S.CommentInfoWrap>
+              <S.CommentContentWrap>
+                <S.CommentName>2예진</S.CommentName>
+                <S.CommentContent>팀인가여?</S.CommentContent>
+                <S.CommentWrap>
+                  <S.CommentDate>
                     2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
-                  <button className="ReplyCommentWrite">답글달기</button>
-                </div>
-              </div>
-            </div>
-            <div className="MyPostReplyComment">
-              <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={MyProfile}
-                  alt="내 프로필"
-                />
-              </div>
-              <div className="CommentContentWrap">
-                <p className="CommentName">이진주</p>
-                <p className="CommentContent">얍</p>
-                <div className="CommentWrap">
-                  <span className="CommentDate">
+                  </S.CommentDate>
+                  <S.ReplyCommentWrite>답글달기</S.ReplyCommentWrite>
+                </S.CommentWrap>
+              </S.CommentContentWrap>
+            </S.MyPostComment>
+            <S.MyPostReplyComment>
+              <S.CommentInfoWrap>
+                <S.CommentProfile src={MyProfile} alt="내 프로필" />
+              </S.CommentInfoWrap>
+              <S.CommentContentWrap>
+                <S.CommentName>이진주</S.CommentName>
+                <S.CommentContent>얍</S.CommentContent>
+                <S.CommentWrap>
+                  <S.CommentDate>
                     2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
-                  <button className="ReplyCommentWrite">답글달기</button>
-                </div>
-              </div>
-            </div>
-            <div className="MyPostReplyComment">
-              <div className="CommentInfoWrap">
-                <img
-                  className="CommentProfile"
-                  src={ExampleProfile}
-                  alt="예시 프로필"
-                />
-              </div>
-              <div className="CommentContentWrap">
-                <p className="CommentName">이예진</p>
-                <p className="CommentContent">|</p>
-                <div className="CommentWrap">
-                  <span className="CommentDate">
+                  </S.CommentDate>
+                </S.CommentWrap>
+              </S.CommentContentWrap>
+            </S.MyPostReplyComment>
+            <S.MyPostReplyComment>
+              <S.CommentInfoWrap>
+                <S.CommentProfile src={ExampleProfile} alt="예시 프로필" />
+              </S.CommentInfoWrap>
+              <S.CommentContentWrap>
+                <S.CommentName>이예진</S.CommentName>
+                <S.CommentContent>|</S.CommentContent>
+                <S.CommentWrap>
+                  <S.CommentDate>
                     2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </span>
-                  <button className="ReplyCommentWrite">답글달기</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  </S.CommentDate>
+                </S.CommentWrap>
+              </S.CommentContentWrap>
+            </S.MyPostReplyComment>
+          </S.MyPostCommentWrap>
+        </S.WriteReadDetailComment>
+      </S.WriteReadDetailBox>
+    </S.WriteReadDetailWrap>
   );
 };
 
