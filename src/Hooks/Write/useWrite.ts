@@ -1,14 +1,17 @@
 import axios from "axios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-import CONFIG from "src/config/config.json";
 import Swal from "sweetalert2";
 import { customAxios } from "src/lib/Axios/CustomAxios";
-import { json } from "stream/consumers";
 
 interface Category {
   name: string;
+}
+
+interface ImagePreView {
+  url: string;
+  alt: string;
 }
 
 const useWrite = () => {
@@ -16,9 +19,9 @@ const useWrite = () => {
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
   const [file, setFile] = useState<File>();
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<FileList[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [viewImage, setViewImage] = useState<File | undefined>();
+  const [viewImage, setViewImage] = useState<ImagePreView[]>([]);
   const [fileName, setFileName] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
@@ -32,6 +35,8 @@ const useWrite = () => {
       setNotAllow(true);
     }
   }, [title, context, selectedCategory]);
+
+  const formData = new FormData();
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -52,20 +57,17 @@ const useWrite = () => {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const viewImage = e.target.files?.[0];
-    setViewImage(viewImage);
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImage(reader.result as string);
-    };
-    if (viewImage) {
-      reader.readAsDataURL(viewImage);
-    }
+    const files = e.target.files;
+    const fileArray = Array.prototype.slice.call(files);
+    setImage(fileArray);
   };
 
-  const handleDeleteViewImage = () => {
-    setImage("");
-    setViewImage(undefined);
+  const handleDeleteViewImage = (index: number) => {
+    setViewImage((prevImages) => {
+      const updateImages = [...prevImages];
+      updateImages.splice(index, 1);
+      return updateImages;
+    });
   };
 
   const onClickAddCategory = (CategoryName: string) => {
@@ -106,18 +108,19 @@ const useWrite = () => {
         title: title,
         content: context,
         speaker: isSpeaker,
-        role: selectedCategory.map((category) => category.name),
+        categories: selectedCategory.map((category) => category.name),
       };
 
-      const formData = new FormData();
       const JSONDATA = JSON.stringify(data);
       formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
-      if (viewImage) {
-        formData.append("image", viewImage);
-      }
       if (file) {
         formData.append("file", file);
       }
+      if (image) {
+        formData.append("image", JSON.stringify(image));
+      }
+
+      console.log(formData.get("image"));
 
       try {
         const response = await customAxios.post("notification/generate", formData, {
@@ -125,6 +128,7 @@ const useWrite = () => {
             "Content-Type": "multipart/form-data",
           },
         });
+
         if (response.status === 200) {
           showToast("success", "공지가 등록되었습니다.");
           navigate("/main");

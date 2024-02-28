@@ -33,17 +33,21 @@ const Write = () => {
       <Header />
       <S.WriteView>
         <S.InputWrap>
-          <S.WriteTitleInput placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
+          <S.WriteTitleInput placeholder="제목을 입력해주세요" type="search" value={title} onChange={onChangeTitle} />
+          <S.ViewImageWrap>
+            {viewImage.map((image, idx) => (
+              <div key={idx}>
+                <S.ViewImage src={image.url} alt={image.alt} onClick={() => handleDeleteViewImage(idx)} />
+              </div>
+            ))}
+          </S.ViewImageWrap>
           <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
           <S.FileWrap>
             <S.ImageUploadImg src={ImageUploadImg} onClick={handleImageClick} />
-            <S.ImageInputRef type="file" accept="image/*" ref={imageInputRef} onChange={handleImageChange} />
+            <S.ImageInputRef type="file" accept="image/*" multiple ref={imageInputRef} onChange={handleImageChange} />
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
-            {viewImage && (
-              <S.ViewImage src={image} style={{ width: "8vw", height: "15vh" }} onClick={handleDeleteViewImage} />
-            )}
             <S.ViewFileName value={fileName} readOnly />
             <S.FileChange type="file" id="file-change" onChange={handleFileChange} />
           </S.FileWrap>
