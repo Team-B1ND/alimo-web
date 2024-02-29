@@ -1,8 +1,8 @@
 import SideBar from "src/constants/SideBar/SideBar";
+import Comment from "src/components/WriteRead/WriteReadDetail/Comment";
 import * as S from "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style";
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
-import ExampleProfile from "src/assets/img/ExampleProfile.png";
 
 const WriteReadDetail = () => {
   interface Dummy {
@@ -61,53 +61,7 @@ const WriteReadDetail = () => {
             </S.MyNotifyEmoticonWrap>
           </S.MyPostNotifyWrap>
         </S.WriteReadDetail>
-        <S.WriteReadDetailComment>
-          <S.MyPostCommentWrap>
-            <S.MyPostComment>
-              <S.CommentInfoWrap>
-                <S.CommentProfile src={ExampleProfile} alt="예시 프로필" />
-              </S.CommentInfoWrap>
-              <S.CommentContentWrap>
-                <S.CommentName>2예진</S.CommentName>
-                <S.CommentContent>팀인가여?</S.CommentContent>
-                <S.CommentWrap>
-                  <S.CommentDate>
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </S.CommentDate>
-                  <S.ReplyCommentWrite>답글달기</S.ReplyCommentWrite>
-                </S.CommentWrap>
-              </S.CommentContentWrap>
-            </S.MyPostComment>
-            <S.MyPostReplyComment>
-              <S.CommentInfoWrap>
-                <S.CommentProfile src={MyProfile} alt="내 프로필" />
-              </S.CommentInfoWrap>
-              <S.CommentContentWrap>
-                <S.CommentName>이진주</S.CommentName>
-                <S.CommentContent>얍</S.CommentContent>
-                <S.CommentWrap>
-                  <S.CommentDate>
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </S.CommentDate>
-                </S.CommentWrap>
-              </S.CommentContentWrap>
-            </S.MyPostReplyComment>
-            <S.MyPostReplyComment>
-              <S.CommentInfoWrap>
-                <S.CommentProfile src={ExampleProfile} alt="예시 프로필" />
-              </S.CommentInfoWrap>
-              <S.CommentContentWrap>
-                <S.CommentName>이예진</S.CommentName>
-                <S.CommentContent>|</S.CommentContent>
-                <S.CommentWrap>
-                  <S.CommentDate>
-                    2023년 (-1)월 33일 오후 25:sqrt(3)
-                  </S.CommentDate>
-                </S.CommentWrap>
-              </S.CommentContentWrap>
-            </S.MyPostReplyComment>
-          </S.MyPostCommentWrap>
-        </S.WriteReadDetailComment>
+        <Comment />
       </S.WriteReadDetailBox>
     </S.WriteReadDetailWrap>
   );
