@@ -7,7 +7,8 @@ import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import AddStudent from "./AddStudent";
 
 const CategoryManage = () => {
-  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList, onClose } = useCategoryManage();
+  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList, handlePopUp, onClose } =
+    useCategoryManage();
   return (
     <S.Main>
       <SideBar />
@@ -46,7 +47,7 @@ const CategoryManage = () => {
       <S.CategoryMemberWrap>
         <S.MemberManageWrap>
           <S.MemberSearch placeholder="멤버 검색" />
-          <S.AddMemberButton>새 멤버</S.AddMemberButton>
+          <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
         </S.MemberManageWrap>
         <S.MemberUtilityWrap>
           <S.MemberNameInfo>이름</S.MemberNameInfo>

@@ -191,6 +191,8 @@ export const AddMemberButton = styled.button`
   margin-left: 2vw;
   margin-right: 3vw;
 
+  cursor: pointer;
+
   &:focus {
     outline: none;
   }

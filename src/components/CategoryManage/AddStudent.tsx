@@ -5,10 +5,20 @@ import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
 import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
-import useAddStudent from "src/Hooks/Category/useAddStudent";
+import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
-  const { isClicked, onClickClickedStudent, onClickConfirmButton } = useAddStudent();
+  const {
+    categoryName,
+    selectedStudents,
+    selectAccess,
+    onClickSelectedRole,
+    onClickSelectedGrade,
+    onClickSelectedCls,
+    onClickAddStudent,
+    onClickAccess,
+    onClickAddCategory,
+  } = useCategoryAdd();
 
   return (
     <S.AddStudentWrap>
@@ -19,22 +29,29 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           </S.TopNav>
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
-              <S.GradeInfo>1학년 (72)</S.GradeInfo>
+              <S.GradeInfo onClick={() => onClickSelectedGrade("1학년")}>1학년 (72)</S.GradeInfo>
               <S.ClassInfo>
-                <span>1반 (18)</span>
-                <span>2반 (18)</span>
-                <span>3반 (18)</span>
-                <span>4반 (18)</span>
+                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
+                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
+                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
+                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
               </S.ClassInfo>
-              <S.GradeInfo>2학년 (72)</S.GradeInfo>
+              <S.GradeInfo onClick={() => onClickSelectedGrade("2학년")}>2학년 (72)</S.GradeInfo>
               <S.ClassInfo>
-                <span>1반 (18)</span>
-                <span>2반 (18)</span>
-                <span>3반 (18)</span>
-                <span>4반 (18)</span>
+                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
+                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
+                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
+                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
               </S.ClassInfo>
-              <S.TeacherAndParentsInfo>교사 (20)</S.TeacherAndParentsInfo>
-              <S.TeacherAndParentsInfo>학부모</S.TeacherAndParentsInfo>
+              <S.GradeInfo onClick={() => onClickSelectedGrade("3학년")}>3학년 (72)</S.GradeInfo>
+              <S.ClassInfo>
+                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
+                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
+                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
+                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
+              </S.ClassInfo>
+              <S.TeacherAndParentsInfo onClick={() => onClickSelectedRole("교사")}>교사 (20)</S.TeacherAndParentsInfo>
+              <S.TeacherAndParentsInfo onClick={() => onClickSelectedRole("학부모")}>학부모</S.TeacherAndParentsInfo>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
               <S.MemberSearchInput placeholder="멤버 검색" />
@@ -46,32 +63,32 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               </S.UtilityWrap>
               <S.StudentList>
                 <img
-                  src={isClicked.some((student) => student.name === "김가영") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickClickedStudent("김가영")}
+                  src={selectedStudents.some((student) => student.name === "김가영") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickAddStudent("김가영")}
                 />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
               <S.StudentList>
                 <img
-                  src={isClicked.some((student) => student.name === "이해준") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickClickedStudent("이해준")}
+                  src={selectedStudents.some((student) => student.name === "이해준") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickAddStudent("이해준")}
                 />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>이해준</S.StudentName>
               </S.StudentList>
               <S.StudentList>
                 <img
-                  src={isClicked.some((student) => student.name === "이강현") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickClickedStudent("이강현")}
+                  src={selectedStudents.some((student) => student.name === "이강현") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickAddStudent("이강현")}
                 />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>이강현</S.StudentName>
               </S.StudentList>
               <S.StudentList>
                 <img
-                  src={isClicked.some((student) => student.name === "전민찬") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickClickedStudent("전민찬")}
+                  src={selectedStudents.some((student) => student.name === "전민찬") ? CheckStudent : NoneCheckStudent}
+                  onClick={() => onClickAddStudent("전민찬")}
                 />
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>전민찬</S.StudentName>
@@ -97,7 +114,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           </S.SelectionWrap>
           <S.ButtonWrap>
             <S.CancleButton onClick={onClose}>취소</S.CancleButton>
-            <S.ConfirmButton onClick={onClose}>선택</S.ConfirmButton>
+            <S.ConfirmButton onClick={onClickAddCategory}>선택</S.ConfirmButton>
           </S.ButtonWrap>
           <S.CloseButton src={CloseImg} onClick={onClose}></S.CloseButton>
         </S.SelectStudentDialog>

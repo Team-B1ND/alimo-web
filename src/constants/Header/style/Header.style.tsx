@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderBarWrap = styled.div`
-  width: calc(100vw - 15vw);
+  width: calc(100vw - 15vw);  
   height: calc(100vh - 90vh);
   border-bottom: 1px solid #e6e6e6;
   display: flex;

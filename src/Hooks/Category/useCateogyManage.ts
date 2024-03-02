@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
+import CONFIG from "src/config/config.json";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
+  const [categoryName, setCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [isAddStudent, setIsAddStudent] = useState<boolean>(false);
-
   const handleCategoryClick = (categoryName: string) => {
     setIsClickedCategory(categoryName);
   };
@@ -23,9 +25,14 @@ const useCategoryManage = () => {
     });
 
     if (getName) {
-      setShowStudentList(true);
+      setCategoryName(getName);
       setIsAddStudent(!isAddStudent);
+      setShowStudentList(!showStudentList);
     }
+  };
+
+  const handlePopUp = () => {
+    setShowStudentList(!showStudentList);
   };
 
   const onClose = () => {
@@ -34,10 +41,11 @@ const useCategoryManage = () => {
 
   return {
     isClickedCategory,
+    categoryName,
     handleCategoryClick,
     onClickNewCategoryButton,
     showStudentList,
-    setShowStudentList,
+    handlePopUp,
     onClose,
   };
 };

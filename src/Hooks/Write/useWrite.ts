@@ -97,9 +97,11 @@ const useWrite = () => {
           if (result.isConfirmed) {
             showToast("success", "확성기가 사용되었습니다!");
             setIsSpeaker(true);
+            navigate("/main");
           } else {
             showToast("success", "공지가 등록되었습니다!");
             setIsSpeaker(false);
+            navigate("/main");
           }
         });
         const response = await axios.post(
@@ -110,18 +112,15 @@ const useWrite = () => {
               content: `${context}`,
               speaker: `${isSpeaker}`,
               role: `${selectedCategory}`,
-              memberId: {
-                value: 1,
-              },
             },
             image: [`${image}`],
             file: [`${file}`],
           },
-          {
-            headers: {
-              Authorization: `${localStorage.getItem("accessToken")}`,
-            },
-          },
+          // {
+          //   headers: {
+          //     Authorization: `${token.getItem("accessToken")}`,
+          //   },
+          // },
         );
         if (response.status === 200) {
         } else {

@@ -71,12 +71,20 @@ export const SelectionWrap = styled.div`
 export const ChoiceInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 25%;
   height: 100%;
   background: #f4f5f9;
   border: 1px solid #e6e6e6;
   border-top: none;
+
+  overflow: scroll;
+
+  scrollbar-width: none; /* 파이어폭스에서 스크롤바를 안보이게 */
+
+  &::-webkit-scrollbar {
+    /* 크롬, 사파리, 오페라, 마소엣지 브라우저에서 스크롤바를 안보이게  */
+    display: none;
+  }
 `;
 
 export const GradeInfo = styled.span`

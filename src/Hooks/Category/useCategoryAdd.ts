@@ -1,21 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
+import useCategoryManage from "./useCateogyManage";
 
 interface Student {
   name: string;
 }
 
+interface MemberInfo {
+  memberId: number;
+  name: string;
+}
+
 const useCategoryAdd = () => {
   const navigate = useNavigate();
-  const [categoryName, setCategoryName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
+  const [selectedRole, setSelectedRole] = useState<string>("");
+  const [grade, setGrade] = useState<string | null>();
+  const [cls, setCls] = useState<string | null>();
+  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [memberId, setMemberId] = useState<number[]>([]);
+  const [memberName, setMemberName] = useState<string[]>([]);
+  const { categoryName } = useCategoryManage();
 
-  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
+  useEffect(() => {
+    getMemberList();
+  }, []);
+
+  const onClickSelectedRole = (itemName: string) => {
+    setSelectedRole((prev) => (itemName === prev ? "" : prev));
+
+    console.log(selectedRole);
+  };
+
+  const onClickSelectedGrade = (itemName: string) => {
+    if (selectedRole.substring(1, 2) === "학년") {
+      setSelectedRole("STUDENT");
+    } else {
+      setGrade((prev) => (itemName === prev ? "" : prev));
+    }
+  };
+
+  const onClickSelectedCls = (itemName: string) => {
+    setCls((prev) => (itemName === prev ? "" : prev));
   };
 
   const onClickAddStudent = (studentName: string) => {
@@ -33,33 +63,48 @@ const useCategoryAdd = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      const requestBody = {
-        memberList: [1],
-        isWrite: true,
-        roleName: `${selectAccess}`,
-      };
-      axios
-        .post(`${CONFIG.serverUrl}role/create`, requestBody, {
-          headers: {
-            Authorization: `#`,
+  const onClickAddCategory = async () => {
+    try {
+      const response = await axios.post(`${CONFIG.serverUrl}category/create`, {
+        memberList: memberId,
+        categoryName: categoryName,
+      });
+      if (response.status === 200) {
+        showToast("success", "카테고리 생성 성공");
+      } else {
+        showToast("error", "카테고리 생성 실패");
+      }
+    } catch (e) {
+      showToast("error", "서버 통신 오류");
+    }
+
+    console.log(selectedRole);
+    console.log(grade);
+    console.log(cls);
+  };
+
+  const getMemberList = async () => {
+    try {
+      const response = await axios.get(`${CONFIG.serverUrl}member/member-list`, {
+        params: {
+          pageRequest: {
+            page: 4,
+            size: 20,
           },
-        })
-        .then((response) => {
-          showToast("success", "카테고리가 추가되었습니다.");
-          navigate("/category-manage");
-          console.log(response);
-        });
-    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("error", "카테고리 이름을 입력해주세요");
-      setCategoryName("");
-    } else if (categoryName && selectedStudents.length <= 0 && selectAccess !== null) {
-      showToast("error", "학생을 선택해주세요");
-    } else if (categoryName && selectedStudents.length !== 0 && selectAccess === null) {
-      showToast("error", "권한을 부여해주세요.");
-    } else {
-      showToast("error", "아무것도 하지않으셨습니다.");
+          getMemberRequest: {
+            memberKind: selectedRole,
+            grade: grade,
+            room: cls,
+          },
+        },
+      });
+      if (response.status === 200) {
+        setMemberInfo(response.data.data);
+        setMemberId(memberInfo.map((id) => id.memberId));
+        setMemberName(memberInfo.map((name) => name.name));
+      }
+    } catch (e) {
+      showToast("error", "멤버 리스트 불러오기 실패");
     }
   };
 
@@ -67,7 +112,9 @@ const useCategoryAdd = () => {
     categoryName,
     selectedStudents,
     selectAccess,
-    onChangeCategoryName,
+    onClickSelectedRole,
+    onClickSelectedGrade,
+    onClickSelectedCls,
     onClickAddStudent,
     onClickAccess,
     onClickAddCategory,
