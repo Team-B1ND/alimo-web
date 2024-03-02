@@ -57,10 +57,10 @@ const Write = () => {
             <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
             <S.CategoryWrap>
               <S.Cateogory
-                onClick={() => onClickAddCategory("B1ND")}
-                isClicked={selectedCategory.some((category) => category.name === "B1ND")}
+                onClick={() => onClickAddCategory("1학년")}
+                isClicked={selectedCategory.some((category) => category.name === "1학년")}
               >
-                B1ND
+                1학년
               </S.Cateogory>
               <S.Cateogory
                 onClick={() => onClickAddCategory("B2ND")}

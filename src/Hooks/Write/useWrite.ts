@@ -19,7 +19,7 @@ const useWrite = () => {
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
   const [file, setFile] = useState<File>();
-  const [image, setImage] = useState<FileList[]>();
+  const [image, setImage] = useState<File[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [viewImage, setViewImage] = useState<ImagePreView[]>([]);
   const [fileName, setFileName] = useState<string>("");
@@ -117,10 +117,10 @@ const useWrite = () => {
         formData.append("file", file);
       }
       if (image) {
-        formData.append("image", JSON.stringify(image));
+        image.map((file) => {
+          formData.append("image",file);
+        })
       }
-
-      console.log(formData.get("image"));
 
       try {
         const response = await customAxios.post("notification/generate", formData, {
