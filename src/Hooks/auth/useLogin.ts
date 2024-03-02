@@ -12,11 +12,11 @@ import {
 
 const Uselogin = () => {
   const navigate = useNavigate();
-  const [Loginloading, SetLoginloading] = useState(false);
-  const [clickName, setClickName] = useState("");
-  const [idValue, setIdValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [isShowPswd, setIsShowPswd] = useState(false);
+  const [Loginloading, SetLoginloading] = useState<boolean>(false);
+  const [clickName, setClickName] = useState<string>("");
+  const [idValue, setIdValue] = useState<string>("");
+  const [passwordValue, setPasswordValue] = useState<string>("");
+  const [isShowPswd, setIsShowPswd] = useState<boolean>(false);
   const hash = SHA512(passwordValue).toString();
 
   const InputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
