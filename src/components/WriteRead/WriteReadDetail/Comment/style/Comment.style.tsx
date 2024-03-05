@@ -12,7 +12,6 @@ export const WriteReadDetailComment = styled.div`
 
 export const MyPostCommentWrap = styled.div`
   width: 90%;
-  height: auto;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -20,10 +19,10 @@ export const MyPostCommentWrap = styled.div`
 
 export const MyPostComment = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 export const CommentInfoWrap = styled.div`
@@ -42,6 +41,7 @@ export const CommentProfile = styled.img`
 `;
 
 export const CommentContentWrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -55,29 +55,20 @@ export const CommentName = styled.p`
   line-height: normal;
 `;
 
+export const CommentWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+`;
+
 export const CommentContent = styled.p`
+  max-width: 70%;
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 5px;
-`;
-
-export const CommentWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 5px;
-`;
-
-export const CommentDate = styled.span`
-  color: var(--Gray500, #aaa);
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-right: 15px;
 `;
 
 export const ReplyCommentWrite = styled.button`
@@ -90,12 +81,7 @@ export const ReplyCommentWrite = styled.button`
   cursor: pointer;
   border: 0;
   background-color: transparent;
-`;
-
-export const MyPostReplyComment = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
-  margin: 0 0 40px 55px;
+  margin-left: 10px;
 `;

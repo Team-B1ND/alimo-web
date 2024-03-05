@@ -1,5 +1,5 @@
 import SideBar from "src/constants/SideBar/SideBar";
-import Comment from "src/components/WriteRead/WriteReadDetail/Comment";
+import Comment from "src/components/WriteRead/WriteReadDetail/Comment/Comment";
 import * as S from "src/components/WriteRead/WriteReadDetail/style/WriteReadDetail.style";
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
