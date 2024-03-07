@@ -49,7 +49,7 @@ const Write = () => {
               <img src={FileUplaod} />
             </S.FileChangeLabel>
             <S.ViewFileName value={fileName} readOnly />
-            <S.FileChange type="file" id="file-change" onChange={handleFileChange} />
+            <S.FileChange type="file" id="file-change" multiple onChange={handleFileChange} />
           </S.FileWrap>
         </S.InputWrap>
         <S.SelectCategoryWrap>
@@ -57,10 +57,10 @@ const Write = () => {
             <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
             <S.CategoryWrap>
               <S.Cateogory
-                onClick={() => onClickAddCategory("1학년")}
-                isClicked={selectedCategory.some((category) => category.name === "1학년")}
+                onClick={() => onClickAddCategory("4반")}
+                isClicked={selectedCategory.some((category) => category.name === "4반")}
               >
-                1학년
+                4반
               </S.Cateogory>
               <S.Cateogory
                 onClick={() => onClickAddCategory("B2ND")}

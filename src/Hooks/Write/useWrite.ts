@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import Swal from "sweetalert2";
 import { customAxios } from "src/lib/Axios/CustomAxios";
+import { config } from "process";
+import CONFIG from "src/config/config.json";
 
 interface Category {
   name: string;
@@ -18,7 +20,7 @@ const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
-  const [file, setFile] = useState<File>();
+  const [file, setFile] = useState<File[]>();
   const [image, setImage] = useState<File[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [viewImage, setViewImage] = useState<ImagePreView[]>([]);
@@ -51,9 +53,10 @@ const useWrite = () => {
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    setFile(selectedFile);
-    setFileName(selectedFile?.name || "");
+    const files = e.target.files;
+    const fileArray = Array.prototype.slice.call(files);
+    setFile(fileArray);
+    setFileName(fileArray?.[0].name);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,22 +113,26 @@ const useWrite = () => {
         speaker: isSpeaker,
         categories: selectedCategory.map((category) => category.name),
       };
+      console.log(formData.get(JSON.stringify(data)));
 
       const JSONDATA = JSON.stringify(data);
       formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
       if (file) {
-        formData.append("file", file);
+        file.map((file) => {
+          formData.append("file", file);
+        });
       }
       if (image) {
         image.map((file) => {
-          formData.append("image",file);
-        })
+          formData.append("image", file);
+        });
       }
 
       try {
-        const response = await customAxios.post("notification/generate", formData, {
+        const response = await axios.post(`${CONFIG.serverUrl}/notification/generate`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `#`,
           },
         });
 
