@@ -12,11 +12,10 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
     categoryName,
     selectedStudents,
     selectAccess,
-    onClickSelectedRole,
-    onClickSelectedGrade,
-    onClickSelectedCls,
     onClickAddStudent,
     onClickAccess,
+    handleRole,
+    handleRoom,
     onClickAddCategory,
   } = useCategoryAdd();
 
@@ -29,32 +28,42 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           </S.TopNav>
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
-              <S.GradeInfo onClick={() => onClickSelectedGrade("1학년")}>1학년 (72)</S.GradeInfo>
-              <S.ClassInfo>
-                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
-                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
-                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
-                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
-              </S.ClassInfo>
-              <S.GradeInfo onClick={() => onClickSelectedGrade("2학년")}>2학년 (72)</S.GradeInfo>
-              <S.ClassInfo>
-                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
-                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
-                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
-                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
-              </S.ClassInfo>
-              <S.GradeInfo onClick={() => onClickSelectedGrade("3학년")}>3학년 (72)</S.GradeInfo>
-              <S.ClassInfo>
-                <span onClick={() => onClickSelectedCls("1반")}>1반 (18)</span>
-                <span onClick={() => onClickSelectedCls("2반")}>2반 (18)</span>
-                <span onClick={() => onClickSelectedCls("3반")}>3반 (18)</span>
-                <span onClick={() => onClickSelectedCls("4반")}>4반 (18)</span>
-              </S.ClassInfo>
-              <S.TeacherAndParentsInfo onClick={() => onClickSelectedRole("교사")}>교사 (20)</S.TeacherAndParentsInfo>
-              <S.TeacherAndParentsInfo onClick={() => onClickSelectedRole("학부모")}>학부모</S.TeacherAndParentsInfo>
+              <S.StudentWrap>
+                <S.GradeInfo onClick={() => handleRole("STUDENT", 1, null)}>1학년 (72)</S.GradeInfo>
+                <S.ClassInfo>
+                  <span onClick={() => handleRoom(1)}>1반 (18)</span>
+                  <span onClick={() => handleRoom(2)}>2반 (18)</span>
+                  <span onClick={() => handleRoom(3)}>3반 (18)</span>
+                  <span onClick={() => handleRoom(4)}>4반 (18)</span>
+                </S.ClassInfo>
+                <S.GradeInfo onClick={() => handleRole("STUDENT", 2, null)}>2학년 (72)</S.GradeInfo>
+                <S.ClassInfo>
+                  <span onClick={() => handleRoom(1)}>1반 (18)</span>
+                  <span onClick={() => handleRoom(2)}>2반 (18)</span>
+                  <span onClick={() => handleRoom(3)}>3반 (18)</span>
+                  <span onClick={() => handleRoom(4)}>4반 (18)</span>
+                </S.ClassInfo>
+                <S.GradeInfo onClick={() => handleRole("STUDENT", 3, null)}>3학년 (72)</S.GradeInfo>
+                <S.ClassInfo>
+                  <span onClick={() => handleRoom(1)}>1반 (18)</span>
+                  <span onClick={() => handleRoom(2)}>2반 (18)</span>
+                  <span onClick={() => handleRoom(3)}>3반 (18)</span>
+                  <span onClick={() => handleRoom(4)}>4반 (18)</span>
+                </S.ClassInfo>
+              </S.StudentWrap>
+              <S.TeacherWrap>
+                <S.TeacherAndParentsInfo onClick={() => handleRole("TEACEHR", null, null)}>
+                  교사 (20)
+                </S.TeacherAndParentsInfo>
+              </S.TeacherWrap>
+              <S.ParantWrap>
+                <S.TeacherAndParentsInfo onClick={() => handleRole("PARENT", null, null)}>
+                  학부모
+                </S.TeacherAndParentsInfo>
+              </S.ParantWrap>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
-              <S.MemberSearchInput placeholder="멤버 검색" />
+              <S.MemberSearchInput placeholder="멤버 검색" type="search" />
               <S.UtilityWrap>
                 <S.Class>4반</S.Class>
                 &nbsp;

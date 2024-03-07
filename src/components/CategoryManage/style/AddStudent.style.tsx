@@ -77,6 +77,7 @@ export const ChoiceInfoWrap = styled.div`
   border: 1px solid #e6e6e6;
   border-top: none;
 
+  justify-content: space-evenly;
   overflow: scroll;
 
   scrollbar-width: none; /* 파이어폭스에서 스크롤바를 안보이게 */
@@ -86,6 +87,12 @@ export const ChoiceInfoWrap = styled.div`
     display: none;
   }
 `;
+
+export const StudentWrap = styled.div``;
+
+export const ParantWrap = styled.div``;
+
+export const TeacherWrap = styled.div``;
 
 export const GradeInfo = styled.span`
   color: #000;

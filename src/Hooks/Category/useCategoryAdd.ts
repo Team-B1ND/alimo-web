@@ -18,9 +18,9 @@ const useCategoryAdd = () => {
   const navigate = useNavigate();
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [selectedRole, setSelectedRole] = useState<string>("");
-  const [grade, setGrade] = useState<string | null>();
-  const [cls, setCls] = useState<string | null>();
+  const [role, setMemberRole] = useState<string>("");
+  const [grade, setGrade] = useState<number | null>();
+  const [cls, setCls] = useState<number | null>(null);
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberId, setMemberId] = useState<number[]>([]);
   const [memberName, setMemberName] = useState<string[]>([]);
@@ -28,25 +28,7 @@ const useCategoryAdd = () => {
 
   useEffect(() => {
     getMemberList();
-  }, []);
-
-  const onClickSelectedRole = (itemName: string) => {
-    setSelectedRole((prev) => (itemName === prev ? "" : prev));
-
-    console.log(selectedRole);
-  };
-
-  const onClickSelectedGrade = (itemName: string) => {
-    if (selectedRole.substring(1, 2) === "학년") {
-      setSelectedRole("STUDENT");
-    } else {
-      setGrade((prev) => (itemName === prev ? "" : prev));
-    }
-  };
-
-  const onClickSelectedCls = (itemName: string) => {
-    setCls((prev) => (itemName === prev ? "" : prev));
-  };
+  }, [role, grade, cls]);
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -63,6 +45,16 @@ const useCategoryAdd = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
+  const handleRole = (role: string, grade: any, room: any) => {
+    setMemberRole(role);
+    setGrade(grade);
+    setCls(room);
+  };
+
+  const handleRoom = (room: number) => {
+    setCls(room);
+  };
+
   const onClickAddCategory = async () => {
     try {
       const response = await axios.post(`${CONFIG.serverUrl}category/create`, {
@@ -77,25 +69,17 @@ const useCategoryAdd = () => {
     } catch (e) {
       showToast("error", "서버 통신 오류");
     }
-
-    console.log(selectedRole);
-    console.log(grade);
-    console.log(cls);
   };
 
   const getMemberList = async () => {
+    console.log(role);
+    console.log(grade);
+    console.log(cls);
     try {
       const response = await axios.get(`${CONFIG.serverUrl}member/member-list`, {
         params: {
-          pageRequest: {
-            page: 4,
-            size: 20,
-          },
-          getMemberRequest: {
-            memberKind: selectedRole,
-            grade: grade,
-            room: cls,
-          },
+          pageRequest: { page: 1, size: 1 },
+          getMemberRequest: { memberKind: role.toString(), grade: grade, room: cls },
         },
       });
       if (response.status === 200) {
@@ -112,11 +96,10 @@ const useCategoryAdd = () => {
     categoryName,
     selectedStudents,
     selectAccess,
-    onClickSelectedRole,
-    onClickSelectedGrade,
-    onClickSelectedCls,
     onClickAddStudent,
     onClickAccess,
+    handleRole,
+    handleRoom,
     onClickAddCategory,
   };
 };
