@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import CONFIG from "src/config/config.json";
 import SidbarInfo from "src/Hooks/Sidbar/useSiebar";
 import ProfileImg from "src/assets/img/profileimg.png";
+import { categoryListState } from "src/store/profile/ProfileStore";
+import { useRecoilValue } from "recoil";
 
 const UseProfile = () => {
   const { Name, image } = SidbarInfo();
-  const [Category , setCategory] = useState<string[]>([])
+  const [Category, setCategory] = useState<string[]>([]);
   const finalImage = image.length > 0 ? image : ProfileImg;
-  const Categorylist = async()=>{
-    const response = await axios.get(`${CONFIG.serverUrl}/member/category-list`,{
-      headers : {
-        Authorization : `Bearer ${""}`
-      }
-    })
-    setCategory(response.data.data.roles)
-  }
-
+  const CategoryListValue = useRecoilValue(categoryListState); // 값만
   useEffect(() => {
-    Categorylist();
+    setCategory(CategoryListValue)
   }, []);
+
   return {
     Name,
     image: finalImage,
