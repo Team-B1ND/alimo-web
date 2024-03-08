@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useSideBarNavigation from "src/util/useSideBarNavigation";
 import CONFIG from "src/config/config.json"
+import { categoryListState } from "src/store/profile/ProfileStore";
+import { useRecoilState } from "recoil";
+
 
 const Sidbar = () => {
   const navigate = useNavigate();
@@ -12,12 +15,33 @@ const Sidbar = () => {
   const [isSetting, setSetting] = useState(false);
   const [Name, setName] = useState("");
   const [image, setimage] = useState("");
+  const [Category, setCategory] = useState<string[]>([]);
+  const accestoken = localStorage.getItem("accestoken");
+  const [categoryList, setCategoryList] = useRecoilState(categoryListState); //
+  const Categorylist = async () => {
+    const response = await axios.get(
+      `${CONFIG.serverUrl}/member/category-list`,
+      {
+        headers: {
+          Authorization: `Bearer ${accestoken}`,
+        },
+      }
+    );
+    const CategoryData = response.data.data.roles;
+    setCategory(CategoryData);
+    setCategoryList(CategoryData);
+  };
+
+
+  useEffect(() => {
+    Categorylist();
+  }, []);
     const ProfileInfo = async()=>{
       
         try{
             const response = await axios.get(`${CONFIG.serverUrl}/member/info`,{
                 headers: {
-                    Authorization : `Bearer ${""}`
+                    Authorization : `Bearer ${accestoken}`
                 }
             });
             const userData = response.data.data;
