@@ -1,4 +1,4 @@
-import * as S from "src/components/WriteRead/WriteReadDetail/Comment/style/ReplyComment.style";
+import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
 import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
 import { useState, useRef } from "react";
 // import axios from "axios";

@@ -1,6 +1,6 @@
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImg from "src/assets/img/MyNotifyImg.svg";
-import * as S from "src/components/WriteRead/style/WriteRead.style";
+import * as S from "src/components/MyNotification/style/MyNotification.style";
 import { useNavigate } from "react-router-dom";
 
 const MyPostNotifyDummy = () => {

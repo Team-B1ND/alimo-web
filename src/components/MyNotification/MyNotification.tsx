@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "src/constants/SideBar/SideBar";
-import MyPostNotifyDummy from "src/components/WriteRead/MyPostNotify";
-import * as S from "src/components/WriteRead/style/WriteRead.style";
+import MyPostNotification from "src/components/MyNotification/MyPostNotification";
+import * as S from "src/components/MyNotification/style/MyNotification.style";
 import CONFIG from "src/config/config.json";
 import axios from "axios";
 
@@ -33,7 +33,7 @@ const MyWriteView = () => {
       <SideBar />
       <S.WriteReadView>
         <S.WriteReadWrap>
-          <MyPostNotifyDummy />
+          <MyPostNotification />
         </S.WriteReadWrap>
       </S.WriteReadView>
     </S.WriteRead>

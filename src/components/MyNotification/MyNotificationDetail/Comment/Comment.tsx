@@ -1,5 +1,5 @@
-import ReplyComment from "src/components/WriteRead/WriteReadDetail/Comment/ReplyComment";
-import * as S from "src/components/WriteRead/WriteReadDetail/Comment/style/Comment.style";
+import ReplyComment from "src/components/MyNotification/MyNotificationDetail/Comment/ReplyComment";
+import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/Comment.style";
 import ExampleProfile from "src/assets/img/ExampleProfile.png";
 import { useState } from "react";
 
