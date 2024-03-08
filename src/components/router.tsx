@@ -5,8 +5,8 @@ import Login from "./Login/Login";
 import Profile from "./Profile/profile";
 import Setting from "./SettingPage/setting";
 import Write from "./Write/Write";
-import WriteRead from "./MyNotification/MyNotification";
-import WriteReadDetail from "./MyNotification/MyNotificationDetail/MyNotificationDetail";
+import MyNotification from "./MyNotification/MyNotification";
+import MyNotificationDetail from "./MyNotification/MyNotificationDetail/MyNotificationDetail";
 import CategoryManage from "./CategoryManage/CategoryManage";
 import CategoryAdd from "./CategoryAdd/CategoryAdd";
 import EditCategory from "./CategoryEdit/EditCategory";
@@ -21,11 +21,11 @@ const Router = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/write" element={<Write />} />
-        <Route path="/write-read" element={<WriteRead />} />
+        <Route path="/write-read" element={<MyNotification />} />
         <Route path="/main" element={<CategoryManage />} />
         <Route path="/category-add" element={<CategoryAdd />} />
         <Route path="/category-edit" element={<EditCategory />} />
-        <Route path="/read" element={<WriteReadDetail />} />
+        <Route path="/write-read/:id" element={<MyNotificationDetail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="sidebar" element={<SideBar />} />
       </Routes>
