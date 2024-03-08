@@ -7,6 +7,7 @@ import uselogin from "src/Hooks/auth/useLogin";
 
 const Login = () => {
   const {
+    Loginloading,
     idValue,
     setIdValue,
     passwordValue,
@@ -79,7 +80,7 @@ const Login = () => {
               </S.PasswordWrap>
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={LoginButton}>
-              <S.LoginBtn>도담도담 계정으로 로그인</S.LoginBtn>
+              <S.LoginBtn>{Loginloading === true ? "로그인중" : "도담도담 계정으로 로그인"}</S.LoginBtn>
             </S.LoginBtnWrap>
           </S.LoginWrap>
         </S.LoginBox>
