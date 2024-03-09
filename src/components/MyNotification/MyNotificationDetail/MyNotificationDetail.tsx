@@ -1,8 +1,8 @@
 import SideBar from "src/constants/SideBar/SideBar";
 import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
-import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 import MyProfile from "src/assets/img/Profile-Dummy.jpg";
 import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
+import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
   interface Dummy {
