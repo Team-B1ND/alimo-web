@@ -1,34 +1,32 @@
 import styled from "styled-components";
 
-export const WriteRead = styled.div`
+export const MyNotification = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
 `;
 
-export const WriteReadView = styled.div`
+export const MyNotificationView = styled.div`
   width: 85vw;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: flex-end;
+`;
+
+export const MyNotificationWrap = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
 `;
 
-export const WriteReadWrap = styled.div`
-  width: 100%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin-top: 10vh;
-`;
-
-export const MyPostNotifyWrap = styled.div`
+export const MyPostNotificationWrap = styled.div`
   width: 95%;
   height: 20%;
   display: flex;
@@ -36,29 +34,30 @@ export const MyPostNotifyWrap = styled.div`
   justify-content: center;
 `;
 
-export const MyPostNotify = styled.div`
+export const MyPostNotification = styled.div`
   width: 95%;
-  height: 100%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   cursor: pointer;
 `;
 
-export const MyNotifyWrap = styled.div`
+export const MyNotificationBox = styled.div`
   width: 100%;
   height: 90%;
   display: flex;
   flex-direction: row;
 `;
 
-export const MyNotifyTextWrap = styled.div`
-  width: 80%;
+export const MyNotificationTextWrap = styled.div`
+  width: 60%;
   height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-`
+`;
 
 export const MyInfoWrap = styled.div`
   width: 100%;
@@ -89,7 +88,7 @@ export const MyName = styled.p`
   line-height: normal;
 `;
 
-export const MyNotifyDate = styled.p`
+export const MyNotificationDate = styled.p`
   color: #aaaaaa;
   font-family: Pretendard;
   font-size: 12px;
@@ -98,17 +97,17 @@ export const MyNotifyDate = styled.p`
   line-height: normal;
 `;
 
-export const MyContentWrap = styled.div`
+export const MyContentBoxWrap = styled.div`
   width: 95%;
   height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
 `;
 
-export const MyContentTitleBox = styled.div`
+export const MyContentTitleWrap = styled.div`
   width: 100%;
-  height: 30%;
+  height: auto;
+  margin: 10px 0px;
 `;
 
 export const MyContentTitle = styled.span`
@@ -120,9 +119,9 @@ export const MyContentTitle = styled.span`
   line-height: normal;
 `;
 
-export const MyContentBox = styled.div`
+export const MyContentWrap = styled.div`
   width: 100%;
-  height: 30%;
+  height: auto;
 `;
 
 export const MyContent = styled.span`
@@ -134,21 +133,20 @@ export const MyContent = styled.span`
   line-height: normal;
 `;
 
-export const MyNotifyImgWrap = styled.div`
-  width: 20%;
+export const MyNotificationImgWrap = styled.div`
+  width: 40%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
+  justify-content: flex-end;
+`;
 
-export const MyNotifyImg = styled.img`
-  width: auto;
+export const MyNotificationImg = styled.img`
+  max-width: 90%;
   height: 90%;
-`
+`;
 
-export const MyNotifyLine = styled.div`
+export const MyNotificationLine = styled.div`
   width: 98%;
   height: 1px;
   background-color: #f4f5f9;

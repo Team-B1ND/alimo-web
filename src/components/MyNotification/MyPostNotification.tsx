@@ -1,49 +1,44 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "src/components/MyNotification/style/MyNotification.style";
 
-const MyPostNotifyDummy = ({ notificationData }: any) => {
+const MyPostNotification = ({ notificationData }: any) => {
   const navigate = useNavigate();
   return (
-    <S.MyPostNotifyWrap>
-      <S.MyPostNotify
+    <S.MyPostNotificationWrap>
+      <S.MyPostNotification
         onClick={() =>
           navigate(`/write-read/${notificationData.notificationId}`)
         }>
-        <S.MyNotifyWrap>
-          <S.MyNotifyTextWrap>
+        <S.MyNotificationBox>
+          <S.MyNotificationTextWrap>
             <S.MyInfoWrap>
-              <S.MyProfile
-                src={notificationData.profileImage}
-                alt="내 프로필"
-              />
+              <S.MyProfile src={notificationData.profileImage} />
               <S.MyInfoText>
                 <S.MyName>{notificationData.name}</S.MyName>
-                <S.MyNotifyDate>{notificationData.createdAt}</S.MyNotifyDate>
+                <S.MyNotificationDate>
+                  {notificationData.createdAt}
+                </S.MyNotificationDate>
               </S.MyInfoText>
             </S.MyInfoWrap>
-            <S.MyContentWrap>
-              <S.MyContentTitleBox>
+            <S.MyContentBoxWrap>
+              <S.MyContentTitleWrap>
                 <S.MyContentTitle>{notificationData.title}</S.MyContentTitle>
-                <br />
-              </S.MyContentTitleBox>
-              <S.MyContentBox>
-                <S.MyContent>{notificationData.contents}</S.MyContent>
-              </S.MyContentBox>
-            </S.MyContentWrap>
-          </S.MyNotifyTextWrap>
-          <S.MyNotifyImgWrap>
+              </S.MyContentTitleWrap>
+              <S.MyContentWrap>
+                <S.MyContent>{notificationData.content}</S.MyContent>
+              </S.MyContentWrap>
+            </S.MyContentBoxWrap>
+          </S.MyNotificationTextWrap>
+          <S.MyNotificationImgWrap>
             {notificationData.images && notificationData.images.length > 0 && (
-              <S.MyNotifyImg
-                src={notificationData.images[0].fileUrl}
-                alt="공지 이미지"
-              />
+              <S.MyNotificationImg src={notificationData.images[0].fileUrl} />
             )}
-          </S.MyNotifyImgWrap>
-        </S.MyNotifyWrap>
-        <S.MyNotifyLine></S.MyNotifyLine>
-      </S.MyPostNotify>
-    </S.MyPostNotifyWrap>
+          </S.MyNotificationImgWrap>
+        </S.MyNotificationBox>
+        <S.MyNotificationLine></S.MyNotificationLine>
+      </S.MyPostNotification>
+    </S.MyPostNotificationWrap>
   );
 };
 
-export default MyPostNotifyDummy;
+export default MyPostNotification;
