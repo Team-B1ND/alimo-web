@@ -37,6 +37,8 @@ export const UserProfile = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-width: 250px;
+  min-height: 250px;
   width: calc(100vw - 75vw);
   height: calc(100vw - 75vw);
   border-radius: 20px;
@@ -55,6 +57,12 @@ export const profileImg = styled.div`
   width: 100px;
   height: 150px;
   gap: 10px;
+  span{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+  }
 `;
 export const User = styled.div`
   display: flex;
@@ -73,31 +81,20 @@ export const User = styled.div`
     line-height: normal;
   }
 `;
-export const ChangeFile = styled.form`
-  position: absolute;
-  z-index: 5;
-  width: 30px;
-  height: 30px;
-  right: 5px;
-  top: 80px;
-  cursor: pointer;
-  img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-`;
-export const SetImg = styled.img`
+
+export const SetImg = styled.div`
   width: 100px;
   height: 100px;
-  border-radius: 50%;
   border: none;
-`;
-export const Changbutton = styled.input`
-  display: none;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
 `;
 export const Category = styled.div`
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
   position: relative;
   width: 90%;
@@ -108,9 +105,9 @@ export const IndividualCategories = styled.div`
   display: flex;
   position: relative;
   width: auto;
-  min-width: 50px; 
+  min-width: 50px;
   height: 20px;
-  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+  white-space: nowrap;
   overflow: hidden;
   padding: 6px var(--ExtraLarge, 16px);
   justify-content: center;
@@ -126,5 +123,5 @@ export const ChangSucces = styled.img`
   width: 24px;
   height: 24px;
   right: 15px;
-  top: 10px;
+  top: 20px;
 `;
