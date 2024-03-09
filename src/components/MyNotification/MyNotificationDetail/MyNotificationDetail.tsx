@@ -64,51 +64,51 @@ const WriteReadDetail = () => {
     return answer;
   };
   return (
-    <S.WriteReadDetailWrap>
+    <S.MyNotificationDetailWrap>
       <SideBar />
-      <S.WriteReadDetailBox>
-        <S.WriteReadDetail>
-          <S.MyPostNotifyWrap>
-            <S.MyNotifyInfoWrap>
+      <S.MyNotificationDetailBox>
+        <S.MyNotificationDetail>
+          <S.MyNotification>
+            <S.MyNotificationInfoWrap>
               <S.MyProfile src={notificationDetailData.profileImage} />
               <S.MyInfoWrap>
                 <S.MyName>{notificationDetailData.name}</S.MyName>
-                <S.MyNotifyDate>
+                <S.MyNotificationDate>
                   {notificationDetailData.createdAt}
-                </S.MyNotifyDate>
+                </S.MyNotificationDate>
               </S.MyInfoWrap>
-            </S.MyNotifyInfoWrap>
-            <S.MyNotifyTitleWrap>
-              <S.MyNotifyTitle>{notificationDetailData.title}</S.MyNotifyTitle>
-            </S.MyNotifyTitleWrap>
-            <S.MyNotifyImgWrap>
+            </S.MyNotificationInfoWrap>
+            <S.MyNotificationTitleWrap>
+              <S.MyNotificationTitle>{notificationDetailData.title}</S.MyNotificationTitle>
+            </S.MyNotificationTitleWrap>
+            <S.MyNotificationImgWrap>
               {notificationDetailData.Images &&
                 notificationDetailData.Images.length > 0 && (
-                  <S.MyNotifyImg
+                  <S.MyNotificationImg
                     src={notificationDetailData.Images[0].fileUrl}
                   />
                 )}
-            </S.MyNotifyImgWrap>
-            <S.MyNotifyContentWrap>
-              <S.MyNotifyContent>
+            </S.MyNotificationImgWrap>
+            <S.MyNotificationContentWrap>
+              <S.MyNotificationContent>
                 {notificationDetailData.content}
-              </S.MyNotifyContent>
-            </S.MyNotifyContentWrap>
-            <S.MyNotifyEmoticonWrap>
-              <S.MyNotifyEmoticonBox>
+              </S.MyNotificationContent>
+            </S.MyNotificationContentWrap>
+            <S.MyNotificationEmoticonWrap>
+              <S.MyNotificationEmoticonBox>
                 {notificationEmojiData.map((data: any) => (
                   <S.EmoticonBox>
                     <S.Emoticon>{ChangeEmoji(data.emojiName)}</S.Emoticon>
                     <S.EmoticonCnt>{data.count}</S.EmoticonCnt>
                   </S.EmoticonBox>
                 ))}
-              </S.MyNotifyEmoticonBox>
-            </S.MyNotifyEmoticonWrap>
-          </S.MyPostNotifyWrap>
-        </S.WriteReadDetail>
+              </S.MyNotificationEmoticonBox>
+            </S.MyNotificationEmoticonWrap>
+          </S.MyNotification>
+        </S.MyNotificationDetail>
         <Comment />
-      </S.WriteReadDetailBox>
-    </S.WriteReadDetailWrap>
+      </S.MyNotificationDetailBox>
+    </S.MyNotificationDetailWrap>
   );
 };
 
