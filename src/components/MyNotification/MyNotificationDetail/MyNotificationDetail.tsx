@@ -1,17 +1,67 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import CONFIG from "src/config/config.json";
 import SideBar from "src/constants/SideBar/SideBar";
 import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
-import MyProfile from "src/assets/img/Profile-Dummy.jpg";
-import MyNotifyImage from "src/assets/img/MyNotifyDetailImg.svg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
-  interface Dummy {
-    title: string;
-    contents: string;
-  }
-  const DUMMY_CONTENT: Dummy = {
-    title: `<2023년 대한민국 고졸인재 채용엑스포 V-log 공모전 안내>`,
-    contents: `위 공모전에 관심있는 학생은 이진주 선생님에게 카카오워크로 연락주세요~!`,
+  const accessToken =
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MDk5ODA1MDEsImV4cCI6MTcwOTk4MjMwMX0.oJ6bQiZF63BLeRBXm8Sr8NPXAy_DcxGxdWxZYNQFKN9uYwXv2Bpu-NjyobwhazhIMdoyOpZcFpmQZA0NrNZoxQ";
+  const { id } = useParams();
+  const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
+  const [notificationEmojiData, setNotificationEmojiData] = useState<any>([]);
+
+  useEffect(() => {
+    const NotificationRead = async () => {
+      await axios
+        .get(`${CONFIG.serverUrl}/notification/read/${id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((res) => {
+          setNotificationDetailData(res.data.data);
+        });
+    };
+
+    const NotificationEmojiLoad = async () => {
+      await axios
+        .get(`${CONFIG.serverUrl}/emoji/load/${id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((res) => {
+          setNotificationEmojiData(res.data.data);
+        });
+    };
+
+    NotificationRead();
+    NotificationEmojiLoad();
+  }, []);
+
+  const ChangeEmoji = (emoji: string) => {
+    let answer = "";
+    switch (emoji) {
+      case "OKAY":
+        answer = "👌";
+        break;
+      case "LOVE":
+        answer = "😍";
+        break;
+      case "LAUGH":
+        answer = "😂";
+        break;
+      case "SAD":
+        answer = "😢";
+        break;
+      case "ANGRY":
+        answer = "😡";
+        break;
+    }
+    return answer;
   };
   return (
     <S.WriteReadDetailWrap>
@@ -20,43 +70,38 @@ const WriteReadDetail = () => {
         <S.WriteReadDetail>
           <S.MyPostNotifyWrap>
             <S.MyNotifyInfoWrap>
-              <S.MyProfile src={MyProfile} alt="내 프로필" />
+              <S.MyProfile src={notificationDetailData.profileImage} />
               <S.MyInfoWrap>
-                <S.MyName>이진주</S.MyName>
-                <S.MyNotifyDate>2023년 4월 20일(목) 02:56</S.MyNotifyDate>
+                <S.MyName>{notificationDetailData.name}</S.MyName>
+                <S.MyNotifyDate>
+                  {notificationDetailData.createdAt}
+                </S.MyNotifyDate>
               </S.MyInfoWrap>
             </S.MyNotifyInfoWrap>
             <S.MyNotifyTitleWrap>
-              <S.MyNotifyTitle>{DUMMY_CONTENT.title}</S.MyNotifyTitle>
+              <S.MyNotifyTitle>{notificationDetailData.title}</S.MyNotifyTitle>
             </S.MyNotifyTitleWrap>
             <S.MyNotifyImgWrap>
-              <S.MyNotifyImg src={MyNotifyImage} alt="공지 이미지" />
+              {notificationDetailData.Images &&
+                notificationDetailData.Images.length > 0 && (
+                  <S.MyNotifyImg
+                    src={notificationDetailData.Images[0].fileUrl}
+                  />
+                )}
             </S.MyNotifyImgWrap>
             <S.MyNotifyContentWrap>
-              <S.MyNotifyContent>{DUMMY_CONTENT.contents}</S.MyNotifyContent>
+              <S.MyNotifyContent>
+                {notificationDetailData.content}
+              </S.MyNotifyContent>
             </S.MyNotifyContentWrap>
             <S.MyNotifyEmoticonWrap>
               <S.MyNotifyEmoticonBox>
-                <S.EmoticonBox>
-                  <S.Emoticon>👌</S.Emoticon>
-                  <S.EmoticonCnt>1</S.EmoticonCnt>
-                </S.EmoticonBox>
-                <S.EmoticonBox>
-                  <S.Emoticon>😍</S.Emoticon>
-                  <S.EmoticonCnt>0</S.EmoticonCnt>
-                </S.EmoticonBox>
-                <S.EmoticonBox>
-                  <S.Emoticon>😂</S.Emoticon>
-                  <S.EmoticonCnt>30</S.EmoticonCnt>
-                </S.EmoticonBox>
-                <S.EmoticonBox>
-                  <S.Emoticon>😢</S.Emoticon>
-                  <S.EmoticonCnt>15</S.EmoticonCnt>
-                </S.EmoticonBox>
-                <S.EmoticonBox>
-                  <S.Emoticon>😡</S.Emoticon>
-                  <S.EmoticonCnt>30</S.EmoticonCnt>
-                </S.EmoticonBox>
+                {notificationEmojiData.map((data: any) => (
+                  <S.EmoticonBox>
+                    <S.Emoticon>{ChangeEmoji(data.emojiName)}</S.Emoticon>
+                    <S.EmoticonCnt>{data.count}</S.EmoticonCnt>
+                  </S.EmoticonBox>
+                ))}
               </S.MyNotifyEmoticonBox>
             </S.MyNotifyEmoticonWrap>
           </S.MyPostNotifyWrap>

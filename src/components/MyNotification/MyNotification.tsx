@@ -7,27 +7,27 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 
 const MyNotification = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MDk5NzI1MjAsImV4cCI6MTcwOTk3NDMyMH0.gmc7W2U5BqMOLqsNtsprFKlsaDEvxPsxzMp-seQ2bRrqy2BLjsp__QoLS-Mo3DAcBJV9Fp3wojt-daFTzSSJuA";
-  interface NotificationType {
-    notificationId: number;
-  }
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MDk5ODA1MDEsImV4cCI6MTcwOTk4MjMwMX0.oJ6bQiZF63BLeRBXm8Sr8NPXAy_DcxGxdWxZYNQFKN9uYwXv2Bpu-NjyobwhazhIMdoyOpZcFpmQZA0NrNZoxQ";
   const [notificationData, setNotificationData] = useState<NotificationType[]>(
     []
   );
+  interface NotificationType {
+    notificationId: number;
+  }
+
   useEffect(() => {
     const MyNotificationLoad = async () => {
       try {
-        const response = await axios.get(
-          `${CONFIG.serverUrl}/notification/load/my`,
-          {
+        await axios
+          .get(`${CONFIG.serverUrl}/notification/load/my`, {
             params: { page: 1, size: 50 },
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
-          }
-        );
-
-        setNotificationData(response.data.data);
+          })
+          .then((res) => {
+            setNotificationData(res.data.data);
+          });
       } catch (error) {
         console.log(error);
       }
@@ -35,7 +35,6 @@ const MyNotification = () => {
 
     MyNotificationLoad();
   }, []);
-
   return (
     <S.MyNotification>
       <SideBar />

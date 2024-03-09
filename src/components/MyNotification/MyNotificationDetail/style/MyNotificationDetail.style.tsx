@@ -94,7 +94,7 @@ export const MyNotifyImgWrap = styled.div`
 `;
 
 export const MyNotifyImg = styled.img`
-  width: auto;
+  max-width: 100%;
   height: auto;
 `;
 
