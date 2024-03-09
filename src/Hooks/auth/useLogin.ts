@@ -51,7 +51,7 @@ const Uselogin = () => {
         console.log(lastElement);
         const response = await axios.post(`${CONFIG.serverUrl}/sign-in/dodam`, {
           code: lastElement,
-          fcmToken: "",
+          fcmToken: null,
         });
         localStorage.setItem("accestoken", response.data.data.accessToken);
 

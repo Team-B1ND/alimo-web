@@ -6,13 +6,13 @@ import Header from "../../constants/Header/Header";
 import useWrite from "src/Hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
+import PreviewImage from "./PreviewImage";
 
 const Write = () => {
   const {
     title,
     context,
     notAllow,
-    viewImage,
     image,
     CategoryList,
     onChangeTitle,
@@ -20,7 +20,6 @@ const Write = () => {
     imageInputRef,
     handleFileChange,
     handleImageChange,
-    handleDeleteViewImage,
     handleImageClick,
     fileName,
     selectedCategory,
@@ -36,11 +35,7 @@ const Write = () => {
         <S.InputWrap>
           <S.WriteTitleInput placeholder="제목을 입력해주세요" type="search" value={title} onChange={onChangeTitle} />
           <S.ViewImageWrap>
-            {viewImage.map((image, idx) => (
-              <div key={idx}>
-                <S.ViewImage src={image.url} alt={image.alt} onClick={() => handleDeleteViewImage(idx)} />
-              </div>
-            ))}
+            <PreviewImage previewImage={image ? image : []} />
           </S.ViewImageWrap>
           <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
           <S.FileWrap>

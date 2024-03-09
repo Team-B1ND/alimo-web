@@ -1,5 +1,5 @@
 import React from "react";
-import {RecoilRoot} from "recoil";
+import { RecoilRoot } from "recoil";
 import GlobalStyles from "src/style/global";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login/Login";

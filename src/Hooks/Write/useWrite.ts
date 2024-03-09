@@ -6,15 +6,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-
-interface Category {
-  name: string;
-}
-
-interface ImagePreView {
-  url: string;
-  alt: string;
-}
+import { Category } from "src/types/Write/interface";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -23,7 +15,6 @@ const useWrite = () => {
   const [file, setFile] = useState<File[]>();
   const [image, setImage] = useState<File[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [viewImage, setViewImage] = useState<ImagePreView[]>([]);
   const [fileName, setFileName] = useState<string>("");
   const [imageName, setImageName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
@@ -59,21 +50,15 @@ const useWrite = () => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     setFile(fileArray);
-    setFileName(fileArray?.[0].name);
+    fileArray.map((name, idx) => {
+      setFileName(fileArray?.[idx].name);
+    });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    const fileArray = Array.prototype.slice.call(files);
+    const fileArray: File[] = Array.prototype.slice.call(files);
     setImage(fileArray);
-  };
-
-  const handleDeleteViewImage = (index: number) => {
-    setViewImage((prevImages) => {
-      const updateImages = [...prevImages];
-      updateImages.splice(index, 1);
-      return updateImages;
-    });
   };
 
   const onClickAddCategory = (CategoryName: string) => {
@@ -84,7 +69,6 @@ const useWrite = () => {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
     }
-    console.log(selectedCategory);
   };
 
   const allowWriteButton = async () => {
@@ -132,6 +116,7 @@ const useWrite = () => {
           formData.append("image", file);
         });
       }
+
       try {
         console.log(formData);
         console.log(accessToken);
@@ -160,7 +145,6 @@ const useWrite = () => {
     title,
     context,
     notAllow,
-    viewImage,
     image,
     CategoryList,
     onChangeTitle,
@@ -169,7 +153,6 @@ const useWrite = () => {
     handleImageClick,
     handleFileChange,
     handleImageChange,
-    handleDeleteViewImage,
     fileName,
     selectedCategory,
     onClickAddCategory,
