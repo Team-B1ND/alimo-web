@@ -18,17 +18,13 @@ const useCategoryAdd = () => {
   const navigate = useNavigate();
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [role, setMemberRole] = useState<string>("");
-  const [grade, setGrade] = useState<number | null>();
+  const [role, setMemberRole] = useState<string | null>(null);
+  const [grade, setGrade] = useState<number | null>(null);
   const [cls, setCls] = useState<number | null>(null);
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberId, setMemberId] = useState<number[]>([]);
   const [memberName, setMemberName] = useState<string[]>([]);
   const { categoryName } = useCategoryManage();
-
-  useEffect(() => {
-    getMemberList();
-  }, [role, grade, cls]);
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -45,14 +41,38 @@ const useCategoryAdd = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const handleRole = (role: string, grade: any, room: any) => {
+  const handleRole = async (role: string, grade: any, room: any) => {
     setMemberRole(role);
     setGrade(grade);
     setCls(room);
-  };
+    console.log(role);
+    console.log(grade);
+    console.log(cls);
 
-  const handleRoom = (room: number) => {
-    setCls(room);
+    try {
+      const response = await axios.get(`${CONFIG.serverUrl}/member/member-list`, {
+        params: {
+          page: 4,
+          size: 15,
+          memberKind: role !== null ? role.toString() : null,
+          grade: grade,
+          room: cls,
+        },
+        headers: {
+          Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlNUVURFTlQiLCJpYXQiOjE3MDk4NjU0MTAsImV4cCI6MTcwOTg2NzIxMH0.csSDkyOlwPrRxBaEmymA46lcv4PecqBo236WUwxhEjKk7wrvdlcPzdxMxTTpQKNqsAoiQEowecz-IwLrX6TjXg`,
+        },
+      });
+      if (response.status === 200) {
+        setMemberInfo(response.data.data);
+        setMemberId(response.data.data.memberId);
+        setMemberName(response.data.data.name);
+        console.log(memberInfo);
+        console.log(memberId);
+        console.log(memberName);
+      }
+    } catch (e) {
+      showToast("error", "멤버 리스트 불러오기 실패");
+    }
   };
 
   const onClickAddCategory = async () => {
@@ -71,27 +91,6 @@ const useCategoryAdd = () => {
     }
   };
 
-  const getMemberList = async () => {
-    console.log(role);
-    console.log(grade);
-    console.log(cls);
-    try {
-      const response = await axios.get(`${CONFIG.serverUrl}member/member-list`, {
-        params: {
-          pageRequest: { page: 1, size: 1 },
-          getMemberRequest: { memberKind: role.toString(), grade: grade, room: cls },
-        },
-      });
-      if (response.status === 200) {
-        setMemberInfo(response.data.data);
-        setMemberId(memberInfo.map((id) => id.memberId));
-        setMemberName(memberInfo.map((name) => name.name));
-      }
-    } catch (e) {
-      showToast("error", "멤버 리스트 불러오기 실패");
-    }
-  };
-
   return {
     categoryName,
     selectedStudents,
@@ -99,7 +98,6 @@ const useCategoryAdd = () => {
     onClickAddStudent,
     onClickAccess,
     handleRole,
-    handleRoom,
     onClickAddCategory,
   };
 };
