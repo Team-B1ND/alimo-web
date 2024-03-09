@@ -14,6 +14,7 @@ const Write = () => {
     notAllow,
     viewImage,
     image,
+    CategoryList,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
@@ -56,36 +57,14 @@ const Write = () => {
           <S.SendCategoryWrap>
             <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
             <S.CategoryWrap>
-              <S.Cateogory
-                onClick={() => onClickAddCategory("4반")}
-                isClicked={selectedCategory.some((category) => category.name === "4반")}
-              >
-                4반
-              </S.Cateogory>
-              <S.Cateogory
-                onClick={() => onClickAddCategory("B2ND")}
-                isClicked={selectedCategory.some((category) => category.name === "B2ND")}
-              >
-                B2ND
-              </S.Cateogory>
-              <S.Cateogory
-                onClick={() => onClickAddCategory("B3ND")}
-                isClicked={selectedCategory.some((category) => category.name === "B3ND")}
-              >
-                B3ND
-              </S.Cateogory>
-              <S.Cateogory
-                onClick={() => onClickAddCategory("B4ND")}
-                isClicked={selectedCategory.some((category) => category.name === "B4ND")}
-              >
-                B4ND
-              </S.Cateogory>
-              <S.Cateogory
-                onClick={() => onClickAddCategory("B5ND")}
-                isClicked={selectedCategory.some((category) => category.name === "B5ND")}
-              >
-                B5ND
-              </S.Cateogory>
+              {CategoryList.map((categoryName) => (
+                <S.Cateogory
+                  onClick={() => onClickAddCategory(`${categoryName}`)}
+                  isClicked={selectedCategory.some((category) => category.name === `${categoryName}`)}
+                >
+                  {categoryName}
+                </S.Cateogory>
+              ))}
             </S.CategoryWrap>
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>

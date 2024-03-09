@@ -30,7 +30,7 @@ const Uselogin = () => {
     }
   };
 
-  const redirectUrlvalue = `${CONFIG.serverUrl}redirect`;
+  const redirectUrlvalue = `${CONFIG.serverUrl}/redirect`;
   const LoginButton = async () => {
     SetLoginloading(true);
     if (idValue === "" || passwordValue === "") {
@@ -42,25 +42,25 @@ const Uselogin = () => {
         clientId: `${CONFIG.clientId}`,
         redirectUrl: redirectUrlvalue,
       });
-      
+
       try {
         const [DAuth] = await Promise.all([DAuthPromise]);
         const url = DAuth.data.data.location;
         const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
         console.log(lastElement);
-        const response = await axios.post(`${CONFIG.serverUrl}sign-in/dodam`, {
+        const response = await axios.post(`${CONFIG.serverUrl}/sign-in/dodam`, {
           code: lastElement,
           fcmToken: "",
         });
-        localStorage.setItem("accestoken",response.data.accessToken)
-        
+        localStorage.setItem("accestoken", response.data.data.accessToken);
+
         showToast("success", "로그인 성공");
         navigate("/main");
       } catch (error) {
         showToast("error", "통신 오류가 발생했습니다.");
       }
-    }      
+    }
   };
 
   return {

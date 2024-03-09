@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
+import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import Swal from "sweetalert2";
-import { customAxios } from "src/lib/Axios/CustomAxios";
-import { config } from "process";
 import CONFIG from "src/config/config.json";
+import { categoryListState } from "src/store/profile/ProfileStore";
 
 interface Category {
   name: string;
@@ -29,6 +29,9 @@ const useWrite = () => {
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const accessToken = localStorage.getItem("accestoken");
+
+  const CategoryList = useRecoilValue(categoryListState);
 
   useEffect(() => {
     if (title && context && selectedCategory.length !== 0) {
@@ -38,7 +41,7 @@ const useWrite = () => {
     }
   }, [title, context, selectedCategory]);
 
-  const formData = new FormData();
+  var formData = new FormData();
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -81,6 +84,7 @@ const useWrite = () => {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
     }
+    console.log(selectedCategory);
   };
 
   const allowWriteButton = async () => {
@@ -122,17 +126,20 @@ const useWrite = () => {
           formData.append("file", file);
         });
       }
+
       if (image) {
         image.map((file) => {
           formData.append("image", file);
         });
       }
-
       try {
+        console.log(formData);
+        console.log(accessToken);
+
         const response = await axios.post(`${CONFIG.serverUrl}/notification/generate`, formData, {
           headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "multipart/form-data",
-            Authorization: `#`,
           },
         });
 
@@ -155,6 +162,7 @@ const useWrite = () => {
     notAllow,
     viewImage,
     image,
+    CategoryList,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
