@@ -61,6 +61,10 @@ const useWrite = () => {
     setImage(fileArray);
   };
 
+  const deletePreviewImage = () => {
+    setImage([]);
+  };
+
   const onClickAddCategory = (CategoryName: string) => {
     const isSelected = selectedCategory.some((category) => category.name === CategoryName);
     if (isSelected) {
@@ -153,6 +157,7 @@ const useWrite = () => {
     handleImageClick,
     handleFileChange,
     handleImageChange,
+    deletePreviewImage,
     fileName,
     selectedCategory,
     onClickAddCategory,

@@ -20,6 +20,7 @@ const Write = () => {
     imageInputRef,
     handleFileChange,
     handleImageChange,
+    deletePreviewImage,
     handleImageClick,
     fileName,
     selectedCategory,
@@ -33,8 +34,8 @@ const Write = () => {
       <Header />
       <S.WriteView>
         <S.InputWrap>
-          <S.WriteTitleInput placeholder="제목을 입력해주세요" type="search" value={title} onChange={onChangeTitle} />
-          <S.ViewImageWrap>
+          <S.WriteTitleInput placeholder="제목을 입력해주세요" type="text" value={title} onChange={onChangeTitle} />
+          <S.ViewImageWrap onClick={deletePreviewImage}>
             <PreviewImage previewImage={image ? image : []} />
           </S.ViewImageWrap>
           <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
