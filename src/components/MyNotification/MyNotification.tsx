@@ -7,7 +7,7 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 
 const MyNotification = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MDk5ODA1MDEsImV4cCI6MTcwOTk4MjMwMX0.oJ6bQiZF63BLeRBXm8Sr8NPXAy_DcxGxdWxZYNQFKN9uYwXv2Bpu-NjyobwhazhIMdoyOpZcFpmQZA0NrNZoxQ";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAwNzI2MjYsImV4cCI6MTcxMDA3NDQyNn0.KEnCDS9E9ijknnqRQEQsLltSv6yoRUKtLS9RGVQ5XtHmIbS34GfdZd3R7Cba1_4YxN_mtWp1Q8vuQsFtDcALaA";
   const [notificationData, setNotificationData] = useState<NotificationType[]>(
     []
   );
@@ -32,7 +32,6 @@ const MyNotification = () => {
         console.log(error);
       }
     };
-
     MyNotificationLoad();
   }, []);
   return (
