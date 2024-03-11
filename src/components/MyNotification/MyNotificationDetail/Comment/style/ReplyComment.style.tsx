@@ -55,7 +55,7 @@ export const ReplyCommentInput = styled.textarea`
   line-height: normal;
   border: none;
   outline: none;
-  padding-bottom: 5px;
+  padding-bottom: 2px;
   border-bottom: 1px solid var(--Gray500, #aaa);
 `;
 

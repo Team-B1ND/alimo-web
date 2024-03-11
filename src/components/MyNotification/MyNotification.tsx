@@ -8,7 +8,7 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 
 const MyNotification = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNDk0MTAsImV4cCI6MTcxMDE1MTIxMH0.TWvtYGqGWoWBopmDWnWljhvlO6X4JqFa6AoYJnyPlO9AUiNxInfv0YXu9u0A7s3IZuTcJt8JCilHZLA7uKRWdQ";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNjA2NDIsImV4cCI6MTcxMDE2MjQ0Mn0.JgRoR3w05n_gz51yfXS8_wydO4rHEbpxPVj_dmb2gvSs3Vxv7yGG1P_9O6fCMG9D0_MAARpUB_c8JbcQgA-lUw";
   const [notificationData, setNotificationData] = useState<
     MyNotificationData[]
   >([]);
