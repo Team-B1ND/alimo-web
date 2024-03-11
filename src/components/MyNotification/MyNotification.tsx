@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import SideBar from "src/constants/SideBar/SideBar";
@@ -7,20 +8,17 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 
 const MyNotification = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAwNzI2MjYsImV4cCI6MTcxMDA3NDQyNn0.KEnCDS9E9ijknnqRQEQsLltSv6yoRUKtLS9RGVQ5XtHmIbS34GfdZd3R7Cba1_4YxN_mtWp1Q8vuQsFtDcALaA";
-  const [notificationData, setNotificationData] = useState<NotificationType[]>(
-    []
-  );
-  interface NotificationType {
-    notificationId: number;
-  }
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxMjExNDMsImV4cCI6MTcxMDEyMjk0M30.zv_Mpgnv2YmoCn6jztwzxHQajfnMkIFGgW4qetpqZaSlfwfKRizdzWoW72ixDhLRdl15Y0WmnlJpb8Pe9pcsRw";
+  const [notificationData, setNotificationData] = useState<
+    MyNotificationData[]
+  >([]);
 
   useEffect(() => {
     const MyNotificationLoad = async () => {
       try {
         await axios
           .get(`${CONFIG.serverUrl}/notification/load/my`, {
-            params: { page: 1, size: 50 },
+            params: { page: 1, size: 15 },
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },

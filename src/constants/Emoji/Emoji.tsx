@@ -6,7 +6,7 @@ import * as S from "src/constants/Emoji/style/Emoji.style";
 
 const Emoji = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAwNzI2MjYsImV4cCI6MTcxMDA3NDQyNn0.KEnCDS9E9ijknnqRQEQsLltSv6yoRUKtLS9RGVQ5XtHmIbS34GfdZd3R7Cba1_4YxN_mtWp1Q8vuQsFtDcALaA";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAwNzkxODIsImV4cCI6MTcxMDA4MDk4Mn0.vOMTrCYqCY3j1DgOdw90etjv9XZYLbjtD_l4er-mQNGJSJeWQdZbJ7Y-FM05VcBCk6UzIC3GTyjS2u_sg6Wpqw";
   const { id } = useParams();
   const [notificationEmojiData, setNotificationEmojiData] = useState<any>([]);
 

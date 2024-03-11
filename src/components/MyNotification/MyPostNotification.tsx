@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style/MyNotification.style";
 
-const MyPostNotification = ({ notificationData }: any) => {
+interface Props {
+  notificationData: MyNotificationData;
+}
+
+const MyPostNotification = ({ notificationData }: Props) => {
   const navigate = useNavigate();
   return (
     <S.MyPostNotificationWrap>
