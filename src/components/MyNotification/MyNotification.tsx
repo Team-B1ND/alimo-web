@@ -8,7 +8,7 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 
 const MyNotification = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxMjExNDMsImV4cCI6MTcxMDEyMjk0M30.zv_Mpgnv2YmoCn6jztwzxHQajfnMkIFGgW4qetpqZaSlfwfKRizdzWoW72ixDhLRdl15Y0WmnlJpb8Pe9pcsRw";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNDk0MTAsImV4cCI6MTcxMDE1MTIxMH0.TWvtYGqGWoWBopmDWnWljhvlO6X4JqFa6AoYJnyPlO9AUiNxInfv0YXu9u0A7s3IZuTcJt8JCilHZLA7uKRWdQ";
   const [notificationData, setNotificationData] = useState<
     MyNotificationData[]
   >([]);
@@ -18,7 +18,7 @@ const MyNotification = () => {
       try {
         await axios
           .get(`${CONFIG.serverUrl}/notification/load/my`, {
-            params: { page: 1, size: 15 },
+            params: { page: 1, size: 100 },
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },

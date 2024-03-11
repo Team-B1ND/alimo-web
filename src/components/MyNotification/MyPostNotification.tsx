@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style/MyNotification.style";
@@ -7,7 +8,13 @@ interface Props {
 }
 
 const MyPostNotification = ({ notificationData }: Props) => {
+  console.log(notificationData.images);
   const navigate = useNavigate();
+  const [isImageError, setIsImageError] = useState<boolean>(true);
+
+  const handleImageError = () => {
+    setIsImageError(false);
+  };
   return (
     <S.MyPostNotificationWrap>
       <S.MyPostNotification
@@ -35,8 +42,11 @@ const MyPostNotification = ({ notificationData }: Props) => {
             </S.MyContentBoxWrap>
           </S.MyNotificationTextWrap>
           <S.MyNotificationImgWrap>
-            {notificationData.images && notificationData.images.length > 0 && (
-              <S.MyNotificationImg src={notificationData.images[0].fileUrl} />
+            {notificationData.images && notificationData.images.length > 0 && isImageError && (
+              <S.MyNotificationImg
+                src={notificationData.images[0].fileUrl}
+                onError={handleImageError}
+              />
             )}
           </S.MyNotificationImgWrap>
         </S.MyNotificationBox>

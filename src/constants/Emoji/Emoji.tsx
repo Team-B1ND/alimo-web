@@ -10,7 +10,7 @@ const Emoji = () => {
     count: number;
   }
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAwNzkxODIsImV4cCI6MTcxMDA4MDk4Mn0.vOMTrCYqCY3j1DgOdw90etjv9XZYLbjtD_l4er-mQNGJSJeWQdZbJ7Y-FM05VcBCk6UzIC3GTyjS2u_sg6Wpqw";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNDk0MTAsImV4cCI6MTcxMDE1MTIxMH0.TWvtYGqGWoWBopmDWnWljhvlO6X4JqFa6AoYJnyPlO9AUiNxInfv0YXu9u0A7s3IZuTcJt8JCilHZLA7uKRWdQ";
   const { id } = useParams();
   const [notificationEmojiData, setNotificationEmojiData] = useState<
     EmojiData[]
