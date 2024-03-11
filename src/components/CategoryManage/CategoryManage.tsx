@@ -7,8 +7,18 @@ import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import AddStudent from "./AddStudent";
 
 const CategoryManage = () => {
-  const { isClickedCategory, handleCategoryClick, onClickNewCategoryButton, showStudentList, handlePopUp, onClose } =
-    useCategoryManage();
+  const {
+    isClickedCategory,
+    createCategoryName,
+    categoryData,
+    categoryName,
+    memberCnt,
+    handleCategoryClick,
+    onClickNewCategoryButton,
+    showStudentList,
+    handlePopUp,
+    onClose,
+  } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
@@ -21,28 +31,14 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        <S.CategoryWrap>
-          <S.CategoryInfo onClick={() => handleCategoryClick("B1ND")} isClicked={isClickedCategory === "B1ND"}>
-            <S.CategoryName>B1ND</S.CategoryName>
-            <S.CategoryInMember>42</S.CategoryInMember>
-            <img src={MoreImg} />
-          </S.CategoryInfo>
-          <S.CategoryInfo onClick={() => handleCategoryClick("B2ND")} isClicked={isClickedCategory === "B2ND"}>
-            <S.CategoryName>B1ND</S.CategoryName>
-            <S.CategoryInMember>42</S.CategoryInMember>
-            <img src={MoreImg} />
-          </S.CategoryInfo>
-          <S.CategoryInfo onClick={() => handleCategoryClick("B3ND")} isClicked={isClickedCategory === "B3ND"}>
-            <S.CategoryName>B1ND</S.CategoryName>
-            <S.CategoryInMember>42</S.CategoryInMember>
-            <img src={MoreImg} />
-          </S.CategoryInfo>
-          <S.CategoryInfo onClick={() => handleCategoryClick("B4ND")} isClicked={isClickedCategory === "B4ND"}>
-            <S.CategoryName>B1ND</S.CategoryName>
-            <S.CategoryInMember>42</S.CategoryInMember>
-            <img src={MoreImg} />
-          </S.CategoryInfo>
-        </S.CategoryWrap>
+        {categoryData.map((name, idx) => (
+          <S.CategoryWrap key={idx}>
+            <S.CategoryInfo isClicked={isClickedCategory === `${categoryName}`}>
+              <S.CategoryName>{categoryName}</S.CategoryName>
+              <S.CategoryInMember>{memberCnt}</S.CategoryInMember>
+            </S.CategoryInfo>
+          </S.CategoryWrap>
+        ))}
       </S.CategoryManageView>
       <S.CategoryMemberWrap>
         <S.MemberManageWrap>

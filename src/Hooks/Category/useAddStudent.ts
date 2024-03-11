@@ -13,7 +13,7 @@ const useStudent = () => {
   const [isSelectedRole, setIsSelectedRole] = useState<string>("");
   const [grade, setGrade] = useState<number>();
   const [cls, setCls] = useState<number>();
-  const { categoryName } = useCategoryManage();
+  const { createCategoryName } = useCategoryManage();
 
   const onClickClickedStudent = async (studentName: string) => {
     const isSelected = isClicked.some((student) => student.name === studentName);

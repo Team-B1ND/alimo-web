@@ -24,7 +24,7 @@ const useCategoryAdd = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberId, setMemberId] = useState<number[]>([]);
   const [memberName, setMemberName] = useState<string[]>([]);
-  const { categoryName } = useCategoryManage();
+  const { createCategoryName } = useCategoryManage();
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -79,7 +79,7 @@ const useCategoryAdd = () => {
     try {
       const response = await axios.post(`${CONFIG.serverUrl}category/create`, {
         memberList: memberId,
-        categoryName: categoryName,
+        categoryName: createCategoryName,
       });
       if (response.status === 200) {
         showToast("success", "카테고리 생성 성공");
@@ -92,7 +92,7 @@ const useCategoryAdd = () => {
   };
 
   return {
-    categoryName,
+    createCategoryName,
     selectedStudents,
     selectAccess,
     onClickAddStudent,

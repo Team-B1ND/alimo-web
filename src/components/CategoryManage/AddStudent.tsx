@@ -9,7 +9,7 @@ import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
   const {
-    categoryName,
+    createCategoryName,
     selectedStudents,
     selectAccess,
     onClickAddStudent,
