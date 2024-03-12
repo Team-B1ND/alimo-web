@@ -9,7 +9,7 @@ import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyN
 
 const WriteReadDetail = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNjMxNzAsImV4cCI6MTcxMDE2NDk3MH0.MVczad3iYMZ-F4NTJYs_Ex20ozcOklYbQP8gJDB1ZeNIHx-BM1DgmlG84yMlzXKC-iDH9x2D5P1AG5i1mCq5qg";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAyMDMwNTksImV4cCI6MTcxMDIwNDg1OX0.8eCMSSfLEuHJjTxPhah86KLela_6yIijGbJmUvQSAJ6ILcKXb-ZG2qH3nY9YpdgYGtZllcmBZvy0_R7OJJ96tg";
   const { id } = useParams();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);

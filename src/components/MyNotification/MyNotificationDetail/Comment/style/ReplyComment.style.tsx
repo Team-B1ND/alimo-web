@@ -41,12 +41,12 @@ export const ReplyCommentName = styled.p`
 export const ReplyCommentWrap = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
   margin-top: 5px;
 `;
 
 export const ReplyCommentInput = styled.textarea`
-  width: 45%;
+  width: 50%;
+  height: auto;
   resize: none;
   font-family: Pretendard;
   font-size: 14px;
@@ -55,7 +55,7 @@ export const ReplyCommentInput = styled.textarea`
   line-height: normal;
   border: none;
   outline: none;
-  padding-bottom: 2px;
+  line-height: 25px;
   border-bottom: 1px solid var(--Gray500, #aaa);
 `;
 
