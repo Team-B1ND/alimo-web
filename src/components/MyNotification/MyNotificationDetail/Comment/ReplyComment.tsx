@@ -5,18 +5,18 @@ import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/s
 // import CONFIG from "src/config/config.json";
 
 const ReplyComment = () => {
-  const textareaRef = useRef(null);
-  const [replyComment, setReplyComment] = useState<string>("");
+  const replyCommentRef = useRef(null);
+  const [replyCommentValue, setReplyCommentValue] = useState<string>("");
 
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    textareaRef: React.RefObject<HTMLTextAreaElement>
+    replyCommentRef: React.RefObject<HTMLTextAreaElement>
   ) => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + "px";
-      setReplyComment(e.target.value);
+    if (replyCommentRef.current) {
+      replyCommentRef.current.style.height = "auto";
+      replyCommentRef.current.style.height =
+        replyCommentRef.current.scrollHeight + "px";
+      setReplyCommentValue(e.target.value);
     }
   };
 
@@ -43,9 +43,9 @@ const ReplyComment = () => {
         <S.ReplyCommentWrap>
           <S.ReplyCommentInput
             rows={1}
-            ref={textareaRef}
-            value={replyComment}
-            onChange={(e) => handleChangeValue(e, textareaRef)}
+            ref={replyCommentRef}
+            value={replyCommentValue}
+            onChange={(e) => handleChangeValue(e, replyCommentRef)}
           />
           <S.ReplyCommentButton /* onClick={handleClickRegistration}*/>
             등록

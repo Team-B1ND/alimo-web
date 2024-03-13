@@ -20,7 +20,7 @@ const CommentList = () => {
                 <S.CommentContent>팀인가여?</S.CommentContent>
                 <S.ReplyCommentWrite
                   onClick={() => setIsReplyShow((current) => !current)}>
-                  답글달기
+                  {isReplyShow ? "답글 닫기" : "답글 달기"}
                 </S.ReplyCommentWrite>
               </S.CommentWrap>
             </S.CommentContentWrap>
