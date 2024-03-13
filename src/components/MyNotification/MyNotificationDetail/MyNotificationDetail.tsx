@@ -8,8 +8,6 @@ import CommentList from "src/components/MyNotification/MyNotificationDetail/Comm
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
-  const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAzMTc0NzksImV4cCI6MTcxMDMxOTI3OX0.-I-0nKP60hZj7KeGWDBSwps11vUwI9TAkAK5RQ10FgWdC8MRxSem8uCCsbuc5StXG0aNT8S5NLxCKtyGE_N6zQ";
   const { id } = useParams();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
@@ -22,7 +20,7 @@ const WriteReadDetail = () => {
       await axios
         .get(`${CONFIG.serverUrl}/notification/read/${id}`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${CONFIG.accessToken}`,
           },
         })
         .then((res) => {
@@ -53,7 +51,8 @@ const WriteReadDetail = () => {
             </S.MyNotificationTitleWrap>
             <S.MyNotificationImgWrap>
               {notificationDetailData.images &&
-                notificationDetailData.images.length > 0 && isImageError && (
+                notificationDetailData.images.length > 0 &&
+                isImageError && (
                   <S.MyNotificationImg
                     src={notificationDetailData.images[0].fileUrl}
                     onError={handleImageError}

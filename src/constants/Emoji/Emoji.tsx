@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AccessToken } from "src/JWT/accessToken";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import * as S from "src/constants/Emoji/style/Emoji.style";
@@ -9,8 +10,6 @@ const Emoji = () => {
     emojiName: string;
     count: number;
   }
-  const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAzMTc0NzksImV4cCI6MTcxMDMxOTI3OX0.-I-0nKP60hZj7KeGWDBSwps11vUwI9TAkAK5RQ10FgWdC8MRxSem8uCCsbuc5StXG0aNT8S5NLxCKtyGE_N6zQ";
   const { id } = useParams();
   const [notificationEmojiData, setNotificationEmojiData] = useState<
     EmojiData[]
@@ -21,7 +20,7 @@ const Emoji = () => {
       await axios
         .get(`${CONFIG.serverUrl}/emoji/load/${id}`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${AccessToken}`,
           },
         })
         .then((res) => {

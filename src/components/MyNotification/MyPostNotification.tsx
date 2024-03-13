@@ -8,7 +8,6 @@ interface Props {
 }
 
 const MyPostNotification = ({ notificationData }: Props) => {
-  console.log(notificationData.images);
   const navigate = useNavigate();
   const [isImageError, setIsImageError] = useState<boolean>(true);
 

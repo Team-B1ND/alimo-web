@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
-
 // import axios from "axios";
 // import CONFIG from "src/config/config.json";
 
