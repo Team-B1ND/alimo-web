@@ -15,6 +15,7 @@ const Write = () => {
     notAllow,
     image,
     CategoryList,
+    memberCnt,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
@@ -64,9 +65,7 @@ const Write = () => {
             </S.CategoryWrap>
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
-            <S.SendShowMember>
-              총 <span>110</span>명에게 전송돼요
-            </S.SendShowMember>
+            <S.SendShowMember>총{memberCnt}명 에게 전송되요.</S.SendShowMember>
             <S.UploadButton disabled={notAllow} onClick={allowWriteButton}>
               게시하기
             </S.UploadButton>

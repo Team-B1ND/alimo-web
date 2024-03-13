@@ -20,6 +20,7 @@ const useWrite = () => {
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const [memberCnt, setMemberCnt] = useState<number>();
   const accessToken = localStorage.getItem("accestoken");
 
   const CategoryList = useRecoilValue(categoryListState);
@@ -65,7 +66,7 @@ const useWrite = () => {
     setImage([]);
   };
 
-  const onClickAddCategory = (CategoryName: string) => {
+  const onClickAddCategory = async (CategoryName: string) => {
     const isSelected = selectedCategory.some((category) => category.name === CategoryName);
     if (isSelected) {
       setSelectedCategory(selectedCategory.filter((category) => category.name !== CategoryName));
@@ -73,6 +74,20 @@ const useWrite = () => {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
     }
+
+    try {
+      const params = { category: selectedCategory.map((category) => category.name) };
+      const response = await axios.get(`${CONFIG.serverUrl}/category/member-cnt`, {
+        params: params,
+      });
+
+      if (response.status === 200) {
+        setMemberCnt(response.data.memberCnt);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    console.log(selectedCategory.map((cateogy) => cateogy.name));
   };
 
   const allowWriteButton = async () => {
@@ -151,6 +166,7 @@ const useWrite = () => {
     notAllow,
     image,
     CategoryList,
+    memberCnt,
     onChangeTitle,
     onChangeContext,
     imageInputRef,
