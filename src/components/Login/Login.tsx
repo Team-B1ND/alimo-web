@@ -37,7 +37,9 @@ const Login = () => {
                 <S.Id
                   type="text"
                   value={idValue}
-                  placeholder={clickName === "Id" && idValue !== "" ? "" : "이메일"}
+                  placeholder={
+                    clickName === "Id" && idValue !== "" ? "" : "이메일"
+                  }
                   onClick={() => setClickName("Id")}
                   onChange={InputChange}
                 />
@@ -56,7 +58,11 @@ const Login = () => {
                 <S.Password
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
-                  placeholder={clickName === "PassWord" && passwordValue !== "" ? "" : "비밀번호"}
+                  placeholder={
+                    clickName === "PassWord" && passwordValue !== ""
+                      ? ""
+                      : "비밀번호"
+                  }
                   onClick={() => setClickName("PassWord")}
                   onChange={InputChange}
                 />

@@ -1,34 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import CONFIG from "src/config/config.json";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
+import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
-  const { id } = useParams();
-  const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
-  const [isImageError, setIsImageError] = useState<boolean>(true);
-
-  const handleImageError = () => {
-    setIsImageError(false);
-  };
-  useEffect(() => {
-    const NotificationRead = async () => {
-      await axios
-        .get(`${CONFIG.serverUrl}/notification/read/${id}`, {
-          headers: {
-            Authorization: `Bearer ${CONFIG.accessToken}`,
-          },
-        })
-        .then((res) => {
-          setNotificationDetailData(res.data.data);
-        });
-    };
-    NotificationRead();
-  }, []);
+  const { notificationDetailData, isImageError, handleImageError } =
+    useMyNotificationDetail();
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
