@@ -52,14 +52,13 @@ export const ReplyCommentInput = styled.textarea`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 25px;
   border: none;
   outline: none;
-  line-height: 25px;
   border-bottom: 1px solid var(--Gray500, #aaa);
 `;
 
-export const ReplyCommentSubmit = styled.button`
+export const ReplyCommentButton = styled.button`
   width: 45px;
   height: 30px;
   color: #fff;

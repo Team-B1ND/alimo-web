@@ -1,6 +1,7 @@
-import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
-import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
 import { useState, useRef } from "react";
+import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
+import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
+
 // import axios from "axios";
 // import CONFIG from "src/config/config.json";
 
@@ -39,7 +40,7 @@ const ReplyComment = () => {
         <S.ReplyCommentProfile src={DummyProfile} alt="예시 프로필" />
       </S.ReplyCommentInfoWrap>
       <S.ReplyCommentContentWrap>
-        <S.ReplyCommentName>2예진</S.ReplyCommentName>
+        <S.ReplyCommentName>2진주</S.ReplyCommentName>
         <S.ReplyCommentWrap>
           <S.ReplyCommentInput
             rows={1}
@@ -47,9 +48,9 @@ const ReplyComment = () => {
             value={replyComment}
             onChange={(e) => handleChangeValue(e, textareaRef)}
           />
-          <S.ReplyCommentSubmit /* onClick={handleClickRegistration}*/>
+          <S.ReplyCommentButton /* onClick={handleClickRegistration}*/>
             등록
-          </S.ReplyCommentSubmit>
+          </S.ReplyCommentButton>
         </S.ReplyCommentWrap>
       </S.ReplyCommentContentWrap>
     </S.MyPostReplyComment>

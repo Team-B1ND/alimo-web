@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
-export const WriteReadDetailComment = styled.div`
+export const MyNotificationDetailCommentWrap = styled.div`
   width: 40%;
-  height: calc(100% - 10vh);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MyNotificationDetailComment = styled.div`
+  width: 100%;
+  height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,14 +17,14 @@ export const WriteReadDetailComment = styled.div`
   overflow-y: auto;
 `;
 
-export const MyPostCommentWrap = styled.div`
+export const MyNotificationCommentWrap = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
 `;
 
-export const MyPostComment = styled.div`
+export const MyNotificationComment = styled.div`
   width: 100%;
   height: auto;
   display: flex;

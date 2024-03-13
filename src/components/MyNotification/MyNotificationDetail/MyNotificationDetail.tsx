@@ -4,12 +4,12 @@ import axios from "axios";
 import CONFIG from "src/config/config.json";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
-import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
+import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
   const accessToken =
-    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAyMDMwNTksImV4cCI6MTcxMDIwNDg1OX0.8eCMSSfLEuHJjTxPhah86KLela_6yIijGbJmUvQSAJ6ILcKXb-ZG2qH3nY9YpdgYGtZllcmBZvy0_R7OJJ96tg";
+    "eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAzMTc0NzksImV4cCI6MTcxMDMxOTI3OX0.-I-0nKP60hZj7KeGWDBSwps11vUwI9TAkAK5RQ10FgWdC8MRxSem8uCCsbuc5StXG0aNT8S5NLxCKtyGE_N6zQ";
   const { id } = useParams();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
@@ -68,7 +68,7 @@ const WriteReadDetail = () => {
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>
-        <Comment />
+        <CommentList />
       </S.MyNotificationDetailBox>
     </S.MyNotificationDetailWrap>
   );
