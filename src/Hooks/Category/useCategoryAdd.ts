@@ -59,7 +59,7 @@ const useCategoryAdd = () => {
           room: cls,
         },
         headers: {
-          Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlNUVURFTlQiLCJpYXQiOjE3MDk4NjU0MTAsImV4cCI6MTcwOTg2NzIxMH0.csSDkyOlwPrRxBaEmymA46lcv4PecqBo236WUwxhEjKk7wrvdlcPzdxMxTTpQKNqsAoiQEowecz-IwLrX6TjXg`,
+          Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNjc3MjcsImV4cCI6MTcxMDE2OTUyN30.35yo4lW7gOSsryvaFtKpCjIXRWq3B7eQpKhQGjKbQ9Pq_wLO9GHILvtzEvC5z-qBMB7wRSiwuopI-qwMor_gzw`,
         },
       });
       if (response.status === 200) {
