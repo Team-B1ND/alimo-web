@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AccessToken } from "src/JWT/accessToken";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import * as S from "src/constants/Emoji/style/Emoji.style";
@@ -20,7 +19,7 @@ const Emoji = () => {
       await axios
         .get(`${CONFIG.serverUrl}/emoji/load/${id}`, {
           headers: {
-            Authorization: `Bearer ${AccessToken}`,
+            Authorization: `Bearer ${CONFIG.accessToken}`,
           },
         })
         .then((res) => {
