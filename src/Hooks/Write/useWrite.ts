@@ -3,10 +3,11 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
+import qs from "qs";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/types/Write/interface";
+import { Category } from "@src/types/Write/write.types";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -76,18 +77,20 @@ const useWrite = () => {
     }
 
     try {
-      const params = { category: selectedCategory.map((category) => category.name) };
-      const response = await axios.get(`${CONFIG.serverUrl}/category/member-cnt`, {
-        params: params,
+      const response = await axios.get(`${CONFIG.serverUrl}/member/member-cnt`, {
+        params: {
+          category: selectedCategory.map((category) => category.name),
+        },
+        paramsSerializer: (params) => {
+          return qs.stringify(params);
+        },
       });
-
       if (response.status === 200) {
-        setMemberCnt(response.data.memberCnt);
+        setMemberCnt(response.data.data.memberCnt);
       }
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
-    console.log(selectedCategory.map((cateogy) => cateogy.name));
   };
 
   const allowWriteButton = async () => {
