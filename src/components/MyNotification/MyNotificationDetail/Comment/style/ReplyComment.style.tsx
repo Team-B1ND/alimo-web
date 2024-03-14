@@ -52,7 +52,8 @@ export const ReplyCommentInput = styled.textarea`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 25px;
+  line-height: 20px;
+  margin-top: 5px;
   border: none;
   outline: none;
   border-bottom: 1px solid var(--Gray500, #aaa);

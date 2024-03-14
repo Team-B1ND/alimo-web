@@ -65,7 +65,6 @@ export const CommentName = styled.p`
 export const CommentWrap = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin-top: 5px;
 `;
 
@@ -90,5 +89,5 @@ export const ReplyCommentWrite = styled.button`
   background-color: transparent;
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
+  margin: 1px 0px 0px 10px;
 `;

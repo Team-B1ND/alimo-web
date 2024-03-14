@@ -21,6 +21,7 @@ const useMyNotificationDetail = () => {
         })
         .then((res) => {
           setNotificationDetailData(res.data.data);
+          console.log(res.data.data.files);
         });
     };
     NotificationRead();

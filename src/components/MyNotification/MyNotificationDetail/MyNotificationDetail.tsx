@@ -1,7 +1,10 @@
+import Linkify from "react-linkify";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
+import FileImage from "src/assets/img/FileImage.svg";
+import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
@@ -27,6 +30,34 @@ const WriteReadDetail = () => {
                 {notificationDetailData.title}
               </S.MyNotificationTitle>
             </S.MyNotificationTitleWrap>
+            <S.MyNotificationContentWrap>
+              <S.MyNotificationContent>
+                <Linkify>{notificationDetailData.content}</Linkify>
+              </S.MyNotificationContent>
+            </S.MyNotificationContentWrap>
+            {notificationDetailData.files &&
+              notificationDetailData.files.length > 0 && (
+                <S.MyNotificationFileWrap>
+                  <S.MyNotificationFile>
+                    <S.MyNotificationFileInfo>
+                      <S.MyNotificationFileImage
+                        src={FileImage}></S.MyNotificationFileImage>
+                      <S.MyNotificationFileText>
+                        <S.MyNotificationFileName>
+                          {notificationDetailData.files[0].fileName}
+                        </S.MyNotificationFileName>
+                        <S.MyNotificationFileSize>
+                          {notificationDetailData.files[0].fileSize}
+                        </S.MyNotificationFileSize>
+                      </S.MyNotificationFileText>
+                    </S.MyNotificationFileInfo>
+                    <S.MyNotificationFileDownLoadWrap>
+                      <S.MyNotificationFileDownLoad
+                        src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
+                    </S.MyNotificationFileDownLoadWrap>
+                  </S.MyNotificationFile>
+                </S.MyNotificationFileWrap>
+              )}
             <S.MyNotificationImgWrap>
               {notificationDetailData.images &&
                 notificationDetailData.images.length > 0 &&
@@ -37,11 +68,6 @@ const WriteReadDetail = () => {
                   />
                 )}
             </S.MyNotificationImgWrap>
-            <S.MyNotificationContentWrap>
-              <S.MyNotificationContent>
-                {notificationDetailData.content}
-              </S.MyNotificationContent>
-            </S.MyNotificationContentWrap>
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>

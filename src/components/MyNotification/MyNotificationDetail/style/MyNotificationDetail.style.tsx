@@ -87,21 +87,10 @@ export const MyNotificationTitle = styled.span`
   line-height: normal;
 `;
 
-export const MyNotificationImgWrap = styled.div`
-  width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-`;
-
-export const MyNotificationImg = styled.img`
-  max-width: 100%;
-  height: auto;
-`;
-
 export const MyNotificationContentWrap = styled.div`
   width: 100%;
   height: auto;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 `;
 
 export const MyNotificationContent = styled.span`
@@ -111,4 +100,86 @@ export const MyNotificationContent = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+`;
+
+export const MyNotificationFileWrap = styled.div`
+  max-width: 100%;
+  width: fit-content;
+  height: auto;
+  border-radius: 8px;
+  background: var(--Gray100, #f4f5f9);
+  padding: 15px;
+  margin-bottom: 20px;
+`;
+
+export const MyNotificationFile = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+
+export const MyNotificationFileInfo = styled.div`
+  width: calc(100% - 30px);
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+`;
+
+export const MyNotificationFileImage = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 12px;
+`;
+
+export const MyNotificationFileText = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MyNotificationFileName = styled.p`
+  color: var(--Primary900, #020202);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const MyNotificationFileSize = styled.p`
+  color: var(--Gray600, #787878);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const MyNotificationFileDownLoadWrap = styled.button`
+  width: auto;
+  height: auto;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const MyNotificationFileDownLoad = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+export const MyNotificationImgWrap = styled.div`
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+`;
+
+export const MyNotificationImg = styled.img`
+  max-width: 100%;
+  height: auto;
 `;
