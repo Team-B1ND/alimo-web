@@ -18,6 +18,12 @@ const Login = () => {
     InputChange,
     LoginButton,
   } = uselogin();
+  
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      LoginButton();
+    }
+  };
 
   return (
     <S.LogoPageWrap>
@@ -38,14 +44,18 @@ const Login = () => {
                 <S.Id
                   type="text"
                   value={idValue}
-                  placeholder={clickName === "Id" && idValue !== "" ? "" : "이메일"}
+                  placeholder={
+                    clickName === "Id" && idValue !== "" ? "" : "도담아이디"
+                  }
                   onClick={() => setClickName("Id")}
                   onChange={InputChange}
+                  onKeyDown={handleKeyDown}
                 />
                 <S.IdBtn
                   onClick={() => {
                     setIdValue("");
-                  }}>
+                  }}
+                >
                   <img
                     style={{ display: `${idValue !== "" ? "block" : "none"}` }}
                     src={clickName === "Id" && idValue !== "" ? IdCancel : ""}
@@ -57,12 +67,18 @@ const Login = () => {
                 <S.Password
                   type={isShowPswd === true ? "text" : "password"}
                   value={passwordValue}
-                  placeholder={clickName === "PassWord" && passwordValue !== "" ? "" : "비밀번호"}
+                  placeholder={
+                    clickName === "PassWord" && passwordValue !== ""
+                      ? ""
+                      : "비밀번호"
+                  }
                   onClick={() => setClickName("PassWord")}
                   onChange={InputChange}
+                  onKeyDown={handleKeyDown}
                 />
                 <S.PasswordBtn
-                  onClick={() => setIsShowPswd((current) => !current)}>
+                  onClick={() => setIsShowPswd((current) => !current)}
+                >
                   <img
                     style={{
                       display: `${passwordValue !== "" ? "block" : "none"}`,
@@ -80,7 +96,11 @@ const Login = () => {
               </S.PasswordWrap>
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={LoginButton}>
-              <S.LoginBtn>{Loginloading === true ? "로그인중" : "도담도담 계정으로 로그인"}</S.LoginBtn>
+              <S.LoginBtn>
+                {Loginloading === true
+                  ? "로그인중"
+                  : "도담도담 계정으로 로그인"}
+              </S.LoginBtn>
             </S.LoginBtnWrap>
           </S.LoginWrap>
         </S.LoginBox>

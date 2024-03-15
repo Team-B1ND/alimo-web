@@ -5,6 +5,7 @@ import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
 import token from "src/lib/token/token";
+import { LoginResponse } from "src/types/login/login.type";
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
@@ -41,32 +42,38 @@ const Uselogin = () => {
     if (idValue === "" || passwordValue === "") {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
+      //DAuth
       const DAuthPromise = axios.post(`${CONFIG.DAuth}`, {
         id: idValue,
         pw: hash,
         clientId: `${CONFIG.clientId}`,
         redirectUrl: redirectUrlvalue,
       });
-      
+
       try {
         const [DAuth] = await Promise.all([DAuthPromise]);
         const url = DAuth.data.data.location;
         const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
-        const response = await axios.post(`${CONFIG.serverUrl}/sign-in/dodam`, {
-          code: lastElement,
-          fcmToken: "",
-        });
-        const refreshToken =response.data.data.refreshToken; 
-        const accessToken = response.data.data.accessToken;
+        const response = await axios.post<LoginResponse>(
+          `${CONFIG.serverUrl}/sign-in/dodam`,
+          {
+            code: lastElement,
+            fcmToken: null,
+          }
+        );
+        const ResponseData = response.data.data;
+        const refreshToken = ResponseData.refreshToken;
+        const accessToken = ResponseData.accessToken;
         token.setToken(ACCESS_TOKEN_KEY, accessToken);
         token.setToken(REFRESH_TOKEN_KEY, refreshToken);
         showToast("success", "로그인 성공");
-        navigate("/main");
+        navigate("/");
       } catch (error) {
+        SetLoginloading(false);
         showToast("error", "통신 오류가 발생했습니다.");
       }
-    }      
+    }
   };
 
   return {
