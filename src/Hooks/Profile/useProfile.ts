@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import SidbarInfo from "src/Hooks/Sidbar/useSiebar";
 import ProfileImg from "src/assets/img/profileimg.png";
 import { categoryListState } from "src/store/profile/ProfileStore";
