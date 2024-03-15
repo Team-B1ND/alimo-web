@@ -1,29 +1,33 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useSideBarNavigation from "src/util/useSideBarNavigation";
+import useSideBarNavigation from "src/util/Sidebar/useSideBarNavigation";
 import CONFIG from "src/config/config.json"
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
-
+import token from "src/lib/token/token";
+import {
+  ACCESS_TOKEN_KEY,
+} from "src/constants/token/token.constants";
+import { Alimov1Axios } from "src/lib/axios/customAxios";
 
 const Sidbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isProfileAlert, setProfileAlert] = useState(false);
-  const [isProfile, setProfile] = useState(false);
-  const [isSetting, setSetting] = useState(false);
-  const [Name, setName] = useState("");
+  const [isProfileAlert, setProfileAlert] = useState<boolean>(false);
+  const [isProfile, setProfile] = useState<boolean>(false);
+  const [isSetting, setSetting] = useState<boolean>(false);
+  const [Name, setName] = useState<string>("");
   const [image, setimage] = useState("");
   const [Category, setCategory] = useState<string[]>([]);
-  const accestoken = localStorage.getItem("accestoken");
   const [categoryList, setCategoryList] = useRecoilState(categoryListState); //
+  const ACCESS_TOKEN=token.getToken(ACCESS_TOKEN_KEY);
   const Categorylist = async () => {
-    const response = await axios.get(
-      `${CONFIG.serverUrl}/member/category-list`,
+    const response = await Alimov1Axios.get(
+      `${CONFIG.serverUrl}/category/list/member`,
       {
         headers: {
-          Authorization: `Bearer ${accestoken}`,
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       }
     );
@@ -31,7 +35,6 @@ const Sidbar = () => {
     setCategory(CategoryData);
     setCategoryList(CategoryData);
   };
-
 
   useEffect(() => {
     Categorylist();
@@ -41,7 +44,7 @@ const Sidbar = () => {
         try{
             const response = await axios.get(`${CONFIG.serverUrl}/member/info`,{
                 headers: {
-                    Authorization : `Bearer ${accestoken}`
+                    Authorization : `Bearer ${ACCESS_TOKEN}`
                 }
             });
             const userData = response.data.data;

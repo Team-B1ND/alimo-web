@@ -12,7 +12,7 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
   useEffect(() => {
     const handleNavigation = () => {
       switch (location.pathname) {
-        case "/main":
+        case "/":
           setIsClickCategory("카테고리 관리");
           break;
         case "/write-read":
@@ -31,7 +31,7 @@ const useSideBarNavigation = ({ location, navigate }: NavigationProps) => {
     setIsClickCategory(itemName);
     switch (itemName) {
       case "카테고리 관리":
-        navigate("/main");
+        navigate("/");
         break;
       case "내가 쓴 공지보기":
         navigate("/write-read");

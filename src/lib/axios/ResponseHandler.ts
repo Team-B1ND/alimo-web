@@ -58,9 +58,11 @@ const errorResponseHandler = async (error: AxiosError) => {
           onTokenRefreshed(newAccessToken);
         } catch (error) {
           //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
-          window.alert("세션이 만료되었습니다.");
+          
           token.clearToken();
           window.location.href = "/login";
+          console.log("세션 만료");
+          
         }
       }
 
