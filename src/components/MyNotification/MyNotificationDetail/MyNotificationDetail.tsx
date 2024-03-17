@@ -8,7 +8,7 @@ import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
-  const { notificationDetailData, isImageError, handleImageError } =
+  const { notificationDetailData, isImageError, handleImageError, fileSize } =
     useMyNotificationDetail();
   return (
     <S.MyNotificationDetailWrap>
@@ -47,7 +47,7 @@ const WriteReadDetail = () => {
                           {notificationDetailData.files[0].fileName}
                         </S.MyNotificationFileName>
                         <S.MyNotificationFileSize>
-                          {notificationDetailData.files[0].fileSize}
+                          {fileSize}
                         </S.MyNotificationFileSize>
                       </S.MyNotificationFileText>
                     </S.MyNotificationFileInfo>

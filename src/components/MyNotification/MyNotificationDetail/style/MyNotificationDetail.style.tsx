@@ -149,6 +149,7 @@ export const MyNotificationFileName = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-bottom: 2px;
 `;
 
 export const MyNotificationFileSize = styled.p`

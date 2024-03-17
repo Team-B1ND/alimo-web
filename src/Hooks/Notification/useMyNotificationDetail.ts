@@ -7,6 +7,7 @@ const useMyNotificationDetail = () => {
   const { id } = useParams();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
+  const [fileSize, setFileSize] = useState<string>("");
 
   const handleImageError = () => {
     setIsImageError(false);
@@ -20,8 +21,21 @@ const useMyNotificationDetail = () => {
           },
         })
         .then((res) => {
+          const fileData = res.data.data.files;
+
           setNotificationDetailData(res.data.data);
-          console.log(res.data.data.files);
+          if (fileData && fileData.length > 0) {
+            let fileSize = fileData[0].fileSize;
+            const sizes = ["Byte", "KB", "MB", "GB", "TB"];
+
+            for (let i = 0; i < sizes.length; i++) {
+              if (fileSize < 1024) {
+                setFileSize(`${fileSize} ${sizes[i]}`);
+                break;
+              }
+              fileSize = `${(fileSize / 1024).toFixed(1)}`;
+            }
+          }
         });
     };
     NotificationRead();
@@ -30,6 +44,7 @@ const useMyNotificationDetail = () => {
     notificationDetailData,
     isImageError,
     handleImageError,
+    fileSize,
   };
 };
 
