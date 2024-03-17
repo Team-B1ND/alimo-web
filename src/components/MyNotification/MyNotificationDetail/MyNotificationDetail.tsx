@@ -1,4 +1,4 @@
-import Linkify from "react-linkify";
+import { LinkItUrl } from "react-linkify-it";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
@@ -32,7 +32,7 @@ const WriteReadDetail = () => {
             </S.MyNotificationTitleWrap>
             <S.MyNotificationContentWrap>
               <S.MyNotificationContent>
-                <Linkify>{notificationDetailData.content}</Linkify>
+                <LinkItUrl>{notificationDetailData.content}</LinkItUrl>
               </S.MyNotificationContent>
             </S.MyNotificationContentWrap>
             {notificationDetailData.files &&
