@@ -6,18 +6,26 @@ const Comment = () => {
   const commentRef = useRef(null);
   const [commentValue, setCommentValue] = useState<string>("");
 
-  const handleChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(e.target.value);
+  const handleChangeValue = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    commentRef: React.RefObject<HTMLTextAreaElement>
+  ) => {
+    if (commentRef.current) {
+      commentRef.current.style.height = "auto";
+      commentRef.current.style.height = commentRef.current.scrollHeight + "px";
+      setCommentValue(e.target.value);
+    }
   };
 
   return (
     <S.CommentWrap>
       <S.Comment>
         <S.CommentInput
+          rows={1}
           ref={commentRef}
           value={commentValue}
           placeholder="댓글을 남겨보세요."
-          onChange={handleChangeValue}></S.CommentInput>
+          onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
         <S.CommentButtonWrap>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>

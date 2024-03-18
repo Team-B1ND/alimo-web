@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 export const CommentWrap = styled.div`
   width: 100%;
-  height: 70px;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-top: 1px solid var(--Gray300, #e6e6e6);
+  padding: 20px 0px;
 `;
 
 export const Comment = styled.div`
   width: 90%;
-  height: 35px;
+  height: auto;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 export const CommentInput = styled.textarea`
@@ -30,6 +31,7 @@ export const CommentInput = styled.textarea`
   resize: none;
   border: none;
   outline: none;
+  margin-top: 5px;
 `;
 
 export const CommentButtonWrap = styled.button`

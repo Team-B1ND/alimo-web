@@ -13,7 +13,7 @@ const useMyNotification = () => {
       try {
         await axios
           .get(`${CONFIG.serverUrl}/notification/load/my`, {
-            params: { page: 1, size: 100 },
+            params: { page: 1, size: 1000 },
             headers: {
               Authorization: `Bearer ${CONFIG.accessToken}`,
             },
