@@ -102,6 +102,17 @@ export const MyNotificationContent = styled.span`
   line-height: normal;
 `;
 
+export const MyNotificationImgWrap = styled.div`
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+`;
+
+export const MyNotificationImg = styled.img`
+  max-width: 100%;
+  height: auto;
+`;
+
 export const MyNotificationFileWrap = styled.div`
   max-width: 100%;
   width: fit-content;
@@ -109,7 +120,7 @@ export const MyNotificationFileWrap = styled.div`
   border-radius: 8px;
   background: var(--Gray100, #f4f5f9);
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `;
 
 export const MyNotificationFile = styled.div`
@@ -172,15 +183,4 @@ export const MyNotificationFileDownLoadWrap = styled.button`
 export const MyNotificationFileDownLoad = styled.img`
   width: 30px;
   height: 30px;
-`;
-
-export const MyNotificationImgWrap = styled.div`
-  width: 100%;
-  height: auto;
-  margin-bottom: 35px;
-`;
-
-export const MyNotificationImg = styled.img`
-  max-width: 100%;
-  height: auto;
 `;

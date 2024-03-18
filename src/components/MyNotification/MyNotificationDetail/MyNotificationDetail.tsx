@@ -41,31 +41,6 @@ const WriteReadDetail = () => {
                 <LinkItUrl>{notificationDetailData.content}</LinkItUrl>
               </S.MyNotificationContent>
             </S.MyNotificationContentWrap>
-            {notificationDetailData.files &&
-              notificationDetailData.files.length > 0 &&
-              notificationDetailData.files.map((fileData: FileData, idx: number) => (
-                <S.MyNotificationFileWrap key={fileData.fileUrl}>
-                  <S.MyNotificationFile>
-                    <S.MyNotificationFileInfo>
-                      <S.MyNotificationFileImage
-                        src={FileImage}></S.MyNotificationFileImage>
-                      <S.MyNotificationFileText>
-                        <S.MyNotificationFileName>
-                          {fileData.fileName}
-                        </S.MyNotificationFileName>
-                        <S.MyNotificationFileSize>
-                          {fileSize[idx]}
-                        </S.MyNotificationFileSize>
-                      </S.MyNotificationFileText>
-                    </S.MyNotificationFileInfo>
-                    <S.MyNotificationFileDownLoadWrap
-                      onClick={handleFileDownLoad}>
-                      <S.MyNotificationFileDownLoad
-                        src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
-                    </S.MyNotificationFileDownLoadWrap>
-                  </S.MyNotificationFile>
-                </S.MyNotificationFileWrap>
-              ))}
             <S.MyNotificationImgWrap>
               {notificationDetailData.images &&
                 notificationDetailData.images.length > 0 &&
@@ -76,10 +51,39 @@ const WriteReadDetail = () => {
                   />
                 )}
             </S.MyNotificationImgWrap>
+            {notificationDetailData.files &&
+              notificationDetailData.files.length > 0 &&
+              notificationDetailData.files.map(
+                (fileData: FileData, idx: number) => (
+                  <S.MyNotificationFileWrap key={fileData.fileUrl}>
+                    <S.MyNotificationFile>
+                      <S.MyNotificationFileInfo>
+                        <S.MyNotificationFileImage
+                          src={FileImage}></S.MyNotificationFileImage>
+                        <S.MyNotificationFileText>
+                          <S.MyNotificationFileName>
+                            {fileData.fileName}
+                          </S.MyNotificationFileName>
+                          <S.MyNotificationFileSize>
+                            {fileSize[idx]}
+                          </S.MyNotificationFileSize>
+                        </S.MyNotificationFileText>
+                      </S.MyNotificationFileInfo>
+                      <S.MyNotificationFileDownLoadWrap
+                        onClick={handleFileDownLoad}>
+                        <S.MyNotificationFileDownLoad
+                          src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
+                      </S.MyNotificationFileDownLoadWrap>
+                    </S.MyNotificationFile>
+                  </S.MyNotificationFileWrap>
+                )
+              )}
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>
-        <CommentList />
+        {notificationDetailData.comments &&
+          notificationDetailData.comments.length > 0 &&
+            (<CommentList commentData={notificationDetailData.comments[0]} />)}
       </S.MyNotificationDetailBox>
     </S.MyNotificationDetailWrap>
   );
