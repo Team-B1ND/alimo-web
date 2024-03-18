@@ -9,7 +9,7 @@ const useCategoryManage = () => {
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [isAddStudent, setIsAddStudent] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string>("");
+  const [categoryName, setCategoryName] = useState<string | string[]>("");
   const [memberCnt, setMemberCnt] = useState<number>();
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
@@ -22,8 +22,27 @@ const useCategoryManage = () => {
     getCategoryList();
   }, []);
 
-  const handleCategoryClick = (categoryName: string) => {
+  const handleCategoryClick = async (categoryName: string) => {
     setIsClickedCategory(categoryName);
+
+    try {
+      const reponse = await axios.get(
+        `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`,
+        {
+          headers: {
+            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTA3Mzk1NTQsImV4cCI6MTcxMDc0MTM1NH0.JnA97CjdOW8qYZO0gy3OBGBbHLc_F_dx--S-p0gqhj7bKAzQ9Q6fxOk3QNlnDT_WYHET0XfpPE_Haa2XlsqViA`,
+          },
+        },
+      );
+      if (reponse.status === 200) {
+        setMemberData(reponse.data.data);
+        showToast("success", "멤버 불러오기 성공");
+      } else {
+        showToast("error", "멤버 불러오기 실패");
+      }
+    } catch (e) {
+      showToast("error", "서버 연결오류");
+    }
   };
 
   const onClickNewCategoryButton = async () => {
@@ -47,26 +66,16 @@ const useCategoryManage = () => {
 
   const getCategoryList = async () => {
     try {
-      const response = await axios.get(`${CONFIG.serverUrl}/category/get-category`, {
-        params: {
-          page: 1,
-          size: 1,
-          searchKeyword: "null",
+      const response = await axios.get(
+        `${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`,
+        {
+          headers: {
+            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTA3Mzk1NTQsImV4cCI6MTcxMDc0MTM1NH0.JnA97CjdOW8qYZO0gy3OBGBbHLc_F_dx--S-p0gqhj7bKAzQ9Q6fxOk3QNlnDT_WYHET0XfpPE_Haa2XlsqViA`,
+          },
         },
-        headers: {
-          Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNjc3MjcsImV4cCI6MTcxMDE2OTUyN30.35yo4lW7gOSsryvaFtKpCjIXRWq3B7eQpKhQGjKbQ9Pq_wLO9GHILvtzEvC5z-qBMB7wRSiwuopI-qwMor_gzw"`,
-        },
-      });
+      );
       if (response.status === 200) {
-        setCategoryData([response.data]);
-        categoryData.map((category) => {
-          setCategoryName(category.categoryName);
-          setMemberCnt(category.memberCnt);
-          return {
-            categoryName,
-            setMemberCnt,
-          };
-        });
+        setCategoryData(response.data.data);
         showToast("success", "카테고리 불러오기 성공!");
       } else {
         showToast("error", "카테고리 불러오기 실패");
@@ -74,28 +83,6 @@ const useCategoryManage = () => {
     } catch (e) {
       showToast("error", "서버연결 오류");
     }
-  };
-
-  const getMember = async () => {
-    try {
-      const response = await axios.get(`${CONFIG.serverUrl}/category/get-member`, {
-        params: {
-          page: 1,
-          size: 1,
-          categoryName: categoryName,
-          searchKeyword: "null",
-        },
-      });
-      if (response.status === 200) {
-        setMemberData([response.data]);
-        memberData.map((member) => {
-          setName(member.name);
-          setGrade(member.grade);
-          setCls(member.room);
-          setPermission(member.permission);
-        });
-      }
-    } catch (e) {}
   };
 
   const handlePopUp = () => {
@@ -121,7 +108,6 @@ const useCategoryManage = () => {
     showStudentList,
     handlePopUp,
     onClose,
-    getMember,
     memberData,
   };
 };

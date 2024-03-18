@@ -23,7 +23,6 @@ const CategoryManage = () => {
     showStudentList,
     handlePopUp,
     onClose,
-    getMember,
     memberData,
   } = useCategoryManage();
   return (
@@ -38,15 +37,17 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        {categoryData &&
-          categoryData.map((name, idx) => (
-            <S.CategoryWrap key={idx}>
-              <S.CategoryInfo isClicked={isClickedCategory === `${categoryName}`}>
-                <S.CategoryName>{categoryName}</S.CategoryName>
-                <S.CategoryInMember>{memberCnt}</S.CategoryInMember>
-              </S.CategoryInfo>
-            </S.CategoryWrap>
-          ))}
+        {categoryData.map((category) => (
+          <S.CategoryWrap key={category.categoryName}>
+            <S.CategoryInfo
+              isClicked={isClickedCategory === `${category.categoryName}`}
+              onClick={() => handleCategoryClick(`${category.categoryName}`)}
+            >
+              <S.CategoryName>{category.categoryName}</S.CategoryName>
+              <S.CategoryInMember>{category.memberCnt}</S.CategoryInMember>
+            </S.CategoryInfo>
+          </S.CategoryWrap>
+        ))}
       </S.CategoryManageView>
       <S.CategoryMemberWrap>
         <S.MemberManageWrap>
