@@ -1,10 +1,9 @@
 import token from "src/lib/token/token";
 
 
-const UseLogout = () => {
+const useLogout = () => {
 
   const logOut = () => {
-    console.log("logout");
     window.location.href = "/login"
     token.clearToken();
     
@@ -13,5 +12,5 @@ const UseLogout = () => {
   return { logOut };
 };
 
-export default UseLogout;
+export default useLogout;
 

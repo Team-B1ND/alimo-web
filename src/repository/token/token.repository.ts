@@ -12,8 +12,6 @@ class TokenRepository {
         refreshToken: token
       }
     );
-console.log("reost");
-
     return data;
   }
 }

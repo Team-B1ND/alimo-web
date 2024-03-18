@@ -6,15 +6,12 @@ interface ProfileAlertProps {
 }
 
 const ProfileAlert = ({ onClose, onOpen }: ProfileAlertProps) => {
-  const openProfile = () => {
-    onOpen();
-  };
-
+  
   const { logOut } = UseLogout();
   return (
     <S.Main onClick={onClose}>
       <S.AlertMain>
-        <S.ProfileButton onClick={openProfile}>내 프로필</S.ProfileButton>
+        <S.ProfileButton onClick={()=>{onOpen()}}>내 프로필</S.ProfileButton>
         <S.LogOut onClick={logOut}>로그아웃</S.LogOut>
       </S.AlertMain>
     </S.Main>

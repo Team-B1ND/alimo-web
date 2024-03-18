@@ -6,8 +6,7 @@ import {
 } from "src/constants/token/token.constants";
 import tokenRepository from "src/repository/token/token.repository";
 import token from "../token/token";
-import { showToast } from "../Toast/Swal";
-import { Alimov1Axios } from "./customAxios";
+import { alimoV1Axios } from "./customAxios";
 
 //리프레쉬 작업중인지 아닌지를 구분하는 변수
 let isRefreshing = false;
@@ -36,17 +35,14 @@ const errorResponseHandler = async (error: AxiosError) => {
       status === 401
     ) {
       if (!isRefreshing) {
-        console.log("start");
-        
         isRefreshing = true;
 
-        //리프레쉬 api 요청
         try {
           const { data: newAccessToken } =
             await tokenRepository.getRefreshToken({
               token: usingRefreshToken,
             });
-          Alimov1Axios.defaults.headers.common[
+            alimoV1Axios.defaults.headers.common[
             REQUEST_TOKEN_KEY
           ] = `Bearer ${newAccessToken}`;
           token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
@@ -61,8 +57,6 @@ const errorResponseHandler = async (error: AxiosError) => {
           
           token.clearToken();
           window.location.href = "/login";
-          console.log("세션 만료");
-          
         }
       }
 
@@ -71,7 +65,7 @@ const errorResponseHandler = async (error: AxiosError) => {
         addRefreshSubscriber((accessToken: string) => {
           if (originalRequest) { 
             originalRequest.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
-            resolve(Alimov1Axios(originalRequest));
+            resolve(alimoV1Axios(originalRequest));
           } else {
             reject("originalRequest is undefined");
           }

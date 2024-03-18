@@ -14,7 +14,7 @@ const requestHandler = (config: AxiosRequestConfig): AxiosRequestConfig => {
   }
 
   config.headers = {
-    ...config.headers, // 기존 헤더 유지
+    ...config.headers,
     "Content-Type": "application/json",
     [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
   };

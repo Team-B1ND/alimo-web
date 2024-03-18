@@ -5,48 +5,32 @@ import useSideBarNavigation from "src/util/Sidebar/useSideBarNavigation";
 import CONFIG from "src/config/config.json"
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
-import token from "src/lib/token/token";
-import {
-  ACCESS_TOKEN_KEY,
-} from "src/constants/token/token.constants";
-import { Alimov1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const Sidbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isProfileAlert, setProfileAlert] = useState<boolean>(false);
-  const [isProfile, setProfile] = useState<boolean>(false);
-  const [isSetting, setSetting] = useState<boolean>(false);
+  const [isProfileAlert, setProfileAlert] = useState(false);
+  const [isProfile, setProfile] = useState(false);
+  const [isSetting, setSetting] = useState(false);
   const [Name, setName] = useState<string>("");
   const [image, setimage] = useState("");
-  const [Category, setCategory] = useState<string[]>([]);
-  const [categoryList, setCategoryList] = useRecoilState(categoryListState); //
-  const ACCESS_TOKEN=token.getToken(ACCESS_TOKEN_KEY);
-  const Categorylist = async () => {
-    const response = await Alimov1Axios.get(
-      `${CONFIG.serverUrl}/category/list/member`,
-      {
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        },
-      }
-    );
+  const [category, setCategory] = useState<string[]>([]);
+  const [categoryList, setCategoryList] = useRecoilState(categoryListState); 
+  const CategoryList = async () => {
+    const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`);
     const CategoryData = response.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
   };
 
   useEffect(() => {
-    Categorylist();
+    CategoryList();
   }, []);
     const ProfileInfo = async()=>{
       
         try{
-            const response = await axios.get(`${CONFIG.serverUrl}/member/info`,{
-                headers: {
-                    Authorization : `Bearer ${ACCESS_TOKEN}`
-                }
-            });
+            const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
             const userData = response.data.data;
             setName(userData.name)
             setimage(userData.image)
@@ -55,9 +39,11 @@ const Sidbar = () => {
             
         }
     }
+    //프로필 설정
   const OpenProfileSetting = () => {
     setProfileAlert((prev) => !prev);
   };
+  //프로필
   const openProfile = () => {
     setProfile((prev) => !prev);
   };
@@ -71,6 +57,7 @@ const Sidbar = () => {
   useEffect(()=>{
     ProfileInfo();
   },[]);
+  
   return {
     Name,
     image,
@@ -85,3 +72,7 @@ const Sidbar = () => {
   };
 };
 export default Sidbar;
+
+
+
+

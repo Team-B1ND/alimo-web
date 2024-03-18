@@ -3,11 +3,15 @@ import CONFIG from "src/config/config.json";
 import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
 import token from "../token/token";
 import ResponseHandler from "./ResponseHandler";
-import requestHandler from "./requestHandler"; // 소문자로 시작하는 것이 일반적인 컨벤션입니다.
+import requestHandler from "./requestHandler"; 
+import Token from "src/lib/token/token";
 
 const createAxiosInstance = (config?: AxiosRequestConfig) => {
+const ACCESS_TOKEN=Token.getToken(ACCESS_TOKEN_KEY);
   const baseConfig: AxiosRequestConfig = {
-    headers: { "Content-Type": "application/json" },
+    headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`
+      }
   };
   return axios.create({
     ...baseConfig,
@@ -15,16 +19,16 @@ const createAxiosInstance = (config?: AxiosRequestConfig) => {
   });
 };
 
-export const Alimov1Axios = createAxiosInstance({
+export const alimoV1Axios = createAxiosInstance({
   baseURL: CONFIG.serverUrl,
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
   },
 });
 
-export const Alimov1AxiosSetAccessToken = (newToken: string) => {
-  Alimov1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newToken}`;
+export const alimoV1AxiosSetAccessToken = (newToken: string) => {
+  alimoV1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newToken}`;
 };
 
-Alimov1Axios.interceptors.request.use(requestHandler as any, (response) => response);
-Alimov1Axios.interceptors.response.use((response) => response, ResponseHandler);
+alimoV1Axios.interceptors.request.use(requestHandler as any, (response) => response);
+alimoV1Axios.interceptors.response.use((response) => response, ResponseHandler);

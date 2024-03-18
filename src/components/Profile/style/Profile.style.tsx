@@ -41,7 +41,7 @@ export const UserProfile = styled.div`
   min-height: 250px;
   width: calc(100vw - 75vw);
   height: calc(100vw - 75vw);
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #ffffff;
   animation: ${Profileani} 1s linear;
   position: absolute;
@@ -113,8 +113,8 @@ export const IndividualCategories = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border-radius: var(--Large, 12px);
-  background: var(--Gray100, #f4f5f9);
+  border-radius: 5px;
+  background: #f4f5f9;
 `;
 export const ChangSucces = styled.img`
   cursor: pointer;
