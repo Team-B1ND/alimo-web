@@ -10,6 +10,7 @@ import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyN
 const WriteReadDetail = () => {
   const { notificationDetailData, isImageError, handleImageError, fileSize } =
     useMyNotificationDetail();
+
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -43,12 +44,19 @@ const WriteReadDetail = () => {
                       <S.MyNotificationFileImage
                         src={FileImage}></S.MyNotificationFileImage>
                       <S.MyNotificationFileText>
+                        {notificationDetailData.files.length > 1 && (
+                          <S.MyNotificationFileCount>
+                            총 {notificationDetailData.files.length}개 파일
+                          </S.MyNotificationFileCount>
+                        )}
                         <S.MyNotificationFileName>
                           {notificationDetailData.files[0].fileName}
                         </S.MyNotificationFileName>
-                        <S.MyNotificationFileSize>
-                          {fileSize}
-                        </S.MyNotificationFileSize>
+                        {notificationDetailData.files.length === 1 && (
+                          <S.MyNotificationFileSize>
+                            {fileSize}
+                          </S.MyNotificationFileSize>
+                        )}
                       </S.MyNotificationFileText>
                     </S.MyNotificationFileInfo>
                     <S.MyNotificationFileDownLoadWrap>

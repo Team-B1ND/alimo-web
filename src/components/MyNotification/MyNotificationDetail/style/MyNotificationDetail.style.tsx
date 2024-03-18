@@ -142,6 +142,16 @@ export const MyNotificationFileText = styled.div`
   flex-direction: column;
 `;
 
+export const MyNotificationFileCount = styled.p`
+  color: var(--Primary500, #fece23);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 3px;
+`;
+
 export const MyNotificationFileName = styled.p`
   color: var(--Primary900, #020202);
   font-family: Pretendard;
@@ -149,7 +159,6 @@ export const MyNotificationFileName = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 2px;
 `;
 
 export const MyNotificationFileSize = styled.p`
@@ -159,6 +168,7 @@ export const MyNotificationFileSize = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-top: 2px;
 `;
 
 export const MyNotificationFileDownLoadWrap = styled.button`

@@ -26,7 +26,7 @@ const useMyNotificationDetail = () => {
           setNotificationDetailData(res.data.data);
           if (fileData && fileData.length > 0) {
             let fileSize = fileData[0].fileSize;
-            const sizes = ["Byte", "KB", "MB", "GB", "TB"];
+            const sizes = ["B", "KB", "MB", "GB", "TB"];
 
             for (let i = 0; i < sizes.length; i++) {
               if (fileSize < 1024) {
