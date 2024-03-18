@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 
@@ -7,8 +8,9 @@ const useMyNotificationDetail = () => {
   const { id } = useParams();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
-  const [fileSize, setFileSize] = useState<string>("");
+  const [fileSize, setFileSize] = useState<string[]>([]);
 
+  const handleFileDownLoad = () => {};
   const handleImageError = () => {
     setIsImageError(false);
   };
@@ -21,27 +23,30 @@ const useMyNotificationDetail = () => {
           },
         })
         .then((res) => {
-          const fileData = res.data.data.files;
-
           setNotificationDetailData(res.data.data);
-          if (fileData && fileData.length > 0) {
-            let fileSize = fileData[0].fileSize;
+
+          let fileSizeData: string[] = [];
+          const fileData = res.data.data.files;
+          fileData.map((fileData: FileData) => {
+            let fileSize = fileData.fileSize;
             const sizes = ["B", "KB", "MB", "GB", "TB"];
 
             for (let i = 0; i < sizes.length; i++) {
-              if (fileSize < 1024) {
-                setFileSize(`${fileSize} ${sizes[i]}`);
+              if (parseInt(fileSize) < 1024) {
+                fileSizeData.push(`${fileSize} ${sizes[i]}`);
                 break;
               }
-              fileSize = `${(fileSize / 1024).toFixed(1)}`;
+              fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
             }
-          }
+          });
+          setFileSize(fileSizeData);
         });
     };
     NotificationRead();
   }, []);
   return {
     notificationDetailData,
+    handleFileDownLoad,
     isImageError,
     handleImageError,
     fileSize,

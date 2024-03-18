@@ -1,4 +1,5 @@
 import { LinkItUrl } from "react-linkify-it";
+import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
@@ -8,9 +9,13 @@ import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
-  const { notificationDetailData, isImageError, handleImageError, fileSize } =
-    useMyNotificationDetail();
-
+  const {
+    notificationDetailData,
+    handleFileDownLoad,
+    isImageError,
+    handleImageError,
+    fileSize,
+  } = useMyNotificationDetail();
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -37,35 +42,30 @@ const WriteReadDetail = () => {
               </S.MyNotificationContent>
             </S.MyNotificationContentWrap>
             {notificationDetailData.files &&
-              notificationDetailData.files.length > 0 && (
-                <S.MyNotificationFileWrap>
+              notificationDetailData.files.length > 0 &&
+              notificationDetailData.files.map((fileData: FileData, idx: number) => (
+                <S.MyNotificationFileWrap key={fileData.fileUrl}>
                   <S.MyNotificationFile>
                     <S.MyNotificationFileInfo>
                       <S.MyNotificationFileImage
                         src={FileImage}></S.MyNotificationFileImage>
                       <S.MyNotificationFileText>
-                        {notificationDetailData.files.length > 1 && (
-                          <S.MyNotificationFileCount>
-                            총 {notificationDetailData.files.length}개 파일
-                          </S.MyNotificationFileCount>
-                        )}
                         <S.MyNotificationFileName>
-                          {notificationDetailData.files[0].fileName}
+                          {fileData.fileName}
                         </S.MyNotificationFileName>
-                        {notificationDetailData.files.length === 1 && (
-                          <S.MyNotificationFileSize>
-                            {fileSize}
-                          </S.MyNotificationFileSize>
-                        )}
+                        <S.MyNotificationFileSize>
+                          {fileSize[idx]}
+                        </S.MyNotificationFileSize>
                       </S.MyNotificationFileText>
                     </S.MyNotificationFileInfo>
-                    <S.MyNotificationFileDownLoadWrap>
+                    <S.MyNotificationFileDownLoadWrap
+                      onClick={handleFileDownLoad}>
                       <S.MyNotificationFileDownLoad
                         src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
                     </S.MyNotificationFileDownLoadWrap>
                   </S.MyNotificationFile>
                 </S.MyNotificationFileWrap>
-              )}
+              ))}
             <S.MyNotificationImgWrap>
               {notificationDetailData.images &&
                 notificationDetailData.images.length > 0 &&
