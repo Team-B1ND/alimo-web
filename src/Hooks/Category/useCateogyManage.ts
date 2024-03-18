@@ -30,7 +30,7 @@ const useCategoryManage = () => {
         `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`,
         {
           headers: {
-            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTA3Mzk1NTQsImV4cCI6MTcxMDc0MTM1NH0.JnA97CjdOW8qYZO0gy3OBGBbHLc_F_dx--S-p0gqhj7bKAzQ9Q6fxOk3QNlnDT_WYHET0XfpPE_Haa2XlsqViA`,
+            Authorization: `#`,
           },
         },
       );
@@ -70,7 +70,7 @@ const useCategoryManage = () => {
         `${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`,
         {
           headers: {
-            Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTA3Mzk1NTQsImV4cCI6MTcxMDc0MTM1NH0.JnA97CjdOW8qYZO0gy3OBGBbHLc_F_dx--S-p0gqhj7bKAzQ9Q6fxOk3QNlnDT_WYHET0XfpPE_Haa2XlsqViA`,
+            Authorization: `#`,
           },
         },
       );
