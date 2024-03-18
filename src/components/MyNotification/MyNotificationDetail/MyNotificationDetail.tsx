@@ -1,5 +1,6 @@
 import { LinkItUrl } from "react-linkify-it";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
+import { CommentData } from "src/types/CommentList/Comment.interface";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
@@ -83,7 +84,12 @@ const WriteReadDetail = () => {
         </S.MyNotificationDetail>
         {notificationDetailData.comments &&
           notificationDetailData.comments.length > 0 &&
-            (<CommentList commentData={notificationDetailData.comments[0]} />)}
+          notificationDetailData.comments.map((commentData: CommentData) => (
+            <CommentList
+              key={commentData.commentId}
+              commentData={commentData}
+            />
+          ))}
       </S.MyNotificationDetailBox>
     </S.MyNotificationDetailWrap>
   );

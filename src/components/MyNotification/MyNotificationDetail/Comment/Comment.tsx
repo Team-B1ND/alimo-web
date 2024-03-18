@@ -1,22 +1,13 @@
-import { useRef, useState } from "react";
+import useComment from "src/Hooks/Comment/useComment";
 import CommentButtonImg from "src/assets/img/CommentButtonImage.png";
 import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/Comment";
 
 const Comment = () => {
-  const commentRef = useRef(null);
-  const [commentValue, setCommentValue] = useState<string>("");
-
-  const handleChangeValue = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    commentRef: React.RefObject<HTMLTextAreaElement>
-  ) => {
-    if (commentRef.current) {
-      commentRef.current.style.height = "auto";
-      commentRef.current.style.height = commentRef.current.scrollHeight + "px";
-      setCommentValue(e.target.value);
-    }
-  };
-
+  const {
+    commentRef,
+    commentValue,
+    handleChangeValue,
+  } = useComment();
   return (
     <S.CommentWrap>
       <S.Comment>
