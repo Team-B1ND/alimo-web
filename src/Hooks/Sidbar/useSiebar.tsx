@@ -43,10 +43,10 @@ const Sidbar = () => {
     setProfileAlert((prev) => !prev);
   };
   //프로필
-  const openProfile = () => {
+  const OpenProfile = () => {
     setProfile((prev) => !prev);
   };
-  const openSetting = () => {
+  const OpenSetting = () => {
     setSetting((prev) => !prev);
   };
   useEffect(() => {
@@ -54,7 +54,7 @@ const Sidbar = () => {
   }, []);
 
   //페이지 이동
-  const handleNavigation = ({ location, navigate }: NavigationProps) => {
+  const HandleNavigation = ({ location, navigate }: NavigationProps) => {
     switch (location.pathname) {
       case "/":
         setIsClickCategory("카테고리 관리");
@@ -68,7 +68,7 @@ const Sidbar = () => {
     }
   };
 
-  const handleCategoryClick = (itemName: string) => {
+  const HandleCategoryClick = (itemName: string) => {
     setIsClickCategory(itemName);
     switch (itemName) {
       case "카테고리 관리":
@@ -83,7 +83,7 @@ const Sidbar = () => {
   };
 
   useEffect(() => {
-    handleNavigation({ location, navigate });
+    HandleNavigation({ location, navigate });
   }, [location.pathname]);
 
   return {
@@ -93,9 +93,9 @@ const Sidbar = () => {
     isProfile,
     isSetting,
     OpenProfileSetting,
-    openProfile,
-    openSetting,
-    handleCategoryClick,
+    OpenProfile,
+    OpenSetting,
+    HandleCategoryClick,
     isClickCategory,
   };
 };
