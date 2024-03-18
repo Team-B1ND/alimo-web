@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
-import qs from "qs";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
@@ -75,23 +74,31 @@ const useWrite = () => {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
     }
+  };
 
+  const getMemberCnt = async () => {
+    const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
+    const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
-      const response = await axios.get(`${CONFIG.serverUrl}/member/member-cnt`, {
+      const response = await axios.get(URL, {
         params: {
-          category: selectedCategory.map((category) => category.name),
+          category: categoryParams.toString(),
         },
-        paramsSerializer: (params) => {
-          return qs.stringify(params);
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
       });
       if (response.status === 200) {
         setMemberCnt(response.data.data.memberCnt);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
+
+  useEffect(() => {
+    getMemberCnt();
+  }, [selectedCategory.length]);
 
   const allowWriteButton = async () => {
     if (notAllow) {
