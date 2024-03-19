@@ -1,25 +1,16 @@
 import styled from "styled-components";
 
-export const MyNotificationDetailCommentWrap = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end
-`;
-
 export const MyNotificationDetailComment = styled.div`
   width: 100%;
-  height: calc(100% - 70px);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
-  overflow-y: auto;
 `;
 
 export const MyNotificationCommentWrap = styled.div`
   width: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   margin-top: 40px;

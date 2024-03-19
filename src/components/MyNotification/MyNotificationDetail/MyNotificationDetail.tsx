@@ -8,6 +8,7 @@ import CommentList from "src/components/MyNotification/MyNotificationDetail/Comm
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
+import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
 import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
@@ -93,15 +94,21 @@ const WriteReadDetail = () => {
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>
-        {/* <S.CommentList */}
-        {notificationDetailData.comments &&
-          notificationDetailData.comments.length > 0 &&
-          notificationDetailData.comments.map((commentData: CommentData) => (
-            <CommentList
-              key={commentData.commentId}
-              commentData={commentData}
-            />
-          ))}
+        <S.CommentListWrap>
+          <S.CommentListBox>
+            {notificationDetailData.comments &&
+              notificationDetailData.comments.length > 0 &&
+              notificationDetailData.comments.map(
+                (commentData: CommentData) => (
+                  <CommentList
+                    key={commentData.commentId}
+                    commentData={commentData}
+                  />
+                )
+              )}
+          </S.CommentListBox>
+          <Comment />
+        </S.CommentListWrap>
       </S.MyNotificationDetailBox>
     </S.MyNotificationDetailWrap>
   );

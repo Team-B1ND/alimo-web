@@ -186,3 +186,18 @@ export const MyNotificationFileDownLoad = styled.img`
   width: 30px;
   height: 30px;
 `;
+
+export const CommentListWrap = styled.div`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+export const CommentListBox = styled.div`
+  width: 100%;
+  height: calc(100% - 70px);
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
