@@ -37,8 +37,8 @@ export const UserProfile = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-width: 250px;
-  min-height: 250px;
+  min-width: 300px;
+  min-height: 300px;
   width: calc(100vw - 75vw);
   height: calc(100vw - 75vw);
   border-radius: 10px;

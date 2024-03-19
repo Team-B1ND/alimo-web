@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
@@ -25,9 +24,7 @@ const Sidbar = () => {
     setCategoryList(CategoryData);
   };
 
-  useEffect(() => {
-    CategoryList();
-  }, []);
+
   const ProfileInfo = async () => {
     try {
       const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
@@ -50,6 +47,7 @@ const Sidbar = () => {
     setSetting((prev) => !prev);
   };
   useEffect(() => {
+    CategoryList();
     ProfileInfo();
   }, []);
 
