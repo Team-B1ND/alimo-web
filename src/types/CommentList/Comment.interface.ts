@@ -12,7 +12,7 @@ export interface CommentData {
       commenterId: number;
       commentor: string;
       createdAt: string;
-      profileImage: string;
+      profileImage: string | null;
     }
   ];
 }

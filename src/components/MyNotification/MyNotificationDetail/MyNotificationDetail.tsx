@@ -19,7 +19,6 @@ const WriteReadDetail = () => {
     handleImageError,
     fileSize,
   } = useMyNotificationDetail();
-  console.log(notificationDetailData.images);
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
