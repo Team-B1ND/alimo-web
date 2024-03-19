@@ -9,7 +9,7 @@ import WriteReadDetail from "./WriteRead/WriteReadDetail/WriteReadDetail";
 import CategoryManage from "./CategoryManage/CategoryManage";
 import CategoryAdd from "./CategoryAdd/CategoryAdd";
 import EditCategory from "./CategoryEdit/EditCategory";
-import PrivateRoute from "src/lib/PrivateRoute";
+import PrivateRoute from "src/Hooks/private/PrivateRoute";
 
 const Router = () => {
   return (
