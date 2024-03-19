@@ -1,15 +1,15 @@
 import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
-import { CommentData } from "src/types/CommentList/Comment.interface";
+import { CommentData } from "@src/types/CommentList/CommentList.interface";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
-import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
+import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
-import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
-import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
+import Comment from "src/components/MyNotificationDetail/Comment/Comment";
+import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
 
 const WriteReadDetail = () => {
   const {

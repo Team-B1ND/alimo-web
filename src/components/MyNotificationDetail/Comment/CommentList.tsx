@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { CommentData } from "src/types/CommentList/Comment.interface";
+import { Props } from "src/types/CommentList/CommentListProps.interface";
 import baseProfile from "src/assets/img/profileimg.png";
-import ReplyComment from "src/components/MyNotification/MyNotificationDetail/Comment/ReplyComment";
-import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/CommentList.style";
-
-interface Props {
-  commentData: CommentData;
-}
+import ReplyComment from "src/components/MyNotificationDetail/Comment/ReplyComment";
+import * as S from "src/components/MyNotificationDetail/Comment/style/CommentList.style";
 
 const CommentList = ({ commentData }: Props) => {
   const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
@@ -35,9 +31,7 @@ const CommentList = ({ commentData }: Props) => {
           </S.CommentContentWrap>
         </S.MyNotificationComment>
       </S.MyNotificationCommentWrap>
-      {isReplyShow && (
-        <ReplyComment commentId={commentData.commentId} />
-      )}
+      {isReplyShow && <ReplyComment commentId={commentData.commentId} />}
     </S.MyNotificationDetailComment>
   );
 };

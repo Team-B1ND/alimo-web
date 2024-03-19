@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
+import { Props } from "src/types/MyNotification/MyNotificationProps.interface";
 import * as S from "src/components/MyNotification/style/MyNotification.style";
-
-interface Props {
-  notificationData: MyNotificationData;
-}
 
 const MyPostNotification = ({ notificationData }: Props) => {
   const navigate = useNavigate();
