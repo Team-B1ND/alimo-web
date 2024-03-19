@@ -13,11 +13,18 @@ export const LoginPage = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const IdKoreanError = styled.span`
+  display: flex;
+  margin: 5px 0px 5px 10px;
+  
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: red;
+`;
 
 export const LoginBox = styled.div`
   width: 873px;
   height: 471px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,7 +41,6 @@ export const AlimoImg = styled.img`
 export const LoginWrap = styled.div`
   width: 442px;
   height: 444px;
-
   display: flex;
   flex-direction: column;
   align-items: center;

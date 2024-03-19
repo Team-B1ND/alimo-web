@@ -1,11 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useSideBarNavigation from "src/util/useSideBarNavigation";
-import CONFIG from "src/config/config.json"
+import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
-
+import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { NavigationProps } from "src/types/login/Sidebar.types";
 
 const Sidbar = () => {
   const navigate = useNavigate();
@@ -13,61 +12,78 @@ const Sidbar = () => {
   const [isProfileAlert, setProfileAlert] = useState(false);
   const [isProfile, setProfile] = useState(false);
   const [isSetting, setSetting] = useState(false);
-  const [Name, setName] = useState("");
+  const [Name, setName] = useState<string>("");
   const [image, setimage] = useState("");
-  const [Category, setCategory] = useState<string[]>([]);
-  const accestoken = localStorage.getItem("accestoken");
-  const [categoryList, setCategoryList] = useRecoilState(categoryListState); //
-  const Categorylist = async () => {
-    const response = await axios.get(
-      `${CONFIG.serverUrl}/member/category-list`,
-      {
-        headers: {
-          Authorization: `Bearer ${accestoken}`,
-        },
-      }
-    );
+  const [category, setCategory] = useState<string[]>([]);
+  const [categoryList, setCategoryList] = useRecoilState(categoryListState);
+  const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
+  const CategoryList = async () => {
+    const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`);
     const CategoryData = response.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
   };
 
 
-  useEffect(() => {
-    Categorylist();
-  }, []);
-    const ProfileInfo = async()=>{
-      
-        try{
-            const response = await axios.get(`${CONFIG.serverUrl}/member/info`,{
-                headers: {
-                    Authorization : `Bearer ${accestoken}`
-                }
-            });
-            const userData = response.data.data;
-            setName(userData.name)
-            setimage(userData.image)
-        }catch(error){
-            console.log(error);
-            
-        }
+  const ProfileInfo = async () => {
+    try {
+      const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
+      const userData = response.data.data;
+      setName(userData.name);
+      setimage(userData.image);
+    } catch (error) {
+      console.log(error);
     }
+  };
+  //프로필 설정
   const OpenProfileSetting = () => {
     setProfileAlert((prev) => !prev);
   };
-  const openProfile = () => {
+  //프로필
+  const OpenProfile = () => {
     setProfile((prev) => !prev);
   };
-  const openSetting = () => {
+  const OpenSetting = () => {
     setSetting((prev) => !prev);
   };
-  const { handleCategoryClick, isClickCategory } = useSideBarNavigation({
-    location,
-    navigate,
-  });
-  useEffect(()=>{
+  useEffect(() => {
+    CategoryList();
     ProfileInfo();
-  },[]);
+  }, []);
+
+  //페이지 이동
+  const HandleNavigation = ({ location, navigate }: NavigationProps) => {
+    switch (location.pathname) {
+      case "/":
+        setIsClickCategory("카테고리 관리");
+        break;
+      case "/write-read":
+        setIsClickCategory("내가 쓴 공지보기");
+        break;
+      default:
+        setIsClickCategory("");
+        break;
+    }
+  };
+
+  const HandleCategoryClick = (itemName: string) => {
+    setIsClickCategory(itemName);
+    switch (itemName) {
+      case "카테고리 관리":
+        navigate("/");
+        break;
+      case "내가 쓴 공지보기":
+        navigate("/write-read");
+        break;
+      default:
+        navigate("");
+    }
+  };
+
+  useEffect(() => {
+    HandleNavigation({ location, navigate });
+  }, [location.pathname]);
+
   return {
     Name,
     image,
@@ -75,9 +91,9 @@ const Sidbar = () => {
     isProfile,
     isSetting,
     OpenProfileSetting,
-    openProfile,
-    openSetting,
-    handleCategoryClick,
+    OpenProfile,
+    OpenSetting,
+    HandleCategoryClick,
     isClickCategory,
   };
 };
