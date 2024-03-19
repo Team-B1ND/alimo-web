@@ -109,8 +109,10 @@ export const MyNotificationImgWrap = styled.div`
 `;
 
 export const MyNotificationImg = styled.img`
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `;
 
 export const MyNotificationFileWrap = styled.div`
