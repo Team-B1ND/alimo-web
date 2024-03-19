@@ -24,6 +24,9 @@ export const MyNotificationDetail = styled.div`
   border-right: 1px solid #ccc;
   overflow-x: hidden;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const MyNotification = styled.div`

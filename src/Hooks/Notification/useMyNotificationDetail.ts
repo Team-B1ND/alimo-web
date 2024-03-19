@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
-import axios from "axios";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 import CONFIG from "src/config/config.json";
 
 const useMyNotificationDetail = () => {
@@ -15,15 +15,11 @@ const useMyNotificationDetail = () => {
   const handleImageError = () => {
     setIsImageError(false);
   };
-  
+
   useEffect(() => {
     const NotificationRead = async () => {
-      await axios
-        .get(`${CONFIG.serverUrl}/notification/read/${id}`, {
-          headers: {
-            Authorization: `Bearer ${CONFIG.accessToken}`,
-          },
-        })
+      await alimoV1Axios
+        .get(`${CONFIG.serverUrl}/notification/read/${id}`)
         .then((res) => {
           setNotificationDetailData(res.data.data);
 
@@ -45,7 +41,7 @@ const useMyNotificationDetail = () => {
         });
     };
     NotificationRead();
-  }, []);
+  }, [id]);
   return {
     notificationDetailData,
     handleFileDownLoad,

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import CONFIG from "src/config/config.json";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const useReplyComment = () => {
   const { id } = useParams();
@@ -22,18 +22,11 @@ const useReplyComment = () => {
 
   const handleClickReplyComment = async (commentId: number) => {
     try {
-      await axios
-        .post(
-          `${CONFIG.serverUrl}/comment/create/${id}`,
+      await alimoV1Axios.post(`${CONFIG.serverUrl}/comment/create/${id}`,
           {
             content: replyCommentValue,
             parentId: commentId,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${CONFIG.accessToken}`,
-            },
-          }
         )
         .then((res) => {
           console.log(res);
