@@ -36,7 +36,7 @@ const CommentList = ({ commentData }: Props) => {
         </S.MyNotificationComment>
       </S.MyNotificationCommentWrap>
       {isReplyShow && (
-        <ReplyComment />
+        <ReplyComment commentId={commentData.commentId} />
       )}
     </S.MyNotificationDetailComment>
   );

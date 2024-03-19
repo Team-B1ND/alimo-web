@@ -1,10 +1,16 @@
 import { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
-// import axios from "axios";
-// import CONFIG from "src/config/config.json";
+import axios from "axios";
+import CONFIG from "src/config/config.json";
 
-const ReplyComment = () => {
+interface Props {
+  commentId: number;
+}
+
+const ReplyComment = ({ commentId }: Props) => {
+  const { id } = useParams();
   const replyCommentRef = useRef(null);
   const [replyCommentValue, setReplyCommentValue] = useState<string>("");
 
@@ -20,19 +26,28 @@ const ReplyComment = () => {
     }
   };
 
-  // const handleClickRegistration = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       `${CONFIG.serverUrl}/comment/create/{notificationId}`,
-  //       {
-  //         content: replyComment,
-  //         parentId: 0,
-  //       }
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleClickReplyComment = async () => {
+    try {
+      await axios
+        .post(
+          `${CONFIG.serverUrl}/comment/create/${id}`,
+          {
+            content: replyCommentValue,
+            parentId: commentId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${CONFIG.accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <S.MyPostReplyComment>
       <S.ReplyCommentInfoWrap>
@@ -47,7 +62,7 @@ const ReplyComment = () => {
             value={replyCommentValue}
             onChange={(e) => handleChangeValue(e, replyCommentRef)}
           />
-          <S.ReplyCommentButton /* onClick={handleClickRegistration}*/>
+          <S.ReplyCommentButton onClick={handleClickReplyComment}>
             등록
           </S.ReplyCommentButton>
         </S.ReplyCommentWrap>
