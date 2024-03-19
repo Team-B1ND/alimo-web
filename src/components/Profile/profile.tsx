@@ -1,44 +1,35 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as s from "src/components/Profile/style/Profile.style";
+import * as S from "src/components/Profile/style/Profile.style";
 import SideBar from "src/constants/SideBar/SideBar";
-import ProfileImg from "src/assets/img/profileimg.png";
-import ChangeImg from "src/assets/img/Group 266.png";
+import CloseImg from "src/assets/img/Closeimg.png";
+import UseProfile from "src/Hooks/Profile/useProfile";
 
-export default function Profile() {
-  const navigate = useNavigate();
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
-
-  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setSelectedImg(reader.result as string);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+const Profile = ({ onClose }: { onClose: () => void }) => {
+  const { Name, image,Category, } = UseProfile();
 
   return (
-    <s.Profile>
+    <S.Profile>
       <SideBar />
-      <s.Main>
-        <s.UserProfile>
-          <s.User>
-            <s.SetImg src={selectedImg || ProfileImg}></s.SetImg>
-            <s.ChangeFile>
-              <label htmlFor="change-img">
-                <img src={ChangeImg} alt="Change Image" />
-              </label>
-              <s.Changbutton name="file" type="file" id="change-img" onChange={handleChangeImg} />
-            </s.ChangeFile>
-            <span>이진주</span>
-          </s.User>
-          <s.ChangSucces onClick={() => navigate("/main")}>수정완료</s.ChangSucces>
-        </s.UserProfile>
-      </s.Main>
-    </s.Profile>
+      <S.Main>
+        <S.UserProfile>
+          <S.ProfilePageNanme>프로필</S.ProfilePageNanme>
+          <S.User>
+            <S.profileImg>
+              <S.SetImg>
+                <img src={image} />
+              </S.SetImg>
+              <span>{Name}</span>
+            </S.profileImg>
+          </S.User>
+          <S.Category>
+            {Category.map((Categorys)=>(
+               <S.IndividualCategories><span>{Categorys}</span></S.IndividualCategories>
+            ))}
+          </S.Category>
+          <S.ChangSucces src={CloseImg} onClick={onClose}></S.ChangSucces>
+        </S.UserProfile>
+      </S.Main>
+    </S.Profile>
   );
-}
+};
+
+export default Profile;
