@@ -1,4 +1,5 @@
 import { LinkItUrl } from "react-linkify-it";
+import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/Comment.interface";
 import SideBar from "src/constants/SideBar/SideBar";
@@ -17,6 +18,7 @@ const WriteReadDetail = () => {
     handleImageError,
     fileSize,
   } = useMyNotificationDetail();
+  console.log(notificationDetailData.images);
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -42,16 +44,17 @@ const WriteReadDetail = () => {
                 <LinkItUrl>{notificationDetailData.content}</LinkItUrl>
               </S.MyNotificationContent>
             </S.MyNotificationContentWrap>
-            <S.MyNotificationImgWrap>
-              {notificationDetailData.images &&
-                notificationDetailData.images.length > 0 &&
-                isImageError && (
+            {notificationDetailData.images &&
+              notificationDetailData.images.length > 0 &&
+              isImageError &&
+              notificationDetailData.images.map((imageData: ImageData) => (
+                <S.MyNotificationImgWrap>
                   <S.MyNotificationImg
-                    src={notificationDetailData.images[0].fileUrl}
+                    src={imageData.fileUrl}
                     onError={handleImageError}
                   />
-                )}
-            </S.MyNotificationImgWrap>
+                </S.MyNotificationImgWrap>
+              ))}
             {notificationDetailData.files &&
               notificationDetailData.files.length > 0 &&
               notificationDetailData.files.map(
@@ -82,6 +85,7 @@ const WriteReadDetail = () => {
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>
+        {/* <S.CommentList */}
         {notificationDetailData.comments &&
           notificationDetailData.comments.length > 0 &&
           notificationDetailData.comments.map((commentData: CommentData) => (

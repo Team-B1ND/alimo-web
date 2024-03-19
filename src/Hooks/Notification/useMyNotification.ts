@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import CONFIG from "src/config/config.json";
 
 const useMyNotification = () => {

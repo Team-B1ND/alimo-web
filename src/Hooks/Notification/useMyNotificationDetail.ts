@@ -11,9 +11,11 @@ const useMyNotificationDetail = () => {
   const [fileSize, setFileSize] = useState<string[]>([]);
 
   const handleFileDownLoad = () => {};
+
   const handleImageError = () => {
     setIsImageError(false);
   };
+  
   useEffect(() => {
     const NotificationRead = async () => {
       await axios

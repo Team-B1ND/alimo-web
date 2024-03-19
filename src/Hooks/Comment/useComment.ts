@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import CONFIG from "src/config/config.json";
 
 const useComment = () => {
+  const { id } = useParams();
   const commentRef = useRef(null);
   const [commentValue, setCommentValue] = useState<string>("");
 
@@ -14,11 +18,35 @@ const useComment = () => {
       setCommentValue(e.target.value);
     }
   };
+
+  const handleClickComment = async () => {
+    try {
+      await axios
+        .post(
+          `${CONFIG.serverUrl}/comment/create/${id}`,
+          {
+            content: commentValue,
+            parentId: null,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${CONFIG.accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     commentRef,
     commentValue,
     handleChangeValue,
-  }
+    handleClickComment,
+  };
 };
 
 export default useComment;
