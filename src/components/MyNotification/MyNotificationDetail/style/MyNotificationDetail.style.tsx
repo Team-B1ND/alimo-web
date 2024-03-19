@@ -105,11 +105,11 @@ export const MyNotificationContent = styled.span`
 export const MyNotificationImgWrap = styled.div`
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
 `;
 
 export const MyNotificationImg = styled.img`
-  max-width: 80%;
+  max-width: 60%;
+  min-width: 20%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;

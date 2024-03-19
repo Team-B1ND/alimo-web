@@ -47,14 +47,22 @@ const WriteReadDetail = () => {
             {notificationDetailData.images &&
               notificationDetailData.images.length > 0 &&
               isImageError &&
-              notificationDetailData.images.map((imageData: ImageData) => (
-                <S.MyNotificationImgWrap>
-                  <S.MyNotificationImg
-                    src={imageData.fileUrl}
-                    onError={handleImageError}
-                  />
-                </S.MyNotificationImgWrap>
-              ))}
+              notificationDetailData.images.map(
+                (imageData: ImageData, idx: number) => (
+                  <S.MyNotificationImgWrap>
+                    <S.MyNotificationImg
+                      src={imageData.fileUrl}
+                      style={{
+                        marginBottom:
+                          notificationDetailData.images.length > idx + 1
+                            ? "3px"
+                            : "20px",
+                      }}
+                      onError={handleImageError}
+                    />
+                  </S.MyNotificationImgWrap>
+                )
+              )}
             {notificationDetailData.files &&
               notificationDetailData.files.length > 0 &&
               notificationDetailData.files.map(
