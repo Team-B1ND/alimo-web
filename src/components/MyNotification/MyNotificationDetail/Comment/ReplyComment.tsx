@@ -1,53 +1,18 @@
-import { useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import useReplyComment from "src/Hooks/Comment/useReplyComment";
 import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
 import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
-import axios from "axios";
-import CONFIG from "src/config/config.json";
 
 interface Props {
   commentId: number;
 }
 
 const ReplyComment = ({ commentId }: Props) => {
-  const { id } = useParams();
-  const replyCommentRef = useRef(null);
-  const [replyCommentValue, setReplyCommentValue] = useState<string>("");
-
-  const handleChangeValue = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    replyCommentRef: React.RefObject<HTMLTextAreaElement>
-  ) => {
-    if (replyCommentRef.current) {
-      replyCommentRef.current.style.height = "auto";
-      replyCommentRef.current.style.height =
-        replyCommentRef.current.scrollHeight + "px";
-      setReplyCommentValue(e.target.value);
-    }
-  };
-
-  const handleClickReplyComment = async () => {
-    try {
-      await axios
-        .post(
-          `${CONFIG.serverUrl}/comment/create/${id}`,
-          {
-            content: replyCommentValue,
-            parentId: commentId,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${CONFIG.accessToken}`,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    replyCommentRef,
+    replyCommentValue,
+    handleChangeValue,
+    handleClickReplyComment,
+  } = useReplyComment();
   return (
     <S.MyPostReplyComment>
       <S.ReplyCommentInfoWrap>
@@ -62,7 +27,7 @@ const ReplyComment = ({ commentId }: Props) => {
             value={replyCommentValue}
             onChange={(e) => handleChangeValue(e, replyCommentRef)}
           />
-          <S.ReplyCommentButton onClick={handleClickReplyComment}>
+          <S.ReplyCommentButton onClick={()=>handleClickReplyComment(commentId)}>
             등록
           </S.ReplyCommentButton>
         </S.ReplyCommentWrap>
