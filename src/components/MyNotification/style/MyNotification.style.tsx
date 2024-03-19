@@ -1,85 +1,67 @@
 import styled from "styled-components";
 
-export const WriteRead = styled.div`
+export const MyNotification = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
 `;
 
-export const WriteReadView = styled.div`
+export const MyNotificationView = styled.div`
   width: 85vw;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  overflow: scroll;
+  align-items: flex-end;
 `;
 
-export const WriteReadWrap = styled.div`
+export const MyNotificationWrap = styled.div`
   width: 100%;
-  height: 85%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 10vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
-export const WriteReadText = styled.div`
-  width: 90%;
-  height: auto;
-  font-family: Pretendard;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-
-export const WriteReadTitle = styled.span`
-  color: #000;
-  padding-right: 10px;
-  margin-bottom: 50px;
-`;
-
-export const WriteReadCount = styled.span`
-  color: var(--Main500, #fece23);
-`;
-
-export const MyPostNotifyWrap = styled.div`
-  width: 90%;
-  height: 30%;
+export const MyPostNotificationWrap = styled.div`
+  width: 95%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-export const MyPostNotify = styled.div`
-  width: 100%;
-  height: 90%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #d9d9d9;
-  cursor: pointer;
-`;
-
-export const MyNotifyTextWrap = styled.div`
-  width: 70%;
-  height: 100%;
+export const MyPostNotification = styled.div`
+  width: 95%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+`;
+
+export const MyNotificationBox = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const MyNotificationTextWrap = styled.div`
+  width: 60%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 export const MyInfoWrap = styled.div`
-  width: 95%;
-  height: 35%;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -94,20 +76,20 @@ export const MyProfile = styled.img`
 export const MyInfoText = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 5px 0px 0px 10px;
+  margin-left: 10px;
 `;
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
 
-export const MyNotifyDate = styled.p`
-  color: var(--Gray500, #888);
+export const MyNotificationDate = styled.p`
+  color: #aaaaaa;
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
@@ -115,51 +97,57 @@ export const MyNotifyDate = styled.p`
   line-height: normal;
 `;
 
-export const MyContentWrap = styled.div`
+export const MyContentBoxWrap = styled.div`
   width: 95%;
-  height: 65%;
+  height: 50%;
   display: flex;
   flex-direction: column;
 `;
 
-export const MyContentTitleBox = styled.div`
+export const MyContentTitleWrap = styled.div`
   width: 100%;
-  height: 30%;
+  height: auto;
+  margin: 10px 0px;
 `;
 
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   line-height: normal;
 `;
 
-export const MyContentBox = styled.div`
+export const MyContentWrap = styled.div`
   width: 100%;
-  height: 70%;
+  height: auto;
 `;
 
 export const MyContent = styled.span`
-  color: var(--Main900, #020202);
+  color: var(--Main600, #787878);
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
-export const MyNotifyImgWrap = styled.div`
-  width: 30%;
+export const MyNotificationImgWrap = styled.div`
+  width: 40%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
 `;
 
-export const MyNotifyImg = styled.img`
-  width: 80%;
-  height: 80%;
+export const MyNotificationImg = styled.img`
+  max-width: 90%;
+  height: 90%;
+`;
+
+export const MyNotificationLine = styled.div`
+  width: 98%;
+  height: 1px;
+  background-color: #f4f5f9;
 `;
