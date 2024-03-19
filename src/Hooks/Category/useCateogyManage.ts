@@ -17,6 +17,7 @@ const useCategoryManage = () => {
   const [grade, setGrade] = useState<number>();
   const [cls, setCls] = useState<number>();
   const [permission, setPermission] = useState<string>("");
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
 
   useEffect(() => {
     getCategoryList();
@@ -64,6 +65,30 @@ const useCategoryManage = () => {
     }
   };
 
+  const onChangeSearchCategoryName = (e: any) => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const SearchCategory = async () => {
+    try {
+      const response = await axios.get(
+        `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`,
+        {
+          headers: {
+            Authorization: `#`,
+          },
+        },
+      );
+      if (response.status === 200) {
+        showToast("sucess", "카테고리 검색 성공!");
+      } else {
+        showToast("eror", "검색 실패");
+      }
+    } catch (e) {
+      showToast("eror", "서버 통신 오류");
+    }
+  };
+
   const getCategoryList = async () => {
     try {
       const response = await axios.get(
@@ -103,8 +128,11 @@ const useCategoryManage = () => {
     grade,
     cls,
     permission,
+    searchKeyword,
     handleCategoryClick,
     onClickNewCategoryButton,
+    onChangeSearchCategoryName,
+    SearchCategory,
     showStudentList,
     handlePopUp,
     onClose,

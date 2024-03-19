@@ -18,8 +18,11 @@ const CategoryManage = () => {
     grade,
     cls,
     permission,
+    searchKeyword,
     handleCategoryClick,
     onClickNewCategoryButton,
+    onChangeSearchCategoryName,
+    SearchCategory,
     showStudentList,
     handlePopUp,
     onClose,
@@ -30,7 +33,7 @@ const CategoryManage = () => {
       <SideBar />
       <S.CategoryManageView>
         <S.CateogyManageUtilityWrap>
-          <S.SearchCateogy placeholder="카테고리 검색" />
+          <S.SearchCateogy placeholder="카테고리 검색" onKeyDown={SearchCategory} type="search" />
           <S.CreateCategoryButton onClick={onClickNewCategoryButton}>새 카테고리 </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
