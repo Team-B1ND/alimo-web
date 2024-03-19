@@ -17,6 +17,7 @@ const Login = () => {
     setIsShowPswd,
     InputChange,
     LoginButton,
+    idError,
   } = uselogin();
   
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -51,6 +52,7 @@ const Login = () => {
                   onChange={InputChange}
                   onKeyDown={handleKeyDown}
                 />
+                { idError && <S.IdKoreanError>한글은 사용할 수 없습니다.</S.IdKoreanError> }
                 <S.IdBtn
                   onClick={() => {
                     setIdValue("");

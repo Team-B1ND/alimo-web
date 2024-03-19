@@ -13,6 +13,7 @@ import {
 
 const Uselogin = () => {
   const navigate = useNavigate();
+  const [idError, setIdError] = useState(false);
   const [Loginloading, SetLoginloading] = useState<boolean>(false);
   const [clickName, setClickName] = useState<string>("");
   const [idValue, setIdValue] = useState<string>("");
@@ -23,13 +24,18 @@ const Uselogin = () => {
   const InputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (clickName === "Id") {
       const idRegex = /^[A-Za-z0-9@.]+$/;
+      const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글을 포함하는 정규식
 
       if (idRegex.test(e.target.value) || e.target.value === "") {
         setIdValue(e.target.value);
+        setIdError(false); // 에러 상태 초기화
+      } else if (koreanRegex.test(e.target.value)) {
+        setIdError(true); // 한글 입력 시 에러 상태 활성화
       }
     } else {
       const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
-
+      const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글을 포함하는 정규식
+  
       if (passwordRegex.test(e.target.value) || e.target.value === "") {
         setPasswordValue(e.target.value);
       }
@@ -87,6 +93,7 @@ const Uselogin = () => {
     setIsShowPswd,
     InputChange,
     LoginButton,
+    idError,
   };
 };
 

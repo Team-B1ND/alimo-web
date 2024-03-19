@@ -13,11 +13,15 @@ export const LoginPage = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const IdKoreanError = styled.span`
+font-size: 0.8rem;
+font-weight: 700;
+color: red;
+`
 
 export const LoginBox = styled.div`
   width: 873px;
   height: 471px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
