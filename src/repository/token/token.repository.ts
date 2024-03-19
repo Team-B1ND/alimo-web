@@ -5,12 +5,11 @@ import CONFIG from "src/config/config.json";
 
 class TokenRepository {
   public async getRefreshToken(
-    token: RefreshTokenParam
+    refreshToken: RefreshTokenParam
   ): Promise<RefreshResponse> {
     const { data } = await axios.post<RefreshResponse>(
-      `${CONFIG.serverUrl}/refresh`,{
-        refreshToken: token
-      }
+      `${CONFIG.serverUrl}/refresh`,
+      refreshToken
     );
     return data;
   }
