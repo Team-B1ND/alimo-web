@@ -10,20 +10,26 @@ import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
 import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
+import PostClose from "src/assets/img/PostClose.png";
 
 const WriteReadDetail = () => {
   const {
     notificationDetailData,
-    handleFileDownLoad,
+    HandleFileDownLoad,
     isImageError,
-    handleImageError,
+    HandleImageError,
     fileSize,
+    HandleClose,
   } = useMyNotificationDetail();
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
       <S.MyNotificationDetailBox>
         <S.MyNotificationDetail>
+          <S.Notificationclose>
+            {" "}
+            <img src={PostClose} onClick={HandleClose} />{" "}
+          </S.Notificationclose>
           <S.MyNotification>
             <S.MyNotificationInfoWrap>
               <S.MyProfile src={notificationDetailData.profileImage} />
@@ -58,7 +64,7 @@ const WriteReadDetail = () => {
                             ? "3px"
                             : "20px",
                       }}
-                      onError={handleImageError}
+                      onError={HandleImageError}
                     />
                   </S.MyNotificationImgWrap>
                 )
@@ -71,7 +77,8 @@ const WriteReadDetail = () => {
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
-                          src={FileImage}></S.MyNotificationFileImage>
+                          src={FileImage}
+                        ></S.MyNotificationFileImage>
                         <S.MyNotificationFileText>
                           <S.MyNotificationFileName>
                             {fileData.fileName}
@@ -82,9 +89,11 @@ const WriteReadDetail = () => {
                         </S.MyNotificationFileText>
                       </S.MyNotificationFileInfo>
                       <S.MyNotificationFileDownLoadWrap
-                        onClick={handleFileDownLoad}>
+                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}
+                      >
                         <S.MyNotificationFileDownLoad
-                          src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
+                          src={FileDownLoadIcon}
+                        ></S.MyNotificationFileDownLoad>
                       </S.MyNotificationFileDownLoadWrap>
                     </S.MyNotificationFile>
                   </S.MyNotificationFileWrap>

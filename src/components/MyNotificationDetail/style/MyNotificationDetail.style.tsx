@@ -12,7 +12,7 @@ export const MyNotificationDetailBox = styled.div`
   height: calc(100% - 10vh);
   display: flex;
   flex-direction: row;
-  margin-top: 10vh;
+  margin-top: 85px;
 `;
 
 export const MyNotificationDetail = styled.div`
@@ -26,6 +26,19 @@ export const MyNotificationDetail = styled.div`
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
+  }
+`; 
+
+export const Notificationclose = styled.div`
+  display: flex;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  height: 25px;
+  img{
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
   }
 `;
 

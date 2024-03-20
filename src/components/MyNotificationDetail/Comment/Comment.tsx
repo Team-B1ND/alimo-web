@@ -13,7 +13,8 @@ const Comment = () => {
           ref={commentRef}
           value={commentValue}
           placeholder="댓글을 남겨보세요."
-          onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
+          onChange={(e) => handleChangeValue(e, commentRef)}
+        ></S.CommentInput>
         <S.CommentButtonWrap onClick={handleClickComment}>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>
