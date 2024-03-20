@@ -1,6 +1,6 @@
 import useReplyComment from "src/Hooks/Comment/useReplyComment";
 import DummyProfile from "src/assets/img/Profile-Dummy.jpg";
-import * as S from "src/components/MyNotification/MyNotificationDetail/Comment/style/ReplyComment.style";
+import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComment.style";
 
 interface Props {
   commentId: number;
@@ -27,7 +27,9 @@ const ReplyComment = ({ commentId }: Props) => {
             value={replyCommentValue}
             onChange={(e) => handleChangeValue(e, replyCommentRef)}
           />
-          <S.ReplyCommentButton onClick={()=>handleClickReplyComment(commentId)}>
+          <S.ReplyCommentButton
+            onClick={() => handleClickReplyComment(commentId)}
+          >
             등록
           </S.ReplyCommentButton>
         </S.ReplyCommentWrap>
