@@ -5,6 +5,7 @@ export const MyNotificationDetailWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
+  overflow-y: hidden;
 `;
 
 export const MyNotificationDetailBox = styled.div`
@@ -27,7 +28,7 @@ export const MyNotificationDetail = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`; 
+`;
 
 export const Notificationclose = styled.div`
   display: flex;
@@ -35,7 +36,7 @@ export const Notificationclose = styled.div`
   margin-top: 20px;
   width: 100%;
   height: 25px;
-  img{
+  img {
     margin-left: 50px;
     width: 25px;
     height: 25px;
