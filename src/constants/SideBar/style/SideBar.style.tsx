@@ -26,6 +26,8 @@ export const AlimoLogoTitle = styled.h1`
   font-weight: 700;
   color: #000;
 
+  cursor: pointer;
+
   & > span {
     color: var(--Main500, #fece23);
   }
@@ -36,6 +38,8 @@ export const AlimoLogoAdmin = styled.h1`
   font-size: 1rem;
   margin-top: 1.2vh;
   margin-left: 0.3vw;
+
+  cursor: pointer;
 `;
 
 export const SideBarMenuWrap = styled.div`
@@ -52,6 +56,11 @@ export const SideBarMenuFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  align-items: flex-start;
+  align-self: center;
+
+  margin-left: -2vw;
 `;
 
 export const SideBarCategory = styled.div`
@@ -60,7 +69,6 @@ export const SideBarCategory = styled.div`
   width: 100%;
   height: 50px;
   flex-direction: row;
-  margin-left: 10px;
   cursor: pointer;
   & > img {
     width: calc(100vw - 98vw);

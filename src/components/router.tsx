@@ -7,7 +7,6 @@ import Write from "./Write/Write";
 import MyNotification from "./MyNotification/MyNotification";
 import MyNotificationDetail from "./MyNotification/MyNotificationDetail/MyNotificationDetail";
 import CategoryManage from "./CategoryManage/CategoryManage";
-import CategoryAdd from "./CategoryAdd/CategoryAdd";
 import EditCategory from "./CategoryEdit/EditCategory";
 import PrivateRoute from "src/Hooks/private/PrivateRoute";
 
