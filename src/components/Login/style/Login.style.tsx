@@ -194,6 +194,7 @@ export const LoginBtn = styled.button`
   width: 100%;
   height: 52px;
   cursor: pointer;
+  outline: none;
   color: var(--Main50, #fffefc);
   font-family: Pretendard;
   font-size: 16px;
