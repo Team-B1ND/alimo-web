@@ -139,7 +139,7 @@ export const ViewFileName = styled.input`
   font-size: 1rem;
   font-weight: 600;
 
-  margin-top: 1.5vh;ㅈ
+  margin-top: 1.5vh;
 
   &:focus {
     outline: none;

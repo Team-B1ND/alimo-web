@@ -20,6 +20,7 @@ const Write = () => {
     imageInputRef,
     HandleImageClick,
     HandleFileChange,
+    DeleteFile,
     HandleImageChange,
     DeletePreviewImage,
     fileName,
@@ -45,7 +46,7 @@ const Write = () => {
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
-            <S.ViewFileName value={fileName} readOnly placeholder="파일은 최대 3개, 각각 100MB" />
+            <S.ViewFileName value={fileName} readOnly placeholder="파일은 최대 3개, 각각 100MB" onClick={DeleteFile} />
             <S.FileChange type="file" id="file-change" multiple onChange={HandleFileChange} />
           </S.FileWrap>
         </S.InputWrap>

@@ -49,16 +49,30 @@ const useWrite = () => {
   const HandleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
-    setFile(fileArray);
 
-    const newFileNames = fileArray.map((file) => file.name);
-    setFileName(newFileNames);
+    if (fileArray.length <= 3) {
+      setFile(fileArray);
+      const newFileNames = fileArray.map((file) => file.name);
+      setFileName(newFileNames);
+    } else {
+      showToast("info", "파일은 최대 3개까지 올릴 수 있습니다.");
+    }
+  };
+
+  const DeleteFile = () => {
+    setFile([]);
+    setFileName([]);
   };
 
   const HandleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray: File[] = Array.prototype.slice.call(files);
-    setImage(fileArray);
+
+    if (fileArray.length <= 2) {
+      setImage(fileArray);
+    } else {
+      showToast("info", "이미지는 최대 2개까지 올릴 수 있습니다.");
+    }
   };
 
   const DeletePreviewImage = () => {
@@ -181,6 +195,7 @@ const useWrite = () => {
     imageInputRef,
     HandleImageClick,
     HandleFileChange,
+    DeleteFile,
     HandleImageChange,
     DeletePreviewImage,
     fileName,
