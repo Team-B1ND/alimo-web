@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
 import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
+
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
@@ -27,13 +28,8 @@ const useCategoryManage = () => {
     setIsClickedCategory(categoryName);
 
     try {
-      const reponse = await axios.get(
+      const reponse = await alimoV1Axios.get(
         `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`,
-        {
-          headers: {
-            Authorization: `#`,
-          },
-        },
       );
       if (reponse.status === 200) {
         setMemberData(reponse.data.data);
@@ -71,13 +67,8 @@ const useCategoryManage = () => {
 
   const SearchCategory = async () => {
     try {
-      const response = await axios.get(
+      const response = await alimoV1Axios.get(
         `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`,
-        {
-          headers: {
-            Authorization: `#`,
-          },
-        },
       );
       if (response.status === 200) {
         showToast("sucess", "카테고리 검색 성공!");
@@ -91,13 +82,8 @@ const useCategoryManage = () => {
 
   const getCategoryList = async () => {
     try {
-      const response = await axios.get(
+      const response = await alimoV1Axios.get(
         `${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`,
-        {
-          headers: {
-            Authorization: `#`,
-          },
-        },
       );
       if (response.status === 200) {
         setCategoryData(response.data.data);

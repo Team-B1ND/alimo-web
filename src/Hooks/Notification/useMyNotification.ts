@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
-import axios, { AxiosError } from "axios";
 import CONFIG from "src/config/config.json";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const useMyNotification = () => {
-  const [notificationData, setNotificationData] = useState<
-    MyNotificationData[]
-  >([]);
+  const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
 
   useEffect(() => {
     const MyNotificationLoad = async () => {
       try {
-        await axios
+        await alimoV1Axios
           .get(`${CONFIG.serverUrl}/notification/load/my`, {
             params: { page: 1, size: 1000 },
-            headers: {
-              Authorization: `Bearer ${CONFIG.accessToken}`,
-            },
           })
           .then((res) => {
             setNotificationData(res.data.data);

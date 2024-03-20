@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import CONFIG from "src/config/config.json";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const useComment = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const useComment = () => {
 
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    commentRef: React.RefObject<HTMLTextAreaElement>
+    commentRef: React.RefObject<HTMLTextAreaElement>,
   ) => {
     if (commentRef.current) {
       commentRef.current.style.height = "auto";
@@ -21,19 +21,11 @@ const useComment = () => {
 
   const handleClickComment = async () => {
     try {
-      await axios
-        .post(
-          `${CONFIG.serverUrl}/comment/create/${id}`,
-          {
-            content: commentValue,
-            parentId: null,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${CONFIG.accessToken}`,
-            },
-          }
-        )
+      await alimoV1Axios
+        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          content: commentValue,
+          parentId: null,
+        })
         .then((res) => {
           console.log(res);
         });

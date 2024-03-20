@@ -5,21 +5,20 @@ import CONFIG from "src/config/config.json";
 import * as S from "src/constants/Emoji/style/Emoji.style";
 
 const Emoji = () => {
+  const accessToken = localStorage.getItem("accestoken");
   interface EmojiData {
     emojiName: string;
     count: number;
   }
   const { id } = useParams();
-  const [notificationEmojiData, setNotificationEmojiData] = useState<
-    EmojiData[]
-  >([]);
+  const [notificationEmojiData, setNotificationEmojiData] = useState<EmojiData[]>([]);
 
   useEffect(() => {
     const NotificationEmojiLoad = async () => {
       await axios
         .get(`${CONFIG.serverUrl}/emoji/load/${id}`, {
           headers: {
-            Authorization: `Bearer ${CONFIG.accessToken}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((res) => {

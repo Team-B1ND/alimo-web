@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/lib/Toast/Swal";
 import CONFIG from "src/config/config.json";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 interface Category {

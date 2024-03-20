@@ -3,6 +3,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
+import useCategoryManage from "./useCateogyManage";
 
 interface Student {
   name: string;
