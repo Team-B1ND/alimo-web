@@ -129,10 +129,8 @@ const useWrite = () => {
         cancelButtonText: "사용안함",
       }).then((result) => {
         if (result.isConfirmed) {
-          showToast("success", "확성기가 사용되었습니다.");
           setIsSpeaker(true);
         } else {
-          showToast("success", "확성기를 사용하지 않습니다.");
           setIsSpeaker(false);
         }
       });
