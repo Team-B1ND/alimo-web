@@ -6,8 +6,8 @@ import { showToast } from "src/lib/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/types/Write/write.types";
-import { FileName } from "src/types/Write/fileName,types";
+import { Category } from "src/types/Write/write.type";
+
 const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
@@ -15,8 +15,7 @@ const useWrite = () => {
   const [file, setFile] = useState<File[]>();
   const [image, setImage] = useState<File[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [fileName, setFileName] = useState<FileName[]>([]);
-  const [imageName, setImageName] = useState<string>("");
+  const [fileName, setFileName] = useState<string[]>([]);
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -35,35 +34,38 @@ const useWrite = () => {
 
   const formData = new FormData();
 
-  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const OnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const onChangeContext = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const OnChangeContext = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContext(e.target.value);
   };
 
-  const handleImageClick = () => {
+  const HandleImageClick = () => {
     imageInputRef.current?.click();
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const HandleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     setFile(fileArray);
+
+    const newFileNames = fileArray.map((file) => file.name);
+    setFileName(newFileNames);
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const HandleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray: File[] = Array.prototype.slice.call(files);
     setImage(fileArray);
   };
 
-  const deletePreviewImage = () => {
+  const DeletePreviewImage = () => {
     setImage([]);
   };
 
-  const onClickAddCategory = async (CategoryName: string) => {
+  const HandleAddCategory = async (CategoryName: string) => {
     const isSelected = selectedCategory.some((category) => category.name === CategoryName);
     if (isSelected) {
       setSelectedCategory(selectedCategory.filter((category) => category.name !== CategoryName));
@@ -73,7 +75,7 @@ const useWrite = () => {
     }
   };
 
-  const getMemberCnt = async () => {
+  const GetMemberCnt = async () => {
     const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
     const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
@@ -94,10 +96,10 @@ const useWrite = () => {
   };
 
   useEffect(() => {
-    getMemberCnt();
+    GetMemberCnt();
   }, [selectedCategory.length]);
 
-  const allowWriteButton = async () => {
+  const AllowWriteButton = async () => {
     if (notAllow) {
       showToast("error", "빈곳이 없게 작성하여주세요");
     } else {
@@ -174,17 +176,17 @@ const useWrite = () => {
     image,
     CategoryList,
     memberCnt,
-    onChangeTitle,
-    onChangeContext,
+    OnChangeTitle,
+    OnChangeContext,
     imageInputRef,
-    handleImageClick,
-    handleFileChange,
-    handleImageChange,
-    deletePreviewImage,
+    HandleImageClick,
+    HandleFileChange,
+    HandleImageChange,
+    DeletePreviewImage,
     fileName,
     selectedCategory,
-    onClickAddCategory,
-    allowWriteButton,
+    HandleAddCategory,
+    AllowWriteButton,
   };
 };
 

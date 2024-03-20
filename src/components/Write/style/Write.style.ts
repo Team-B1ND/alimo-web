@@ -118,6 +118,7 @@ export const FileChangeLabel = styled.label`
 export const ViewImageWrap = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   width: 100%;
 `;
@@ -138,7 +139,7 @@ export const ViewFileName = styled.input`
   font-size: 1rem;
   font-weight: 600;
 
-  margin-top: 1vh;
+  margin-top: 1.5vh;ㅈ
 
   &:focus {
     outline: none;
@@ -188,6 +189,8 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  //더블클릭시 폰트 블럭처리를 막아주는 코드
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
