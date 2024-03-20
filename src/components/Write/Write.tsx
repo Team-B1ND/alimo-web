@@ -46,7 +46,7 @@ const Write = () => {
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
-            <S.ViewFileName value={fileName} readOnly />
+            <S.ViewFileName value={fileName.map((name, idx) => fileName[idx]?.fileName)} readOnly />
             <S.FileChange type="file" id="file-change" multiple onChange={handleFileChange} />
           </S.FileWrap>
         </S.InputWrap>
@@ -77,4 +77,3 @@ const Write = () => {
 };
 
 export default Write;
-

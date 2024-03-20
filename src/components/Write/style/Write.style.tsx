@@ -5,6 +5,8 @@ export const WriteMain = styled.div`
   height: 100vh;
 
   display: flex;
+
+  overflow: hidden;
 `;
 
 export const WriteView = styled.div`

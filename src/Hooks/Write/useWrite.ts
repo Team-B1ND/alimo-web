@@ -6,8 +6,8 @@ import { showToast } from "src/lib/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "@src/types/Write/write.types";
-
+import { Category } from "src/types/Write/write.types";
+import { FileName } from "src/types/Write/fileName,types";
 const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
@@ -15,7 +15,7 @@ const useWrite = () => {
   const [file, setFile] = useState<File[]>();
   const [image, setImage] = useState<File[]>();
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [fileName, setFileName] = useState<string>("");
+  const [fileName, setFileName] = useState<FileName[]>([]);
   const [imageName, setImageName] = useState<string>("");
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const useWrite = () => {
     }
   }, [title, context, selectedCategory]);
 
-  var formData = new FormData();
+  const formData = new FormData();
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -51,9 +51,6 @@ const useWrite = () => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     setFile(fileArray);
-    fileArray.map((name, idx) => {
-      setFileName(fileArray?.[idx].name);
-    });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
