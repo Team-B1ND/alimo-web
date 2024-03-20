@@ -19,25 +19,28 @@ const useComment = () => {
     }
   };
 
-  const handleClickComment = async () => {
-    try {
-      await alimoV1Axios
-        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
-          content: commentValue,
-          parentId: null,
-        })
-        .then((res) => {
-          console.log(res);
-        });
-    } catch (error) {
-      console.log(error);
+  const handleCommentCreate = async () => {
+    if (commentValue !== "") {
+      try {
+        setCommentValue("");
+        await alimoV1Axios
+          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+            content: commentValue,
+            parentId: null,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return {
     commentRef,
     commentValue,
     handleChangeValue,
-    handleClickComment,
+    handleCommentCreate,
   };
 };
 

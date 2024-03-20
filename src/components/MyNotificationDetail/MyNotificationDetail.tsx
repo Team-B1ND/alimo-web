@@ -21,6 +21,7 @@ const WriteReadDetail = () => {
     fileSize,
     HandleClose,
   } = useMyNotificationDetail();
+
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -77,8 +78,7 @@ const WriteReadDetail = () => {
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
-                          src={FileImage}
-                        ></S.MyNotificationFileImage>
+                          src={FileImage}></S.MyNotificationFileImage>
                         <S.MyNotificationFileText>
                           <S.MyNotificationFileName>
                             {fileData.fileName}
@@ -89,11 +89,9 @@ const WriteReadDetail = () => {
                         </S.MyNotificationFileText>
                       </S.MyNotificationFileInfo>
                       <S.MyNotificationFileDownLoadWrap
-                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}
-                      >
+                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}>
                         <S.MyNotificationFileDownLoad
-                          src={FileDownLoadIcon}
-                        ></S.MyNotificationFileDownLoad>
+                          src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
                       </S.MyNotificationFileDownLoadWrap>
                     </S.MyNotificationFile>
                   </S.MyNotificationFileWrap>
