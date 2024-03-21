@@ -353,6 +353,8 @@ export const ConfirmButton = styled.button`
 export const CloseButton = styled.img`
   position: absolute;
   left: 52vw;
-  top: 2vh;
+  top: 3vh;
   cursor: pointer;
+
+  width: calc(100vw - 98vw);
 `;

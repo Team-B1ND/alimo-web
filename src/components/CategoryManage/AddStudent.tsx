@@ -124,7 +124,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
             <S.CancleButton onClick={onClose}>취소</S.CancleButton>
             <S.ConfirmButton onClick={onClickAddCategory}>선택</S.ConfirmButton>
           </S.ButtonWrap>
-          <S.CloseButton src={CloseImg} onClick={onClose}></S.CloseButton>
+          <S.CloseButton src={CloseImg} onClick={onClose} />
         </S.SelectStudentDialog>
       </S.Main>
     </S.AddStudentWrap>

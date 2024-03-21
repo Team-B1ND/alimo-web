@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import MoreImg from "src/assets/img/MoreImg.svg";
-import MemberProfileImg from "src/assets/img/53.jpeg";
 import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import useSidebar from "src/Hooks/Sidbar/useSiebar";
 import AddStudent from "./AddStudent";
 import { ProfileImg } from "./style/AddStudent.style";
 
@@ -28,6 +28,8 @@ const CategoryManage = () => {
     onClose,
     memberData,
   } = useCategoryManage();
+
+  const { image } = useSidebar();
   return (
     <S.Main>
       <SideBar />
@@ -64,7 +66,7 @@ const CategoryManage = () => {
         {memberData.map((member, idx) => (
           <S.MemberWrap key={idx}>
             <S.Member>
-              <S.MemeberProfileImg src={MemberProfileImg} />
+              <S.MemeberProfileImg src={image} />
               <S.MemeberName>{member.name}</S.MemeberName>
               <S.MemberClassNumber>{String(member.grade) + String(member.room)}</S.MemberClassNumber>
               <S.MoreImg src={MoreImg}></S.MoreImg>
