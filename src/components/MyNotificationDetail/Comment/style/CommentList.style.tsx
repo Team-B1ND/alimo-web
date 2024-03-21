@@ -83,3 +83,64 @@ export const ReplyCommentWrite = styled.button`
   flex-direction: row;
   margin: 1px 0px 0px 10px;
 `;
+
+export const MyNotificationReplyCommentWrap = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 20px 120px;
+`;
+
+export const MyNotificationReplyComment = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+`;
+
+export const ReplyCommentInfoWrap = styled.div`
+  width: 12%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+`;
+
+export const ReplyCommentProfile = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`;
+
+export const ReplyCommentContentWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ReplyCommentName = styled.p`
+  color: var(--Gray700, #333);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+export const ReplyCommentWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+`;
+
+export const ReplyCommentContent = styled.p`
+  max-width: 70%;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;

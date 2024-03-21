@@ -1,5 +1,4 @@
 import useComment from "src/Hooks/Comment/useComment";
-import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import CommentButtonImg from "src/assets/img/CommentButtonImage.png";
 import * as S from "src/components/MyNotificationDetail/Comment/style/Comment";
 

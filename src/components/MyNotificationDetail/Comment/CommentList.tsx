@@ -28,8 +28,7 @@ const CommentList = ({ commentData }: Props) => {
             <S.CommentWrap>
               <S.CommentContent>{commentData.content}</S.CommentContent>
               <S.ReplyCommentWrite
-                onClick={() => setIsReplyShow((current) => !current)}
-              >
+                onClick={() => setIsReplyShow((current) => !current)}>
                 {isReplyShow ? "답글 닫기" : "답글 달기"}
               </S.ReplyCommentWrite>
             </S.CommentWrap>
@@ -37,6 +36,31 @@ const CommentList = ({ commentData }: Props) => {
         </S.MyNotificationComment>
       </S.MyNotificationCommentWrap>
       {isReplyShow && <ReplyComment commentId={commentData.commentId} />}
+      {commentData.subComments.map((replyCommentData) => (
+        <S.MyNotificationReplyCommentWrap key={replyCommentData.commentId}>
+          <S.MyNotificationReplyComment>
+            <S.ReplyCommentInfoWrap>
+              <S.ReplyCommentProfile
+                src={
+                  replyCommentData.profileImage === null
+                    ? baseProfile
+                    : replyCommentData.profileImage
+                }
+              />
+            </S.ReplyCommentInfoWrap>
+            <S.ReplyCommentContentWrap>
+              <S.ReplyCommentName>
+                {replyCommentData.commentor}
+              </S.ReplyCommentName>
+              <S.ReplyCommentWrap>
+                <S.ReplyCommentContent>
+                  {replyCommentData.content}
+                </S.ReplyCommentContent>
+              </S.ReplyCommentWrap>
+            </S.ReplyCommentContentWrap>
+          </S.MyNotificationReplyComment>
+        </S.MyNotificationReplyCommentWrap>
+      ))}
     </S.MyNotificationDetailComment>
   );
 };
