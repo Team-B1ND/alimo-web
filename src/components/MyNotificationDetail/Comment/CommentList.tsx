@@ -10,6 +10,7 @@ interface Props {
 
 const CommentList = ({ commentData }: Props) => {
   const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
+  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false)
   return (
     <S.MyNotificationDetailComment>
       <S.MyNotificationCommentWrap>
@@ -28,39 +29,48 @@ const CommentList = ({ commentData }: Props) => {
             <S.CommentWrap>
               <S.CommentContent>{commentData.content}</S.CommentContent>
               <S.ReplyCommentWrite
-                onClick={() => setIsReplyShow((current) => !current)}>
-                {isReplyShow ? "답글 닫기" : "답글 달기"}
+                onClick={() => setIsReplyWriteShow((current) => !current)}>
+                {isReplyWriteShow ? "답글 닫기" : "답글 달기"}
               </S.ReplyCommentWrite>
             </S.CommentWrap>
+            {commentData.subComments.length > 0 && (
+              <S.ReplyCommentShowWrap>
+                <S.ReplyCommentShow
+                  onClick={() =>
+                    setIsReplyShow((current) => !current)
+                  }>{`답글 ${commentData.subComments.length}개 모두 보기`}</S.ReplyCommentShow>
+              </S.ReplyCommentShowWrap>
+            )}
           </S.CommentContentWrap>
         </S.MyNotificationComment>
       </S.MyNotificationCommentWrap>
-      {isReplyShow && <ReplyComment commentId={commentData.commentId} />}
-      {commentData.subComments.map((replyCommentData) => (
-        <S.MyNotificationReplyCommentWrap key={replyCommentData.commentId}>
-          <S.MyNotificationReplyComment>
-            <S.ReplyCommentInfoWrap>
-              <S.ReplyCommentProfile
-                src={
-                  replyCommentData.profileImage === null
-                    ? baseProfile
-                    : replyCommentData.profileImage
-                }
-              />
-            </S.ReplyCommentInfoWrap>
-            <S.ReplyCommentContentWrap>
-              <S.ReplyCommentName>
-                {replyCommentData.commentor}
-              </S.ReplyCommentName>
-              <S.ReplyCommentWrap>
-                <S.ReplyCommentContent>
-                  {replyCommentData.content}
-                </S.ReplyCommentContent>
-              </S.ReplyCommentWrap>
-            </S.ReplyCommentContentWrap>
-          </S.MyNotificationReplyComment>
-        </S.MyNotificationReplyCommentWrap>
-      ))}
+      {isReplyWriteShow && <ReplyComment commentId={commentData.commentId} />}
+      {isReplyShow &&
+        commentData.subComments.map((replyCommentData) => (
+          <S.MyNotificationReplyCommentWrap key={replyCommentData.commentId}>
+            <S.MyNotificationReplyComment>
+              <S.ReplyCommentInfoWrap>
+                <S.ReplyCommentProfile
+                  src={
+                    replyCommentData.profileImage === null
+                      ? baseProfile
+                      : replyCommentData.profileImage
+                  }
+                />
+              </S.ReplyCommentInfoWrap>
+              <S.ReplyCommentContentWrap>
+                <S.ReplyCommentName>
+                  {replyCommentData.commentor}
+                </S.ReplyCommentName>
+                <S.ReplyCommentWrap>
+                  <S.ReplyCommentContent>
+                    {replyCommentData.content}
+                  </S.ReplyCommentContent>
+                </S.ReplyCommentWrap>
+              </S.ReplyCommentContentWrap>
+            </S.MyNotificationReplyComment>
+          </S.MyNotificationReplyCommentWrap>
+        ))}
     </S.MyNotificationDetailComment>
   );
 };

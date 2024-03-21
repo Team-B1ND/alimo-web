@@ -55,6 +55,8 @@ export const CommentName = styled.p`
 `;
 
 export const CommentWrap = styled.div`
+  width: auto;
+  height: auto;
   display: flex;
   flex-direction: row;
   margin-top: 5px;
@@ -82,6 +84,25 @@ export const ReplyCommentWrite = styled.button`
   display: flex;
   flex-direction: row;
   margin: 1px 0px 0px 10px;
+`;
+
+export const ReplyCommentShowWrap = styled.div`
+  width: auto;
+  height: auto;
+  margin-top: 5px;
+`;
+
+export const ReplyCommentShow = styled.button`
+  width: auto;
+  color: var(--Primary500, #fece23);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
 `;
 
 export const MyNotificationReplyCommentWrap = styled.div`
