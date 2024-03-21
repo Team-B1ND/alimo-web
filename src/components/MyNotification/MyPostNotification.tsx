@@ -10,6 +10,7 @@ const MyPostNotification = ({ notificationData }: Props) => {
   const handleImageError = () => {
     setIsImageError(false);
   };
+  
   return (
     <S.MyPostNotificationWrap>
       <S.MyPostNotification

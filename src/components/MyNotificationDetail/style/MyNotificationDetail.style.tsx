@@ -124,22 +124,31 @@ export const MyNotificationImgWrap = styled.div`
   height: auto;
 `;
 
-export const MyNotificationImg = styled.img`
+export const MyNotificationImg = styled.img<{
+  dataCnt: number;
+  imageIndex: number;
+}>`
   max-width: 60%;
   min-width: 20%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-bottom: ${(props) =>
+    props.dataCnt > props.imageIndex + 1 ? "3px" : "20px"};
 `;
 
-export const MyNotificationFileWrap = styled.div`
+export const MyNotificationFileWrap = styled.div<{
+  dataCnt: number;
+  fileIndex: number;
+}>`
   max-width: 100%;
   width: fit-content;
   height: auto;
   border-radius: 8px;
   background: var(--Gray100, #f4f5f9);
   padding: 15px;
-  margin-bottom: 35px;
+  margin-bottom: ${(props) =>
+    props.dataCnt > props.fileIndex + 1 ? "10px" : "35px"};
 `;
 
 export const MyNotificationFile = styled.div`

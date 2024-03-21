@@ -59,12 +59,8 @@ const WriteReadDetail = () => {
                   <S.MyNotificationImgWrap>
                     <S.MyNotificationImg
                       src={imageData.fileUrl}
-                      style={{
-                        marginBottom:
-                          notificationDetailData.images.length > idx + 1
-                            ? "3px"
-                            : "20px",
-                      }}
+                      dataCnt={notificationDetailData.images.length}
+                      imageIndex={idx}
                       onError={HandleImageError}
                     />
                   </S.MyNotificationImgWrap>
@@ -76,12 +72,8 @@ const WriteReadDetail = () => {
                 (fileData: FileData, idx: number) => (
                   <S.MyNotificationFileWrap
                     key={fileData.fileUrl}
-                    style={{
-                      marginBottom:
-                        notificationDetailData.images.length > idx
-                          ? "10px"
-                          : "35px",
-                    }}>
+                    dataCnt={notificationDetailData.files.length}
+                    fileIndex={idx}>
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
