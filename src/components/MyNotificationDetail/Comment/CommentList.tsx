@@ -10,7 +10,7 @@ interface Props {
 
 const CommentList = ({ commentData }: Props) => {
   const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
-  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false)
+  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false);
   return (
     <S.MyNotificationDetailComment>
       <S.MyNotificationCommentWrap>
@@ -38,7 +38,9 @@ const CommentList = ({ commentData }: Props) => {
                 <S.ReplyCommentShow
                   onClick={() =>
                     setIsReplyShow((current) => !current)
-                  }>{`답글 ${commentData.subComments.length}개 모두 보기`}</S.ReplyCommentShow>
+                  }>{`답글 ${commentData.subComments.length}개 모두 ${
+                  isReplyShow ? "닫기" : "보기"
+                }`}</S.ReplyCommentShow>
               </S.ReplyCommentShowWrap>
             )}
           </S.CommentContentWrap>

@@ -74,7 +74,14 @@ const WriteReadDetail = () => {
               notificationDetailData.files.length > 0 &&
               notificationDetailData.files.map(
                 (fileData: FileData, idx: number) => (
-                  <S.MyNotificationFileWrap key={fileData.fileUrl}>
+                  <S.MyNotificationFileWrap
+                    key={fileData.fileUrl}
+                    style={{
+                      marginBottom:
+                        notificationDetailData.images.length > idx
+                          ? "10px"
+                          : "35px",
+                    }}>
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
