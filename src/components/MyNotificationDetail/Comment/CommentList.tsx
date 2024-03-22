@@ -43,10 +43,10 @@ const CommentList = ({ commentData }: Props) => {
             {commentData.subComments.length > 0 && (
               <S.ReplyCommentShowWrap>
                 <S.ReplyCommentShow
-                  onClick={() =>
-                    setIsReplyShow((current) => !current)
-                  }>{`답글 ${commentData.subComments.length}개 모두 ${
-                  isReplyShow ? "닫기" : "보기"
+                  onClick={() => setIsReplyShow((current) => !current)}>{`${
+                  isReplyShow
+                    ? "답글 닫기"
+                    : `답글 ${commentData.subComments.length}개 모두 보기`
                 }`}</S.ReplyCommentShow>
               </S.ReplyCommentShowWrap>
             )}

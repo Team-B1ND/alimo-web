@@ -108,6 +108,7 @@ export const MyNotificationContentWrap = styled.div`
   width: 100%;
   height: auto;
   margin-bottom: 20px;
+  word-break: break-all;
 `;
 
 export const MyNotificationContent = styled.span`
