@@ -31,7 +31,10 @@ const CommentList = ({ commentData }: Props) => {
           <S.CommentContentWrap>
             <S.CommentName>{commentData.commentor}</S.CommentName>
             <S.CommentWrap>
-              <S.CommentContent>{commentData.content}</S.CommentContent>
+              <S.CommentContent
+                replyCommentCnt={commentData.subComments.length}>
+                {commentData.content}
+              </S.CommentContent>
               <S.ReplyCommentWrite
                 onClick={() => setIsReplyWriteShow((current) => !current)}>
                 {isReplyWriteShow ? "답글 닫기" : "답글 달기"}
@@ -54,7 +57,7 @@ const CommentList = ({ commentData }: Props) => {
         <ReplyComment
           commentId={commentData.commentId}
           replyCommentCnt={commentData.subComments.length}
-          isReplyCommentShow = {isReplyShow}
+          isReplyCommentShow={isReplyShow}
         />
       )}
       {isReplyShow &&

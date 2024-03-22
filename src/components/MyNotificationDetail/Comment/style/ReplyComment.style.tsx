@@ -9,7 +9,7 @@ export const MyPostReplyCommentWrap = styled.div`
 `;
 
 export const MyPostReplyComment = styled.div`
-  width: auto;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -73,7 +73,7 @@ export const ReplyCommentWrap = styled.div`
 `;
 
 export const ReplyCommentInput = styled.textarea`
-  width: calc(100% - 55px);
+  width: 50%;
   height: auto;
   resize: none;
   font-family: Pretendard;

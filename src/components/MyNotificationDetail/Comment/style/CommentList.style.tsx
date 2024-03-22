@@ -66,13 +66,16 @@ export const CommentWrap = styled.div`
   margin-top: 5px;
 `;
 
-export const CommentContent = styled.p`
+export const CommentContent = styled.p<{
+  replyCommentCnt: number;
+}>`
   max-width: 70%;
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: ${(props) => (props.replyCommentCnt > 0 ? "" : "20px")};
 `;
 
 export const ReplyCommentWrite = styled.button`
