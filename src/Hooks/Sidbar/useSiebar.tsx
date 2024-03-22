@@ -34,9 +34,7 @@ const Sidbar = () => {
       console.log(error);
     }
   };
-
   //프로필 설정
-
   const OpenProfileSetting = () => {
     setProfileAlert((prev) => !prev);
   };

@@ -1,9 +1,34 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import CONFIG from "src/config/config.json";
+import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
+import token from "../token/token";
+import ResponseHandler from "./ResponseHandler";
+import requestHandler from "./requestHandler"; 
+import Token from "src/lib/token/token";
 
-export const customAxios: AxiosInstance = axios.create({
-  baseURL: `${CONFIG.serverUrl}`, // 기본 서버 주소 입력
+const createAxiosInstance = (config?: AxiosRequestConfig) => {
+const ACCESS_TOKEN=Token.getToken(ACCESS_TOKEN_KEY);
+  const baseConfig: AxiosRequestConfig = {
+    headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`
+      }
+  };
+  return axios.create({
+    ...baseConfig,
+    ...config,
+  });
+};
+
+export const alimoV1Axios = createAxiosInstance({
+  baseURL: CONFIG.serverUrl,
   headers: {
-    Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MDk3MTE3MzksImV4cCI6MTcwOTcxMzUzOX0.oyiEgvyKdER3-2PmvHwILbLGhFr5uB7DbClHD12FN_tvL2CMvkgKebkLrBPKwo9KHw8mAeeoUAMl_ySxA1LbwA`,
+    [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
   },
 });
+
+export const alimoV1AxiosSetAccessToken = (newToken: string) => {
+  alimoV1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newToken}`;
+};
+
+alimoV1Axios.interceptors.request.use(requestHandler as any, (response) => response);
+alimoV1Axios.interceptors.response.use((response) => response, ResponseHandler);
