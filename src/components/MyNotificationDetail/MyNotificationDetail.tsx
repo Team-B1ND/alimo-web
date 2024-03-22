@@ -1,7 +1,7 @@
 import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
-import { CommentData } from "@src/types/CommentList/CommentList.interface";
+import { CommentData } from "src/types/CommentList/CommentList.interface";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";

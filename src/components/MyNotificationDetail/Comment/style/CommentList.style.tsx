@@ -12,7 +12,7 @@ export const MyNotificationCommentWrap = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  margin: 40px 0px 0px 8%;
+  margin: 40px 0px 0px 5%;
 `;
 
 export const MyNotificationComment = styled.div`
@@ -117,7 +117,7 @@ export const MyNotificationReplyCommentWrap = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  margin-left: calc(8% + 18.5px);
+  margin-left: calc(5% + 18.5px);
 `;
 
 export const MyNotificationReplyComment = styled.div`

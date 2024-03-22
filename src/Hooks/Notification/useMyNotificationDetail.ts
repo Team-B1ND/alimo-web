@@ -18,6 +18,7 @@ const useMyNotificationDetail = () => {
   const HandleImageError = () => {
     setIsImageError(false);
   };
+  
   const HandleClose = ()=>{
     navigate("/write-read")
   }

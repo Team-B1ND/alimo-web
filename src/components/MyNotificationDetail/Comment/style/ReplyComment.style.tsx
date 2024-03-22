@@ -5,7 +5,7 @@ export const MyPostReplyCommentWrap = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  margin-left: calc(8% + 18.5px);
+  margin-left: calc(5% + 18.5px);
 `;
 
 export const MyPostReplyComment = styled.div`
