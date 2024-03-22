@@ -19,6 +19,7 @@ const useCategoryManage = () => {
   const [cls, setCls] = useState<number>();
   const [permission, setPermission] = useState<string>("");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [viewPermission, setViewPermission] = useState(false);
 
   useEffect(() => {
     getCategoryList();
@@ -29,7 +30,7 @@ const useCategoryManage = () => {
 
     try {
       const reponse = await alimoV1Axios.get(
-        `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`,
+        `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${1000}&categoryName=${categoryName}&searchKeyword=`,
       );
       if (reponse.status === 200) {
         setMemberData(reponse.data.data);
@@ -43,7 +44,7 @@ const useCategoryManage = () => {
   };
 
   const onClickNewCategoryButton = async () => {
-    const { value: getName } = await Swal.fire({
+    Swal.fire({
       title: "카테고리명을 입력해주세요.",
       input: "text",
       inputPlaceholder: "카테고리명",
@@ -52,13 +53,18 @@ const useCategoryManage = () => {
       cancelButtonText: "취소",
       confirmButtonText: "다음",
       confirmButtonColor: "#FECE23",
+      preConfirm(inputValue) {
+        if (inputValue) {
+          setCategoryName(inputValue);
+          setCreateCategoryName(inputValue);
+          setIsAddStudent(!isAddStudent);
+          setShowStudentList(!showStudentList);
+          console.log(createCategoryName);
+        } else {
+          console.log(createCategoryName);
+        }
+      },
     });
-
-    if (getName) {
-      setCreateCategoryName(getName);
-      setIsAddStudent(!isAddStudent);
-      setShowStudentList(!showStudentList);
-    }
   };
 
   const onChangeSearchCategoryName = (e: any) => {
@@ -71,7 +77,7 @@ const useCategoryManage = () => {
         `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`,
       );
       if (response.status === 200) {
-        showToast("sucess", "카테고리 검색 성공!");
+        showToast("success", "카테고리 검색 성공!");
       } else {
         showToast("eror", "검색 실패");
       }
@@ -96,6 +102,10 @@ const useCategoryManage = () => {
     }
   };
 
+  const HandleViewPermission = () => {
+    setViewPermission((prev) => !prev);
+  };
+
   const handlePopUp = () => {
     setShowStudentList(!showStudentList);
   };
@@ -107,6 +117,7 @@ const useCategoryManage = () => {
   return {
     isClickedCategory,
     createCategoryName,
+    setShowStudentList,
     categoryName,
     memberCnt,
     categoryData,

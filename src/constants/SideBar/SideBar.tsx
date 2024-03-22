@@ -38,7 +38,10 @@ const SideBar = () => {
       <S.SideBarMenuWrap>
         <S.SideBarMenuFlex>
           <S.SideBarCategory>
-            <img src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
+            <img
+              alt="ggg"
+              src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg}
+            />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}
               onClick={() => HandleCategoryClick("카테고리 관리")}

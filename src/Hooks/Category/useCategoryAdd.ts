@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import CONFIG from "src/config/config.json";
 import useCategoryManage from "./useCateogyManage";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 interface Student {
   name: string;
@@ -24,7 +24,7 @@ const useCategoryAdd = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberId, setMemberId] = useState<number[]>([]);
   const [memberName, setMemberName] = useState<string[]>([]);
-  const { createCategoryName } = useCategoryManage();
+  const { createCategoryName, setShowStudentList } = useCategoryManage();
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -42,6 +42,7 @@ const useCategoryAdd = () => {
   };
 
   const handleRole = async (role: string, grade: any, room: any) => {
+    alert(createCategoryName);
     setMemberRole(role);
     setGrade(grade);
     setCls(room);
@@ -50,16 +51,13 @@ const useCategoryAdd = () => {
     console.log(cls);
 
     try {
-      const response = await axios.get(`${CONFIG.serverUrl}/member/member-list`, {
+      const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/member-list`, {
         params: {
           page: 4,
           size: 15,
           memberKind: role !== null ? role.toString() : null,
           grade: grade,
           room: cls,
-        },
-        headers: {
-          Authorization: `Bearer eyJKV1QiOiJBQ0NFU1MiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiQXV0aG9yaXphdGlvbiI6IlRFQUNIRVIiLCJpYXQiOjE3MTAxNjc3MjcsImV4cCI6MTcxMDE2OTUyN30.35yo4lW7gOSsryvaFtKpCjIXRWq3B7eQpKhQGjKbQ9Pq_wLO9GHILvtzEvC5z-qBMB7wRSiwuopI-qwMor_gzw`,
         },
       });
       if (response.status === 200) {
@@ -77,14 +75,16 @@ const useCategoryAdd = () => {
 
   const onClickAddCategory = async () => {
     try {
-      const response = await axios.post(`${CONFIG.serverUrl}category/create`, {
+      const response = await alimoV1Axios.post(`${CONFIG.serverUrl}/category/create`, {
         memberList: memberId,
         categoryName: createCategoryName,
       });
       if (response.status === 200) {
         showToast("success", "카테고리 생성 성공");
+        setShowStudentList(false);
       } else {
         showToast("error", "카테고리 생성 실패");
+        setShowStudentList(false);
       }
     } catch (e) {
       showToast("error", "서버 통신 오류");

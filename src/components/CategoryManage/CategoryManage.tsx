@@ -4,49 +4,29 @@ import MoreImg from "src/assets/img/MoreImg.svg";
 import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import useSidebar from "src/Hooks/Sidbar/useSiebar";
-import AddStudent from "./AddStudent";
-import { ProfileImg } from "./style/AddStudent.style";
+import AddStudent from "./StudentModal/AddStudent";
 
 const CategoryManage = () => {
-  const {
-    isClickedCategory,
-    createCategoryName,
-    categoryName,
-    memberCnt,
-    categoryData,
-    name,
-    grade,
-    cls,
-    permission,
-    searchKeyword,
-    handleCategoryClick,
-    onClickNewCategoryButton,
-    onChangeSearchCategoryName,
-    SearchCategory,
-    showStudentList,
-    handlePopUp,
-    onClose,
-    memberData,
-  } = useCategoryManage();
-
+  const { ...hooks } = useCategoryManage();
   const { image } = useSidebar();
+  
   return (
     <S.Main>
       <SideBar />
       <S.CategoryManageView>
         <S.CateogyManageUtilityWrap>
-          <S.SearchCateogy placeholder="카테고리 검색" onKeyDown={SearchCategory} type="search" />
-          <S.CreateCategoryButton onClick={onClickNewCategoryButton}>새 카테고리 </S.CreateCategoryButton>
+          <S.SearchCateogy placeholder="카테고리 검색" onKeyDown={hooks.SearchCategory} type="search" />
+          <S.CreateCategoryButton onClick={hooks.onClickNewCategoryButton}>새 카테고리 </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        {categoryData.map((category) => (
-          <S.CategoryWrap key={category.categoryName}>
+        {hooks.categoryData.map((category, idx) => (
+          <S.CategoryWrap key={idx}>
             <S.CategoryInfo
-              isClicked={isClickedCategory === `${category.categoryName}`}
-              onClick={() => handleCategoryClick(`${category.categoryName}`)}
+              isClicked={hooks.isClickedCategory === `${category.categoryName}`}
+              onClick={() => hooks.handleCategoryClick(`${category.categoryName}`)}
             >
               <S.CategoryName>{category.categoryName}</S.CategoryName>
               <S.CategoryInMember>{category.memberCnt}</S.CategoryInMember>
@@ -54,27 +34,31 @@ const CategoryManage = () => {
           </S.CategoryWrap>
         ))}
       </S.CategoryManageView>
-      <S.CategoryMemberWrap>
-        <S.MemberManageWrap>
-          <S.MemberSearch placeholder="멤버 검색" />
-          <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
-        </S.MemberManageWrap>
-        <S.MemberUtilityWrap>
-          <S.MemberNameInfo>이름</S.MemberNameInfo>
-          <S.MemberClassNumberInfo>학번</S.MemberClassNumberInfo>
-        </S.MemberUtilityWrap>
-        {memberData.map((member, idx) => (
-          <S.MemberWrap key={idx}>
-            <S.Member>
-              <S.MemeberProfileImg src={image} />
-              <S.MemeberName>{member.name}</S.MemeberName>
-              <S.MemberClassNumber>{String(member.grade) + String(member.room)}</S.MemberClassNumber>
-              <S.MoreImg src={MoreImg}></S.MoreImg>
-            </S.Member>
-          </S.MemberWrap>
-        ))}
-      </S.CategoryMemberWrap>
-      {showStudentList && <AddStudent onClose={onClose} />}
+      {hooks.isClickedCategory && (
+        <S.CategoryMemberWrap>
+          <S.MemberManageWrap>
+            <S.MemberSearch placeholder="멤버 검색" />
+            <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>
+          </S.MemberManageWrap>
+          <S.MemberUtilityWrap>
+            <S.MemberNameInfo>이름</S.MemberNameInfo>
+            <S.MemberClassNumberInfo>학번</S.MemberClassNumberInfo>
+          </S.MemberUtilityWrap>
+          {hooks.memberData.map((member, idx) => (
+            <S.MemberWrap key={idx}>
+              <S.Member>
+                <S.MemeberProfileImg src={image} />
+                <S.MemeberName>{member.name}</S.MemeberName>
+                <S.MemberClassNumber>
+                  {member.grade !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
+                </S.MemberClassNumber>
+                <S.MoreImg src={MoreImg} />
+              </S.Member>
+            </S.MemberWrap>
+          ))}
+        </S.CategoryMemberWrap>
+      )}
+      {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
     </S.Main>
   );
 };

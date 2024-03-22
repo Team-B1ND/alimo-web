@@ -4,7 +4,7 @@ import CloseImg from "src/assets/img/CloseImg.png";
 import UseProfile from "src/Hooks/Profile/useProfile";
 
 const Profile = ({ onClose }: { onClose: () => void }) => {
-  const { Name, image,Category, } = UseProfile();
+  const { Name, image, Category } = UseProfile();
 
   return (
     <S.Profile>
@@ -21,8 +21,10 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
             </S.profileImg>
           </S.User>
           <S.Category>
-            {Category.map((Categorys)=>(
-               <S.IndividualCategories><span>{Categorys}</span></S.IndividualCategories>
+            {Category.map((Categorys, index) => (
+              <S.IndividualCategories>
+                <span>{Categorys}</span>
+              </S.IndividualCategories>
             ))}
           </S.Category>
           <S.ChangSucces src={CloseImg} onClick={onClose}></S.ChangSucces>

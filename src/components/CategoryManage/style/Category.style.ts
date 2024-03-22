@@ -104,6 +104,7 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
   display: flex;
   flex-direction: row;
+
   align-items: center;
   align-self: center;
 
@@ -125,6 +126,8 @@ export const CategoryName = styled.span`
   font-weight: 400;
 
   margin-left: 2vw;
+
+  width: calc(100vw - 97vw);
 `;
 
 export const CategoryInMember = styled.span`
@@ -132,6 +135,8 @@ export const CategoryInMember = styled.span`
   font-family: Pretendard;
   font-size: 1.2rem;
   font-weight: 400;
+
+  width: calc(100vw - 97vw);
 
   margin-left: 11vw;
 `;
@@ -272,4 +277,6 @@ export const MemberClassNumber = styled.span`
 
 export const MoreImg = styled.img`
   margin-left: 15vw;
+
+  cursor: pointer;
 `;
