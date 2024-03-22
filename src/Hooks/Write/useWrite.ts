@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { Category } from "src/types/Write/write.type";
-
 const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");

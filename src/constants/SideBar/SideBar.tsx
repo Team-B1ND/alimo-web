@@ -19,12 +19,11 @@ const SideBar = () => {
     isProfile,
     isSetting,
     OpenProfileSetting,
-    openProfile,
-    openSetting,
-    handleCategoryClick,
+    OpenProfile,
+    OpenSetting,
+    HandleCategoryClick,
     isClickCategory,
   } = UseSidebar();
-
   return (
     <S.SideBarWrap>
       <Header />
@@ -37,49 +36,37 @@ const SideBar = () => {
       <S.SideBarMenuWrap>
         <S.SideBarMenuFlex>
           <S.SideBarCategory>
-            <img
-              src={
-                isClickCategory === "카테고리 관리"
-                  ? ClickSideBarCategoryManageImg
-                  : SideBarCategoryManageImg
-              }
-            />
+            <img src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}
-              onClick={() => handleCategoryClick("카테고리 관리")}
+              onClick={() => HandleCategoryClick("카테고리 관리")}
             >
               카테고리 관리
             </S.SideBarMenu>
           </S.SideBarCategory>
           <S.SideBarCategory>
-            <img
-              src={
-                isClickCategory === "내가 쓴 공지보기"
-                  ? ClickSideBarWriteReadImg
-                  : SideBarWriteReadImg
-              }
-            />
+            <img src={isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
             <S.SideBarMenu
               isClicked={isClickCategory === "내가 쓴 공지보기"}
-              onClick={() => handleCategoryClick("내가 쓴 공지보기")}
+              onClick={() => HandleCategoryClick("내가 쓴 공지보기")}
             >
               내가 쓴 공지보기
             </S.SideBarMenu>
           </S.SideBarCategory>
         </S.SideBarMenuFlex>
-        <S.SideBarProfileWrap >
+        <S.SideBarProfileWrap>
           <S.SidbarClickarea onClick={OpenProfileSetting}>
-          <S.SideBarTeacherProfileImg>{image.length >0 ? <img src={image}/> : <img src={DefaultPrfoile}/>}</S.SideBarTeacherProfileImg>
-          <S.SideBarTeacherName>{Name}</S.SideBarTeacherName>
+            <S.SideBarTeacherProfileImg>
+              {image.length > 0 ? <img src={image} /> : <img src={DefaultPrfoile} />}
+            </S.SideBarTeacherProfileImg>
+            <S.SideBarTeacherName>{Name}</S.SideBarTeacherName>
           </S.SidbarClickarea>
-          <S.SideBarSetting src={SideBarProfileSetting} onClick={openSetting}/>
+          <S.SideBarSetting src={SideBarProfileSetting} onClick={OpenSetting} />
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
-      {isProfileAlert && (
-        <ProfileAlert onOpen={openProfile} onClose={OpenProfileSetting} />
-      )}
-      {isProfile && <Profile onClose={openProfile} />}
-      {isSetting && <Setting onClose={openSetting}/>}
+      {isProfileAlert && <ProfileAlert onOpen={OpenProfile} onClose={OpenProfileSetting} />}
+      {isProfile && <Profile onClose={OpenProfile} />}
+      {isSetting && <Setting onClose={OpenSetting} />}
     </S.SideBarWrap>
   );
 };
