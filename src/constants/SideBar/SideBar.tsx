@@ -8,7 +8,7 @@ import Profile from "src/components/Profile/profile";
 import DefaultPrfoile from "src/assets/img/profileimg.png";
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
-import UseSidebar from "src/Hooks/Sidbar/useSiebar";
+import UseSidebar from "src/Hooks/Sidbar/useSidebar";
 import Setting from "src/components/SettingPage/setting";
 
 const SideBar = () => {

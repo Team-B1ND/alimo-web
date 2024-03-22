@@ -24,7 +24,6 @@ const Sidbar = () => {
     setCategoryList(CategoryData);
   };
 
-
   const ProfileInfo = async () => {
     try {
       const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
