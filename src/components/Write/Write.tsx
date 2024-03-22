@@ -5,10 +5,23 @@ import Header from "../../constants/Header/Header";
 import useWrite from "src/Hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
-import PreviewImage from "./PreviewImage";
 
 const Write = () => {
-  const { ...hooks } = useWrite();
+  const {
+    title,
+    context,
+    notAllow,
+    onChangeTitle,
+    onChangeContext,
+    imageInputRef,
+    handleFileChange,
+    handleImageChange,
+    handleImageClick,
+    fileName,
+    selectedCategory,
+    onClickAddCategory,
+    allowWriteButton,
+  } = useWrite();
 
   return (
     <S.WriteMain>
@@ -16,58 +29,59 @@ const Write = () => {
       <Header />
       <S.WriteView>
         <S.InputWrap>
-          <S.WriteTitleInput
-            placeholder="제목을 입력해주세요"
-            type="text"
-            value={hooks.title}
-            onChange={hooks.OnChangeTitle}
-          />
-          <S.ViewImageWrap onClick={hooks.DeletePreviewImage}>
-            <PreviewImage previewImage={hooks.image ? hooks.image : []} />
-          </S.ViewImageWrap>
-          <S.WriteContext
-            placeholder="대소고에 새로운 소식을 전해보세요!"
-            value={hooks.context}
-            onChange={hooks.OnChangeContext}
-          />
+          <S.WriteTitleInput placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
+          <S.WriteContext placeholder="대소고에 새로운 소식을 전해보세요!" value={context} onChange={onChangeContext} />
           <S.FileWrap>
-            <S.ImageUploadImg src={ImageUploadImg} onClick={hooks.HandleImageClick} />
-            <S.ImageInputRef
-              type="file"
-              accept="image/*"
-              multiple
-              ref={hooks.imageInputRef}
-              onChange={hooks.HandleImageChange}
-            />
+            <S.ImageUploadImg src={ImageUploadImg} onClick={handleImageClick} />
+            <S.ImageInputRef type="file" accept="image/*" ref={imageInputRef} onChange={handleImageChange} />
             <S.FileChangeLabel htmlFor="file-change">
               <img src={FileUplaod} />
             </S.FileChangeLabel>
-            <S.ViewFileName
-              value={hooks.fileName}
-              readOnly
-              placeholder="파일은 최대 3개, 각각 100MB"
-              onClick={hooks.DeleteFile}
-            />
-            <S.FileChange type="file" id="file-change" multiple onChange={hooks.HandleFileChange} />
+            <S.ViewFileName value={fileName} readOnly />
+            <S.FileChange type="file" id="file-change" onChange={handleFileChange} />
           </S.FileWrap>
         </S.InputWrap>
         <S.SelectCategoryWrap>
           <S.SendCategoryWrap>
             <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
             <S.CategoryWrap>
-              {hooks.CategoryList.map((CategoryName) => (
-                <S.Cateogory
-                  onClick={() => hooks.HandleAddCategory(CategoryName)}
-                  isClicked={hooks.selectedCategory.some((category) => category.name === CategoryName)}
-                >
-                  {CategoryName}
-                </S.Cateogory>
-              ))}
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B1ND")}
+                isClicked={selectedCategory.some((category) => category.name === "B1ND")}
+              >
+                B1ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B2ND")}
+                isClicked={selectedCategory.some((category) => category.name === "B2ND")}
+              >
+                B2ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B3ND")}
+                isClicked={selectedCategory.some((category) => category.name === "B3ND")}
+              >
+                B3ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B4ND")}
+                isClicked={selectedCategory.some((category) => category.name === "B4ND")}
+              >
+                B4ND
+              </S.Cateogory>
+              <S.Cateogory
+                onClick={() => onClickAddCategory("B5ND")}
+                isClicked={selectedCategory.some((category) => category.name === "B5ND")}
+              >
+                B5ND
+              </S.Cateogory>
             </S.CategoryWrap>
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
-            <S.SendShowMember>총{hooks.memberCnt}명 에게 전송되요.</S.SendShowMember>
-            <S.UploadButton disabled={hooks.notAllow} onClick={hooks.AllowWriteButton}>
+            <S.SendShowMember>
+              총 <span>120</span>명에게 전송돼요
+            </S.SendShowMember>
+            <S.UploadButton disabled={notAllow} onClick={allowWriteButton}>
               게시하기
             </S.UploadButton>
           </S.UplaodButtonWrap>

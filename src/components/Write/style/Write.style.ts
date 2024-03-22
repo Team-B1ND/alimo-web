@@ -5,8 +5,6 @@ export const WriteMain = styled.div`
   height: 100vh;
 
   display: flex;
-
-  overflow: hidden;
 `;
 
 export const WriteView = styled.div`
@@ -114,23 +112,6 @@ export const FileChangeLabel = styled.label`
     cursor: pointer;
   }
 `;
-
-export const ViewImageWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  width: 100%;
-`;
-
-export const ViewImage = styled.img`
-  width: calc(100vw - 93vw);
-  height: calc(100vw - 93vw);
-
-  margin-top: 1vh;
-  margin-left: 2vw;
-`;
-
 export const ViewFileName = styled.input`
   width: calc(100vw - 80vw);
   height: calc(100vh - 95vh);
@@ -139,7 +120,7 @@ export const ViewFileName = styled.input`
   font-size: 1rem;
   font-weight: 600;
 
-  margin-top: 1.5vh;
+  margin-top: 1vh;
 
   &:focus {
     outline: none;
@@ -185,12 +166,10 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   margin-left: 2vw;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${({ isClicked }) => (isClicked ? "1px solid #FECE23" : "1px solid #fff")};
+  border: ${(props) => (props.isClicked ? "1px solid #FECE23" : "1px solid #fff")};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-
-  //더블클릭시 폰트 블럭처리를 막아주는 코드
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
