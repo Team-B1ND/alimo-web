@@ -5,27 +5,25 @@ export const MyNotificationDetailComment = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const MyNotificationCommentWrap = styled.div`
-  width: 90%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin: 40px 0px 0px 8%;
 `;
 
 export const MyNotificationComment = styled.div`
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
 `;
 
 export const CommentInfoWrap = styled.div`
-  width: 12%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -37,6 +35,12 @@ export const CommentProfile = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
+`;
+
+export const CommentLine = styled.div`
+  width: 3px;
+  height: calc(100% - 40px);
+  background-color: var(--Gray300, #e6e6e6);
 `;
 
 export const CommentContentWrap = styled.div`
@@ -89,7 +93,7 @@ export const ReplyCommentWrite = styled.button`
 export const ReplyCommentShowWrap = styled.div`
   width: auto;
   height: auto;
-  margin-top: 5px;
+  margin: 5px 0px 20px 0px;
 `;
 
 export const ReplyCommentShow = styled.button`
@@ -106,19 +110,39 @@ export const ReplyCommentShow = styled.button`
 `;
 
 export const MyNotificationReplyCommentWrap = styled.div`
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
-  margin: 0 0 20px 120px;
+  margin-left: calc(8% + 18.5px);
 `;
 
 export const MyNotificationReplyComment = styled.div`
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+`;
+
+export const ReplyCommentLineWrap = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ReplyCommentRadiusLine = styled.div`
+  width: 20px;
+  height: 20px;
+  border-left: 3px solid var(--Gray300, #e6e6e6);
+  border-bottom: 3px solid var(--Gray300, #e6e6e6);
+  border-radius: 0px 0px 0px 10px;
+`;
+
+export const ReplyCommentLine = styled.div`
+  width: 20px;
+  height: calc(100% - 20px);
+  border-left: 3px solid var(--Gray300, #e6e6e6);
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
@@ -154,7 +178,7 @@ export const ReplyCommentName = styled.p`
 export const ReplyCommentWrap = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
+  margin: 5px 0px 40px 0px;
 `;
 
 export const ReplyCommentContent = styled.p`

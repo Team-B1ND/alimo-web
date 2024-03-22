@@ -4,9 +4,15 @@ import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComme
 
 interface Props {
   commentId: number;
+  replyCommentCnt: number;
+  isReplyCommentShow: boolean;
 }
 
-const ReplyComment = ({ commentId }: Props) => {
+const ReplyComment = ({
+  commentId,
+  replyCommentCnt,
+  isReplyCommentShow,
+}: Props) => {
   const {
     replyCommentRef,
     replyCommentValue,
@@ -14,27 +20,34 @@ const ReplyComment = ({ commentId }: Props) => {
     handleClickReplyComment,
   } = useReplyComment();
   return (
-    <S.MyPostReplyComment>
-      <S.ReplyCommentInfoWrap>
-        <S.ReplyCommentProfile src={DummyProfile} alt="예시 프로필" />
-      </S.ReplyCommentInfoWrap>
-      <S.ReplyCommentContentWrap>
-        <S.ReplyCommentName>2진주</S.ReplyCommentName>
-        <S.ReplyCommentWrap>
-          <S.ReplyCommentInput
-            rows={1}
-            ref={replyCommentRef}
-            value={replyCommentValue}
-            onChange={(e) => handleChangeValue(e, replyCommentRef)}
-          />
-          <S.ReplyCommentButton
-            onClick={() => handleClickReplyComment(commentId)}
-          >
-            등록
-          </S.ReplyCommentButton>
-        </S.ReplyCommentWrap>
-      </S.ReplyCommentContentWrap>
-    </S.MyPostReplyComment>
+    <S.MyPostReplyCommentWrap>
+      <S.MyPostReplyComment>
+        <S.ReplyCommentLineWrap>
+          <S.ReplyCommentRadiusLine></S.ReplyCommentRadiusLine>
+          {replyCommentCnt > 0 && isReplyCommentShow && (
+            <S.ReplyCommentLine></S.ReplyCommentLine>
+          )}
+        </S.ReplyCommentLineWrap>
+        <S.ReplyCommentInfoWrap>
+          <S.ReplyCommentProfile src={DummyProfile} alt="예시 프로필" />
+        </S.ReplyCommentInfoWrap>
+        <S.ReplyCommentContentWrap>
+          <S.ReplyCommentName>2진주</S.ReplyCommentName>
+          <S.ReplyCommentWrap>
+            <S.ReplyCommentInput
+              rows={1}
+              ref={replyCommentRef}
+              value={replyCommentValue}
+              onChange={(e) => handleChangeValue(e, replyCommentRef)}
+            />
+            <S.ReplyCommentButton
+              onClick={() => handleClickReplyComment(commentId)}>
+              등록
+            </S.ReplyCommentButton>
+          </S.ReplyCommentWrap>
+        </S.ReplyCommentContentWrap>
+      </S.MyPostReplyComment>
+    </S.MyPostReplyCommentWrap>
   );
 };
 

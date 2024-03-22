@@ -23,6 +23,10 @@ const CommentList = ({ commentData }: Props) => {
                   : commentData.profileImage
               }
             />
+            {(commentData.subComments.length > 0 || isReplyWriteShow) &&
+              (isReplyShow || isReplyWriteShow) && (
+                <S.CommentLine></S.CommentLine>
+              )}
           </S.CommentInfoWrap>
           <S.CommentContentWrap>
             <S.CommentName>{commentData.commentor}</S.CommentName>
@@ -46,11 +50,23 @@ const CommentList = ({ commentData }: Props) => {
           </S.CommentContentWrap>
         </S.MyNotificationComment>
       </S.MyNotificationCommentWrap>
-      {isReplyWriteShow && <ReplyComment commentId={commentData.commentId} />}
+      {isReplyWriteShow && (
+        <ReplyComment
+          commentId={commentData.commentId}
+          replyCommentCnt={commentData.subComments.length}
+          isReplyCommentShow = {isReplyShow}
+        />
+      )}
       {isReplyShow &&
-        commentData.subComments.map((replyCommentData) => (
+        commentData.subComments.map((replyCommentData, idx: number) => (
           <S.MyNotificationReplyCommentWrap key={replyCommentData.commentId}>
             <S.MyNotificationReplyComment>
+              <S.ReplyCommentLineWrap>
+                <S.ReplyCommentRadiusLine></S.ReplyCommentRadiusLine>
+                {commentData.subComments.length > idx + 1 && (
+                  <S.ReplyCommentLine></S.ReplyCommentLine>
+                )}
+              </S.ReplyCommentLineWrap>
               <S.ReplyCommentInfoWrap>
                 <S.ReplyCommentProfile
                   src={
