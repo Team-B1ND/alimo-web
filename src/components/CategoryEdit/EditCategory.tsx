@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "src/components/CategoryEdit/style/EditCategory.style";
-import SideBar from "src/constants/SideBar/SideBar";
+import SideBar from "@src/components/SideBar/SideBar";
 import CategoryDummyMembers from "./CategoryDummyMembers";
 import ChangeCategoryNameImg from "src/assets/img/Write.svg";
 import useCategoryEdit from "src/Hooks/Category/useCategoryEdit";

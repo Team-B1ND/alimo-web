@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "src/components/Write/style/Write.style";
-import SideBar from "../../constants/SideBar/SideBar";
-import Header from "../../constants/Header/Header";
+import SideBar from "../SideBar/SideBar";
+import Header from "../Header/Header";
 import useWrite from "src/Hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
@@ -31,7 +31,10 @@ const Write = () => {
             onChange={hooks.OnChangeContext}
           />
           <S.FileWrap>
-            <S.ImageUploadImg src={ImageUploadImg} onClick={hooks.HandleImageClick} />
+            <S.ImageUploadImg
+              src={ImageUploadImg}
+              onClick={hooks.HandleImageClick}
+            />
             <S.ImageInputRef
               type="file"
               accept="image/*"
@@ -48,17 +51,26 @@ const Write = () => {
               placeholder="파일은 최대 3개, 각각 100MB"
               onClick={hooks.DeleteFile}
             />
-            <S.FileChange type="file" id="file-change" multiple onChange={hooks.HandleFileChange} />
+            <S.FileChange
+              type="file"
+              id="file-change"
+              multiple
+              onChange={hooks.HandleFileChange}
+            />
           </S.FileWrap>
         </S.InputWrap>
         <S.SelectCategoryWrap>
           <S.SendCategoryWrap>
-            <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
+            <S.SendCategoryTitle>
+              보낼 카테고리를 선택해주세요.
+            </S.SendCategoryTitle>
             <S.CategoryWrap>
               {hooks.CategoryList.map((CategoryName) => (
                 <S.Cateogory
                   onClick={() => hooks.HandleAddCategory(CategoryName)}
-                  isClicked={hooks.selectedCategory.some((category) => category.name === CategoryName)}
+                  isClicked={hooks.selectedCategory.some(
+                    (category) => category.name === CategoryName
+                  )}
                 >
                   {CategoryName}
                 </S.Cateogory>
@@ -66,8 +78,13 @@ const Write = () => {
             </S.CategoryWrap>
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
-            <S.SendShowMember>총{hooks.memberCnt}명 에게 전송되요.</S.SendShowMember>
-            <S.UploadButton disabled={hooks.notAllow} onClick={hooks.AllowWriteButton}>
+            <S.SendShowMember>
+              총{hooks.memberCnt}명 에게 전송되요.
+            </S.SendShowMember>
+            <S.UploadButton
+              disabled={hooks.notAllow}
+              onClick={hooks.AllowWriteButton}
+            >
               게시하기
             </S.UploadButton>
           </S.UplaodButtonWrap>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
