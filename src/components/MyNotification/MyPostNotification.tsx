@@ -1,54 +1,60 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Props } from "src/types/MyNotification/MyNotificationProps.interface";
+import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style/MyNotification.style";
+import useMyNotification from "src/Hooks/Notification/useMyNotification"
+import NullSkeleton from "./Skeleton/NullSkeleton";
 
-const MyPostNotification = ({ notificationData }: Props) => {
+const MyPostNotification = () => {
+  const { notificationData , DataAbsence } = useMyNotification();
   const navigate = useNavigate();
-  const [isImageError, setIsImageError] = useState<boolean>(true);
-
+  const [isImageError, setIsImageError] = useState(true);
+  
   const handleImageError = () => {
     setIsImageError(false);
   };
-  
+
+
   return (
-    <S.MyPostNotificationWrap>
-      <S.MyPostNotification
-        onClick={() =>
-          navigate(`/write-read/${notificationData.notificationId}`)
-        }>
-        <S.MyNotificationBox>
-          <S.MyNotificationTextWrap>
-            <S.MyInfoWrap>
-              <S.MyProfile src={notificationData.profileImage} />
-              <S.MyInfoText>
-                <S.MyName>{notificationData.name}</S.MyName>
-                <S.MyNotificationDate>
-                  {notificationData.createdAt}
-                </S.MyNotificationDate>
-              </S.MyInfoText>
-            </S.MyInfoWrap>
-            <S.MyContentBoxWrap>
-              <S.MyContentTitleWrap>
-                <S.MyContentTitle>{notificationData.title}</S.MyContentTitle>
-              </S.MyContentTitleWrap>
-              <S.MyContentWrap>
-                <S.MyContent>{notificationData.content}</S.MyContent>
-              </S.MyContentWrap>
-            </S.MyContentBoxWrap>
-          </S.MyNotificationTextWrap>
-          <S.MyNotificationImgWrap>
-            {notificationData.images && notificationData.images.length > 0 && isImageError && (
-              <S.MyNotificationImg
-                src={notificationData.images[0].fileUrl}
-                onError={handleImageError}
-              />
-            )}
-          </S.MyNotificationImgWrap>
-        </S.MyNotificationBox>
-        <S.MyNotificationLine></S.MyNotificationLine>
-      </S.MyPostNotification>
-    </S.MyPostNotificationWrap>
+    <S.MyNotificationWrap>
+      {DataAbsence ?notificationData.map((notification: MyNotificationData) => ( 
+        <S.MyPostNotificationWrap key={notification.notificationId}> 
+          <S.MyPostNotification
+            onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
+            <S.MyNotificationBox>
+              <S.MyNotificationTextWrap>
+                <S.MyInfoWrap>
+                  <S.MyProfile src={notification.profileImage} onError={handleImageError} />
+                  <S.MyInfoText>
+                    <S.MyName>{notification.name}</S.MyName>
+                    <S.MyNotificationDate>
+                      {notification.createdAt}
+                    </S.MyNotificationDate>
+                  </S.MyInfoText>
+                </S.MyInfoWrap>
+                <S.MyContentBoxWrap>
+                  <S.MyContentTitleWrap>
+                    <S.MyContentTitle>{notification.title}</S.MyContentTitle>
+                  </S.MyContentTitleWrap>
+                  <S.MyContentWrap>
+                    <S.MyContent>{notification.content}</S.MyContent>
+                  </S.MyContentWrap>
+                </S.MyContentBoxWrap>
+              </S.MyNotificationTextWrap>
+              <S.MyNotificationImgWrap>
+                {notification.images && notification.images.length > 0 && isImageError && (
+                  <S.MyNotificationImg
+                    src={notification.images[0].fileUrl}
+                    onError={handleImageError}
+                  />
+                )}
+              </S.MyNotificationImgWrap>
+            </S.MyNotificationBox>
+            <S.MyNotificationLine></S.MyNotificationLine>
+          </S.MyPostNotification>
+        </S.MyPostNotificationWrap>
+      ))  : <NullSkeleton/>}
+    </S.MyNotificationWrap>
   );
 };
 
