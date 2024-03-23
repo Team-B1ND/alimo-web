@@ -5,11 +5,12 @@ import SideBar from "src/constants/SideBar/SideBar";
 import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import useSidebar from "src/Hooks/Sidbar/useSiebar";
 import AddStudent from "./StudentModal/AddStudent";
+import StudentList from "./CategoryList";
 
 const CategoryManage = () => {
   const { ...hooks } = useCategoryManage();
   const { image } = useSidebar();
-  
+
   return (
     <S.Main>
       <SideBar />
@@ -58,6 +59,7 @@ const CategoryManage = () => {
           ))}
         </S.CategoryMemberWrap>
       )}
+      {hooks.showCategoryName && <StudentList onClose={hooks.onClose} />}
       {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
     </S.Main>
   );

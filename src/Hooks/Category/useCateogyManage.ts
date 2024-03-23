@@ -9,7 +9,7 @@ const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
-  const [isAddStudent, setIsAddStudent] = useState<boolean>(false);
+  const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
   const [categoryName, setCategoryName] = useState<string | string[]>("");
   const [memberCnt, setMemberCnt] = useState<number>();
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
@@ -44,27 +44,7 @@ const useCategoryManage = () => {
   };
 
   const onClickNewCategoryButton = async () => {
-    Swal.fire({
-      title: "카테고리명을 입력해주세요.",
-      input: "text",
-      inputPlaceholder: "카테고리명",
-      showCancelButton: true,
-      cancelButtonColor: "#787878",
-      cancelButtonText: "취소",
-      confirmButtonText: "다음",
-      confirmButtonColor: "#FECE23",
-      preConfirm(inputValue) {
-        if (inputValue) {
-          setCategoryName(inputValue);
-          setCreateCategoryName(inputValue);
-          setIsAddStudent(!isAddStudent);
-          setShowStudentList(!showStudentList);
-          console.log(createCategoryName);
-        } else {
-          console.log(createCategoryName);
-        }
-      },
-    });
+    setShowCategoryName(true);
   };
 
   const onChangeSearchCategoryName = (e: any) => {
@@ -134,6 +114,7 @@ const useCategoryManage = () => {
     handlePopUp,
     onClose,
     memberData,
+    showCategoryName,
   };
 };
 

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { Category } from "src/types/Write/write.type";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 const useWrite = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
@@ -92,12 +93,9 @@ const useWrite = () => {
     const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
     const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
-      const response = await axios.get(URL, {
+      const response = await alimoV1Axios.get(URL, {
         params: {
           category: categoryParams.toString(),
-        },
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
         },
       });
       if (response.status === 200) {
@@ -160,7 +158,7 @@ const useWrite = () => {
         console.log(formData);
         console.log(accessToken);
 
-        const response = await axios.post(`${CONFIG.serverUrl}/notification/generate`, formData, {
+        const response = await alimoV1Axios.post(`${CONFIG.serverUrl}/notification/generate`, formData, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "multipart/form-data",
