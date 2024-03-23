@@ -1,15 +1,43 @@
 import styled from "styled-components";
 
+export const MyPostReplyCommentWrap = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-left: calc(5% + 18.5px);
+`;
+
 export const MyPostReplyComment = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
-  margin: 0 0 40px 120px;
+`;
+
+export const ReplyCommentLineWrap = styled.div`
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ReplyCommentRadiusLine = styled.div`
+  width: 20px;
+  height: 20px;
+  border-left: 3px solid var(--Gray300, #e6e6e6);
+  border-bottom: 3px solid var(--Gray300, #e6e6e6);
+  border-radius: 0px 0px 0px 10px;
+`;
+
+export const ReplyCommentLine = styled.div`
+  width: 20px;
+  height: calc(100% - 20px);
+  border-left: 3px solid var(--Gray300, #e6e6e6);
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
-  width: 12%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -57,6 +85,7 @@ export const ReplyCommentInput = styled.textarea`
   border: none;
   outline: none;
   border-bottom: 1px solid var(--Gray500, #aaa);
+  margin-bottom: 40px;
 `;
 
 export const ReplyCommentButton = styled.button`

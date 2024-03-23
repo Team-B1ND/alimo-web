@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import CONFIG from "src/config/config.json";
 import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [notificationDetailData, setNotificationDetailData] = useState<any>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
   const [fileSize, setFileSize] = useState<string[]>([]);
 
-  const handleFileDownLoad = () => {};
+  const HandleFileDownLoad = (fileUrl: string) => {
+    window.open(fileUrl, "_blank");
+  };
 
-  const handleImageError = () => {
+  const HandleImageError = () => {
     setIsImageError(false);
   };
 
@@ -39,13 +42,14 @@ const useMyNotificationDetail = () => {
       });
     };
     NotificationRead();
-  }, []);
+  }, [id]);
   return {
     notificationDetailData,
-    handleFileDownLoad,
+    HandleFileDownLoad,
     isImageError,
-    handleImageError,
+    HandleImageError,
     fileSize,
+    HandleClose,
   };
 };
 

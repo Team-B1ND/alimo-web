@@ -1,29 +1,36 @@
 import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
-import { CommentData } from "src/types/CommentList/Comment.interface";
+import { CommentData } from "src/types/CommentList/CommentList.interface";
 import SideBar from "src/constants/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
-import CommentList from "src/components/MyNotification/MyNotificationDetail/Comment/CommentList";
+import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
-import Comment from "src/components/MyNotification/MyNotificationDetail/Comment/Comment";
-import * as S from "src/components/MyNotification/MyNotificationDetail/style/MyNotificationDetail.style";
+import Comment from "src/components/MyNotificationDetail/Comment/Comment";
+import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
+import PostClose from "src/assets/img/PostClose.png";
 
 const WriteReadDetail = () => {
   const {
     notificationDetailData,
-    handleFileDownLoad,
+    HandleFileDownLoad,
     isImageError,
-    handleImageError,
+    HandleImageError,
     fileSize,
+    HandleClose,
   } = useMyNotificationDetail();
+
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
       <S.MyNotificationDetailBox>
         <S.MyNotificationDetail>
+          <S.Notificationclose>
+            {" "}
+            <img src={PostClose} onClick={HandleClose} />{" "}
+          </S.Notificationclose>
           <S.MyNotification>
             <S.MyNotificationInfoWrap>
               <S.MyProfile src={notificationDetailData.profileImage} />
@@ -52,13 +59,9 @@ const WriteReadDetail = () => {
                   <S.MyNotificationImgWrap>
                     <S.MyNotificationImg
                       src={imageData.fileUrl}
-                      style={{
-                        marginBottom:
-                          notificationDetailData.images.length > idx + 1
-                            ? "3px"
-                            : "20px",
-                      }}
-                      onError={handleImageError}
+                      dataCnt={notificationDetailData.images.length}
+                      imageIndex={idx}
+                      onError={HandleImageError}
                     />
                   </S.MyNotificationImgWrap>
                 )
@@ -67,7 +70,10 @@ const WriteReadDetail = () => {
               notificationDetailData.files.length > 0 &&
               notificationDetailData.files.map(
                 (fileData: FileData, idx: number) => (
-                  <S.MyNotificationFileWrap key={fileData.fileUrl}>
+                  <S.MyNotificationFileWrap
+                    key={fileData.fileUrl}
+                    dataCnt={notificationDetailData.files.length}
+                    fileIndex={idx}>
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
@@ -82,7 +88,7 @@ const WriteReadDetail = () => {
                         </S.MyNotificationFileText>
                       </S.MyNotificationFileInfo>
                       <S.MyNotificationFileDownLoadWrap
-                        onClick={handleFileDownLoad}>
+                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}>
                         <S.MyNotificationFileDownLoad
                           src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
                       </S.MyNotificationFileDownLoadWrap>

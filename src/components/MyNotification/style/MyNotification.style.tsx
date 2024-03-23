@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+
+export const NullSkelton = styled.div`
+  width: 95%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+`
 
 export const MyNotification = styled.div`
   width: 100vw;
@@ -42,6 +52,7 @@ export const MyPostNotification = styled.div`
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
+  /* animation: ${""} 1s infinite ease-in-out; */
 `;
 
 export const MyNotificationBox = styled.div`

@@ -37,7 +37,7 @@ const useComment = () => {
     commentRef,
     commentValue,
     handleChangeValue,
-    handleClickComment,
+    handleCommentCreate,
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { alimoV1Axios } from "src/lib/axios/customAxios";
 import CONFIG from "src/config/config.json";
 import * as S from "src/constants/Emoji/style/Emoji.style";
 
@@ -15,7 +15,7 @@ const Emoji = () => {
 
   useEffect(() => {
     const NotificationEmojiLoad = async () => {
-      await axios
+      await alimoV1Axios
         .get(`${CONFIG.serverUrl}/emoji/load/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -26,7 +26,7 @@ const Emoji = () => {
         });
     };
     NotificationEmojiLoad();
-  }, []);
+  }, [id]);
 
   const ChangeEmoji = (emoji: string) => {
     switch (emoji) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import CONFIG from "src/config/config.json";
 import { alimoV1Axios } from "src/lib/axios/customAxios";
@@ -20,10 +20,14 @@ const useMyNotification = () => {
         console.log(error);
       }
     };
+
     MyNotificationLoad();
   }, []);
+
   return {
     notificationData,
+    DataAbsence,
   };
 };
+
 export default useMyNotification;

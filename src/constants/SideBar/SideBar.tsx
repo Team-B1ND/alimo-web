@@ -8,7 +8,7 @@ import Profile from "src/components/Profile/profile";
 import DefaultPrfoile from "src/assets/img/profileimg.png";
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
-import UseSidebar from "src/Hooks/Sidbar/useSiebar";
+import UseSidebar from "src/Hooks/Sidbar/useSidebar";
 import Setting from "src/components/SettingPage/setting";
 import { useNavigate } from "react-router-dom";
 
@@ -44,17 +44,21 @@ const SideBar = () => {
             />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}
-              onClick={() => HandleCategoryClick("카테고리 관리")}
-            >
+              onClick={() => HandleCategoryClick("카테고리 관리")}>
               카테고리 관리
             </S.SideBarMenu>
           </S.SideBarCategory>
           <S.SideBarCategory>
-            <img src={isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg} />
+            <img
+              src={
+                isClickCategory === "내가 쓴 공지보기"
+                  ? ClickSideBarWriteReadImg
+                  : SideBarWriteReadImg
+              }
+            />
             <S.SideBarMenu
               isClicked={isClickCategory === "내가 쓴 공지보기"}
-              onClick={() => HandleCategoryClick("내가 쓴 공지보기")}
-            >
+              onClick={() => HandleCategoryClick("내가 쓴 공지보기")}>
               내가 쓴 공지보기
             </S.SideBarMenu>
           </S.SideBarCategory>
@@ -62,14 +66,20 @@ const SideBar = () => {
         <S.SideBarProfileWrap>
           <S.SidbarClickarea onClick={OpenProfileSetting}>
             <S.SideBarTeacherProfileImg>
-              {image.length > 0 ? <img src={image} /> : <img src={DefaultPrfoile} />}
+              {image && image.length > 0 ? (
+                <img src={image} />
+              ) : (
+                <img src={DefaultPrfoile} />
+              )}
             </S.SideBarTeacherProfileImg>
             <S.SideBarTeacherName>{Name}</S.SideBarTeacherName>
           </S.SidbarClickarea>
           <S.SideBarSetting src={SideBarProfileSetting} onClick={OpenSetting} />
         </S.SideBarProfileWrap>
       </S.SideBarMenuWrap>
-      {isProfileAlert && <ProfileAlert onOpen={OpenProfile} onClose={OpenProfileSetting} />}
+      {isProfileAlert && (
+        <ProfileAlert onOpen={OpenProfile} onClose={OpenProfileSetting} />
+      )}
       {isProfile && <Profile onClose={OpenProfile} />}
       {isSetting && <Setting onClose={OpenSetting} />}
     </S.SideBarWrap>

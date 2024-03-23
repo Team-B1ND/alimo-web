@@ -5,6 +5,7 @@ export const MyNotificationDetailWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
+  overflow-y: hidden;
 `;
 
 export const MyNotificationDetailBox = styled.div`
@@ -12,7 +13,7 @@ export const MyNotificationDetailBox = styled.div`
   height: calc(100% - 10vh);
   display: flex;
   flex-direction: row;
-  margin-top: 10vh;
+  margin-top: 85px;
 `;
 
 export const MyNotificationDetail = styled.div`
@@ -24,6 +25,22 @@ export const MyNotificationDetail = styled.div`
   border-right: 1px solid #ccc;
   overflow-x: hidden;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const Notificationclose = styled.div`
+  display: flex;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  height: 25px;
+  img {
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const MyNotification = styled.div`
@@ -91,6 +108,7 @@ export const MyNotificationContentWrap = styled.div`
   width: 100%;
   height: auto;
   margin-bottom: 20px;
+  word-break: break-all;
 `;
 
 export const MyNotificationContent = styled.span`
@@ -107,22 +125,31 @@ export const MyNotificationImgWrap = styled.div`
   height: auto;
 `;
 
-export const MyNotificationImg = styled.img`
+export const MyNotificationImg = styled.img<{
+  dataCnt: number;
+  imageIndex: number;
+}>`
   max-width: 60%;
   min-width: 20%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-bottom: ${(props) =>
+    props.dataCnt > props.imageIndex + 1 ? "3px" : "20px"};
 `;
 
-export const MyNotificationFileWrap = styled.div`
+export const MyNotificationFileWrap = styled.div<{
+  dataCnt: number;
+  fileIndex: number;
+}>`
   max-width: 100%;
   width: fit-content;
   height: auto;
   border-radius: 8px;
   background: var(--Gray100, #f4f5f9);
   padding: 15px;
-  margin-bottom: 35px;
+  margin-bottom: ${(props) =>
+    props.dataCnt > props.fileIndex + 1 ? "10px" : "35px"};
 `;
 
 export const MyNotificationFile = styled.div`

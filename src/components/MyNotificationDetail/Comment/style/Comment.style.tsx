@@ -31,7 +31,7 @@ export const CommentInput = styled.textarea`
   resize: none;
   border: none;
   outline: none;
-  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 export const CommentButtonWrap = styled.button`
