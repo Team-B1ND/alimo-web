@@ -19,14 +19,23 @@ const MyPostNotification = () => {
       {DataAbsence ? (
         notificationData.map((notification: MyNotificationData) => (
           <S.MyPostNotificationWrap key={notification.notificationId}>
-            <S.MyPostNotification onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
+            <S.MyPostNotification
+              onClick={() =>
+                navigate(`/write-read/${notification.notificationId}`)
+              }
+            >
               <S.MyNotificationBox>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile src={notification.profileImage} onError={handleImageError} />
+                    <S.MyProfile
+                      src={notification.profileImage}
+                      onError={handleImageError}
+                    />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
-                      <S.MyNotificationDate>{notification.createdAt}</S.MyNotificationDate>
+                      <S.MyNotificationDate>
+                        {notification.createdAt}
+                      </S.MyNotificationDate>
                     </S.MyInfoText>
                   </S.MyInfoWrap>
                   <S.MyContentBoxWrap>
@@ -40,7 +49,12 @@ const MyPostNotification = () => {
                 </S.MyNotificationTextWrap>
                 <S.MyNotificationImgWrap>
                   {notification.images && notification.images.length > 0 && (
-                    <S.MyNotificationImg src={notification.images[0].fileUrl} onError={handleImageError} />
+                    <S.MyNotificationImg
+                      rel="preconnect"
+                      decoding="async" 
+                      src={notification.images[0].fileUrl}
+                      onError={handleImageError}
+                    />
                   )}
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>

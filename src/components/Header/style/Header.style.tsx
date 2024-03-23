@@ -6,7 +6,7 @@ export const HeaderBarWrap = styled.div`
   border-bottom: 1px solid #e6e6e6;
   display: flex;
   flex-direction: row;
-
+  background-color: white;
   position: absolute;
   margin-left: 15vw;
 `;

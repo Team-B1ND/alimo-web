@@ -2,7 +2,7 @@ import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import SideBar from "src/constants/SideBar/SideBar";
+import SideBar from "src/components/SideBar/SideBar";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
@@ -73,11 +73,13 @@ const WriteReadDetail = () => {
                   <S.MyNotificationFileWrap
                     key={fileData.fileUrl}
                     dataCnt={notificationDetailData.files.length}
-                    fileIndex={idx}>
+                    fileIndex={idx}
+                  >
                     <S.MyNotificationFile>
                       <S.MyNotificationFileInfo>
                         <S.MyNotificationFileImage
-                          src={FileImage}></S.MyNotificationFileImage>
+                          src={FileImage}
+                        ></S.MyNotificationFileImage>
                         <S.MyNotificationFileText>
                           <S.MyNotificationFileName>
                             {fileData.fileName}
@@ -88,9 +90,11 @@ const WriteReadDetail = () => {
                         </S.MyNotificationFileText>
                       </S.MyNotificationFileInfo>
                       <S.MyNotificationFileDownLoadWrap
-                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}>
+                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}
+                      >
                         <S.MyNotificationFileDownLoad
-                          src={FileDownLoadIcon}></S.MyNotificationFileDownLoad>
+                          src={FileDownLoadIcon}
+                        ></S.MyNotificationFileDownLoad>
                       </S.MyNotificationFileDownLoadWrap>
                     </S.MyNotificationFile>
                   </S.MyNotificationFileWrap>
