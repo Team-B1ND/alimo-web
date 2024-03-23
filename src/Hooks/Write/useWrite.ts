@@ -94,14 +94,15 @@ const useWrite = () => {
     const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
     const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
-      const response = await alimoV1Axios.get(URL, {
-        params: {
-          category: categoryParams.toString(),
-        },
-      });
-      if (response.status === 200) {
-        setMemberCnt(response.data.data.memberCnt);
-      }
+      await alimoV1Axios
+        .get(URL, {
+          params: {
+            category: categoryParams.toString(),
+          },
+        })
+        .then((res) => {
+          setMemberCnt(res.data.data.memberCnt);
+        });
     } catch (e) {
       console.error(e);
     }
