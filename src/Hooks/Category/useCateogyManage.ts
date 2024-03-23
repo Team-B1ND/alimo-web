@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
 import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);

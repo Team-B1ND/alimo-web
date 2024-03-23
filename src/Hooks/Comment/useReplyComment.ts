@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import CONFIG from "src/config/config.json";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useReplyComment = () => {
   const { id } = useParams();

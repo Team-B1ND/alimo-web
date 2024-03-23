@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import CONFIG from "src/config/config.json";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -17,6 +17,10 @@ const useMyNotificationDetail = () => {
 
   const HandleImageError = () => {
     setIsImageError(false);
+  };
+
+  const HandleClose = () => {
+    navigate("/write-read");
   };
 
   useEffect(() => {

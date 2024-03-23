@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import CONFIG from "src/config/config.json";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useMyNotification = () => {
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
+  const [DataAbsence, setDataAbsence] = useState(true);
 
   useEffect(() => {
     const MyNotificationLoad = async () => {
@@ -15,6 +16,9 @@ const useMyNotification = () => {
           })
           .then((res) => {
             setNotificationData(res.data.data);
+            if (res.data.data.length === 0) {
+              setDataAbsence(false);
+            }
           });
       } catch (error) {
         console.log(error);

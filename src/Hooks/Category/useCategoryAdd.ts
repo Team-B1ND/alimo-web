@@ -3,7 +3,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
 import useCategoryManage from "./useCateogyManage";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 interface Student {
   name: string;

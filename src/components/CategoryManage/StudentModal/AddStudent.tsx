@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "@src/components/CategoryManage/StudentModal/AddStudent.style";
+import * as S from "./AddStudent.style";
 import CheckStudent from "src/assets/img/CheckStudent.png";
 import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";

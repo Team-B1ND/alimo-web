@@ -3,7 +3,7 @@ import CommentButtonImg from "src/assets/img/CommentButtonImage.png";
 import * as S from "src/components/MyNotificationDetail/Comment/style/Comment.style";
 
 const Comment = () => {
-  const { commentRef, commentValue, handleChangeValue, handleCommentCreate } =
+  const { commentRef, commentValue, handleChangeValue, handleClickComment } =
     useComment();
 
   return (
@@ -15,7 +15,7 @@ const Comment = () => {
           value={commentValue}
           placeholder="댓글을 남겨보세요."
           onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
-        <S.CommentButtonWrap onClick={handleCommentCreate}>
+        <S.CommentButtonWrap onClick={handleClickComment}>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>
       </S.Comment>
