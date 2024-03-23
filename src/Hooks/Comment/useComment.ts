@@ -10,7 +10,7 @@ const useComment = () => {
 
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    commentRef: React.RefObject<HTMLTextAreaElement>
+    commentRef: React.RefObject<HTMLTextAreaElement>,
   ) => {
     if (commentRef.current) {
       commentRef.current.style.height = "auto";
@@ -19,21 +19,18 @@ const useComment = () => {
     }
   };
 
-  const handleCommentCreate = async () => {
-    if (commentValue !== "") {
-      try {
-        setCommentValue("");
-        await alimoV1Axios
-          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
-            content: commentValue,
-            parentId: null,
-          })
-          .then((res) => {
-            console.log(res);
-          });
-      } catch (error) {
-        console.log(error);
-      }
+  const handleClickComment = async () => {
+    try {
+      await alimoV1Axios
+        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          content: commentValue,
+          parentId: null,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
   return {

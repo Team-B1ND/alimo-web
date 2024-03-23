@@ -10,6 +10,7 @@ import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
 import UseSidebar from "src/Hooks/Sidbar/useSidebar";
 import Setting from "src/components/SettingPage/setting";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   const {
@@ -24,10 +25,11 @@ const SideBar = () => {
     HandleCategoryClick,
     isClickCategory,
   } = UseSidebar();
+  const navigate = useNavigate();
   return (
     <S.SideBarWrap>
       <Header />
-      <S.SideBarLogoWrap>
+      <S.SideBarLogoWrap onClick={() => navigate("/main")}>
         <S.AlimoLogoTitle>
           ALIMO<span>.</span>
         </S.AlimoLogoTitle>
@@ -37,11 +39,8 @@ const SideBar = () => {
         <S.SideBarMenuFlex>
           <S.SideBarCategory>
             <img
-              src={
-                isClickCategory === "카테고리 관리"
-                  ? ClickSideBarCategoryManageImg
-                  : SideBarCategoryManageImg
-              }
+              alt="ggg"
+              src={isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg}
             />
             <S.SideBarMenu
               isClicked={isClickCategory === "카테고리 관리"}

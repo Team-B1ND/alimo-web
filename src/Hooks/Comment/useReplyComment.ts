@@ -10,24 +10,22 @@ const useReplyComment = () => {
 
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    replyCommentRef: React.RefObject<HTMLTextAreaElement>
+    replyCommentRef: React.RefObject<HTMLTextAreaElement>,
   ) => {
     if (replyCommentRef.current) {
       replyCommentRef.current.style.height = "auto";
-      replyCommentRef.current.style.height =
-        replyCommentRef.current.scrollHeight + "px";
+      replyCommentRef.current.style.height = replyCommentRef.current.scrollHeight + "px";
       setReplyCommentValue(e.target.value);
     }
   };
 
   const handleClickReplyComment = async (commentId: number) => {
     try {
-      await alimoV1Axios.post(`${CONFIG.serverUrl}/comment/create/${id}`,
-          {
-            content: replyCommentValue,
-            parentId: commentId,
-          },
-        )
+      await alimoV1Axios
+        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          content: replyCommentValue,
+          parentId: commentId,
+        })
         .then((res) => {
           console.log(res);
         });
