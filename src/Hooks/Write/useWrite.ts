@@ -1,4 +1,5 @@
 import axios from "axios";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
@@ -92,7 +93,7 @@ const useWrite = () => {
     const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
     const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
-      const response = await axios.get(URL, {
+      const response = await alimoV1Axios.get(URL, {
         params: {
           category: categoryParams.toString(),
         },
