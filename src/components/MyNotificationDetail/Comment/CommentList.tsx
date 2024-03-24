@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
+import useCommentList from "src/Hooks/Comment/useCommentList";
 import baseProfile from "src/assets/img/profileimg.png";
 import ReplyComment from "src/components/MyNotificationDetail/Comment/ReplyComment";
 import * as S from "src/components/MyNotificationDetail/Comment/style/CommentList.style";
@@ -9,17 +9,12 @@ interface Props {
 }
 
 const CommentList = ({ commentData }: Props) => {
-  const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
-  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false);
-
-  const handleReplyCommentCreate = () => {
-    setIsReplyWriteShow((current) => !current);
-    if (isReplyShow !== isReplyWriteShow) {
-      setIsReplyShow(isReplyShow);
-    } else {
-      setIsReplyShow((current) => !current);
-    }
-  };
+  const {
+    isReplyShow,
+    setIsReplyShow,
+    isReplyWriteShow,
+    handleReplyCommentCreate,
+  } = useCommentList()
   return (
     <S.MyNotificationDetailComment>
       <S.MyNotificationCommentWrap>
