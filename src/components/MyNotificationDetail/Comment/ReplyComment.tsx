@@ -1,5 +1,6 @@
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useReplyComment from "src/Hooks/Comment/useReplyComment";
+import useSidebar from "src/Hooks/Sidbar/useSiebar";
 import baseProfile from "src/assets/img/profileimg.png";
 import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComment.style";
 
@@ -15,6 +16,11 @@ const ReplyComment = ({ commentData, isReplyCommentShow }: Props) => {
     handleChangeValue,
     handleClickReplyComment,
   } = useReplyComment();
+
+  const {
+    Name,
+    image,
+  } = useSidebar();
   return (
     <S.MyPostReplyCommentWrap>
       <S.MyPostReplyComment>
@@ -29,13 +35,13 @@ const ReplyComment = ({ commentData, isReplyCommentShow }: Props) => {
             src={
               commentData.profileImage === null
                 ? baseProfile
-                : commentData.profileImage
+                : image
             }
             alt="예시 프로필"
           />
         </S.ReplyCommentInfoWrap>
         <S.ReplyCommentContentWrap>
-          <S.ReplyCommentName>{commentData.commentor}</S.ReplyCommentName>
+          <S.ReplyCommentName>{Name}</S.ReplyCommentName>
           <S.ReplyCommentWrap>
             <S.ReplyCommentInput
               rows={1}
