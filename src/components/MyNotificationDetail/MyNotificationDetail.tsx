@@ -3,6 +3,8 @@ import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import SideBar from "src/constants/SideBar/SideBar";
+import PostClose from "src/assets/img/PostClose.png";
+import baseProfile from "src/assets/img/profileimg.png";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
@@ -10,7 +12,6 @@ import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
 import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
-import PostClose from "src/assets/img/PostClose.png";
 
 const WriteReadDetail = () => {
   const {
@@ -29,11 +30,11 @@ const WriteReadDetail = () => {
         <S.MyNotificationDetail>
           <S.Notificationclose>
             {" "}
-            <img src={PostClose} onClick={HandleClose} />{" "}
+            <img src={PostClose} alt="공지 닫기" onClick={HandleClose} />{" "}
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyNotificationInfoWrap>
-              <S.MyProfile src={notificationDetailData.profileImage} />
+              <S.MyProfile src={notificationDetailData.profileImage === null ? baseProfile : notificationDetailData.profileImage} />
               <S.MyInfoWrap>
                 <S.MyName>{notificationDetailData.name}</S.MyName>
                 <S.MyNotificationDate>
