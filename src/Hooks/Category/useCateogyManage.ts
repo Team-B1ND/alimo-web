@@ -20,7 +20,7 @@ const useCategoryManage = () => {
   const [permission, setPermission] = useState<string>("");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
-
+  const [memberList, setMemberList] = useState<boolean>(false);
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -94,6 +94,10 @@ const useCategoryManage = () => {
     setShowStudentList(false);
   };
 
+  const OnShow = () => {
+    setMemberList(!memberList);
+  };
+
   return {
     isClickedCategory,
     createCategoryName,
@@ -115,6 +119,8 @@ const useCategoryManage = () => {
     onClose,
     memberData,
     showCategoryName,
+    memberList,
+    OnShow,
   };
 };
 

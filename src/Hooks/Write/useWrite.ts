@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { Category } from "src/types/Write/write.type";
+import token from "src/lib/token/token";
+import { ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -21,7 +23,6 @@ const useWrite = () => {
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
-  const accessToken = localStorage.getItem("accestoken");
 
   const CategoryList = useRecoilValue(categoryListState);
 
@@ -140,10 +141,10 @@ const useWrite = () => {
         speaker: isSpeaker,
         categories: selectedCategory.map((category) => category.name),
       };
-      console.log(formData.get(JSON.stringify(data)));
 
       const JSONDATA = JSON.stringify(data);
       formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
+
       if (file) {
         file.map((file) => {
           formData.append("file", file);
@@ -151,28 +152,22 @@ const useWrite = () => {
       }
 
       if (image) {
-        image.map((file) => {
-          formData.append("image", file);
+        image.map((image) => {
+          formData.append("image", image);
         });
       }
 
       try {
-        console.log(formData);
-        console.log(accessToken);
-
-        const response = await alimoV1Axios.post(`${CONFIG.serverUrl}/notification/generate`, formData, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        if (response.status === 200) {
-          showToast("success", "공지가 등록되었습니다.");
-          navigate("/main");
-        } else {
-          showToast("error", "공지 등록에 실패하였습니다.");
-        }
+        await alimoV1Axios
+          .post(`/notification/generate`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then(() => {
+            showToast("success", "공지가 등록되었습니다.");
+            navigate("/");
+          });
       } catch (error) {
         console.error(error);
         showToast("error", "통신 오류");

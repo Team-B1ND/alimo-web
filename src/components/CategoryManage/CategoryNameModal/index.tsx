@@ -8,7 +8,7 @@ const StudentList = ({ onClose }: { onClose: () => void }) => {
           <S.Title>카테고리 이름을 입력해주세요.</S.Title>
           <S.InputWrap placeholder="카테고리 이름" type="text" />
           <S.ButtonWrap>
-            <S.ConfirmButton>생성</S.ConfirmButton>
+            <S.ConfirmButton>다음</S.ConfirmButton>
             <S.DenyButton>취소</S.DenyButton>
           </S.ButtonWrap>
         </S.InputDialog>

@@ -20,8 +20,8 @@ export const Main = styled.div`
 
 export const InputDialog = styled.div`
   position: absolute;
-  width: calc(100vw - 80vw);
-  height: calc(100vh - 85vh);
+  width: calc(100vw - 70vw);
+  height: calc(100vh - 75vh);
 
   background: #fff;
   border: none;
@@ -29,13 +29,16 @@ export const InputDialog = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  justify-content: space-evenly;
+  align-items: center;
+  align-self: center;
 `;
 
 export const Title = styled.h1`
   position: relative;
   max-width: 100%;
   margin: 0;
-  padding: 0.8em 1em 0;
   color: inherit;
   font-size: 1.875em;
   font-weight: 600;
@@ -46,7 +49,9 @@ export const Title = styled.h1`
 
 export const InputWrap = styled.input`
   box-sizing: border-box;
-  width: auto;
+  width: 95%;
+  height: 20%;
+  padding-left: 1vw;
   transition:
     border-color 0.1s,
     box-shadow 0.1s;
@@ -58,6 +63,10 @@ export const InputWrap = styled.input`
     0 0 0 3px rgba(0, 0, 0, 0);
   color: inherit;
   font-size: 1.125em;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ButtonWrap = styled.div`
@@ -67,21 +76,42 @@ export const ButtonWrap = styled.div`
 
 export const ConfirmButton = styled.button`
   width: calc(100vw - 95vw);
-  height: calc(100vh - 97vh);
+  height: calc(100vh - 96vh);
 
   border: none;
   border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Pretendard;
 
   background: #fece23;
+
+  margin-right: 1vw;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const DenyButton = styled.button`
   width: calc(100vw - 95vw);
-  height: calc(100vh - 97vh);
+  height: calc(100vh - 96vh);
 
   border: none;
   border-radius: 10px;
 
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Pretendard;
+
   background: #787878;
   color: #fff;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
