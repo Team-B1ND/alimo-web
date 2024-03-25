@@ -7,5 +7,6 @@ export interface MemberInCategoryData {
   name: string;
   grade: number;
   room: number;
+  profileImage: string;
   permission: string;
 }

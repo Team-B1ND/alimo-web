@@ -17,57 +17,53 @@ const useCategoryManage = () => {
   const [name, setName] = useState<string>("");
   const [grade, setGrade] = useState<number>();
   const [cls, setCls] = useState<number>();
-  const [permission, setPermission] = useState<string>("");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
-  const [memberList, setMemberList] = useState<boolean>(false);
 
   useEffect(() => {
     getCategoryList();
   }, []);
 
+  //카테고리 클릭시 멤버리스트 뜨는 로직
   const handleCategoryClick = async (categoryName: string) => {
     setIsClickedCategory(categoryName);
 
     try {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+        .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
         .then((res) => {
           setMemberData(res.data.data);
-          showToast("success", "카테고리 불러오기 성공");
         });
     } catch (e) {
       showToast("error", "서버 연결오류");
     }
   };
 
+  //카테고리 생성 시 사용되는 모달 팝업 로직
   const OnCategoryName = async () => {
     setShowCategoryName((prev) => !prev);
   };
 
+  //카테고리 생성 시 사용되는 인풋 로직
   const OnChangeCreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCreateCategoryName(e.target.value);
   };
 
+  // 카테고리 검색 인풋 로직
   const onChangeSearchCategoryName = (e: any) => {
     setSearchKeyword(e.target.value);
   };
 
+  //카테고리 검색 로직
   const SearchCategory = async () => {
     try {
-      const response = await alimoV1Axios.get(
-        `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`,
-      );
-      if (response.status === 200) {
-        showToast("success", "카테고리 검색 성공!");
-      } else {
-        showToast("eror", "검색 실패");
-      }
+      await alimoV1Axios.get(`${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`);
     } catch (e) {
       showToast("eror", "서버 통신 오류");
     }
   };
 
+  //카테고리 불러오는 로직
   const getCategoryList = async () => {
     try {
       await alimoV1Axios
@@ -79,15 +75,18 @@ const useCategoryManage = () => {
       showToast("error", "서버연결 오류");
     }
   };
-
+  
+  //권한 부여할 때 사용되는 모달 팝업 로직
   const HandleViewPermission = () => {
     setViewPermission((prev) => !prev);
   };
 
+  //카테고리 추가, 학생추가 때 사용되는 모달 팝업 로직
   const handlePopUp = () => {
     setShowStudentList(!showStudentList);
   };
 
+  //카테고리 추가할때 사용하는 인풋모달 팝업 로직
   const onClose = () => {
     setShowStudentList((prev) => !prev);
     setShowCategoryName(false);
@@ -102,12 +101,10 @@ const useCategoryManage = () => {
     name,
     grade,
     cls,
-    permission,
     searchKeyword,
     showStudentList,
     memberData,
     showCategoryName,
-    memberList,
     setShowStudentList,
     handleCategoryClick,
     OnCategoryName,

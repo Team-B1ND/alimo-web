@@ -4,10 +4,9 @@ export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 200px;
-  width:200px;
+  width: 250px;
   height: 100vh;
   overflow: hidden;
-  
 `;
 
 export const SideBarLogoWrap = styled.div`
@@ -26,6 +25,7 @@ export const AlimoLogoTitle = styled.h1`
   font-weight: 700;
   color: #000;
   z-index: 2;
+  
   cursor: pointer;
 
   & > span {
@@ -46,7 +46,7 @@ export const SideBarMenuWrap = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  
+
   justify-content: space-between;
   flex-direction: column;
 
@@ -62,14 +62,13 @@ export const SideBarMenuFlex = styled.div`
   margin-left: -2vw;
 `;
 export const SideBarMenuBack = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background: var(--Gray100, #f4f5f9);
   z-index: 5;
-  
-`
+`;
 
 export const SideBarCategory = styled.div`
   display: flex;
@@ -102,7 +101,6 @@ export const SideBarProfileWrap = styled.div`
   border-top: 1px solid #e6e6e6;
   display: flex;
   align-items: center;
-  
 `;
 export const SidbarClickarea = styled.div`
   display: flex;
@@ -112,14 +110,14 @@ export const SidbarClickarea = styled.div`
   align-items: center;
   gap: 10px;
   cursor: pointer;
-`
+`;
 export const SideBarTeacherProfileImg = styled.div`
   display: flex;
   margin-left: 10px;
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);
   border: none;
-  img{
+  img {
     border-radius: 50%;
     width: 100%;
     height: 100%;

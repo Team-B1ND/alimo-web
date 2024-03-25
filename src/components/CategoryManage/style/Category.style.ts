@@ -146,7 +146,7 @@ export const CategoryInMember = styled.span`
 `;
 
 export const CategoryMemberWrap = styled.div`
-  width: calc(100vw - 50vw);
+  width: calc(100vw - 49vw);
   height: calc(100vh - 10vh);
 
   margin-top: 10vh;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
-import useCategoryManage from "./useCateogyManage";
+import useCategoryManage from "./Manage";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 interface Student {

@@ -1,14 +1,13 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/components/SideBar/SideBar";
-import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import useManage from "src/Hooks/Category/Manage";
 import AddStudent from "./StudentModal/AddStudent";
 import StudentList from "./CategoryNameModal";
 import MoreImg from "src/assets/img/MoreImg.svg";
-import useSideBar from "src/Hooks/Sidbar/useSiebar";
+import ProfileImage from "src/assets/img/profileimg.png";
 const CategoryManage = () => {
-  const { ...hooks } = useCategoryManage();
-  const { image } = useSideBar();
+  const { ...hooks } = useManage();
   return (
     <S.Main>
       <SideBar />
@@ -45,7 +44,7 @@ const CategoryManage = () => {
           {hooks.memberData.map((member, idx) => (
             <S.MemberWrap key={idx}>
               <S.Member>
-                <S.MemeberProfileImg src={image} />
+                <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
                 <S.MemeberName>{member.name}</S.MemeberName>
                 <S.MemberClassNumber>
                   {member.grade !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}

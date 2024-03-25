@@ -1,8 +1,8 @@
-import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import useManage from "src/Hooks/Category/Manage";
 import * as S from "../style/CreateCategoryName";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
-  const { ...hooks } = useCategoryManage();
+  const { ...hooks } = useManage();
 
   return (
     <S.CreateWrap>
