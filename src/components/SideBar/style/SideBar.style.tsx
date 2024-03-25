@@ -25,7 +25,7 @@ export const AlimoLogoTitle = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: #000;
-  z-index: 5;
+  z-index: 2;
   cursor: pointer;
 
   & > span {
