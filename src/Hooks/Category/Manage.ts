@@ -10,13 +10,8 @@ const useCategoryManage = () => {
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string | string[]>("");
-  const [memberCnt, setMemberCnt] = useState<number>();
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
-  const [name, setName] = useState<string>("");
-  const [grade, setGrade] = useState<number>();
-  const [cls, setCls] = useState<number>();
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
 
@@ -75,7 +70,7 @@ const useCategoryManage = () => {
       showToast("error", "서버연결 오류");
     }
   };
-  
+
   //권한 부여할 때 사용되는 모달 팝업 로직
   const HandleViewPermission = () => {
     setViewPermission((prev) => !prev);
@@ -95,12 +90,7 @@ const useCategoryManage = () => {
   return {
     isClickedCategory,
     createCategoryName,
-    categoryName,
-    memberCnt,
     categoryData,
-    name,
-    grade,
-    cls,
     searchKeyword,
     showStudentList,
     memberData,
