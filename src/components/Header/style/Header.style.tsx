@@ -1,27 +1,26 @@
 import styled from "styled-components";
 
 export const HeaderBarWrap = styled.div`
-  width: calc(100vw - 15vw);  
+  width: 100vw;  
   height: calc(100vh - 90vh);
   border-bottom: 1px solid #e6e6e6;
   display: flex;
   flex-direction: row;
+  justify-content: right;
+  align-items: center;
   background-color: white;
   position: absolute;
-  margin-left: 15vw;
 `;
 
 export const UploadNewNotifyButton = styled.button`
   position: absolute;
-  width: calc(100vw - 90vw);
+  min-width: 100px;
   height: calc(100vh - 95vh);
   gap: 10px;
   border: none;
+  margin-right: 100px;
   border-radius: 10px;
-  margin-left: 70vw;
-  margin-top: 3vh;
   background-color: #fece23;
-
   color: #000;
   font-family: Pretendard;
   font-weight: 600;

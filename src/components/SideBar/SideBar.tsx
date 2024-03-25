@@ -29,6 +29,7 @@ const SideBar = () => {
   return (
     <S.SideBarWrap>
       <Header />
+      <S.SideBarMenuBack>
       <S.SideBarLogoWrap onClick={() => navigate("/")}>
         <S.AlimoLogoTitle>
           ALIMO<span>.</span>
@@ -88,6 +89,7 @@ const SideBar = () => {
       )}
       {isProfile && <Profile onClose={OpenProfile} />}
       {isSetting && <Setting onClose={OpenSetting} />}
+      </S.SideBarMenuBack>
     </S.SideBarWrap>
   );
 };
