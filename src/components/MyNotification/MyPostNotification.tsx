@@ -4,15 +4,17 @@ import { MyNotificationData } from "src/types/MyNotification/MyNotification.inte
 import * as S from "src/components/MyNotification/style/MyNotification.style";
 import useMyNotification from "src/Hooks/Notification/useMyNotification";
 import NullSkeleton from "./Skeleton/NullSkeleton";
-
+import  CloseButtonImg  from "src/assets/img/CloseImg.png";
+import DefaultImg from "src/assets/img/profileimg.png"
 const MyPostNotification = () => {
-  const { notificationData, DataAbsence } = useMyNotification();
+  const { notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
   const navigate = useNavigate();
   const [isImageError, setIsImageError] = useState(true);
 
-  const handleImageError = () => {
+  const HandleImageError = () => {
     setIsImageError(false);
   };
+
 
   return (
     <S.MyNotificationWrap>
@@ -27,9 +29,10 @@ const MyPostNotification = () => {
               <S.MyNotificationBox>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
+                    {}
                     <S.MyProfile
-                      src={notification.profileImage}
-                      onError={handleImageError}
+                      src={notification.profileImage || DefaultImg}
+                      onError={HandleImageError}
                     />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
@@ -53,13 +56,15 @@ const MyPostNotification = () => {
                       rel="preconnect"
                       decoding="async" 
                       src={notification.images[0].fileUrl}
-                      onError={handleImageError}
+                      onError={HandleImageError}
                     />
                   )}
                 </S.MyNotificationImgWrap>
+                <S.DeleteButton src={CloseButtonImg} onClick={()=>{DeleteButtonClick(notification)}}></S.DeleteButton>
               </S.MyNotificationBox>
               <S.MyNotificationLine></S.MyNotificationLine>
             </S.MyPostNotification>
+
           </S.MyPostNotificationWrap>
         ))
       ) : (
