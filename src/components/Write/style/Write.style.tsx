@@ -18,7 +18,7 @@ export const WriteView = styled.div`
   margin-top: 10vh;
 `;
 
-export const InputWrap = styled.div`
+export const InputWrap = styled.form`
   display: flex;
   flex-direction: column;
 `;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
@@ -43,8 +43,12 @@ const useCategoryManage = () => {
     }
   };
 
-  const onClickNewCategoryButton = async () => {
-    setShowCategoryName(true);
+  const OnCategoryName = async () => {
+    setShowCategoryName((prev) => !prev);
+  };
+
+  const OnChangeCreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCreateCategoryName(e.target.value);
   };
 
   const onChangeSearchCategoryName = (e: any) => {
@@ -91,17 +95,13 @@ const useCategoryManage = () => {
   };
 
   const onClose = () => {
-    setShowStudentList(false);
-  };
-
-  const OnShow = () => {
-    setMemberList(!memberList);
+    setShowStudentList((prev) => !prev);
+    setShowCategoryName(false);
   };
 
   return {
     isClickedCategory,
     createCategoryName,
-    setShowStudentList,
     categoryName,
     memberCnt,
     categoryData,
@@ -110,17 +110,18 @@ const useCategoryManage = () => {
     cls,
     permission,
     searchKeyword,
-    handleCategoryClick,
-    onClickNewCategoryButton,
-    onChangeSearchCategoryName,
-    SearchCategory,
     showStudentList,
-    handlePopUp,
-    onClose,
     memberData,
     showCategoryName,
     memberList,
-    OnShow,
+    setShowStudentList,
+    handleCategoryClick,
+    OnCategoryName,
+    onChangeSearchCategoryName,
+    SearchCategory,
+    handlePopUp,
+    onClose,
+    OnChangeCreateCategoryName,
   };
 };
 

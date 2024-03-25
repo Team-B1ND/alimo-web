@@ -77,30 +77,6 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                 <S.ProfileImg src={ProfileImg} />
                 <S.StudentName>김가영</S.StudentName>
               </S.StudentList>
-              <S.StudentList>
-                <img
-                  src={selectedStudents.some((student) => student.name === "이해준") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickAddStudent("이해준")}
-                />
-                <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>이해준</S.StudentName>
-              </S.StudentList>
-              <S.StudentList>
-                <img
-                  src={selectedStudents.some((student) => student.name === "이강현") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickAddStudent("이강현")}
-                />
-                <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>이강현</S.StudentName>
-              </S.StudentList>
-              <S.StudentList>
-                <img
-                  src={selectedStudents.some((student) => student.name === "전민찬") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickAddStudent("전민찬")}
-                />
-                <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>전민찬</S.StudentName>
-              </S.StudentList>
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
               <S.ViewSelectedStudent>

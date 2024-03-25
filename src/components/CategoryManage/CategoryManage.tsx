@@ -15,7 +15,7 @@ const CategoryManage = () => {
       <S.CategoryManageView>
         <S.CateogyManageUtilityWrap>
           <S.SearchCateogy placeholder="카테고리 검색" onKeyDown={hooks.SearchCategory} type="search" />
-          <S.CreateCategoryButton onClick={hooks.onClickNewCategoryButton}>새 카테고리 </S.CreateCategoryButton>
+          <S.CreateCategoryButton onClick={hooks.OnCategoryName}>새 카테고리 </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
@@ -57,7 +57,7 @@ const CategoryManage = () => {
           ))}
         </S.CategoryMemberWrap>
       )}
-      {hooks.showCategoryName && <StudentList onClose={hooks.onClose} />}
+      {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />}
       {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
     </S.Main>
   );

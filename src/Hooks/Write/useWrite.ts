@@ -8,8 +8,6 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { Category } from "src/types/Write/write.type";
-import token from "src/lib/token/token";
-import { ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -145,29 +143,35 @@ const useWrite = () => {
       const JSONDATA = JSON.stringify(data);
       formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
 
+      // if (file) {
+      //   file.map((file) => {
+      //     formData.append("file", file);
+      //   });
+      // }
+
       if (file) {
-        file.map((file) => {
+        Array.from(file).forEach((file) => {
           formData.append("file", file);
         });
       }
 
+      // if (image) {
+      //   image.map((image) => {
+      //     formData.append("image", image);
+      //   });
+      // }
+
       if (image) {
-        image.map((image) => {
+        Array.from(image).forEach((image) => {
           formData.append("image", image);
         });
       }
 
       try {
-        await alimoV1Axios
-          .post(`/notification/generate`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then(() => {
-            showToast("success", "공지가 등록되었습니다.");
-            navigate("/");
-          });
+        await alimoV1Axios.post(`/notification/generate`, formData, {}).then(() => {
+          showToast("success", "공지가 등록되었습니다.");
+          navigate("/");
+        });
       } catch (error) {
         console.error(error);
         showToast("error", "통신 오류");
