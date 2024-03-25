@@ -4,8 +4,8 @@ import { MyNotificationData } from "src/types/MyNotification/MyNotification.inte
 import * as S from "src/components/MyNotification/style/MyNotification.style";
 import useMyNotification from "src/Hooks/Notification/useMyNotification";
 import NullSkeleton from "./Skeleton/NullSkeleton";
-import  CloseButtonImg  from "src/assets/img/CloseImg.png";
-import DefaultImg from "src/assets/img/profileimg.png"
+import CloseButtonImg from "src/assets/img/CloseImg.png";
+import DefaultImg from "src/assets/img/profileimg.png";
 const MyPostNotification = () => {
   const { notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
   const navigate = useNavigate();
@@ -15,30 +15,20 @@ const MyPostNotification = () => {
     setIsImageError(false);
   };
 
-
   return (
     <S.MyNotificationWrap>
       {DataAbsence ? (
         notificationData.map((notification: MyNotificationData) => (
           <S.MyPostNotificationWrap key={notification.notificationId}>
-            <S.MyPostNotification
-              onClick={() =>
-                navigate(`/write-read/${notification.notificationId}`)
-              }
-            >
+            <S.MyPostNotification onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
               <S.MyNotificationBox>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
                     {}
-                    <S.MyProfile
-                      src={notification.profileImage || DefaultImg}
-                      onError={HandleImageError}
-                    />
+                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError} />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
-                      <S.MyNotificationDate>
-                        {notification.createdAt}
-                      </S.MyNotificationDate>
+                      <S.MyNotificationDate>{notification.createdAt}</S.MyNotificationDate>
                     </S.MyInfoText>
                   </S.MyInfoWrap>
                   <S.MyContentBoxWrap>
@@ -54,17 +44,16 @@ const MyPostNotification = () => {
                   {notification.images && notification.images.length > 0 && (
                     <S.MyNotificationImg
                       rel="preconnect"
-                      decoding="async" 
+                      decoding="async"
                       src={notification.images[0].fileUrl}
                       onError={HandleImageError}
                     />
                   )}
                 </S.MyNotificationImgWrap>
-                <S.DeleteButton src={CloseButtonImg} onClick={()=>{DeleteButtonClick(notification)}}></S.DeleteButton>
+                {/* <S.DeleteButton src={CloseButtonImg} onClick={()=>{DeleteButtonClick(notification)}}></S.DeleteButton> */}
               </S.MyNotificationBox>
               <S.MyNotificationLine></S.MyNotificationLine>
             </S.MyPostNotification>
-
           </S.MyPostNotificationWrap>
         ))
       ) : (

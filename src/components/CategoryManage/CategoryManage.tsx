@@ -22,15 +22,14 @@ const CategoryManage = () => {
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
         {hooks.categoryData.map((category, idx) => (
-          <S.CategoryWrap key={idx}>
-            <S.CategoryInfo
-              isClicked={hooks.isClickedCategory === `${category.categoryName}`}
-              onClick={() => hooks.handleCategoryClick(`${category.categoryName}`)}
-            >
-              <S.CategoryName>{category.categoryName}</S.CategoryName>
-              <S.CategoryInMember>{category.memberCnt}</S.CategoryInMember>
-            </S.CategoryInfo>
-          </S.CategoryWrap>
+          <S.CategoryInfo
+            isClicked={hooks.isClickedCategory === `${category.categoryName}`}
+            onClick={() => hooks.handleCategoryClick(`${category.categoryName}`)}
+            key={idx}
+          >
+            <S.CategoryName>{category.categoryName}</S.CategoryName>
+            <S.CategoryInMember>{category.memberCnt}</S.CategoryInMember>
+          </S.CategoryInfo>
         ))}
       </S.CategoryManageView>
       {hooks.isClickedCategory && (

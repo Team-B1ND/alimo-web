@@ -21,6 +21,7 @@ const useCategoryManage = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
   const [memberList, setMemberList] = useState<boolean>(false);
+
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -29,15 +30,12 @@ const useCategoryManage = () => {
     setIsClickedCategory(categoryName);
 
     try {
-      const reponse = await alimoV1Axios.get(
-        `${CONFIG.serverUrl}/category/get-member?page=${1}&size=${1000}&categoryName=${categoryName}&searchKeyword=`,
-      );
-      if (reponse.status === 200) {
-        setMemberData(reponse.data.data);
-        showToast("success", "멤버 불러오기 성공");
-      } else {
-        showToast("error", "멤버 불러오기 실패");
-      }
+      await alimoV1Axios
+        .get(`${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+        .then((res) => {
+          setMemberData(res.data.data);
+          showToast("success", "카테고리 불러오기 성공");
+        });
     } catch (e) {
       showToast("error", "서버 연결오류");
     }
@@ -72,15 +70,11 @@ const useCategoryManage = () => {
 
   const getCategoryList = async () => {
     try {
-      const response = await alimoV1Axios.get(
-        `${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`,
-      );
-      if (response.status === 200) {
-        setCategoryData(response.data.data);
-        showToast("success", "카테고리 불러오기 성공!");
-      } else {
-        showToast("error", "카테고리 불러오기 실패");
-      }
+      await alimoV1Axios
+        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`)
+        .then((res) => {
+          setCategoryData(res.data.data);
+        });
     } catch (e) {
       showToast("error", "서버연결 오류");
     }

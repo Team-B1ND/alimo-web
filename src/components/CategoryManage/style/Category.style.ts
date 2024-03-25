@@ -83,19 +83,11 @@ export const CategoryMemberInfo = styled.span`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1rem;
-  margin-left: 10vw;
-`;
-
-export const CategoryWrap = styled.div`
-  width: 100%;
-  height: 100%;
-
-  border: none;
-  border-right: 1px solid #e6e6e6;
+  margin-left: 16vw;
 `;
 
 export const CategoryInfo = styled.div<{ isClicked: boolean }>`
-  width: calc(100vw - 69vw);
+  width: calc(100vw - 65vw);
   height: calc(100vh - 90vh);
 
   background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
@@ -105,11 +97,15 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   display: flex;
   flex-direction: row;
 
+  justify-content: space-evenly;
+
   align-items: center;
   align-self: center;
 
-  margin-left: 3vw;
+  /* margin-left: 3vw; */
   margin-top: 1vh;
+
+  overflow: scroll;
 
   cursor: pointer;
 
@@ -117,6 +113,14 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
     margin-left: 10vw;
     cursor: pointer;
   }
+
+  /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 파이어폭스 */
+  scrollbar-width: none;
 `;
 
 export const CategoryName = styled.span`
@@ -125,9 +129,9 @@ export const CategoryName = styled.span`
   font-size: 1.2rem;
   font-weight: 400;
 
-  margin-left: 2vw;
+  /* margin-left: 2vw; */
 
-  width: calc(100vw - 97vw);
+  width: 50px;
 `;
 
 export const CategoryInMember = styled.span`
@@ -147,6 +151,8 @@ export const CategoryMemberWrap = styled.div`
 
   margin-top: 10vh;
   background-color: #f4f5f9;
+
+  overflow: scroll;
 `;
 
 export const MemberManageWrap = styled.div`

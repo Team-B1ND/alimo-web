@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { Category } from "src/types/Write/write.type";
+import token from "src/lib/token/token";
+import { ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
+import cookie from "src/lib/cookies/cookie";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ const useWrite = () => {
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
-
+  const ACCESS_TOKEN = token.getToken("ACCESS_TOKEN_KEY");
   const CategoryList = useRecoilValue(categoryListState);
 
   useEffect(() => {
@@ -143,23 +146,11 @@ const useWrite = () => {
       const JSONDATA = JSON.stringify(data);
       formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
 
-      // if (file) {
-      //   file.map((file) => {
-      //     formData.append("file", file);
-      //   });
-      // }
-
       if (file) {
         Array.from(file).forEach((file) => {
           formData.append("file", file);
         });
       }
-
-      // if (image) {
-      //   image.map((image) => {
-      //     formData.append("image", image);
-      //   });
-      // }
 
       if (image) {
         Array.from(image).forEach((image) => {
@@ -168,10 +159,16 @@ const useWrite = () => {
       }
 
       try {
-        await alimoV1Axios.post(`/notification/generate`, formData, {}).then(() => {
-          showToast("success", "공지가 등록되었습니다.");
-          navigate("/");
-        });
+        await axios
+          .post(`${CONFIG.serverUrl}/notification/generate`, formData, {
+            headers: {
+              Authorization: `Bearer ${cookie.getCookie("access-token")}`,
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then(() => {
+            navigate("/");
+          });
       } catch (error) {
         console.error(error);
         showToast("error", "통신 오류");
