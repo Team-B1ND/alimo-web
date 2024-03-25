@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const MyNotificationDetailComment = styled.div`
+export const MyNotificationCommentWrap = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
 `;
 
-export const MyNotificationCommentWrap = styled.div`
+export const MyNotificationCommentBox = styled.div`
   width: auto;
   height: auto;
   display: flex;
@@ -37,7 +37,7 @@ export const CommentProfile = styled.img`
   border-radius: 50%;
 `;
 
-export const CommentLine = styled.div`
+export const CommentConnectLine = styled.div`
   width: 3px;
   height: calc(100% - 40px);
   background-color: var(--Gray300, #e6e6e6);
@@ -58,7 +58,7 @@ export const CommentName = styled.p`
   line-height: normal;
 `;
 
-export const CommentWrap = styled.div`
+export const CommentContentBox = styled.div`
   width: auto;
   height: auto;
   display: flex;
@@ -78,7 +78,7 @@ export const CommentContent = styled.p<{
   margin-bottom: ${(props) => (props.replyCommentCnt > 0 ? "" : "20px")};
 `;
 
-export const ReplyCommentWrite = styled.button`
+export const ReplyCommentWriteBtn = styled.button`
   color: var(--Gray500, #aaa);
   font-family: Inter;
   font-size: 14px;
@@ -93,13 +93,13 @@ export const ReplyCommentWrite = styled.button`
   margin: 1px 0px 0px 10px;
 `;
 
-export const ReplyCommentShowWrap = styled.div`
+export const ReplyCommentShowBtnWrap = styled.div`
   width: auto;
   height: auto;
   margin: 5px 0px 20px 0px;
 `;
 
-export const ReplyCommentShow = styled.button`
+export const ReplyCommentShowBtn = styled.button`
   width: auto;
   color: var(--Primary500, #fece23);
   font-family: Pretendard;
@@ -127,14 +127,14 @@ export const MyNotificationReplyComment = styled.div`
   flex-direction: row;
 `;
 
-export const ReplyCommentLineWrap = styled.div`
+export const ReplyCommentConnectLineWrap = styled.div`
   width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
 `;
 
-export const ReplyCommentRadiusLine = styled.div`
+export const ReplyCommentRadiusConnectLine = styled.div`
   width: 20px;
   height: 20px;
   border-left: 3px solid var(--Gray300, #e6e6e6);
@@ -142,7 +142,7 @@ export const ReplyCommentRadiusLine = styled.div`
   border-radius: 0px 0px 0px 10px;
 `;
 
-export const ReplyCommentLine = styled.div`
+export const ReplyCommentConnectLine = styled.div`
   width: 20px;
   height: calc(100% - 20px);
   border-left: 3px solid var(--Gray300, #e6e6e6);

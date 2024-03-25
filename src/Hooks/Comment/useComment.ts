@@ -8,6 +8,7 @@ const useComment = () => {
   const commentRef = useRef(null);
   const [commentValue, setCommentValue] = useState<string>("");
 
+  // 댓글 입력 너비 넘음 -> 높이 변경
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
     commentRef: React.RefObject<HTMLTextAreaElement>
@@ -19,6 +20,7 @@ const useComment = () => {
     }
   };
 
+  // 댓글 달기
   const handleCommentCreate = async () => {
     if (commentValue !== "") {
       try {

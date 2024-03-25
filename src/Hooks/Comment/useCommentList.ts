@@ -2,22 +2,23 @@ import { useState } from "react";
 
 const useCommentList = () => {
 
-  const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
-  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false);
+  const [isReplyCommentShow, setIsReplyCommentShow] = useState<boolean>(false);
+  const [isReplyCommentWriteShow, setIsReplyCommentWriteShow] = useState<boolean>(false);
 
-  const handleReplyCommentCreate = () => {
-    setIsReplyWriteShow((current) => !current);
-    if (isReplyShow !== isReplyWriteShow) {
-      setIsReplyShow(isReplyShow);
+  // 대댓글 달기 컴포넌트 on/off
+  const handleReplyCommentWrite = () => {
+    setIsReplyCommentWriteShow((current) => !current);
+    if (isReplyCommentShow !== isReplyCommentWriteShow) {
+      setIsReplyCommentShow(isReplyCommentShow);
     } else {
-      setIsReplyShow((current) => !current);
+      setIsReplyCommentShow((current) => !current);
     }
   };
   return {
-    isReplyShow,
-    setIsReplyShow,
-    isReplyWriteShow,
-    handleReplyCommentCreate,
+    isReplyCommentShow,
+    setIsReplyCommentShow,
+    isReplyCommentWriteShow,
+    handleReplyCommentWrite,
   }
 };
 

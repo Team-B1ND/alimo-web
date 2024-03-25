@@ -8,6 +8,7 @@ const useReplyComment = () => {
   const replyCommentRef = useRef(null);
   const [replyCommentValue, setReplyCommentValue] = useState<string>("");
 
+  // 대댓글 입력 너비 넘음 -> 높이 변경
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
     replyCommentRef: React.RefObject<HTMLTextAreaElement>
@@ -20,7 +21,8 @@ const useReplyComment = () => {
     }
   };
 
-  const handleClickReplyComment = async (commentId: number) => {
+  // 대댓글 달기
+  const handleReplyCommentCreate = async (commentId: number) => {
     try {
       await alimoV1Axios.post(`${CONFIG.serverUrl}/comment/create/${id}`,
           {
@@ -39,7 +41,7 @@ const useReplyComment = () => {
     replyCommentRef,
     replyCommentValue,
     handleChangeValue,
-    handleClickReplyComment,
+    handleReplyCommentCreate,
   };
 };
 
