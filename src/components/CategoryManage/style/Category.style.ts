@@ -12,23 +12,37 @@ export const CategoryManageView = styled.div`
 
   margin-top: 10vh;
 `;
+export const CategorySearchButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 100%;
+
+  img{
+    display: flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  }
+`
 
 export const CateogyManageUtilityWrap = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
 `;
 
 export const SearchCateogy = styled.input`
   width: calc(100vw - 80vw);
   height: calc(100vh - 95vh);
-
+  margin-left: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-
-  margin-top: 3vh;
-  margin-left: 3vw;
-
   padding-left: 2vw;
+
 
   color: #787878;
   font-family: Pretendard;
@@ -41,7 +55,7 @@ export const SearchCateogy = styled.input`
 `;
 
 export const CreateCategoryButton = styled.button`
-  width: calc(100vw - 93vw);
+  min-width: 100px;
   height: calc(100vh - 95vh);
 
   background-color: #000;
@@ -53,10 +67,6 @@ export const CreateCategoryButton = styled.button`
 
   border: none;
   border-radius: 15px;
-
-  margin-top: 3vh;
-  margin-left: 2vw;
-
   cursor: pointer;
 
   &:focus {

@@ -6,15 +6,17 @@ import AddStudent from "./StudentModal/AddStudent";
 import StudentList from "./CategoryNameModal";
 import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
+import searchImg from "src/assets/img/searchImg.png"
 const CategoryManage = () => {
   const { ...hooks } = useManage();
   return (
     <S.Main>
       <SideBar />
       <S.CategoryManageView>
-        <S.CateogyManageUtilityWrap>
-          <S.SearchCateogy placeholder="카테고리 검색" onKeyDown={hooks.SearchCategory} type="search" />
-          <S.CreateCategoryButton onClick={hooks.OnCategoryName}>새 카테고리 </S.CreateCategoryButton>
+      <S.CateogyManageUtilityWrap>
+          <S.SearchCateogy placeholder="카테고리 검색" type="search" />
+          <S.CategorySearchButton ><img src={searchImg} onClick={hooks.SearchCategory}/></S.CategorySearchButton>
+          <S.CreateCategoryButton onClick={hooks.OnCategoryName}><span> 새 카테고리</span> </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
