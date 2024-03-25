@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 85vw);
+  min-width: 200px;
+  width:200px;
   height: 100vh;
-  background: var(--Gray100, #f4f5f9);
   overflow: hidden;
+  
 `;
 
 export const SideBarLogoWrap = styled.div`
@@ -16,7 +17,6 @@ export const SideBarLogoWrap = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   cursor: pointer;
 `;
 
@@ -25,7 +25,7 @@ export const AlimoLogoTitle = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: #000;
-
+  z-index: 5;
   cursor: pointer;
 
   & > span {
@@ -38,7 +38,7 @@ export const AlimoLogoAdmin = styled.h1`
   font-size: 1rem;
   margin-top: 1.2vh;
   margin-left: 0.3vw;
-
+  z-index: 5;
   cursor: pointer;
 `;
 
@@ -46,7 +46,7 @@ export const SideBarMenuWrap = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-
+  
   justify-content: space-between;
   flex-direction: column;
 
@@ -56,12 +56,20 @@ export const SideBarMenuFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   align-items: flex-start;
   align-self: center;
 
   margin-left: -2vw;
 `;
+export const SideBarMenuBack = styled.div`
+display: flex;
+flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--Gray100, #f4f5f9);
+  z-index: 5;
+  
+`
 
 export const SideBarCategory = styled.div`
   display: flex;
