@@ -15,6 +15,7 @@ const useMyNotificationDetail = () => {
   const [commentData, setCommentData] = useState<CommentData[]>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
   const [fileSize, setFileSize] = useState<string[]>([]);
+  const [commentChange, setCommentChange] = useState<number>(0);
 
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string) => {
@@ -29,6 +30,25 @@ const useMyNotificationDetail = () => {
   // 닫기 버튼 클릭 -> 내 공지글 보기로 이동
   const HandleClose = () => {
     navigate("/write-read");
+  };
+
+  // 댓글 달기
+  const handleCommentCreate = async (commentValue: string, setCommentValue: Function) => {
+    if (commentValue !== "") {
+      try {
+        setCommentValue("");
+        await alimoV1Axios
+          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+            content: commentValue,
+            parentId: null,
+          })
+          .then(() => {
+            setCommentChange((prev) => prev + 1);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   // 공지글 디테일 데이터 요청
@@ -60,7 +80,7 @@ const useMyNotificationDetail = () => {
         });
     };
     NotificationRead();
-  }, [id]);
+  }, [id, commentChange]);
   return {
     data,
     imageData,
@@ -71,6 +91,7 @@ const useMyNotificationDetail = () => {
     HandleImageError,
     fileSize,
     HandleClose,
+    handleCommentCreate,
   };
 };
 

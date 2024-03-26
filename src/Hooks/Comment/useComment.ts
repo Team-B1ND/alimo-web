@@ -1,10 +1,6 @@
 import { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import CONFIG from "src/config/config.json";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
 
 const useComment = () => {
-  const { id } = useParams();
   const commentRef = useRef(null);
   const [commentValue, setCommentValue] = useState<string>("");
 
@@ -19,30 +15,11 @@ const useComment = () => {
       setCommentValue(e.target.value);
     }
   };
-
-  // 댓글 달기
-  const handleCommentCreate = async () => {
-    if (commentValue !== "") {
-      try {
-        setCommentValue("");
-        await alimoV1Axios
-          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
-            content: commentValue,
-            parentId: null,
-          })
-          .then((res) => {
-            console.log(res);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
   return {
     commentRef,
     commentValue,
+    setCommentValue,
     handleChangeValue,
-    handleCommentCreate,
   };
 };
 
