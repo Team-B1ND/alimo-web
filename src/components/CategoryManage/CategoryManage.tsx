@@ -1,22 +1,27 @@
 import React from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/components/SideBar/SideBar";
-import useManage from "src/Hooks/Category/Manage";
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import AddStudent from "./StudentModal/AddStudent";
 import StudentList from "./CategoryNameModal";
 import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
-import searchImg from "src/assets/img/searchImg.png"
+import searchImg from "src/assets/img/searchImg.png";
+
 const CategoryManage = () => {
-  const { ...hooks } = useManage();
+  const { ...hooks } = useCategoryManage();
   return (
     <S.Main>
       <SideBar />
       <S.CategoryManageView>
-      <S.CateogyManageUtilityWrap>
+        <S.CateogyManageUtilityWrap>
           <S.SearchCateogy placeholder="카테고리 검색" type="search" />
-          <S.CategorySearchButton ><img src={searchImg} onClick={hooks.SearchCategory}/></S.CategorySearchButton>
-          <S.CreateCategoryButton onClick={hooks.OnCategoryName}><span> 새 카테고리</span> </S.CreateCategoryButton>
+          <S.CategorySearchButton>
+            <img src={searchImg} onClick={hooks.SearchCategory} />
+          </S.CategorySearchButton>
+          <S.CreateCategoryButton onClick={hooks.OnCategoryName}>
+            <span> 새 카테고리</span>{" "}
+          </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>

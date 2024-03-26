@@ -28,26 +28,12 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
               <S.StudentWrap>
-                <S.GradeInfo onClick={() => handleRole("STUDENT", 1, null)}>1학년 (72)</S.GradeInfo>
+                <S.GradeInfo onClick={() => handleRole("STUDENT", 2, 0)}>1학년 (72)</S.GradeInfo>
                 <S.ClassInfo>
                   <span onClick={() => handleRole("STUDENT", 1, 1)}>1반 (18)</span>
                   <span onClick={() => handleRole("STUDENT", 1, 2)}>2반 (18)</span>
                   <span onClick={() => handleRole("STUDENT", 1, 3)}>3반 (18)</span>
                   <span onClick={() => handleRole("STUDENT", 1, 4)}>4반 (18)</span>
-                </S.ClassInfo>
-                <S.GradeInfo onClick={() => handleRole("STUDENT", 2, null)}>2학년 (72)</S.GradeInfo>
-                <S.ClassInfo>
-                  <span onClick={() => handleRole("STUDENT", 2, 1)}>1반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 2, 2)}>2반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 2, 3)}>3반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 2, 4)}>4반 (18)</span>
-                </S.ClassInfo>
-                <S.GradeInfo onClick={() => handleRole("STUDENT", 3, null)}>3학년 (72)</S.GradeInfo>
-                <S.ClassInfo>
-                  <span onClick={() => handleRole("STUDENT", 3, 1)}>1반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 3, 2)}>2반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 3, 3)}>3반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 3, 4)}>4반 (18)</span>
                 </S.ClassInfo>
               </S.StudentWrap>
               <S.TeacherWrap>
@@ -79,16 +65,6 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               </S.StudentList>
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
-              <S.ViewSelectedStudent>
-                <img src={ProfileImg} />
-                <S.ViewStudentName>김가영</S.ViewStudentName>
-                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
-              </S.ViewSelectedStudent>
-              <S.ViewSelectedStudent>
-                <img src={ProfileImg} />
-                <S.ViewStudentName>김가영</S.ViewStudentName>
-                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
-              </S.ViewSelectedStudent>
               <S.ViewSelectedStudent>
                 <img src={ProfileImg} />
                 <S.ViewStudentName>김가영</S.ViewStudentName>
