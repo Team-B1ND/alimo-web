@@ -6,7 +6,7 @@ import * as S from "src/components/MyNotificationDetail/Comment/style/CommentLis
 
 interface Props {
   comment: CommentData;
-  handleReplyCommentCreate: any;
+  handleReplyCommentCreate: (replyCommentValue: string, parentId: number, setIsReplyCommentWriteShow: Function) => Promise<void>
 }
 
 const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
