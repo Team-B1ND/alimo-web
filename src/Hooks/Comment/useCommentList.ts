@@ -18,6 +18,7 @@ const useCommentList = () => {
     isReplyCommentShow,
     setIsReplyCommentShow,
     isReplyCommentWriteShow,
+    setIsReplyCommentWriteShow,
     handleReplyCommentWrite,
   }
 };

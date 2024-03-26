@@ -15,7 +15,7 @@ const useMyNotificationDetail = () => {
   const [commentData, setCommentData] = useState<CommentData[]>([]);
   const [isImageError, setIsImageError] = useState<boolean>(true);
   const [fileSize, setFileSize] = useState<string[]>([]);
-  const [commentChange, setCommentChange] = useState<number>(0);
+  const [commentCreateCount, setCommentCreateCount] = useState<number>(0);
 
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string) => {
@@ -33,7 +33,10 @@ const useMyNotificationDetail = () => {
   };
 
   // 댓글 달기
-  const handleCommentCreate = async (commentValue: string, setCommentValue: Function) => {
+  const handleCommentCreate = async (
+    commentValue: string,
+    setCommentValue: Function
+  ) => {
     if (commentValue !== "") {
       try {
         setCommentValue("");
@@ -43,11 +46,32 @@ const useMyNotificationDetail = () => {
             parentId: null,
           })
           .then(() => {
-            setCommentChange((prev) => prev + 1);
+            setCommentCreateCount((prev) => prev + 1);
           });
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  // 대댓글 달기
+  const handleReplyCommentCreate = async (
+    replyCommentValue: string,
+    commentId: number,
+    setIsReplyCommentWriteShow: Function
+  ) => {
+    try {
+      await alimoV1Axios
+        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          content: replyCommentValue,
+          parentId: commentId,
+        })
+        .then(() => {
+          setIsReplyCommentWriteShow(false);
+          setCommentCreateCount((prev) => prev + 1);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -80,7 +104,7 @@ const useMyNotificationDetail = () => {
         });
     };
     NotificationRead();
-  }, [id, commentChange]);
+  }, [id, commentCreateCount]);
   return {
     data,
     imageData,
@@ -92,6 +116,7 @@ const useMyNotificationDetail = () => {
     fileSize,
     HandleClose,
     handleCommentCreate,
+    handleReplyCommentCreate,
   };
 };
 

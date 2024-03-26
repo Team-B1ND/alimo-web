@@ -7,14 +7,15 @@ import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComme
 interface Props {
   commentData: CommentData;
   isReplyCommentShow: boolean;
+  setIsReplyCommentWriteShow: Function;
+  handleReplyCommentCreate: (replyCommentValue: string, parentId: number, setIsReplyCommentWriteShow: Function) => Promise<void>
 }
 
-const ReplyComment = ({ commentData, isReplyCommentShow }: Props) => {
+const ReplyComment = ({ commentData, isReplyCommentShow, setIsReplyCommentWriteShow, handleReplyCommentCreate }: Props) => {
   const {
     replyCommentRef,
     replyCommentValue,
     handleChangeValue,
-    handleReplyCommentCreate,
   } = useReplyComment();
 
   const {
@@ -42,7 +43,7 @@ const ReplyComment = ({ commentData, isReplyCommentShow }: Props) => {
               value={replyCommentValue}
               onChange={(e) => handleChangeValue(e, replyCommentRef)}
             />
-            <S.ReplyCommentButton onClick={() => handleReplyCommentCreate(commentData.commentId)}>
+            <S.ReplyCommentButton onClick={() => handleReplyCommentCreate(replyCommentValue, commentData.commentId, setIsReplyCommentWriteShow)}>
               등록
             </S.ReplyCommentButton>
           </S.ReplyCommentContent>

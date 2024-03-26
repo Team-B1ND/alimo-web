@@ -6,13 +6,15 @@ import * as S from "src/components/MyNotificationDetail/Comment/style/CommentLis
 
 interface Props {
   comment: CommentData;
+  handleReplyCommentCreate: any;
 }
 
-const CommentList = ({ comment }: Props) => {
+const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
   const {
     isReplyCommentShow,
     setIsReplyCommentShow,
     isReplyCommentWriteShow,
+    setIsReplyCommentWriteShow,
     handleReplyCommentWrite,
   } = useCommentList();
   return (
@@ -51,7 +53,12 @@ const CommentList = ({ comment }: Props) => {
 
       {/* 답글 달기 */}
       {isReplyCommentWriteShow && (
-        <ReplyComment commentData={comment} isReplyCommentShow={isReplyCommentShow} />
+        <ReplyComment 
+          commentData={comment} 
+          isReplyCommentShow={isReplyCommentShow} 
+          setIsReplyCommentWriteShow = {setIsReplyCommentWriteShow}
+          handleReplyCommentCreate={handleReplyCommentCreate}
+        />
       )}
       {/* 답글 달기 */}
 

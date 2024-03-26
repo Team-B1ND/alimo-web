@@ -25,6 +25,7 @@ const WriteReadDetail = () => {
     fileSize,
     HandleClose,
     handleCommentCreate,
+    handleReplyCommentCreate,
   } = useMyNotificationDetail();
 
   return (
@@ -108,6 +109,7 @@ const WriteReadDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
+                  handleReplyCommentCreate={handleReplyCommentCreate}
                 />
               ))}
           </S.CommentListBox>
