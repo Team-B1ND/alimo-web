@@ -8,16 +8,7 @@ import DenyStudent from "src/assets/img/DenyStudent.svg";
 import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
-  const {
-    createCategoryName,
-    selectedStudents,
-    selectAccess,
-    onClickAddStudent,
-    onClickAccess,
-    handleRole,
-    onClickAddCategory,
-  } = useCategoryAdd();
-
+  const { ...hooks } = useCategoryAdd();
   return (
     <S.AddStudentWrap>
       <S.Main>
@@ -28,23 +19,35 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
               <S.StudentWrap>
-                <S.GradeInfo onClick={() => handleRole("STUDENT", 2, 0)}>1학년 (72)</S.GradeInfo>
+                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(1, 0)}>1학년 (72)</S.GradeInfo>
                 <S.ClassInfo>
-                  <span onClick={() => handleRole("STUDENT", 1, 1)}>1반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 1, 2)}>2반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 1, 3)}>3반 (18)</span>
-                  <span onClick={() => handleRole("STUDENT", 1, 4)}>4반 (18)</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(1, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(1, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(1, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(1, 4)}>4반 {hooks.memberCnt}</span>
+                </S.ClassInfo>
+                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(2, 0)}>2학년 (72)</S.GradeInfo>
+                <S.ClassInfo>
+                  <span onClick={() => hooks.OnLoadStudentInfo(2, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(2, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(2, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(2, 4)}>4반 {hooks.memberCnt}</span>
+                </S.ClassInfo>
+                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(3, 0)}>3학년 (72)</S.GradeInfo>
+                <S.ClassInfo>
+                  <span onClick={() => hooks.OnLoadStudentInfo(3, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(3, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(3, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.OnLoadStudentInfo(3, 4)}>4반 {hooks.memberCnt}</span>
                 </S.ClassInfo>
               </S.StudentWrap>
               <S.TeacherWrap>
-                <S.TeacherAndParentsInfo onClick={() => handleRole("TEACEHR", null, null)}>
+                <S.TeacherAndParentsInfo onClick={() => hooks.OnLoadMemberInfo("teacher")}>
                   교사 (20)
                 </S.TeacherAndParentsInfo>
               </S.TeacherWrap>
               <S.ParantWrap>
-                <S.TeacherAndParentsInfo onClick={() => handleRole("PARENT", null, null)}>
-                  학부모
-                </S.TeacherAndParentsInfo>
+                <S.TeacherAndParentsInfo>학부모</S.TeacherAndParentsInfo>
               </S.ParantWrap>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
@@ -55,14 +58,18 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                 <S.ClassStudent>18</S.ClassStudent>
                 <S.AllSelect>전체선택</S.AllSelect>
               </S.UtilityWrap>
-              <S.StudentList>
-                <img
-                  src={selectedStudents.some((student) => student.name === "김가영") ? CheckStudent : NoneCheckStudent}
-                  onClick={() => onClickAddStudent("김가영")}
-                />
-                <S.ProfileImg src={ProfileImg} />
-                <S.StudentName>김가영</S.StudentName>
-              </S.StudentList>
+              {hooks.memberInfo.map((student, idx) => (
+                <S.StudentList key={idx}>
+                  <img
+                    src={
+                      hooks.selectedStudents.some((std) => std.name === student.name) ? CheckStudent : NoneCheckStudent
+                    }
+                    onClick={() => hooks.onClickAddStudent(student.name)}
+                  />
+                  <S.ProfileImg src={student.profileImage !== null ? student.profileImage : ProfileImg} />
+                  <S.StudentName>{student.name}</S.StudentName>
+                </S.StudentList>
+              ))}
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
               <S.ViewSelectedStudent>
@@ -74,7 +81,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           </S.SelectionWrap>
           <S.ButtonWrap>
             <S.CancleButton onClick={onClose}>취소</S.CancleButton>
-            <S.ConfirmButton onClick={onClickAddCategory}>선택</S.ConfirmButton>
+            <S.ConfirmButton onClick={hooks.onClickAddCategory}>선택</S.ConfirmButton>
           </S.ButtonWrap>
           <S.CloseButton src={CloseImg} onClick={onClose} />
         </S.SelectStudentDialog>

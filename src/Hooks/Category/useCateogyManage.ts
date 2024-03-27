@@ -49,7 +49,7 @@ const useCategoryManage = () => {
     setCreateCategoryName(e.target.value);
   };
 
-  const onChangeSearchCategoryName = (e: any) => {
+  const onChangeSearchCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 

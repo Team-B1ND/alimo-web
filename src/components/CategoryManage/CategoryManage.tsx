@@ -20,7 +20,7 @@ const CategoryManage = () => {
             <img src={searchImg} onClick={hooks.SearchCategory} />
           </S.CategorySearchButton>
           <S.CreateCategoryButton onClick={hooks.OnCategoryName}>
-            <span> 새 카테고리</span>{" "}
+            <span> 새 카테고리</span>
           </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
         <S.CategoryInfoWrap>

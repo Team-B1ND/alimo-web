@@ -4,15 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
 import useCategoryManage from "./useCateogyManage";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
-
-interface Student {
-  name: string;
-}
-
-interface MemberInfo {
-  memberId: number;
-  name: string;
-}
+import { Student, MemberInfo } from "src/types/Category/Add.types";
 
 const useCategoryAdd = () => {
   const navigate = useNavigate();
@@ -22,6 +14,8 @@ const useCategoryAdd = () => {
   const [grade, setGrade] = useState<number | null>(null);
   const [cls, setCls] = useState<number | null>(null);
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [memberCnt, setMemberCnt] = useState<number>();
+  const [memberImage, setMemberImage] = useState<string>();
   const { createCategoryName, setShowStudentList } = useCategoryManage();
 
   const onClickAddStudent = (studentName: string) => {
@@ -39,30 +33,6 @@ const useCategoryAdd = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const handleRole = async (role: string, grade: any, room: any) => {
-    alert(createCategoryName);
-    setMemberRole(role);
-    setGrade(grade);
-    setCls(room);
-
-    try {
-      const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/member-list`, {
-        params: {
-          page: 4,
-          size: 15,
-          memberKind: role !== null ? role.toString() : null,
-          grade: grade,
-          room: cls,
-        },
-      });
-      if (response.status === 200) {
-        setMemberInfo(response.data.data);
-      }
-    } catch (e) {
-      showToast("error", "멤버 리스트 불러오기 실패");
-    }
-  };
-
   const onClickAddCategory = async () => {
     try {
       await alimoV1Axios
@@ -78,14 +48,46 @@ const useCategoryAdd = () => {
     }
   };
 
+  const OnLoadStudentInfo = async (grade: number, cls: number) => {
+    await alimoV1Axios
+      .get(`/member/student-list`, {
+        params: {
+          page: 1,
+          size: 15,
+          grade: grade,
+          room: cls,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data.memberList);
+      });
+  };
+
+  const OnLoadMemberInfo = async (role: string) => {
+    await alimoV1Axios
+      .get(`member/${role}-list`, {
+        params: {
+          page: 1,
+          size: 1,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data);
+      });
+  };
+
   return {
     createCategoryName,
     selectedStudents,
     selectAccess,
+    memberInfo,
+    memberCnt,
+    memberImage,
     onClickAddStudent,
     onClickAccess,
-    handleRole,
     onClickAddCategory,
+    OnLoadStudentInfo,
+    OnLoadMemberInfo,
   };
 };
 
