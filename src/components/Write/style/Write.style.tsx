@@ -151,14 +151,15 @@ export const FileChange = styled.input`
 `;
 
 export const SelectCategoryWrap = styled.div`
-  width: calc(100vw - 70vw);
-  height: calc(100vh - 10vh);
+  width: 500px;
+  height: 700px;
+  min-width: 500px;
 `;
 
 export const SendCategoryWrap = styled.div`
-  width: calc(100vw - 70vw);
-  height: calc(100vh - 20vh);
-  background-color: #e6e6e6;
+  width: 500px;
+  height: 750px;
+  background-color: #f4f5f9;
   display: flex;
   flex-direction: column;
 `;
@@ -185,7 +186,7 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   margin-left: 2vw;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${({ isClicked }) => (isClicked ? "1px solid #FECE23" : "1px solid #fff")};
+  border: ${({ isClicked }) => (isClicked ? "2px solid #FECE23" : "2px solid #fff")};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
