@@ -89,7 +89,7 @@ const WriteReadDetail = () => {
                       </S.FileInfo>
                     </S.FileInfoWrap>
                     <S.FileDownLoadWrap
-                      onClick={() => HandleFileDownLoad(FileData.fileUrl)}>
+                      onClick={() => HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>

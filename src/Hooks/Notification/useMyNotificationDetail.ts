@@ -18,8 +18,23 @@ const useMyNotificationDetail = () => {
   const [commentCreateCount, setCommentCreateCount] = useState<number>(0);
 
   // 파일 다운로드
-  const HandleFileDownLoad = (fileUrl: string) => {
-    window.open(fileUrl, "_blank");
+  const HandleFileDownLoad = (fileUrl: string, fileName: string) => {
+    fetch(fileUrl, { mode: "no-cors" })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName); // 다운로드되는 파일의 이름 설정
+        document.body.appendChild(link);
+        link.click();
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
+        }
+      })
+      .catch((error) =>
+        console.error("파일 다운로드 중 오류가 발생했습니다.", error)
+      );
   };
 
   // 이미지 에러 -> 이미지 안 띄움
