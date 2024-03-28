@@ -94,10 +94,9 @@ const useWrite = () => {
 
   const GetMemberCnt = async () => {
     const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
-    const URL = `${CONFIG.serverUrl}/category/member-cnt`;
     try {
       await alimoV1Axios
-        .get(URL, {
+        .get(`/category/member-cnt`, {
           params: {
             category: categoryParams.toString(),
           },
