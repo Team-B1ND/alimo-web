@@ -1,56 +1,55 @@
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useReplyComment from "src/Hooks/Comment/useReplyComment";
-import baseProfile from "src/assets/img/profileimg.png";
+import useSidebar from "src/Hooks/Sidbar/useSiebar";
+import defaultProfile from "src/assets/img/profileimg.png";
 import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComment.style";
 
 interface Props {
   commentData: CommentData;
   isReplyCommentShow: boolean;
+  setIsReplyCommentWriteShow: Function;
+  handleReplyCommentCreate: (replyCommentValue: string, parentId: number, setIsReplyCommentWriteShow: Function) => Promise<void>
 }
 
-const ReplyComment = ({ commentData, isReplyCommentShow }: Props) => {
+const ReplyComment = ({ commentData, isReplyCommentShow, setIsReplyCommentWriteShow, handleReplyCommentCreate }: Props) => {
   const {
     replyCommentRef,
     replyCommentValue,
     handleChangeValue,
-    handleClickReplyComment,
   } = useReplyComment();
+
+  const {
+    Name,
+    image,
+  } = useSidebar();
   return (
-    <S.MyPostReplyCommentWrap>
-      <S.MyPostReplyComment>
-        <S.ReplyCommentLineWrap>
-          <S.ReplyCommentRadiusLine></S.ReplyCommentRadiusLine>
+    <S.ReplyCommentWrap>
+      <S.ReplyComment>
+        <S.ReplyCommentConnectLineWrap>
+          <S.ReplyCommentRadiusConnectLine></S.ReplyCommentRadiusConnectLine>
           {commentData.subComments.length > 0 && isReplyCommentShow && (
-            <S.ReplyCommentLine></S.ReplyCommentLine>
+            <S.ReplyCommentConnectLine></S.ReplyCommentConnectLine>
           )}
-        </S.ReplyCommentLineWrap>
+        </S.ReplyCommentConnectLineWrap>
         <S.ReplyCommentInfoWrap>
-          <S.ReplyCommentProfile
-            src={
-              commentData.profileImage === null
-                ? baseProfile
-                : commentData.profileImage
-            }
-            alt="예시 프로필"
-          />
+          <S.ReplyCommentProfile src={commentData.profileImage === null ? defaultProfile : image}/>
         </S.ReplyCommentInfoWrap>
         <S.ReplyCommentContentWrap>
-          <S.ReplyCommentName>{commentData.commentor}</S.ReplyCommentName>
-          <S.ReplyCommentWrap>
+          <S.ReplyCommentName>{Name}</S.ReplyCommentName>
+          <S.ReplyCommentContent>
             <S.ReplyCommentInput
               rows={1}
               ref={replyCommentRef}
               value={replyCommentValue}
               onChange={(e) => handleChangeValue(e, replyCommentRef)}
             />
-            <S.ReplyCommentButton
-              onClick={() => handleClickReplyComment(commentData.commentId)}>
+            <S.ReplyCommentButton onClick={() => handleReplyCommentCreate(replyCommentValue, commentData.commentId, setIsReplyCommentWriteShow)}>
               등록
             </S.ReplyCommentButton>
-          </S.ReplyCommentWrap>
+          </S.ReplyCommentContent>
         </S.ReplyCommentContentWrap>
-      </S.MyPostReplyComment>
-    </S.MyPostReplyCommentWrap>
+      </S.ReplyComment>
+    </S.ReplyCommentWrap>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MyPostReplyCommentWrap = styled.div`
+export const ReplyCommentWrap = styled.div`
   width: auto;
   height: auto;
   display: flex;
@@ -8,21 +8,22 @@ export const MyPostReplyCommentWrap = styled.div`
   margin-left: calc(5% + 18.5px);
 `;
 
-export const MyPostReplyComment = styled.div`
+export const ReplyComment = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
 `;
 
-export const ReplyCommentLineWrap = styled.div`
+export const ReplyCommentConnectLineWrap = styled.div`
   width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
-export const ReplyCommentRadiusLine = styled.div`
+export const ReplyCommentRadiusConnectLine = styled.div`
   width: 20px;
   height: 20px;
   border-left: 3px solid var(--Gray300, #e6e6e6);
@@ -30,10 +31,11 @@ export const ReplyCommentRadiusLine = styled.div`
   border-radius: 0px 0px 0px 10px;
 `;
 
-export const ReplyCommentLine = styled.div`
+export const ReplyCommentConnectLine = styled.div`
   width: 20px;
-  height: calc(100% - 20px);
+  height: 100%;
   border-left: 3px solid var(--Gray300, #e6e6e6);
+  position: absolute;
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
@@ -66,7 +68,7 @@ export const ReplyCommentName = styled.p`
   line-height: normal;
 `;
 
-export const ReplyCommentWrap = styled.div`
+export const ReplyCommentContent = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 5px;

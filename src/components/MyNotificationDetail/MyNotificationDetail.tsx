@@ -2,122 +2,120 @@ import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import SideBar from "src/components/SideBar/SideBar";
+import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
+import SideBar from "src/constants/SideBar/SideBar";
+import PostClose from "src/assets/img/PostClose.png";
+import defaultProfile from "src/assets/img/profileimg.png";
 import Emoji from "src/constants/Emoji/Emoji";
 import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
-import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
 import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
-import PostClose from "src/assets/img/PostClose.png";
 
 const WriteReadDetail = () => {
   const {
-    notificationDetailData,
+    data,
+    imageData,
+    fileData,
+    commentData,
     HandleFileDownLoad,
     isImageError,
     HandleImageError,
     fileSize,
     HandleClose,
+    handleCommentCreate,
+    handleReplyCommentCreate,
   } = useMyNotificationDetail();
 
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
       <S.MyNotificationDetailBox>
+        {/* 공지 글 */}
         <S.MyNotificationDetail>
           <S.Notificationclose>
             {" "}
-            <img src={PostClose} onClick={HandleClose} />{" "}
+            <img src={PostClose} alt="공지 닫기" onClick={HandleClose} />{" "}
           </S.Notificationclose>
           <S.MyNotification>
-            <S.MyNotificationInfoWrap>
-              <S.MyProfile src={notificationDetailData.profileImage} />
-              <S.MyInfoWrap>
-                <S.MyName>{notificationDetailData.name}</S.MyName>
-                <S.MyNotificationDate>
-                  {notificationDetailData.createdAt}
-                </S.MyNotificationDate>
-              </S.MyInfoWrap>
-            </S.MyNotificationInfoWrap>
-            <S.MyNotificationTitleWrap>
-              <S.MyNotificationTitle>
-                {notificationDetailData.title}
-              </S.MyNotificationTitle>
-            </S.MyNotificationTitleWrap>
-            <S.MyNotificationContentWrap>
-              <S.MyNotificationContent>
-                <LinkItUrl>{notificationDetailData.content}</LinkItUrl>
-              </S.MyNotificationContent>
-            </S.MyNotificationContentWrap>
-            {notificationDetailData.images &&
-              notificationDetailData.images.length > 0 &&
+            <S.MyInfoWrap>
+              <S.MyProfile
+                src={
+                  data.profileImage === null
+                    ? defaultProfile
+                    : data.profileImage
+                }
+              />
+              <S.InfoWrap>
+                <S.MyName>{data.name}</S.MyName>
+                <S.MyNotificationDate>{data.createdAt}</S.MyNotificationDate>
+              </S.InfoWrap>
+            </S.MyInfoWrap>
+            <S.TitleWrap>
+              <S.Title>{data.title}</S.Title>
+            </S.TitleWrap>
+            <S.ContentWrap>
+              <S.Content>
+                <LinkItUrl>{data.content}</LinkItUrl>
+              </S.Content>
+            </S.ContentWrap>
+            {imageData &&
+              imageData.length > 0 &&
               isImageError &&
-              notificationDetailData.images.map(
-                (imageData: ImageData, idx: number) => (
-                  <S.MyNotificationImgWrap>
-                    <S.MyNotificationImg
-                      src={imageData.fileUrl}
-                      dataCnt={notificationDetailData.images.length}
-                      imageIndex={idx}
-                      onError={HandleImageError}
-                    />
-                  </S.MyNotificationImgWrap>
-                )
-              )}
-            {notificationDetailData.files &&
-              notificationDetailData.files.length > 0 &&
-              notificationDetailData.files.map(
-                (fileData: FileData, idx: number) => (
-                  <S.MyNotificationFileWrap
-                    key={fileData.fileUrl}
-                    dataCnt={notificationDetailData.files.length}
-                    fileIndex={idx}
-                  >
-                    <S.MyNotificationFile>
-                      <S.MyNotificationFileInfo>
-                        <S.MyNotificationFileImage
-                          src={FileImage}
-                        ></S.MyNotificationFileImage>
-                        <S.MyNotificationFileText>
-                          <S.MyNotificationFileName>
-                            {fileData.fileName}
-                          </S.MyNotificationFileName>
-                          <S.MyNotificationFileSize>
-                            {fileSize[idx]}
-                          </S.MyNotificationFileSize>
-                        </S.MyNotificationFileText>
-                      </S.MyNotificationFileInfo>
-                      <S.MyNotificationFileDownLoadWrap
-                        onClick={() => HandleFileDownLoad(fileData.fileUrl)}
-                      >
-                        <S.MyNotificationFileDownLoad
-                          src={FileDownLoadIcon}
-                        ></S.MyNotificationFileDownLoad>
-                      </S.MyNotificationFileDownLoadWrap>
-                    </S.MyNotificationFile>
-                  </S.MyNotificationFileWrap>
-                )
-              )}
+              imageData.map((ImageData: ImageData, idx: number) => (
+                <S.ImgWrap>
+                  <S.Img
+                    src={ImageData.fileUrl}
+                    dataCnt={imageData.length}
+                    imageIndex={idx}
+                    onError={HandleImageError}
+                  />
+                </S.ImgWrap>
+              ))}
+            {fileData &&
+              fileData.length > 0 &&
+              fileData.map((FileData: FileData, idx: number) => (
+                <S.MyNotificationFileWrap
+                  key={FileData.fileUrl}
+                  dataCnt={fileData.length}
+                  fileIndex={idx}>
+                  <S.MyNotificationFile>
+                    <S.FileInfoWrap>
+                      <S.FileImage src={FileImage}></S.FileImage>
+                      <S.FileInfo>
+                        <S.FileName>{FileData.fileName}</S.FileName>
+                        <S.FileSize>{fileSize[idx]}</S.FileSize>
+                      </S.FileInfo>
+                    </S.FileInfoWrap>
+                    <S.FileDownLoadWrap
+                      onClick={() => HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                      <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
+                    </S.FileDownLoadWrap>
+                  </S.MyNotificationFile>
+                </S.MyNotificationFileWrap>
+              ))}
             <Emoji />
           </S.MyNotification>
         </S.MyNotificationDetail>
+        {/* 공지 글 */}
+
+        {/* 댓글 */}
         <S.CommentListWrap>
           <S.CommentListBox>
-            {notificationDetailData.comments &&
-              notificationDetailData.comments.length > 0 &&
-              notificationDetailData.comments.map(
-                (commentData: CommentData) => (
-                  <CommentList
-                    key={commentData.commentId}
-                    commentData={commentData}
-                  />
-                )
-              )}
+            {commentData &&
+              commentData.length > 0 &&
+              commentData.map((CommentData: CommentData) => (
+                <CommentList
+                  key={CommentData.commentId}
+                  comment={CommentData}
+                  handleReplyCommentCreate={handleReplyCommentCreate}
+                />
+              ))}
           </S.CommentListBox>
-          <Comment />
+          <Comment handleCommentCreate={handleCommentCreate} />
         </S.CommentListWrap>
+        {/* 댓글 */}
       </S.MyNotificationDetailBox>
     </S.MyNotificationDetailWrap>
   );

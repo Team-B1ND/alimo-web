@@ -51,7 +51,7 @@ export const MyNotification = styled.div`
   margin-top: 5%;
 `;
 
-export const MyNotificationInfoWrap = styled.div`
+export const MyInfoWrap = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -65,7 +65,7 @@ export const MyProfile = styled.img`
   border-radius: 50%;
 `;
 
-export const MyInfoWrap = styled.div`
+export const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5px 0px 0px 10px;
@@ -89,13 +89,13 @@ export const MyNotificationDate = styled.p`
   line-height: normal;
 `;
 
-export const MyNotificationTitleWrap = styled.div`
+export const TitleWrap = styled.div`
   width: 100%;
   height: auto;
   margin-bottom: 20px;
 `;
 
-export const MyNotificationTitle = styled.span`
+export const Title = styled.span`
   color: var(--Main900, #020202);
   font-family: Pretendard;
   font-size: 20px;
@@ -104,14 +104,14 @@ export const MyNotificationTitle = styled.span`
   line-height: normal;
 `;
 
-export const MyNotificationContentWrap = styled.div`
+export const ContentWrap = styled.div`
   width: 100%;
   height: auto;
   margin-bottom: 20px;
   word-break: break-all;
 `;
 
-export const MyNotificationContent = styled.span`
+export const Content = styled.span`
   color: var(--Main900, #020202);
   font-family: Pretendard;
   font-size: 15px;
@@ -120,12 +120,12 @@ export const MyNotificationContent = styled.span`
   line-height: normal;
 `;
 
-export const MyNotificationImgWrap = styled.div`
+export const ImgWrap = styled.div`
   width: 100%;
   height: auto;
 `;
 
-export const MyNotificationImg = styled.img<{
+export const Img = styled.img<{
   dataCnt: number;
   imageIndex: number;
 }>`
@@ -160,7 +160,7 @@ export const MyNotificationFile = styled.div`
   align-items: flex-start;
 `;
 
-export const MyNotificationFileInfo = styled.div`
+export const FileInfoWrap = styled.div`
   width: calc(100% - 30px);
   height: auto;
   display: flex;
@@ -168,21 +168,21 @@ export const MyNotificationFileInfo = styled.div`
   margin-right: 20px;
 `;
 
-export const MyNotificationFileImage = styled.img`
+export const FileImage = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-right: 12px;
 `;
 
-export const MyNotificationFileText = styled.div`
+export const FileInfo = styled.div`
   width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
 `;
 
-export const MyNotificationFileName = styled.p`
+export const FileName = styled.p`
   color: var(--Primary900, #020202);
   font-family: Pretendard;
   font-size: 16px;
@@ -191,7 +191,7 @@ export const MyNotificationFileName = styled.p`
   line-height: normal;
 `;
 
-export const MyNotificationFileSize = styled.p`
+export const FileSize = styled.p`
   color: var(--Gray600, #787878);
   font-family: Pretendard;
   font-size: 12px;
@@ -201,7 +201,7 @@ export const MyNotificationFileSize = styled.p`
   margin-top: 2px;
 `;
 
-export const MyNotificationFileDownLoadWrap = styled.button`
+export const FileDownLoadWrap = styled.button`
   width: auto;
   height: auto;
   border: none;
@@ -209,7 +209,7 @@ export const MyNotificationFileDownLoadWrap = styled.button`
   cursor: pointer;
 `;
 
-export const MyNotificationFileDownLoad = styled.img`
+export const FileDownLoad = styled.img`
   width: 30px;
   height: 30px;
 `;

@@ -1,79 +1,83 @@
-import { useState } from "react";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import baseProfile from "src/assets/img/profileimg.png";
+import useCommentList from "src/Hooks/Comment/useCommentList";
+import defaultProfile from "src/assets/img/profileimg.png";
 import ReplyComment from "src/components/MyNotificationDetail/Comment/ReplyComment";
 import * as S from "src/components/MyNotificationDetail/Comment/style/CommentList.style";
 
 interface Props {
-  commentData: CommentData;
+  comment: CommentData;
+  handleReplyCommentCreate: (replyCommentValue: string, parentId: number, setIsReplyCommentWriteShow: Function) => Promise<void>
 }
 
-const CommentList = ({ commentData }: Props) => {
-  const [isReplyShow, setIsReplyShow] = useState<boolean>(false);
-  const [isReplyWriteShow, setIsReplyWriteShow] = useState<boolean>(false);
+const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
+  const {
+    isReplyCommentShow,
+    setIsReplyCommentShow,
+    isReplyCommentWriteShow,
+    setIsReplyCommentWriteShow,
+    handleReplyCommentWrite,
+  } = useCommentList();
   return (
-    <S.MyNotificationDetailComment>
-      <S.MyNotificationCommentWrap>
+    <S.MyNotificationCommentWrap>
+      {/* 댓글 뷰 컴포넌트 */}
+      <S.MyNotificationCommentBox>
         <S.MyNotificationComment>
           <S.CommentInfoWrap>
-            <S.CommentProfile
-              src={
-                commentData.profileImage === null
-                  ? baseProfile
-                  : commentData.profileImage
-              }
-            />
-            {(commentData.subComments.length > 0 || isReplyWriteShow) &&
-              (isReplyShow || isReplyWriteShow) && (
-                <S.CommentLine></S.CommentLine>
+            <S.CommentProfile src={comment.profileImage === null ? defaultProfile: comment.profileImage}/>
+            {(comment.subComments.length > 0 || isReplyCommentWriteShow) &&
+              (isReplyCommentShow || isReplyCommentWriteShow) && (
+                <S.CommentConnectLine></S.CommentConnectLine>
               )}
           </S.CommentInfoWrap>
           <S.CommentContentWrap>
-            <S.CommentName>{commentData.commentor}</S.CommentName>
-            <S.CommentWrap>
-              <S.CommentContent
-                replyCommentCnt={commentData.subComments.length}>
-                {commentData.content}
+            <S.CommentName>{comment.commentor}</S.CommentName>
+            <S.CommentContentBox>
+              <S.CommentContent replyCommentCnt={comment.subComments.length}>
+                {comment.content}
               </S.CommentContent>
-              <S.ReplyCommentWrite
-                onClick={() => setIsReplyWriteShow((current) => !current)}>
-                {isReplyWriteShow ? "답글 닫기" : "답글 달기"}
-              </S.ReplyCommentWrite>
-            </S.CommentWrap>
-            {commentData.subComments.length > 0 && (
-              <S.ReplyCommentShowWrap>
-                <S.ReplyCommentShow
-                  onClick={() => setIsReplyShow((current) => !current)}>{`${
-                  isReplyShow
-                    ? "답글 닫기"
-                    : `답글 ${commentData.subComments.length}개 모두 보기`
-                }`}</S.ReplyCommentShow>
-              </S.ReplyCommentShowWrap>
+              <S.ReplyCommentWriteBtn onClick={handleReplyCommentWrite}>
+                {isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
+              </S.ReplyCommentWriteBtn>
+            </S.CommentContentBox>
+            {comment.subComments.length > 0 && (
+              <S.ReplyCommentShowBtnWrap>
+                <S.ReplyCommentShowBtn onClick={() => setIsReplyCommentShow((current) => !current)}>
+                  {isReplyCommentShow ? "답글 닫기" : `답글 ${comment.subComments.length}개 모두 보기`}
+                </S.ReplyCommentShowBtn>
+              </S.ReplyCommentShowBtnWrap>
             )}
           </S.CommentContentWrap>
         </S.MyNotificationComment>
-      </S.MyNotificationCommentWrap>
-      {isReplyWriteShow && (
-        <ReplyComment
-          commentData={commentData}
-          isReplyCommentShow={isReplyShow}
+      </S.MyNotificationCommentBox>
+      {/* 댓글 뷰 컴포넌트 */}
+
+      {/* 답글 달기 */}
+      {isReplyCommentWriteShow && (
+        <ReplyComment 
+          commentData={comment} 
+          isReplyCommentShow={isReplyCommentShow} 
+          setIsReplyCommentWriteShow = {setIsReplyCommentWriteShow}
+          handleReplyCommentCreate={handleReplyCommentCreate}
         />
       )}
-      {isReplyShow &&
-        commentData.subComments.map((replyCommentData, idx: number) => (
+      {/* 답글 달기 */}
+
+      {/* 대댓글 뷰 컴포넌트 */}
+      {isReplyCommentShow &&
+        comment.subComments.map((replyCommentData, idx: number) => (
           <S.MyNotificationReplyCommentWrap key={replyCommentData.commentId}>
             <S.MyNotificationReplyComment>
-              <S.ReplyCommentLineWrap>
-                <S.ReplyCommentRadiusLine></S.ReplyCommentRadiusLine>
-                {commentData.subComments.length > idx + 1 && (
-                  <S.ReplyCommentLine></S.ReplyCommentLine>
+              <S.ReplyCommentConnectLineWrap>
+                <S.ReplyCommentRadiusConnectLine></S.ReplyCommentRadiusConnectLine>
+                {comment.subComments.length > idx + 1 && (
+                  <S.ReplyCommentConnectLine></S.ReplyCommentConnectLine>
                 )}
-              </S.ReplyCommentLineWrap>
+              </S.ReplyCommentConnectLineWrap>
               <S.ReplyCommentInfoWrap>
                 <S.ReplyCommentProfile
                   src={
                     replyCommentData.profileImage === null
-                      ? baseProfile
+                      ? defaultProfile
                       : replyCommentData.profileImage
                   }
                 />
@@ -91,7 +95,8 @@ const CommentList = ({ commentData }: Props) => {
             </S.MyNotificationReplyComment>
           </S.MyNotificationReplyCommentWrap>
         ))}
-    </S.MyNotificationDetailComment>
+      {/* 대댓글 뷰 컴포넌트 */}
+    </S.MyNotificationCommentWrap>
   );
 };
 
