@@ -10,18 +10,13 @@ import PrivateRoute from "src/Hooks/private/PrivateRoute";
 import MyNotificationDetail from "src/components/MyNotificationDetail/MyNotificationDetail";
 const Router = () => {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <GlobalStyles />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/write" element={<PrivateRoute component={Write} />} />
-          <Route path="/write-read" element={<PrivateRoute component={MyNotification} />} />
-          <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
-          <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetail} />} />
-        </Routes>
-      </RecoilRoot>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/write" element={<PrivateRoute component={Write} />} />
+      <Route path="/write-read" element={<PrivateRoute component={MyNotification} />} />
+      <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
+      <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetail} />} />
+    </Routes>
   );
 };
 export default Router;
