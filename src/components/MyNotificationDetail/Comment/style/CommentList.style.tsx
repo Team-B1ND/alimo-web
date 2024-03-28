@@ -66,9 +66,7 @@ export const CommentContentBox = styled.div`
   margin-top: 5px;
 `;
 
-export const CommentContent = styled.p<{
-  replyCommentCnt: number;
-}>`
+export const CommentContent = styled.p<{ replyCommentCnt: number }>`
   max-width: 70%;
   font-family: Inter;
   font-size: 16px;
@@ -132,6 +130,7 @@ export const ReplyCommentConnectLineWrap = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const ReplyCommentRadiusConnectLine = styled.div`
@@ -144,8 +143,9 @@ export const ReplyCommentRadiusConnectLine = styled.div`
 
 export const ReplyCommentConnectLine = styled.div`
   width: 20px;
-  height: calc(100% - 20px);
+  height: 100%;
   border-left: 3px solid var(--Gray300, #e6e6e6);
+  position: absolute;
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
