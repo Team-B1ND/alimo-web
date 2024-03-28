@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import CONFIG from "src/config/config.json";
-
-interface Student {
-  name: string;
-}
+import useCategoryManage from "./useCateogyManage";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { Student, MemberInfo } from "src/types/Category/Add.types";
 
 const useCategoryAdd = () => {
   const navigate = useNavigate();
-  const [categoryName, setCategoryName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-
-  const onChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
-  };
+  const [role, setMemberRole] = useState<string | null>(null);
+  const [grade, setGrade] = useState<number | null>(null);
+  const [cls, setCls] = useState<number | null>(null);
+  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [memberCnt, setMemberCnt] = useState<number>();
+  const [memberImage, setMemberImage] = useState<string>();
+  const { createCategoryName, setShowStudentList } = useCategoryManage();
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -33,44 +33,61 @@ const useCategoryAdd = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const onClickAddCategory = () => {
-    if (categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      const requestBody = {
-        memberList: [1],
-        isWrite: true,
-        roleName: `${selectAccess}`,
-      };
-      axios
-        .post(`${CONFIG.serverUrl}role/create`, requestBody, {
-          headers: {
-            Authorization: `#`,
-          },
+  const onClickAddCategory = async () => {
+    try {
+      await alimoV1Axios
+        .post(`${CONFIG.serverUrl}/category/create`, {
+          memberList: memberInfo.map((member) => member.memberId).toString(),
+          categoryName: createCategoryName,
         })
-        .then((response) => {
-          showToast("success", "카테고리가 추가되었습니다.");
-          navigate("/category-manage");
-          console.log(response);
+        .then(() => {
+          setShowStudentList(false);
         });
-    } else if (!categoryName && selectedStudents.length !== 0 && selectAccess !== null) {
-      showToast("error", "카테고리 이름을 입력해주세요");
-      setCategoryName("");
-    } else if (categoryName && selectedStudents.length <= 0 && selectAccess !== null) {
-      showToast("error", "학생을 선택해주세요");
-    } else if (categoryName && selectedStudents.length !== 0 && selectAccess === null) {
-      showToast("error", "권한을 부여해주세요.");
-    } else {
-      showToast("error", "아무것도 하지않으셨습니다.");
+    } catch (e) {
+      showToast("error", "서버 통신 오류");
     }
   };
 
+  const OnLoadStudentInfo = async (grade: number, cls: number) => {
+    await alimoV1Axios
+      .get(`/member/student-list`, {
+        params: {
+          page: 1,
+          size: 15,
+          grade: grade,
+          room: cls,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data.memberList);
+      });
+  };
+
+  const OnLoadMemberInfo = async (role: string) => {
+    await alimoV1Axios
+      .get(`member/${role}-list`, {
+        params: {
+          page: 1,
+          size: 1,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data);
+      });
+  };
+
   return {
-    categoryName,
+    createCategoryName,
     selectedStudents,
     selectAccess,
-    onChangeCategoryName,
+    memberInfo,
+    memberCnt,
+    memberImage,
     onClickAddStudent,
     onClickAccess,
     onClickAddCategory,
+    OnLoadStudentInfo,
+    OnLoadMemberInfo,
   };
 };
 

@@ -7,7 +7,7 @@ const useComment = () => {
   // 댓글 입력 너비 넘음 -> 높이 변경
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
-    commentRef: React.RefObject<HTMLTextAreaElement>
+    commentRef: React.RefObject<HTMLTextAreaElement>,
   ) => {
     if (commentRef.current) {
       commentRef.current.style.height = "auto";
@@ -15,6 +15,7 @@ const useComment = () => {
       setCommentValue(e.target.value);
     }
   };
+
   return {
     commentRef,
     commentValue,
