@@ -15,6 +15,7 @@ export const Profile = styled.div`
   display: flex;
 `;
 export const Main = styled.div`
+z-index: 5;
   background: rgba(217, 217, 217, 0.4);
   width: 100vw;
   height: 100vh;

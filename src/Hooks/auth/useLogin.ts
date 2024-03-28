@@ -6,10 +6,7 @@ import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
 import token from "src/lib/token/token";
 import { LoginResponse } from "src/types/login/login.type";
-import {
-  ACCESS_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-} from "src/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const Uselogin = () => {
   const navigate = useNavigate();
@@ -35,7 +32,7 @@ const Uselogin = () => {
     } else {
       const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
       const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글을 포함하는 정규식
-  
+
       if (passwordRegex.test(e.target.value) || e.target.value === "") {
         setPasswordValue(e.target.value);
       }
@@ -61,13 +58,10 @@ const Uselogin = () => {
         const url = DAuth.data.data.location;
         const location = url.split("=")[1];
         const lastElement = location.split("&state")[0];
-        const response = await axios.post<LoginResponse>(
-          `${CONFIG.serverUrl}/sign-in/dodam`,
-          {
-            code: lastElement,
-            fcmToken: null,
-          }
-        );
+        const response = await axios.post<LoginResponse>(`${CONFIG.serverUrl}/sign-in/dodam`, {
+          code: lastElement,
+          fcmToken: null,
+        });
         const ResponseData = response.data.data;
         const refreshToken = ResponseData.refreshToken;
         const accessToken = ResponseData.accessToken;

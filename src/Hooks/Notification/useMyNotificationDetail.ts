@@ -5,6 +5,7 @@ import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import { alimoV1Axios } from "src/lib/axios/customAxios";
 import CONFIG from "src/config/config.json";
+import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -40,6 +41,9 @@ const useMyNotificationDetail = () => {
   // 이미지 에러 -> 이미지 안 띄움
   const HandleImageError = () => {
     setIsImageError(false);
+  };
+  const HandleClose = () => {
+    navigate("/write-read");
   };
 
   // 닫기 버튼 클릭 -> 내 공지글 보기로 이동
@@ -113,10 +117,10 @@ const useMyNotificationDetail = () => {
                 break;
               }
               fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
-            }
-          });
-          setFileSize(fileSizeData);
+          }
         });
+        setFileSize(fileSizeData);
+      });
     };
     NotificationRead();
   }, [id, commentCreateCount]);
