@@ -165,3 +165,8 @@ export const MyNotificationLine = styled.div`
   height: 1px;
   background-color: #f4f5f9;
 `;
+export const DeleteButton = styled.img`
+  z-index: 5;
+   width: 20px;
+   height: 20px;
+`

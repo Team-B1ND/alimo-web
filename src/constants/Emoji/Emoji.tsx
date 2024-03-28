@@ -11,7 +11,9 @@ const Emoji = () => {
     count: number;
   }
   const { id } = useParams();
-  const [notificationEmojiData, setNotificationEmojiData] = useState<EmojiData[]>([]);
+  const [notificationEmojiData, setNotificationEmojiData] = useState<
+    EmojiData[]
+  >([]);
 
   useEffect(() => {
     const NotificationEmojiLoad = async () => {
