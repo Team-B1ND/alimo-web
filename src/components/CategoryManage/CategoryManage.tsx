@@ -60,8 +60,8 @@ const CategoryManage = () => {
           <S.MemberManageWrap>
             <S.MemberSearch
               placeholder="멤버 검색"
-              // onChange={hooks.getMemberInCategory}
-              // value={hooks.searchMember}
+              onChange={hooks.getMemberInCategory}
+              value={hooks.searchMember !== null ? hooks.searchMember : ""}
               type="search"
             />
             <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>

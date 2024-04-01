@@ -14,7 +14,7 @@ const useCategoryManage = () => {
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
   const [permission, setPermission] = useState<string>("");
   const [searchKeyword, setSearchKeyword] = useState<string | null>(null);
-  const [searchMember, setSearchMember] = useState("");
+  const [searchMember, setSearchMember] = useState<string | null>(null);
   const [viewPermission, setViewPermission] = useState(false);
   const [GradeName, setGradeName] = useState<string>("");
   const [SearchData, setSearchData] = useState("");
@@ -87,6 +87,10 @@ const useCategoryManage = () => {
 
   const getMemberInCategory = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchMember(e.target.value);
+
+    if (searchMember?.length === 0) {
+      setSearchMember(null);
+    }
 
     try {
       await alimoV1Axios
