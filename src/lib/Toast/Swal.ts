@@ -18,4 +18,3 @@ export const showToast = (icon: any, title: string) => {
     title,
   });
 };
-

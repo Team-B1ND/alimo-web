@@ -3,9 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import { alimoV1Axios } from "src/lib/axios/customAxios";
-import CONFIG from "src/config/config.json";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import CONFIG from "src/config/config.json";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -21,29 +20,27 @@ const useMyNotificationDetail = () => {
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string, fileName: string) => {
     // window.open(fileUrl);
-    alimoV1Axios
-      .get(fileUrl, { responseType: "blob" })
-      .then((res) => {
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = fileUrl.split("/").pop() || "download";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+    fetch(fileUrl)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName);
+        document.body.appendChild(link);
+        link.click();
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
+        }
       })
-      .catch((error) => {
-        console.error("파일 다운로드 오류:", error);
-      });
+      .catch((error) =>
+        console.error("파일 다운로드 중 오류가 발생했습니다.", error)
+      );
   };
 
   // 이미지 에러 -> 이미지 안 띄움
   const HandleImageError = () => {
     setIsImageError(false);
-  };
-  const HandleClose = () => {
-    navigate("/write-read");
   };
 
   // 닫기 버튼 클릭 -> 내 공지글 보기로 이동
@@ -117,10 +114,10 @@ const useMyNotificationDetail = () => {
                 break;
               }
               fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
-          }
+            }
+          });
+          setFileSize(fileSizeData);
         });
-        setFileSize(fileSizeData);
-      });
     };
     NotificationRead();
   }, [id, commentCreateCount]);

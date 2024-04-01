@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-
 export const NullSkelton = styled.div`
   width: 95%;
   height: 150px;
@@ -8,7 +7,7 @@ export const NullSkelton = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-`
+`;
 
 export const MyNotification = styled.div`
   width: 100vw;
@@ -40,30 +39,31 @@ export const MyPostNotificationWrap = styled.div`
   width: 95%;
   height: 20%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const MyPostNotification = styled.div`
   width: 95%;
   height: 150px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #f4f5f9;
   /* animation: ${""} 1s infinite ease-in-out; */
 `;
 
 export const MyNotificationBox = styled.div`
-  width: 100%;
+  width: 90%;
   height: 90%;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `;
 
 export const MyNotificationTextWrap = styled.div`
-display: flex;
+  display: flex;
   width: 60%;
   height: 100%;
   flex-direction: column;
@@ -133,7 +133,7 @@ export const MyContentTitle = styled.span`
 
 export const MyContentWrap = styled.div`
   display: flex;
-  width:60%;
+  width: 60%;
   height: 100%;
   overflow: hidden;
 `;
@@ -160,8 +160,18 @@ export const MyNotificationImg = styled.img`
   height: 90%;
 `;
 
-export const MyNotificationLine = styled.div`
-  width: 98%;
-  height: 1px;
-  background-color: #f4f5f9;
+export const DeleteButtonWrap = styled.div`
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DeleteButton = styled.img`
+  width: 32px;
+  height: 32px;
+  transform: rotate(90deg);
+  cursor: pointer;
 `;
