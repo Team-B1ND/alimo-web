@@ -64,7 +64,7 @@ export const MyNotificationBox = styled.div`
 
 export const MyNotificationTextWrap = styled.div`
   display: flex;
-  width: 60%;
+  width: 80%;
   height: 100%;
   flex-direction: column;
   align-items: center;
@@ -110,7 +110,7 @@ export const MyNotificationDate = styled.p`
 `;
 
 export const MyContentBoxWrap = styled.div`
-  width: 95%;
+  width: 99%;
   height: 70%;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@ export const MyContentTitle = styled.span`
 
 export const MyContentWrap = styled.div`
   display: flex;
-  width: 60%;
+  width: 100%;
   height: 100%;
   overflow: hidden;
 `;
@@ -148,7 +148,7 @@ export const MyContent = styled.span`
 `;
 
 export const MyNotificationImgWrap = styled.div`
-  width: 40%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: row;
