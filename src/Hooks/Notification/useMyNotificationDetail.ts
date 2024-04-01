@@ -4,7 +4,6 @@ import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
-import CONFIG from "src/config/config.json";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -57,7 +56,7 @@ const useMyNotificationDetail = () => {
       try {
         setCommentValue("");
         await alimoV1Axios
-          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          .post(`comment/create/${id}`, {
             content: commentValue,
             parentId: null,
           })
@@ -78,7 +77,7 @@ const useMyNotificationDetail = () => {
   ) => {
     try {
       await alimoV1Axios
-        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+        .post(`comment/create/${id}`, {
           content: replyCommentValue,
           parentId: commentId,
         })
@@ -95,7 +94,7 @@ const useMyNotificationDetail = () => {
   useEffect(() => {
     const NotificationRead = async () => {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/notification/read/${id}`)
+        .get(`notification/read/${id}`)
         .then((res) => {
           setData(res.data.data);
           setImageData(res.data.data.images);
