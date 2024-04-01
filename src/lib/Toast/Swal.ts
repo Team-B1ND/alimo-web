@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { alimoV1Axios } from "../axios/CustomAxios";
 
 const Toast = Swal.mixin({
   toast: true,
@@ -18,3 +19,4 @@ export const showToast = (icon: any, title: string) => {
     title,
   });
 };
+
