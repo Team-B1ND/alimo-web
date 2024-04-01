@@ -2,31 +2,23 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
-import {
-  CategoryData,
-  MemberInCategoryData,
-} from "src/types/Category/interface";
+import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useCategoryManage = () => {
-  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(
-    null
-  );
+  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string | string[]>("");
-  const [memberCnt, setMemberCnt] = useState<number>();
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
-  const [name, setName] = useState<string>("");
-  const [grade, setGrade] = useState<number>();
-  const [cls, setCls] = useState<number>();
   const [permission, setPermission] = useState<string>("");
-  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [searchKeyword, setSearchKeyword] = useState<string | null>(null);
+  const [searchMember, setSearchMember] = useState("");
   const [viewPermission, setViewPermission] = useState(false);
-  const [memberList, setMemberList] = useState<boolean>(false);
   const [GradeName, setGradeName] = useState<string>("");
+  const [SearchData, setSearchData] = useState("");
+
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -36,11 +28,7 @@ const useCategoryManage = () => {
 
     try {
       await alimoV1Axios
-        .get(
-          `${
-            CONFIG.serverUrl
-          }/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`
-        )
+        .get(`${CONFIG.serverUrl}/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
         .then((res) => {
           console.log(res.data.data);
 
@@ -63,23 +51,23 @@ const useCategoryManage = () => {
     setShowCategoryName((prev) => !prev);
   };
 
-  const SearchCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const CreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCreateCategoryName(e.target.value);
   };
 
-  const onChangeSearchCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const SearchCategoryName = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
-  const [SearchData, setSearchData] = useState("");
-  const SearchCategory = async () => {
+
+  const OnClickSearchCategory = async () => {
+    if (searchKeyword?.length === 0) {
+      setSearchKeyword(null);
+    }
+
     try {
-      await alimoV1Axios
-        .get(
-          `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`
-        )
-        .then((res) => {
-          setSearchData(res.data.data);
-        });
+      await alimoV1Axios.get(`/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`).then((res) => {
+        setSearchData(res.data.data);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -88,13 +76,23 @@ const useCategoryManage = () => {
   const getCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(
-          `${
-            CONFIG.serverUrl
-          }/category/get-category?page=${1}&size=${15}&searchKeyword=`
-        )
+        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`)
         .then((res) => {
           setCategoryData(res.data.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMemberInCategory = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchMember(e.target.value);
+
+    try {
+      await alimoV1Axios
+        .get(`/category/get-member?page=1&size=1&categoryName=${isClickedCategory}&searchKeyword=${searchMember}`)
+        .then((res) => {
+          setMemberData(res.data.data);
         });
     } catch (error) {
       console.log(error);
@@ -118,29 +116,25 @@ const useCategoryManage = () => {
     GradeName,
     isClickedCategory,
     createCategoryName,
-    categoryName,
-    memberCnt,
     categoryData,
-    name,
-    grade,
-    cls,
     permission,
     searchKeyword,
     showStudentList,
     memberData,
     showCategoryName,
-    memberList,
     SearchData,
+    searchMember,
+    getMemberInCategory,
     setShowStudentList,
     handleCategoryClick,
     OnCategoryName,
-    onChangeSearchCategoryName,
-    SearchCategory,
     handlePopUp,
     onClose,
     SearchCategoryName,
+    CreateCategoryName,
+    OnClickSearchCategory,
+    HandleViewPermission,
   };
 };
 
 export default useCategoryManage;
-
