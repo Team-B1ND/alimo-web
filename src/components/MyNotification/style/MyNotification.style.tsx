@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const NullSkelton = styled.div`
   width: 95%;
@@ -94,7 +94,7 @@ export const MyInfoText = styled.div`
 export const MyName = styled.p`
   color: var(--Gray700, #333);
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -103,14 +103,14 @@ export const MyName = styled.p`
 export const MyNotificationDate = styled.p`
   color: #aaaaaa;
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
 export const MyContentBoxWrap = styled.div`
-  width: 99%;
+  width: 100%;
   height: 70%;
   display: flex;
   flex-direction: column;

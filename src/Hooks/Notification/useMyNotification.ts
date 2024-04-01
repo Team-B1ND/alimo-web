@@ -5,12 +5,11 @@ import Swal from "sweetalert2";
 import { showToast } from "src/lib/Toast/Swal";
 
 const useMyNotification = () => {
-  const [notificationData, setNotificationData] = useState<
-    MyNotificationData[]
-  >([]);
+  const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
   const [notificationDelete, setNotificationDelete] = useState<number>(0);
 
+  // 공지글 삭제
   const DeleteButtonClick = async (notification: MyNotificationData) => {
     const notificationIdValue = notification.notificationId;
     Swal.fire({

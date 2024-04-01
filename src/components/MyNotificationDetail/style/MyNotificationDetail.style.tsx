@@ -83,7 +83,7 @@ export const MyName = styled.p`
 export const MyNotificationDate = styled.p`
   color: var(--Gray500, #aaa);
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

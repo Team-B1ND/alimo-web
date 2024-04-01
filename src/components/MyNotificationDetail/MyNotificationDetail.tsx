@@ -12,6 +12,8 @@ import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
 import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
 
 const WriteReadDetail = () => {
   const {
@@ -35,21 +37,16 @@ const WriteReadDetail = () => {
         {/* 공지 글 */}
         <S.MyNotificationDetail>
           <S.Notificationclose>
-            {" "}
-            <img src={PostClose} alt="공지 닫기" onClick={HandleClose} />{" "}
+            <img src={PostClose} alt="공지 닫기" onClick={HandleClose} />
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile
-                src={
-                  data.profileImage === null
-                    ? defaultProfile
-                    : data.profileImage
-                }
-              />
+              <S.MyProfile src={data.profileImage === null ? defaultProfile : data.profileImage}/>
               <S.InfoWrap>
                 <S.MyName>{data.name}</S.MyName>
-                <S.MyNotificationDate>{data.createdAt}</S.MyNotificationDate>
+                <S.MyNotificationDate>
+                  {dayjs(data.createdAt).locale("ko").format("YYYY년 MM월 DD일(ddd) HH:mm")}
+                </S.MyNotificationDate>
               </S.InfoWrap>
             </S.MyInfoWrap>
             <S.TitleWrap>
@@ -88,8 +85,7 @@ const WriteReadDetail = () => {
                         <S.FileSize>{fileSize[idx]}</S.FileSize>
                       </S.FileInfo>
                     </S.FileInfoWrap>
-                    <S.FileDownLoadWrap
-                      onClick={() => HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                    <S.FileDownLoadWrap onClick={() => HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>

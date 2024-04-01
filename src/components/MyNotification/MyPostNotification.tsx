@@ -5,9 +5,10 @@ import * as S from "src/components/MyNotification/style/MyNotification.style";
 import useMyNotification from "src/Hooks/Notification/useMyNotification";
 import NullSkeleton from "src/components/MyNotification/Skeleton/NullSkeleton";
 import SettingImg from "src/assets/img/SettingImage.png";
-// import CloseButtonImg from "src/assets/img/CloseImg.png";
 import DefaultImg from "src/assets/img/profileimg.png";
-import { isJSDocLinkLike } from "typescript";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+
 const MyPostNotification = () => {
   const { notificationData, DataAbsence, DeleteButtonClick } =
     useMyNotification();
@@ -30,15 +31,11 @@ const MyPostNotification = () => {
                 }>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    {}
-                    <S.MyProfile
-                      src={notification.profileImage || DefaultImg}
-                      onError={HandleImageError}
-                    />
+                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError}/>
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>
-                        {notification.createdAt}
+                        {dayjs(notification.createdAt).locale("ko").format("YYYY년 MM월 DD일(ddd) HH:mm")}
                       </S.MyNotificationDate>
                     </S.MyInfoText>
                   </S.MyInfoWrap>
@@ -67,11 +64,7 @@ const MyPostNotification = () => {
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>
               <S.DeleteButtonWrap>
-                <S.DeleteButton
-                  src={SettingImg}
-                  onClick={() => {
-                    DeleteButtonClick(notification);
-                  }}></S.DeleteButton>
+                <S.DeleteButton src={SettingImg} onClick={() => {DeleteButtonClick(notification);}}></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>

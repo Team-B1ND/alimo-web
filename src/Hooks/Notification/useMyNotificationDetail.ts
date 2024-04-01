@@ -18,23 +18,23 @@ const useMyNotificationDetail = () => {
 
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string, fileName: string) => {
-    // window.open(fileUrl);
-    fetch(fileUrl)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", fileName);
-        document.body.appendChild(link);
-        link.click();
-        if (link.parentNode) {
-          link.parentNode.removeChild(link);
-        }
-      })
-      .catch((error) =>
-        console.error("파일 다운로드 중 오류가 발생했습니다.", error)
-      );
+    window.open(fileUrl);
+    // fetch(fileUrl)
+    //   .then((res) => res.blob())
+    //   .then((blob) => {
+    //     const url = window.URL.createObjectURL(new Blob([blob]));
+    //     const link = document.createElement("a");
+    //     link.href = url;
+    //     link.setAttribute("download", fileName);
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     if (link.parentNode) {
+    //       link.parentNode.removeChild(link);
+    //     }
+    //   })
+    //   .catch((error) =>
+    //     console.error("파일 다운로드 중 오류가 발생했습니다.", error)
+    //   );
   };
 
   // 이미지 에러 -> 이미지 안 띄움
