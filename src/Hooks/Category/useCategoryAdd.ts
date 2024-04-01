@@ -10,13 +10,11 @@ const useCategoryAdd = () => {
   const navigate = useNavigate();
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [role, setMemberRole] = useState<string | null>(null);
-  const [grade, setGrade] = useState<number | null>(null);
-  const [cls, setCls] = useState<number | null>(null);
+  const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [memberImage, setMemberImage] = useState<string>();
-  const { createCategoryName, setShowStudentList } = useCategoryManage();
+  const { setShowStudentList } = useCategoryManage();
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -34,10 +32,11 @@ const useCategoryAdd = () => {
   };
 
   const onClickAddCategory = async () => {
+    console.log(createCategoryName);
     try {
       await alimoV1Axios
         .post(`${CONFIG.serverUrl}/category/create`, {
-          memberList: memberInfo.map((member) => member.memberId).toString(),
+          memberList: memberInfo.map((member) => member.memberId),
           categoryName: createCategoryName,
         })
         .then(() => {
@@ -48,7 +47,7 @@ const useCategoryAdd = () => {
     }
   };
 
-  const OnLoadStudentInfo = async (grade: number, cls: number) => {
+  const onLoadStudentInfo = async (grade: number, cls: number) => {
     await alimoV1Axios
       .get(`/member/student-list`, {
         params: {
@@ -63,7 +62,7 @@ const useCategoryAdd = () => {
       });
   };
 
-  const OnLoadMemberInfo = async (role: string) => {
+  const onLoadMemberInfo = async (role: string) => {
     await alimoV1Axios
       .get(`member/${role}-list`, {
         params: {
@@ -84,10 +83,11 @@ const useCategoryAdd = () => {
     memberCnt,
     memberImage,
     onClickAddStudent,
+    setCreateCategoryName,
     onClickAccess,
     onClickAddCategory,
-    OnLoadStudentInfo,
-    OnLoadMemberInfo,
+    onLoadStudentInfo,
+    onLoadMemberInfo,
   };
 };
 

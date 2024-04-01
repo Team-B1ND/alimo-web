@@ -19,9 +19,9 @@ const CategoryManage = () => {
             onChange={hooks.SearchCategoryName}
             placeholder="카테고리 검색"
             type="search"
-            value={hooks.searchKeyword !== null ? hooks.searchKeyword : ""}
+            value={hooks.searchKeyword}
           />
-          <S.CategorySearchButton onClick={hooks.OnClickSearchCategory}>
+          <S.CategorySearchButton onClick={hooks.handleGetCategoryList}>
             <img src={searchImg} />
           </S.CategorySearchButton>
           <S.CreateCategoryButton onClick={hooks.OnCategoryName}>
@@ -32,28 +32,21 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        {hooks.SearchData.length === 0
-          ? hooks.categoryData.map((category, idx) => (
-              <S.CategoryInfo
-                isClicked={hooks.isClickedCategory === `${category.categoryName}`}
-                onClick={() => hooks.handleCategoryClick(`${category.categoryName}`)}
-                key={idx}
-              >
-                <S.CategoryName>{category.categoryName}</S.CategoryName>
-                <S.CategoryInMember>{category.memberCnt}</S.CategoryInMember>
-              </S.CategoryInfo>
-            ))
-          : Array.isArray(hooks.SearchData) &&
-            hooks.SearchData.map((SearchData, idx) => (
-              <S.CategoryInfo
-                isClicked={hooks.isClickedCategory === `${SearchData.categoryName}`}
-                onClick={() => hooks.handleCategoryClick(`${SearchData.categoryName}`)}
-                key={idx}
-              >
-                <S.CategoryName>{SearchData.categoryName}</S.CategoryName>
-                <S.CategoryInMember>{SearchData.memberCnt}</S.CategoryInMember>
-              </S.CategoryInfo>
-            ))}
+
+        {hooks.categoryData.length > 0 ? (
+          hooks.categoryData.map((item, idx) => (
+            <S.CategoryInfo
+              isClicked={hooks.isClickedCategory === `${item.categoryName}`}
+              onClick={() => hooks.handleCategoryClick(`${item.categoryName}`)}
+              key={idx}
+            >
+              <S.CategoryName>{item.categoryName}</S.CategoryName>
+              <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
+            </S.CategoryInfo>
+          ))
+        ) : (
+          <>데이터가 없누</>
+        )}
       </S.CategoryManageView>
       {hooks.isClickedCategory && (
         <S.CategoryMemberWrap>
@@ -61,7 +54,7 @@ const CategoryManage = () => {
             <S.MemberSearch
               placeholder="멤버 검색"
               onChange={hooks.getMemberInCategory}
-              value={hooks.searchMember !== null ? hooks.searchMember : ""}
+              value={hooks.searchMember}
               type="search"
             />
             <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>

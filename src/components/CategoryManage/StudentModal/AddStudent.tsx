@@ -19,30 +19,30 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
               <S.StudentWrap>
-                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(1, 0)}>1학년 (72)</S.GradeInfo>
+                <S.GradeInfo onClick={() => hooks.onLoadStudentInfo(1, 0)}>1학년 (72)</S.GradeInfo>
                 <S.ClassInfo>
-                  <span onClick={() => hooks.OnLoadStudentInfo(1, 1)}>1반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(1, 2)}>2반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(1, 3)}>3반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(1, 4)}>4반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(1, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(1, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(1, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(1, 4)}>4반 {hooks.memberCnt}</span>
                 </S.ClassInfo>
-                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(2, 0)}>2학년 (72)</S.GradeInfo>
+                <S.GradeInfo onClick={() => hooks.onLoadStudentInfo(2, 0)}>2학년 (72)</S.GradeInfo>
                 <S.ClassInfo>
-                  <span onClick={() => hooks.OnLoadStudentInfo(2, 1)}>1반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(2, 2)}>2반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(2, 3)}>3반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(2, 4)}>4반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(2, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(2, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(2, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(2, 4)}>4반 {hooks.memberCnt}</span>
                 </S.ClassInfo>
-                <S.GradeInfo onClick={() => hooks.OnLoadStudentInfo(3, 0)}>3학년 (72)</S.GradeInfo>
+                <S.GradeInfo onClick={() => hooks.onLoadStudentInfo(3, 0)}>3학년 (72)</S.GradeInfo>
                 <S.ClassInfo>
-                  <span onClick={() => hooks.OnLoadStudentInfo(3, 1)}>1반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(3, 2)}>2반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(3, 3)}>3반 {hooks.memberCnt}</span>
-                  <span onClick={() => hooks.OnLoadStudentInfo(3, 4)}>4반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(3, 1)}>1반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(3, 2)}>2반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(3, 3)}>3반 {hooks.memberCnt}</span>
+                  <span onClick={() => hooks.onLoadStudentInfo(3, 4)}>4반 {hooks.memberCnt}</span>
                 </S.ClassInfo>
               </S.StudentWrap>
               <S.TeacherWrap>
-                <S.TeacherAndParentsInfo onClick={() => hooks.OnLoadMemberInfo("teacher")}>
+                <S.TeacherAndParentsInfo onClick={() => hooks.onLoadMemberInfo("teacher")}>
                   교사 (20)
                 </S.TeacherAndParentsInfo>
               </S.TeacherWrap>

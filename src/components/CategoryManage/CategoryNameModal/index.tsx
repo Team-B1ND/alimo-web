@@ -1,8 +1,8 @@
-import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 import * as S from "../style/CreateCategoryName";
+import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
-  const { ...hooks } = useCategoryManage();
+  const { ...hooks } = useCategoryAdd();
 
   return (
     <S.CreateWrap>
@@ -12,7 +12,7 @@ const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => v
           <S.InputWrap
             placeholder="카테고리 이름"
             type="text"
-            onChange={hooks.CreateCategoryName}
+            onChange={(e) => hooks.setCreateCategoryName(e.target.value)}
             value={hooks.createCategoryName}
           />
           <S.ButtonWrap>

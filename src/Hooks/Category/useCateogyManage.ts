@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
 import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
@@ -7,20 +6,19 @@ import { alimoV1Axios } from "src/lib/axios/CustomAxios";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
-  const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
   const [permission, setPermission] = useState<string>("");
-  const [searchKeyword, setSearchKeyword] = useState<string | null>(null);
-  const [searchMember, setSearchMember] = useState<string | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [searchMember, setSearchMember] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
   const [GradeName, setGradeName] = useState<string>("");
-  const [SearchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState<CategoryData[]>([]);
 
   useEffect(() => {
-    getCategoryList();
+    handleGetCategoryList();
   }, []);
 
   const handleCategoryClick = async (categoryName: string) => {
@@ -51,32 +49,14 @@ const useCategoryManage = () => {
     setShowCategoryName((prev) => !prev);
   };
 
-  const CreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCreateCategoryName(e.target.value);
-  };
-
   const SearchCategoryName = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 
-  const OnClickSearchCategory = async () => {
-    if (searchKeyword?.length === 0) {
-      setSearchKeyword(null);
-    }
-
-    try {
-      await alimoV1Axios.get(`/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`).then((res) => {
-        setSearchData(res.data.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getCategoryList = async () => {
+  const handleGetCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`)
+        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
         .then((res) => {
           setCategoryData(res.data.data);
         });
@@ -87,10 +67,6 @@ const useCategoryManage = () => {
 
   const getMemberInCategory = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchMember(e.target.value);
-
-    if (searchMember?.length === 0) {
-      setSearchMember(null);
-    }
 
     try {
       await alimoV1Axios
@@ -119,14 +95,13 @@ const useCategoryManage = () => {
   return {
     GradeName,
     isClickedCategory,
-    createCategoryName,
     categoryData,
     permission,
     searchKeyword,
     showStudentList,
     memberData,
     showCategoryName,
-    SearchData,
+    searchData,
     searchMember,
     getMemberInCategory,
     setShowStudentList,
@@ -135,8 +110,7 @@ const useCategoryManage = () => {
     handlePopUp,
     onClose,
     SearchCategoryName,
-    CreateCategoryName,
-    OnClickSearchCategory,
+    handleGetCategoryList,
     HandleViewPermission,
   };
 };
