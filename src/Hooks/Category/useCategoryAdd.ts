@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
@@ -10,11 +10,16 @@ const useCategoryAdd = () => {
   const navigate = useNavigate();
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [createCategoryName, setCreateCategoryName] = useState<string>("");
+  const [createCategoryName, setCreateCategoryName] = useState<string>();
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [memberImage, setMemberImage] = useState<string>();
+  const [room, setRoom] = useState<string>("");
   const { setShowStudentList } = useCategoryManage();
+
+  const handleCreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCreateCategoryName(e.target.value);
+  };
 
   const onClickAddStudent = (studentName: string) => {
     const isSelected = selectedStudents.some((student) => student.name === studentName);
@@ -35,7 +40,7 @@ const useCategoryAdd = () => {
     console.log(createCategoryName);
     try {
       await alimoV1Axios
-        .post(`${CONFIG.serverUrl}/category/create`, {
+        .post("/category/create", {
           memberList: memberInfo.map((member) => member.memberId),
           categoryName: createCategoryName,
         })
@@ -59,6 +64,7 @@ const useCategoryAdd = () => {
       })
       .then((res) => {
         setMemberInfo(res.data.data.memberList);
+        setRoom(`${cls}반`);
       });
   };
 
@@ -81,9 +87,10 @@ const useCategoryAdd = () => {
     selectAccess,
     memberInfo,
     memberCnt,
+    room,
     memberImage,
+    handleCreateCategoryName,
     onClickAddStudent,
-    setCreateCategoryName,
     onClickAccess,
     onClickAddCategory,
     onLoadStudentInfo,

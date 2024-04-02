@@ -7,6 +7,7 @@ import StudentList from "./CategoryNameModal";
 import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
+import PermissionModal from "./PermissionModal";
 
 const CategoryManage = () => {
   const { ...hooks } = useCategoryManage();
@@ -32,7 +33,6 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-
         {hooks.categoryData.length > 0 ? (
           hooks.categoryData.map((item, idx) => (
             <S.CategoryInfo
@@ -42,10 +42,11 @@ const CategoryManage = () => {
             >
               <S.CategoryName>{item.categoryName}</S.CategoryName>
               <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
+              <S.MoreImg src={MoreImg} onClick={hooks.handleDeletetCategory} />
             </S.CategoryInfo>
           ))
         ) : (
-          <>데이터가 없누</>
+          <>카테고리데이터가 존재하지 않아요.</>
         )}
       </S.CategoryManageView>
       {hooks.isClickedCategory && (
@@ -53,10 +54,13 @@ const CategoryManage = () => {
           <S.MemberManageWrap>
             <S.MemberSearch
               placeholder="멤버 검색"
-              onChange={hooks.getMemberInCategory}
+              onChange={hooks.onSearchMemberName}
               value={hooks.searchMember}
               type="search"
             />
+            <S.CategorySearchButton style={{ marginTop: "10px" }} onClick={hooks.handleGetMemberData}>
+              <img src={searchImg} />
+            </S.CategorySearchButton>
             <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>
           </S.MemberManageWrap>
           <S.MemberUtilityWrap>
@@ -65,7 +69,7 @@ const CategoryManage = () => {
             </S.MemberNameInfo>
             <S.MemberClassNumberInfo>{hooks.GradeName}</S.MemberClassNumberInfo>
           </S.MemberUtilityWrap>
-          {hooks.memberData.length != 0 ? (
+          {hooks.memberData.length > 0 ? (
             hooks.memberData.map((member, idx) => (
               <S.MemberWrap key={idx}>
                 <S.Member>
@@ -79,10 +83,11 @@ const CategoryManage = () => {
               </S.MemberWrap>
             ))
           ) : (
-            <p>아직 구성원이 null이예요</p>
+            <>아직 구성원이 null이에요</>
           )}
         </S.CategoryMemberWrap>
       )}
+      {hooks.viewPermission && <PermissionModal onClose={hooks.HandleViewPermission} />}
       {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />}
       {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
     </S.Main>

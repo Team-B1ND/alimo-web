@@ -1,9 +1,11 @@
+import { MemberInfo } from "./Add.types";
+
 export interface CategoryData {
   categoryName: string;
   memberCnt: number;
 }
 
-export interface MemberInCategoryData {
+export interface MemberInCategoryData extends MemberInfo {
   name: string;
   grade: number;
   room: number;

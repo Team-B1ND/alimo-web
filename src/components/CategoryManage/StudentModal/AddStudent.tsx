@@ -53,7 +53,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
             <S.StudentSelectionWrap>
               <S.MemberSearchInput placeholder="멤버 검색" type="search" />
               <S.UtilityWrap>
-                <S.Class>4반</S.Class>
+                <S.Class>{hooks.room}</S.Class>
                 &nbsp;
                 <S.ClassStudent>18</S.ClassStudent>
                 <S.AllSelect>전체선택</S.AllSelect>

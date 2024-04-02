@@ -3,6 +3,9 @@ import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
 import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import axios from "axios";
+import { MemberInfo } from "@src/types/Category/Add.types";
+import Swal from "sweetalert2";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
@@ -15,7 +18,7 @@ const useCategoryManage = () => {
   const [searchMember, setSearchMember] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
   const [GradeName, setGradeName] = useState<string>("");
-  const [searchData, setSearchData] = useState<CategoryData[]>([]);
+  const [memberId, setMemberId] = useState<MemberInfo[]>([]);
 
   useEffect(() => {
     handleGetCategoryList();
@@ -45,6 +48,31 @@ const useCategoryManage = () => {
     }
   };
 
+  const onSearchMemberName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchMember(e.target.value);
+  };
+
+  const handleGetMemberData = async () => {
+    console.log(searchMember);
+
+    try {
+      await alimoV1Axios
+        .get(
+          `category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchkeyword=${String(
+            searchMember,
+          )}`,
+        )
+        .then((res) => {
+          setMemberData(res.data.data);
+          memberData.map((member) => {
+            setPermission(member.permission);
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const OnCategoryName = async () => {
     setShowCategoryName((prev) => !prev);
   };
@@ -56,7 +84,7 @@ const useCategoryManage = () => {
   const handleGetCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
+        .get(`/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
         .then((res) => {
           setCategoryData(res.data.data);
         });
@@ -65,22 +93,57 @@ const useCategoryManage = () => {
     }
   };
 
-  const getMemberInCategory = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchMember(e.target.value);
+  const HandleViewPermission = () => {
+    setViewPermission((prev) => !prev);
+  };
 
-    try {
-      await alimoV1Axios
-        .get(`/category/get-member?page=1&size=1&categoryName=${isClickedCategory}&searchKeyword=${searchMember}`)
-        .then((res) => {
-          setMemberData(res.data.data);
+  const handleGivePermission = async () => {
+    if (permission === "ACCESS_MEMBER") {
+      try {
+        await alimoV1Axios.patch("/permission/change-admin", {
+          memberId: memberId.map((member) => member.memberId),
+          categoryName: null,
         });
-    } catch (error) {
-      console.log(error);
+        console.log(permission);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await alimoV1Axios.patch("permission/change-student", {
+          memberId: memberId.map((member) => member.memberId),
+          categoryName: null,
+        });
+        console.log(permission);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
-  const HandleViewPermission = () => {
-    setViewPermission((prev) => !prev);
+  const handleDeletetCategory = async () => {
+    await Swal.fire({
+      title: "정말 카테고리를 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#FFE8E8",
+      preConfirm: async () => {
+        try {
+          await alimoV1Axios
+            .delete("/category/delete", {
+              params: {
+                category: isClickedCategory,
+              },
+            })
+            .then(() => {
+              window.location.reload();
+            });
+        } catch (error) {
+          showToast("error", "서버 통신 오류");
+        }
+      },
+    });
   };
 
   const handlePopUp = () => {
@@ -101,10 +164,11 @@ const useCategoryManage = () => {
     showStudentList,
     memberData,
     showCategoryName,
-    searchData,
     searchMember,
-    getMemberInCategory,
+    viewPermission,
+    onSearchMemberName,
     setShowStudentList,
+    handleGetMemberData,
     handleCategoryClick,
     OnCategoryName,
     handlePopUp,
@@ -112,6 +176,8 @@ const useCategoryManage = () => {
     SearchCategoryName,
     handleGetCategoryList,
     HandleViewPermission,
+    handleGivePermission,
+    handleDeletetCategory,
   };
 };
 
