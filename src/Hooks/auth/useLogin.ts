@@ -29,9 +29,10 @@ const Uselogin = () => {
       } else if (koreanRegex.test(e.target.value)) {
         setIdError(true); // 한글 입력 시 에러 상태 활성화
       }
-    } 
-    if(clickName === "PassWord") {
-      const passwordRegex = /^\s*[\w!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+$/;
+    } else {
+      const passwordRegex = /^\s*[\w!@#$%^&*()+\-=[]{};':"\\|,.<>\/?]+$/;
+      const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글을 포함하는 정규식
+
       if (passwordRegex.test(e.target.value) || e.target.value === "") {
         setPasswordValue(e.target.value);
       }

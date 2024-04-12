@@ -2,29 +2,11 @@ import Logo from "src/assets/img/Alimo-image.png";
 import IdCancel from "src/assets/img/Id-Cancel.png";
 import PasswordHide from "src/assets/img/Password-Hide.png";
 import PasswordShow from "src/assets/img/Password-Show.png";
-import * as S from "src/components/Login/style/Login.style";
+import * as S from "src/components/Login/style";
 import uselogin from "src/Hooks/auth/useLogin";
 
 const Login = () => {
-  const {
-    Loginloading,
-    idValue,
-    setIdValue,
-    passwordValue,
-    clickName,
-    setClickName,
-    isShowPswd,
-    setIsShowPswd,
-    InputChange,
-    LoginButton,
-    idError,
-  } = uselogin();
-  
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      LoginButton();
-    }
-  };
+  const { ...login } = uselogin();
 
   return (
     <S.LogoPageWrap>
@@ -44,50 +26,63 @@ const Login = () => {
               <S.IdWrap>
                 <S.Id
                   type="text"
-                  value={idValue}
+                  value={login.idValue}
                   placeholder={
-                    clickName === "Id" && idValue !== "" ? "" : "도담아이디"
+                    login.clickName === "Id" && login.idValue !== ""
+                      ? ""
+                      : "도담아이디"
                   }
-                  onClick={() => setClickName("Id")}
-                  onChange={InputChange}
-                  onKeyDown={handleKeyDown}
+                  onClick={() => login.setClickName("Id")}
+                  onChange={login.InputChange}
+           
                 />
-                { idError && <S.IdKoreanError>한글은 사용할 수 없습니다.</S.IdKoreanError> }
+                {login.idError && (
+                  <S.IdKoreanError>한글은 사용할 수 없습니다.</S.IdKoreanError>
+                )}
                 <S.IdBtn
                   onClick={() => {
-                    setIdValue("");
+                    login.setIdValue("");
                   }}
                 >
                   <img
-                    style={{ display: `${idValue !== "" ? "block" : "none"}` }}
-                    src={clickName === "Id" && idValue !== "" ? IdCancel : ""}
+                    style={{
+                      display: `${login.idValue !== "" ? "block" : "none"}`,
+                    }}
+                    src={
+                      login.clickName === "Id" && login.idValue !== ""
+                        ? IdCancel
+                        : ""
+                    }
                     alt=""
                   />
                 </S.IdBtn>
               </S.IdWrap>
               <S.PasswordWrap>
                 <S.Password
-                  type={isShowPswd === true ? "text" : "password"}
-                  value={passwordValue}
+                  type={login.isShowPswd === true ? "text" : "password"}
+                  value={login.passwordValue}
                   placeholder={
-                    clickName === "PassWord" && passwordValue !== ""
+                    login.clickName === "PassWord" && login.passwordValue !== ""
                       ? ""
                       : "비밀번호"
                   }
-                  onClick={() => setClickName("PassWord")}
-                  onChange={InputChange}
-                  onKeyDown={handleKeyDown}
+                  onClick={() => login.setClickName("PassWord")}
+                  onChange={login.InputChange}
+             
                 />
                 <S.PasswordBtn
-                  onClick={() => setIsShowPswd((current) => !current)}
+                  onClick={() => login.setIsShowPswd((current) => !current)}
                 >
                   <img
                     style={{
-                      display: `${passwordValue !== "" ? "block" : "none"}`,
+                      display: `${
+                        login.passwordValue !== "" ? "block" : "none"
+                      }`,
                     }}
                     src={
-                      clickName === "PassWord" && passwordValue !== ""
-                        ? isShowPswd === true
+                      login.clickName === "PassWord" &&
+                      login.passwordValue !== ""
+                        ? login.isShowPswd === true
                           ? PasswordShow
                           : PasswordHide
                         : ""
@@ -97,9 +92,9 @@ const Login = () => {
                 </S.PasswordBtn>
               </S.PasswordWrap>
             </S.LoginInputWrap>
-            <S.LoginBtnWrap onClick={LoginButton}>
+            <S.LoginBtnWrap onClick={login.LoginButton}>
               <S.LoginBtn>
-                {Loginloading === true
+                {login.Loginloading === true
                   ? "로그인중"
                   : "도담도담 계정으로 로그인"}
               </S.LoginBtn>
