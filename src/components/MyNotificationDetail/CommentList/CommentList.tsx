@@ -1,8 +1,8 @@
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useCommentList from "src/Hooks/Comment/useCommentList";
 import defaultProfile from "src/assets/img/profileimg.png";
-import ReplyComment from "src/components/MyNotificationDetail/Comment/ReplyComment";
-import * as S from "src/components/MyNotificationDetail/Comment/style/CommentList.style";
+import ReplyComment from "src/components/MyNotificationDetail/ReplyComment/ReplyComment";
+import * as S from "src/components/MyNotificationDetail/CommentList/style";
 
 interface Props {
   comment: CommentData;

@@ -7,11 +7,11 @@ import SideBar from "src/components/SideBar/SideBar";
 import PostClose from "src/assets/img/PostClose.svg";
 import defaultProfile from "src/assets/img/profileimg.png";
 import Emoji from "src/constants/Emoji/Emoji";
-import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
+import CommentList from "src/components/MyNotificationDetail/CommentList/CommentList";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
-import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
+import * as S from "src/components/MyNotificationDetail/style";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -57,9 +57,7 @@ const WriteReadDetail = () => {
                 <LinkItUrl>{data.content}</LinkItUrl>
               </S.Content>
             </S.ContentWrap>
-            {imageData &&
-              imageData.length > 0 &&
-              isImageError &&
+            {imageData && imageData.length > 0 && isImageError &&
               imageData.map((ImageData: ImageData, idx: number) => (
                 <S.ImgWrap>
                   <S.Img
@@ -73,10 +71,7 @@ const WriteReadDetail = () => {
             {fileData &&
               fileData.length > 0 &&
               fileData.map((FileData: FileData, idx: number) => (
-                <S.MyNotificationFileWrap
-                  key={FileData.fileUrl}
-                  dataCnt={fileData.length}
-                  fileIndex={idx}>
+                <S.MyNotificationFileWrap key={FileData.fileUrl} dataCnt={fileData.length} fileIndex={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -99,8 +94,7 @@ const WriteReadDetail = () => {
         {/* 댓글 */}
         <S.CommentListWrap>
           <S.CommentListBox>
-            {commentData &&
-              commentData.length > 0 &&
+            {commentData && commentData.length > 0 &&
               commentData.map((CommentData: CommentData) => (
                 <CommentList
                   key={CommentData.commentId}

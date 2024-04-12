@@ -2,7 +2,7 @@ import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useReplyComment from "src/Hooks/Comment/useReplyComment";
 import useSidebar from "src/Hooks/Sidbar/useSiebar";
 import defaultProfile from "src/assets/img/profileimg.png";
-import * as S from "src/components/MyNotificationDetail/Comment/style/ReplyComment.style";
+import * as S from "src/components/MyNotificationDetail/ReplyComment/style";
 
 interface Props {
   commentData: CommentData;
