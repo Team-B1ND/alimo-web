@@ -5,10 +5,11 @@ import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
 import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
-import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
-  const { ...hooks } = useCategoryAdd();
+  const { ...hooks } = useCategoryManage();
+
   return (
     <S.AddStudentWrap>
       <S.Main>
@@ -55,16 +56,18 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               <S.UtilityWrap>
                 <S.Class>{hooks.room}</S.Class>
                 &nbsp;
-                <S.ClassStudent>18</S.ClassStudent>
+                <S.ClassStudent>{hooks.memberCnt}</S.ClassStudent>
                 <S.AllSelect>전체선택</S.AllSelect>
               </S.UtilityWrap>
               {hooks.memberInfo.map((student, idx) => (
                 <S.StudentList key={idx}>
                   <img
                     src={
-                      hooks.selectedStudents.some((std) => std.name === student.name) ? CheckStudent : NoneCheckStudent
+                      hooks.selectedStudents.some((std) => std.id === student.memberId)
+                        ? CheckStudent
+                        : NoneCheckStudent
                     }
-                    onClick={() => hooks.onClickAddStudent(student.name)}
+                    onClick={() => hooks.onClickAddStudent(student.memberId)}
                   />
                   <S.ProfileImg src={student.profileImage !== null ? student.profileImage : ProfileImg} />
                   <S.StudentName>{student.name}</S.StudentName>
