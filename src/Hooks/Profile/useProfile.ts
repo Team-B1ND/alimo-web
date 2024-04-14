@@ -8,11 +8,13 @@ import useSidbar from "src/Hooks/Sidbar/useSiebar";
 const UseProfile = () => {
   const { Name, image } = useSidbar();
   const [Category, setCategory] = useState<string[]>([]);
-  const finalImage = image.length > 0 ? image : ProfileImg;
   const CategoryListValue = useRecoilValue(categoryListState); // 값만
+
   useEffect(() => {
     setCategory(CategoryListValue)
   }, []);
+
+  const finalImage = image && image.length > 0 ? image : ProfileImg;
 
   return {
     Name,

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { showToast } from "src/lib/Toast/Swal";
+import { showToast } from "src/libs/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
-import token from "src/lib/token/token";
-import { LoginResponse } from "src/types/login/login.type";
-import {
-  ACCESS_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-} from "src/constants/token/token.constants";
+import token from "src/libs/token/token";
+import { LoginResponse } from "src/Types/login/login.type";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const Uselogin = () => {
   const navigate = useNavigate();
@@ -22,59 +19,52 @@ const Uselogin = () => {
   const hash = SHA512(passwordValue).toString();
 
   const InputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (clickName === "Id") {
+
       const idRegex = /^[A-Za-z0-9@.]+$/;
-      const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; 
+      const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글을 포함하는 정규식
 
       if (idRegex.test(e.target.value) || e.target.value === "") {
         setIdValue(e.target.value);
-        setIdError(false); 
+        setIdError(false); // 에러 상태 초기화
       } else if (koreanRegex.test(e.target.value)) {
-        setIdError(true); 
+        setIdError(true); // 한글 입력 시 에러 상태 활성화
       }
-    } else {
-      const passwordRegex = /^\s*[\w!@#$%^&*()+\-=[]{};':"\\|,.<>\/?]+$/;
-  
-      if (passwordRegex.test(e.target.value) || e.target.value === "") {
+    
+   
+  };
+  const InputChangePw = (e:React.ChangeEvent<HTMLInputElement>)=>{  
         setPasswordValue(e.target.value);
-      }
+  }
+    
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      LoginButton();
     }
   };
 
-  const redirectUrlvalue = `${CONFIG.serverUrl}/redirect`;
   const LoginButton = async () => {
     SetLoginloading(true);
     if (idValue === "" || passwordValue === "") {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
-      SetLoginloading(false);
     } else {
       //DAuth
-      const DAuthPromise = axios.post(`${CONFIG.DAuth}`, {
+      const { data: { data: { location } } } = await axios.post(`${CONFIG.DAuth}`, {
         id: idValue,
         pw: hash,
         clientId: `${CONFIG.clientId}`,
-        redirectUrl: redirectUrlvalue,
+        redirectUrl: `${CONFIG.redirectUrl}`,
       });
-
       try {
-        const [DAuth] = await Promise.all([DAuthPromise]);
-        const url = DAuth.data.data.location;
-        const location = url.split("=")[1];
-        const lastElement = location.split("&state")[0];
-        const response = await axios.post<LoginResponse>(
-          `${CONFIG.serverUrl}/sign-in/dodam`,
-          {
-            code: lastElement,
-            fcmToken: null,
-          }
-        );
-        const ResponseData = response.data.data;
-        const refreshToken = ResponseData.refreshToken;
-        const accessToken = ResponseData.accessToken;
-        token.setToken(ACCESS_TOKEN_KEY, accessToken);
-        token.setToken(REFRESH_TOKEN_KEY, refreshToken);
-        showToast("success", "로그인 성공");
-        navigate("/");
+        const code = location.split("=")[1].split("&state")[0];
+        await axios.post<LoginResponse>(`${CONFIG.serverUrl}/sign-in/dodam`, {
+          code,
+          fcmToken: null,
+        }).then((res)=>{
+          token.setToken(ACCESS_TOKEN_KEY, res.data.data.accessToken);
+          token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
+          showToast("success", "로그인 성공");
+          navigate("/");
+        })
       } catch (error) {
         SetLoginloading(false);
         showToast("error", "통신 오류가 발생했습니다.");
@@ -85,15 +75,17 @@ const Uselogin = () => {
   return {
     Loginloading,
     idValue,
-    setIdValue,
+    isShowPswd,
     passwordValue,
     clickName,
+    idError,
     setClickName,
-    isShowPswd,
+    handleKeyDown,
+    setIdValue,
     setIsShowPswd,
     InputChange,
     LoginButton,
-    idError,
+    InputChangePw
   };
 };
 

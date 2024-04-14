@@ -1,32 +1,25 @@
 import React from "react";
-import {RecoilRoot} from "recoil";
-import GlobalStyles from "src/style/global";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./Login/Login";
+import { RecoilRoot } from "recoil";
+import GlobalStyles from "src/Styles/global";
+import { Route, Routes } from "react-router-dom";
+import Login from "src/Pages/auth/page";
 import Write from "./Write/Write";
-import WriteRead from "./WriteRead/WriteRead";
-import WriteReadDetail from "./WriteRead/WriteReadDetail/WriteReadDetail";
+import MyNotificationPage from "src/Pages/MyNotification/MyNotificationPage";
 import CategoryManage from "./CategoryManage/CategoryManage";
-import CategoryAdd from "./CategoryAdd/CategoryAdd";
-import EditCategory from "./CategoryEdit/EditCategory";
 import PrivateRoute from "src/Hooks/private/PrivateRoute";
-
+import MyNotificationDetailPage from "src/Pages/MyNotificationDetailPage/MyNotificationDetailPage";
 const Router = () => {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <GlobalStyles />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/write"element={<PrivateRoute component={Write} />} />
-          <Route path="/write-read"element={<PrivateRoute component={WriteRead} />}/>
-          <Route path="/" element={<PrivateRoute component={CategoryManage } />} />
-          <Route path="/category-add" element={<PrivateRoute component={ CategoryAdd} />} />
-          <Route path="/category-edit" element={<PrivateRoute component={ EditCategory} />} />
-          <Route path="/read" element={<PrivateRoute component={ WriteReadDetail} />}  />
-        </Routes>
-      </RecoilRoot>
-    </BrowserRouter>
+    <RecoilRoot>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/write" element={<PrivateRoute component={Write} />} />
+        <Route path="/write-read" element={<PrivateRoute component={MyNotificationPage} />} />
+        <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
+        <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetailPage} />} />
+      </Routes>
+    </RecoilRoot>
   );
 };
 export default Router;
