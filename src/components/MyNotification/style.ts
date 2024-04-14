@@ -1,5 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
+import styled from "styled-components";
 
 export const NullSkelton = styled.div`
   width: 95%;
@@ -8,7 +7,7 @@ export const NullSkelton = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-`
+`;
 
 export const MyNotification = styled.div`
   width: 100vw;
@@ -40,31 +39,32 @@ export const MyPostNotificationWrap = styled.div`
   width: 95%;
   height: 20%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const MyPostNotification = styled.div`
   width: 95%;
   height: 150px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #f4f5f9;
   /* animation: ${""} 1s infinite ease-in-out; */
 `;
 
 export const MyNotificationBox = styled.div`
-  width: 100%;
+  width: 90%;
   height: 90%;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `;
 
 export const MyNotificationTextWrap = styled.div`
-display: flex;
-  width: 60%;
+  display: flex;
+  width: 80%;
   height: 100%;
   flex-direction: column;
   align-items: center;
@@ -94,7 +94,7 @@ export const MyInfoText = styled.div`
 export const MyName = styled.p`
   color: var(--Gray700, #333);
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -103,14 +103,14 @@ export const MyName = styled.p`
 export const MyNotificationDate = styled.p`
   color: #aaaaaa;
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
 export const MyContentBoxWrap = styled.div`
-  width: 95%;
+  width: 100%;
   height: 70%;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@ export const MyContentTitle = styled.span`
 
 export const MyContentWrap = styled.div`
   display: flex;
-  width:60%;
+  width: 100%;
   height: 100%;
   overflow: hidden;
 `;
@@ -148,7 +148,7 @@ export const MyContent = styled.span`
 `;
 
 export const MyNotificationImgWrap = styled.div`
-  width: 40%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -160,13 +160,19 @@ export const MyNotificationImg = styled.img`
   height: 90%;
 `;
 
-export const MyNotificationLine = styled.div`
-  width: 98%;
-  height: 1px;
-  background-color: #f4f5f9;
+export const DeleteButtonWrap = styled.div`
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
+
 export const DeleteButton = styled.img`
-  z-index: 5;
-   width: 20px;
-   height: 20px;
-`
+  width: 32px;
+  height: 32px;
+  transform: rotate(90deg);
+  cursor: pointer;
+`;
+

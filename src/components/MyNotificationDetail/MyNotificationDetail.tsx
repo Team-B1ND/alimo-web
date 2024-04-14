@@ -4,30 +4,20 @@ import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import SideBar from "src/components/SideBar/SideBar";
-import PostClose from "src/assets/img/PostClose.png";
+import PostClose from "src/assets/img/PostClose.svg";
 import defaultProfile from "src/assets/img/profileimg.png";
 import Emoji from "src/constants/Emoji/Emoji";
-import CommentList from "src/components/MyNotificationDetail/Comment/CommentList";
+import CommentList from "src/components/MyNotificationDetail/CommentList/CommentList";
 import FileImage from "src/assets/img/FileImage.svg";
 import FileDownLoadIcon from "src/assets/img/FileDownloadIcon.svg";
 import Comment from "src/components/MyNotificationDetail/Comment/Comment";
-import * as S from "src/components/MyNotificationDetail/style/MyNotificationDetail.style";
+import * as S from "src/components/MyNotificationDetail/style";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
 
-const WriteReadDetail = () => {
-  const {
-    data,
-    imageData,
-    fileData,
-    commentData,
-    HandleFileDownLoad,
-    isImageError,
-    HandleImageError,
-    fileSize,
-    HandleClose,
-    handleCommentCreate,
-    handleReplyCommentCreate,
-  } = useMyNotificationDetail();
-
+const MyNotificationDetail = () => {
+  const { ...MyNotificationDetail } = useMyNotificationDetail();
+  
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -35,61 +25,55 @@ const WriteReadDetail = () => {
         {/* 공지 글 */}
         <S.MyNotificationDetail>
           <S.Notificationclose>
-            {" "}
-            <img src={PostClose} alt="공지 닫기" onClick={HandleClose} />{" "}
+            <img src={PostClose} alt="공지 닫기" onClick={MyNotificationDetail.HandleClose} />
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile
-                src={
-                  data.profileImage === null
-                    ? defaultProfile
-                    : data.profileImage
-                }
-              />
+              <S.MyProfile 
+                src={MyNotificationDetail.data.profileImage === null
+                  ? defaultProfile 
+                  : MyNotificationDetail.data.profileImage}/>
               <S.InfoWrap>
-                <S.MyName>{data.name}</S.MyName>
-                <S.MyNotificationDate>{data.createdAt}</S.MyNotificationDate>
+                <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
+                <S.MyNotificationDate>
+                  {dayjs(MyNotificationDetail.data.createdAt).locale("ko").format("YYYY년 MM월 DD일(ddd) HH:mm")}
+                </S.MyNotificationDate>
               </S.InfoWrap>
             </S.MyInfoWrap>
             <S.TitleWrap>
-              <S.Title>{data.title}</S.Title>
+              <S.Title>{MyNotificationDetail.data.title}</S.Title>
             </S.TitleWrap>
             <S.ContentWrap>
               <S.Content>
-                <LinkItUrl>{data.content}</LinkItUrl>
+                <LinkItUrl>{MyNotificationDetail.data.content}</LinkItUrl>
               </S.Content>
             </S.ContentWrap>
-            {imageData &&
-              imageData.length > 0 &&
-              isImageError &&
-              imageData.map((ImageData: ImageData, idx: number) => (
+            {MyNotificationDetail.imageData &&
+              MyNotificationDetail.imageData.length > 0 &&
+              MyNotificationDetail.isImageError &&
+              MyNotificationDetail.imageData.map((ImageData: ImageData, idx: number) => (
                 <S.ImgWrap>
                   <S.Img
                     src={ImageData.fileUrl}
-                    dataCnt={imageData.length}
+                    dataCnt={MyNotificationDetail.imageData.length}
                     imageIndex={idx}
-                    onError={HandleImageError}
+                    onError={MyNotificationDetail.HandleImageError}
                   />
                 </S.ImgWrap>
               ))}
-            {fileData &&
-              fileData.length > 0 &&
-              fileData.map((FileData: FileData, idx: number) => (
-                <S.MyNotificationFileWrap
-                  key={FileData.fileUrl}
-                  dataCnt={fileData.length}
-                  fileIndex={idx}>
+            {MyNotificationDetail.fileData &&
+              MyNotificationDetail.fileData.length > 0 &&
+              MyNotificationDetail.fileData.map((FileData: FileData, idx: number) => (
+                <S.MyNotificationFileWrap key={FileData.fileUrl} dataCnt={MyNotificationDetail.fileData.length} fileIndex={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
                       <S.FileInfo>
                         <S.FileName>{FileData.fileName}</S.FileName>
-                        <S.FileSize>{fileSize[idx]}</S.FileSize>
+                        <S.FileSize>{MyNotificationDetail.fileSize[idx]}</S.FileSize>
                       </S.FileInfo>
                     </S.FileInfoWrap>
-                    <S.FileDownLoadWrap
-                      onClick={() => HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                    <S.FileDownLoadWrap onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -103,17 +87,16 @@ const WriteReadDetail = () => {
         {/* 댓글 */}
         <S.CommentListWrap>
           <S.CommentListBox>
-            {commentData &&
-              commentData.length > 0 &&
-              commentData.map((CommentData: CommentData) => (
+            {MyNotificationDetail.commentData && MyNotificationDetail.commentData.length > 0 &&
+              MyNotificationDetail.commentData.map((CommentData: CommentData) => (
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
-                  handleReplyCommentCreate={handleReplyCommentCreate}
+                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
                 />
               ))}
           </S.CommentListBox>
-          <Comment handleCommentCreate={handleCommentCreate} />
+          <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />
         </S.CommentListWrap>
         {/* 댓글 */}
       </S.MyNotificationDetailBox>
@@ -121,4 +104,4 @@ const WriteReadDetail = () => {
   );
 };
 
-export default WriteReadDetail;
+export default MyNotificationDetail;

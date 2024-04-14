@@ -19,30 +19,28 @@ const useMyNotificationDetail = () => {
 
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string, fileName: string) => {
-    // window.open(fileUrl);
-    alimoV1Axios
-      .get(fileUrl, { responseType: "blob" })
-      .then((res) => {
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = fileUrl.split("/").pop() || "download";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      })
-      .catch((error) => {
-        console.error("파일 다운로드 오류:", error);
-      });
+    window.open(fileUrl);
+    // fetch(fileUrl)
+    //   .then((res) => res.blob())
+    //   .then((blob) => {
+    //     const url = window.URL.createObjectURL(new Blob([blob]));
+    //     const link = document.createElement("a");
+    //     link.href = url;
+    //     link.setAttribute("download", fileName);
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     if (link.parentNode) {
+    //       link.parentNode.removeChild(link);
+    //     }
+    //   })
+    //   .catch((error) =>
+    //     console.error("파일 다운로드 중 오류가 발생했습니다.", error)
+    //   );
   };
 
   // 이미지 에러 -> 이미지 안 띄움
   const HandleImageError = () => {
     setIsImageError(false);
-  };
-  const HandleClose = () => {
-    navigate("/write-read");
   };
 
   // 댓글 달기
@@ -54,7 +52,7 @@ const useMyNotificationDetail = () => {
       try {
         setCommentValue("");
         await alimoV1Axios
-          .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+          .post(`comment/create/${id}`, {
             content: commentValue,
             parentId: null,
           })
@@ -75,7 +73,7 @@ const useMyNotificationDetail = () => {
   ) => {
     try {
       await alimoV1Axios
-        .post(`${CONFIG.serverUrl}/comment/create/${id}`, {
+        .post(`comment/create/${id}`, {
           content: replyCommentValue,
           parentId: commentId,
         })
@@ -92,7 +90,7 @@ const useMyNotificationDetail = () => {
   useEffect(() => {
     const NotificationRead = async () => {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/notification/read/${id}`)
+        .get(`notification/read/${id}`)
         .then((res) => {
           setData(res.data.data);
           setImageData(res.data.data.images);
@@ -111,10 +109,10 @@ const useMyNotificationDetail = () => {
                 break;
               }
               fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
-          }
+            }
+          });
+          setFileSize(fileSizeData);
         });
-        setFileSize(fileSizeData);
-      });
     };
     NotificationRead();
   }, [id, commentCreateCount]);
