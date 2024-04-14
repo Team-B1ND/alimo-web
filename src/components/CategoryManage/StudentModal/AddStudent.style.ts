@@ -66,6 +66,8 @@ export const SelectionWrap = styled.div`
 
   width: 100%;
   height: calc(100vh - 50vh);
+
+  overflow: scroll;
 `;
 
 export const ChoiceInfoWrap = styled.div`
@@ -88,7 +90,9 @@ export const ChoiceInfoWrap = styled.div`
   }
 `;
 
-export const StudentWrap = styled.div``;
+export const StudentWrap = styled.div`
+  overflow: scroll;
+`;
 
 export const ParantWrap = styled.div``;
 
@@ -155,6 +159,8 @@ export const StudentSelectionWrap = styled.div`
   border: 1px solid #e6e6e6;
   border-top: none;
   border-left: none;
+
+  overflow: scroll;
 `;
 
 export const MemberSearchInput = styled.input`

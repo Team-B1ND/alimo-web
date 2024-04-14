@@ -1,49 +1,40 @@
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import CONFIG from "src/config/config.json";
 import { showToast } from "src/lib/Toast/Swal";
-import {
-  CategoryData,
-  MemberInCategoryData,
-} from "src/types/Category/interface";
+import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
+import { Student, MemberInfo } from "src/types/Category/Add.types";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const useCategoryManage = () => {
-  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(
-    null
-  );
-  const [createCategoryName, setCreateCategoryName] = useState<string>("");
+  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string | string[]>("");
-  const [memberCnt, setMemberCnt] = useState<number>();
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
-  const [name, setName] = useState<string>("");
-  const [grade, setGrade] = useState<number>();
-  const [cls, setCls] = useState<number>();
   const [permission, setPermission] = useState<string>("");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [searchMember, setSearchMember] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
-  const [memberList, setMemberList] = useState<boolean>(false);
   const [GradeName, setGradeName] = useState<string>("");
+  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
+  const [selectAccess, setSelectAccess] = useState<string | null>(null);
+  const [createCategoryName, setCreateCategoryName] = useState<string>("");
+  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [memberCnt, setMemberCnt] = useState<number>();
+  const [room, setRoom] = useState<string>("");
+
   useEffect(() => {
-    getCategoryList();
+    handleGetCategoryList();
   }, []);
 
   const handleCategoryClick = async (categoryName: string) => {
     setIsClickedCategory(categoryName);
-
+    console.log(isClickedCategory);
     try {
       await alimoV1Axios
-        .get(
-          `${
-            CONFIG.serverUrl
-          }/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`
-        )
+        .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
         .then((res) => {
-          console.log(res.data.data);
-
           if (categoryName === "학부모") {
             setGradeName("학부모");
           } else if (categoryName === "선생님") {
@@ -51,7 +42,6 @@ const useCategoryManage = () => {
           } else {
             setGradeName("학번");
           }
-
           setMemberData(res.data.data);
         });
     } catch (e) {
@@ -59,40 +49,43 @@ const useCategoryManage = () => {
     }
   };
 
-  const OnCategoryName = async () => {
-    setShowCategoryName((prev) => !prev);
+  const onSearchMemberName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchMember(e.target.value);
   };
 
-  const SearchCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCreateCategoryName(e.target.value);
-  };
+  const handleGetMemberData = async () => {
+    console.log(searchMember);
 
-  const onChangeSearchCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchKeyword(e.target.value);
-  };
-  const [SearchData, setSearchData] = useState("");
-  const SearchCategory = async () => {
     try {
       await alimoV1Axios
         .get(
-          `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`
+          `category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchkeyword=${String(
+            searchMember,
+          )}`,
         )
         .then((res) => {
-          setSearchData(res.data.data);
+          setMemberData(res.data.data);
+          memberData.map((member) => {
+            setPermission(member.permission);
+          });
         });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getCategoryList = async () => {
+  const OnCategoryName = async () => {
+    setShowCategoryName((prev) => !prev);
+  };
+
+  const SearchCategoryName = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const handleGetCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(
-          `${
-            CONFIG.serverUrl
-          }/category/get-category?page=${1}&size=${15}&searchKeyword=`
-        )
+        .get(`/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
         .then((res) => {
           setCategoryData(res.data.data);
         });
@@ -103,6 +96,130 @@ const useCategoryManage = () => {
 
   const HandleViewPermission = () => {
     setViewPermission((prev) => !prev);
+  };
+
+  const handleDeletetCategory = async () => {
+    await Swal.fire({
+      title: "정말 카테고리를 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#FFE8E8",
+      preConfirm: async () => {
+        try {
+          await alimoV1Axios
+            .delete("/category/delete", {
+              params: {
+                category: categoryData.map((category) => category.categoryName),
+              },
+            })
+            .then(() => {
+              window.location.reload();
+            });
+        } catch (error) {
+          showToast("error", "서버 통신 오류");
+        }
+      },
+    });
+  };
+
+  const onClickAddStudent = (studentId: number) => {
+    const newStudent = { id: studentId };
+    setSelectedStudents([...selectedStudents, newStudent]);
+  };
+
+  const onClickAccess = (access: string) => {
+    setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
+  };
+
+  const handleChangeCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCreateCategoryName(e.target.value);
+
+    console.log(createCategoryName);
+  };
+
+  const onLoadStudentInfo = async (grade: number, cls: number) => {
+    await alimoV1Axios
+      .get(`/member/student-list`, {
+        params: {
+          page: 1,
+          size: 15,
+          grade: grade,
+          room: cls,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data.memberList);
+        setRoom(`${cls}반`);
+        memberInfo.map((member) => {
+          setMemberCnt(member.cnt);
+        });
+      });
+  };
+
+  const onLoadMemberInfo = async (role: string) => {
+    await alimoV1Axios
+      .get(`member/${role}-list`, {
+        params: {
+          page: 1,
+          size: 1,
+        },
+      })
+      .then((res) => {
+        setMemberInfo(res.data.data);
+      });
+  };
+
+  const handleGivePermission = async () => {
+    if (permission === "ACCESS_MEMBER") {
+      try {
+        await alimoV1Axios.patch("/permission/change-admin", {
+          memberId: selectedStudents.map((member) => member.id),
+          categoryName: createCategoryName,
+        });
+        console.log(permission);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await alimoV1Axios.patch("permission/change-student", {
+          memberId: selectedStudents.map((member) => member.id),
+          categoryName: createCategoryName,
+        });
+        console.log(permission);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const handleDeleteMember = async () => {
+    try {
+      await alimoV1Axios.delete("category/delete-member", {
+        data: {
+          memberId: selectedStudents.map((member) => member.id),
+          categoryName: createCategoryName,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClickAddCategory = async () => {
+    try {
+      await alimoV1Axios
+        .post("/category/create", {
+          memberList: selectedStudents.map((member) => member.id),
+          categoryName: createCategoryName,
+        })
+        .then(() => {
+          setShowStudentList(false);
+        });
+    } catch (e) {
+      showToast("error", "서버 통신 오류");
+    }
   };
 
   const handlePopUp = () => {
@@ -117,30 +234,40 @@ const useCategoryManage = () => {
   return {
     GradeName,
     isClickedCategory,
-    createCategoryName,
-    categoryName,
-    memberCnt,
     categoryData,
-    name,
-    grade,
-    cls,
     permission,
     searchKeyword,
     showStudentList,
     memberData,
     showCategoryName,
-    memberList,
-    SearchData,
+    searchMember,
+    viewPermission,
+    createCategoryName,
+    selectedStudents,
+    selectAccess,
+    memberInfo,
+    memberCnt,
+    room,
+    handleChangeCategoryName,
+    onClickAddStudent,
+    onClickAccess,
+    onLoadStudentInfo,
+    onLoadMemberInfo,
+    onSearchMemberName,
     setShowStudentList,
+    handleGetMemberData,
     handleCategoryClick,
     OnCategoryName,
-    onChangeSearchCategoryName,
-    SearchCategory,
     handlePopUp,
     onClose,
     SearchCategoryName,
+    handleGetCategoryList,
+    HandleViewPermission,
+    handleDeletetCategory,
+    handleGivePermission,
+    handleDeleteMember,
+    onClickAddCategory,
   };
 };
 
 export default useCategoryManage;
-

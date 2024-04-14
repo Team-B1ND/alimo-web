@@ -1,5 +1,5 @@
 export interface Student {
-  name: string;
+  id: number
 }
 
 export interface MemberInfo {

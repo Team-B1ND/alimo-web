@@ -19,13 +19,13 @@ export const CategorySearchButton = styled.div`
   width: 25px;
   height: 100%;
 
-  img{
+  img {
     display: flex;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
   }
-`
+`;
 
 export const CateogyManageUtilityWrap = styled.div`
   display: flex;
@@ -42,7 +42,6 @@ export const SearchCateogy = styled.input`
   border: 1px solid #e6e6e6;
   border-radius: 15px;
   padding-left: 2vw;
-
 
   color: #787878;
   font-family: Pretendard;
@@ -163,7 +162,7 @@ export const CategoryMemberWrap = styled.div`
   background-color: #f4f5f9;
 
   overflow: scroll;
-  p{
+  p {
     display: flex;
     margin-top: 10%;
     justify-content: center;
@@ -262,7 +261,6 @@ export const MemeberProfileImg = styled.img`
   height: calc(100vw - 97vw);
 
   border-radius: 50%;
-  
 `;
 
 export const Member = styled.div`
