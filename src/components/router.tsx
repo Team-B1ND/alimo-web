@@ -4,10 +4,10 @@ import GlobalStyles from "src/style/global";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login/Login";
 import Write from "./Write/Write";
-import MyNotification from "./MyNotification/MyNotification";
+import MyNotificationPage from "src/pages/MyNotification/MyNotificationPage";
 import CategoryManage from "./CategoryManage/CategoryManage";
 import PrivateRoute from "src/Hooks/private/PrivateRoute";
-import MyNotificationDetail from "src/components/MyNotificationDetail/MyNotificationDetail";
+import MyNotificationDetailPage from "src/pages/MyNotificationDetailPage/MyNotificationDetailPage";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -16,9 +16,9 @@ const Router = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/write" element={<PrivateRoute component={Write} />} />
-          <Route path="/write-read" element={<PrivateRoute component={MyNotification} />} />
+          <Route path="/write-read" element={<PrivateRoute component={MyNotificationPage} />} />
           <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
-          <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetail} />} />
+          <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetailPage} />} />
         </Routes>
       </RecoilRoot>
     </BrowserRouter>

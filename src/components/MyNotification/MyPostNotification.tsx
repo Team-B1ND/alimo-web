@@ -10,8 +10,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
 const MyPostNotification = () => {
-  const { notificationData, DataAbsence, DeleteButtonClick } =
-    useMyNotification();
+  const { notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
   const navigate = useNavigate();
   const [, setIsImageError] = useState(true);
 
