@@ -1,13 +1,13 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
-import GlobalStyles from "src/Styles/global";
+import GlobalStyles from "src/styles/global";
 import { Route, Routes } from "react-router-dom";
-import Login from "src/Pages/auth/page";
+import Login from "src/pages/auth/page";
 import Write from "./Write/Write";
-import MyNotificationPage from "src/Pages/MyNotification/MyNotificationPage";
+import MyNotificationPage from "src/pages/MyNotification/MyNotificationPage";
 import CategoryManage from "./CategoryManage/CategoryManage";
-import PrivateRoute from "src/Hooks/private/PrivateRoute";
-import MyNotificationDetailPage from "src/Pages/MyNotificationDetailPage/MyNotificationDetailPage";
+import PrivateRoute from "src/hooks/private/PrivateRoute";
+import MyNotificationDetailPage from "src/pages/MyNotificationDetailPage/MyNotificationDetailPage";
 const Router = () => {
   return (
     <RecoilRoot>
