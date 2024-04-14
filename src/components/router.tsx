@@ -1,8 +1,8 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
 import GlobalStyles from "src/style/global";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./Login/Login";
+import {  Route, Routes } from "react-router-dom";
+import Login from "src/Pages/auth/page";
 import Write from "./Write/Write";
 import MyNotificationPage from "src/pages/MyNotification/MyNotificationPage";
 import CategoryManage from "./CategoryManage/CategoryManage";
@@ -22,6 +22,7 @@ const Router = () => {
         </Routes>
       </RecoilRoot>
     </BrowserRouter>
+
   );
 };
 export default Router;

@@ -163,6 +163,11 @@ export const CategoryMemberWrap = styled.div`
   background-color: #f4f5f9;
 
   overflow: scroll;
+  p{
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+  }
 `;
 
 export const MemberManageWrap = styled.div`
@@ -222,16 +227,18 @@ export const AddMemberButton = styled.button`
 export const MemberUtilityWrap = styled.div`
   display: flex;
   flex-direction: row;
-
-  margin-top: 2vh;
-  margin-left: 8vw;
+  justify-content: space-evenly;
+  margin-top: 10px;
 `;
 
-export const MemberNameInfo = styled.span`
+export const MemberNameInfo = styled.div`
   color: #aaaaaa;
   font-family: Pretendard;
   font-size: 1rem;
   font-weight: 400;
+  width: 50px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const MemberClassNumberInfo = styled.span`
@@ -239,8 +246,6 @@ export const MemberClassNumberInfo = styled.span`
   font-family: Pretendard;
   font-size: 1rem;
   font-weight: 400;
-
-  margin-left: 15vw;
 `;
 
 export const MemberWrap = styled.div`
@@ -257,8 +262,7 @@ export const MemeberProfileImg = styled.img`
   height: calc(100vw - 97vw);
 
   border-radius: 50%;
-
-  margin-left: 1vw;
+  
 `;
 
 export const Member = styled.div`
@@ -270,7 +274,7 @@ export const Member = styled.div`
 
   display: flex;
   flex-direction: row;
-
+  justify-content: space-around;
   align-items: center;
   align-self: center;
 `;
@@ -279,20 +283,14 @@ export const MemeberName = styled.span`
   font-family: Prentendard;
   font-size: 1.3rem;
   font-weight: 500;
-
-  margin-left: 2vw;
 `;
 
 export const MemberClassNumber = styled.span`
   font-family: Prentendard;
   font-size: 1.3rem;
   font-weight: 500;
-
-  margin-left: 13.5vw;
 `;
 
 export const MoreImg = styled.img`
-  margin-left: 15vw;
-
   cursor: pointer;
 `;

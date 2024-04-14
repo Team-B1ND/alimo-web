@@ -68,7 +68,7 @@ const Write = () => {
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
             <S.SendShowMember>총{hooks.memberCnt}명 에게 전송되요.</S.SendShowMember>
-            <S.UploadButton disabled={hooks.notAllow} type="submit" onClick={hooks.AllowWriteButton}>
+            <S.UploadButton disabled={hooks.notAllow} onClick={hooks.AllowWriteButton}>
               게시하기
             </S.UploadButton>
           </S.UplaodButtonWrap>

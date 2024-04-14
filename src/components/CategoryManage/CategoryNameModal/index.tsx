@@ -12,7 +12,7 @@ const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => v
           <S.InputWrap
             placeholder="카테고리 이름"
             type="text"
-            onChange={hooks.OnChangeCreateCategoryName}
+            onChange={hooks.SearchCategoryName}
             value={hooks.createCategoryName}
           />
           <S.ButtonWrap>

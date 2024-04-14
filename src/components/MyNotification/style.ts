@@ -175,3 +175,4 @@ export const DeleteButton = styled.img`
   transform: rotate(90deg);
   cursor: pointer;
 `;
+
