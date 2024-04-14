@@ -34,7 +34,7 @@ const Login = () => {
                   }
                   onClick={() => login.setClickName("Id")}
                   onChange={login.InputChange}
-           
+                  onKeyDown={login.handleKeyDown}
                 />
                 {login.idError && (
                   <S.IdKoreanError>한글은 사용할 수 없습니다.</S.IdKoreanError>
@@ -67,8 +67,8 @@ const Login = () => {
                       : "비밀번호"
                   }
                   onClick={() => login.setClickName("PassWord")}
-                  onChange={login.InputChange}
-             
+                  onChange={login.InputChangePw}
+                  onKeyDown={login.handleKeyDown}
                 />
                 <S.PasswordBtn
                   onClick={() => login.setIsShowPswd((current) => !current)}
