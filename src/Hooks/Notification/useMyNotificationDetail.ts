@@ -4,7 +4,6 @@ import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import { alimoV1Axios } from "src/lib/axios/CustomAxios";
-import CONFIG from "src/config/config.json";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -64,6 +63,11 @@ const useMyNotificationDetail = () => {
       }
     }
   };
+
+  // 닫기 버튼 클릭 -> 내 공지글 보기로 이동
+  const HandleClose = () => {
+    navigate("/write-read")
+  }
 
   // 대댓글 달기
   const handleReplyCommentCreate = async (
