@@ -1,8 +1,8 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
 import GlobalStyles from "src/style/global";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./Login/Login";
+import {  Route, Routes } from "react-router-dom";
+import Login from "src/Pages/auth/page";
 import Write from "./Write/Write";
 import MyNotification from "./MyNotification/MyNotification";
 import CategoryManage from "./CategoryManage/CategoryManage";
@@ -10,6 +10,8 @@ import PrivateRoute from "src/Hooks/private/PrivateRoute";
 import MyNotificationDetail from "src/components/MyNotificationDetail/MyNotificationDetail";
 const Router = () => {
   return (
+    <> 
+    <GlobalStyles/>
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/write" element={<PrivateRoute component={Write} />} />
@@ -17,6 +19,7 @@ const Router = () => {
       <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
       <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetail} />} />
     </Routes>
+    </>
   );
 };
 export default Router;
