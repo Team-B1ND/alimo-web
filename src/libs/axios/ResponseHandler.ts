@@ -37,7 +37,7 @@ const errorResponseHandler = async (error: AxiosError) => {
     ) {
       if (!isRefreshing) {
         isRefreshing = true;
-
+        
         try {
           //일단 오류 해결을 위한 코드
           const data = await axios.post(`${CONFIG.serverUrl}/refresh`,{

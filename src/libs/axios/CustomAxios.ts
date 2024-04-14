@@ -4,7 +4,7 @@ import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.c
 import token from "../token/token";
 import ResponseHandler from "./ResponseHandler";
 import requestHandler from "./requestHandler"; 
-import Token from "src/lib/token/token";
+import Token from "src/libs/token/token";
 
 const createAxiosInstance = (config?: AxiosRequestConfig) => {
 const ACCESS_TOKEN=Token.getToken(ACCESS_TOKEN_KEY);

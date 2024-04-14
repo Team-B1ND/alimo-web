@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { showToast } from "src/lib/Toast/Swal";
-import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
-import { Student, MemberInfo } from "src/types/Category/Add.types";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { showToast } from "src/libs/Toast/Swal";
+import { CategoryData, MemberInCategoryData } from "src/Types/Category/interface";
+import { Student, MemberInfo } from "src/Types/Category/Add.types";
+import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import axios from "axios";
 

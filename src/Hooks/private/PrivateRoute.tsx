@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import {PrivateRouteProps} from "src/types/private/PrivateRoute.type"
+import {PrivateRouteProps} from "src/Types/private/PrivateRoute.type"
 import {
   ACCESS_TOKEN_KEY,
 } from "src/constants/token/token.constants";
-import token from "src/lib/token/token";
+import token from "src/libs/token/token";
 
 
 

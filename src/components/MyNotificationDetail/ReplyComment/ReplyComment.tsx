@@ -1,4 +1,4 @@
-import { CommentData } from "src/types/CommentList/CommentList.interface";
+import { CommentData } from "@src/Types/CommentList/CommentList.interface";
 import useReplyComment from "src/Hooks/Comment/useReplyComment";
 import useSidebar from "src/Hooks/Sidbar/useSiebar";
 import defaultProfile from "src/assets/img/profileimg.png";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../style/Category.style/Modal.style/DeleteModal.css";
+import "../../Styles/Category.style/Modal.style/DeleteModal.css";
 import { Image } from "react-bootstrap";
 import DeleteImg from "../../img/Category-Delete.svg";
 import { showToast } from "../Toast/Swal";

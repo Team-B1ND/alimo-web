@@ -1,14 +1,14 @@
 import axios from "axios";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "src/lib/Toast/Swal";
+import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/types/Write/write.type";
-import cookie from "src/lib/cookies/cookie";
+import { Category } from "src/Types/Write/write.type";
+import cookie from "src/libs/cookies/cookie";
 
 const useWrite = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
-import { showToast } from "src/lib/Toast/Swal";
+import { alimoV1Axios } from "@src/libs/axios/CustomAxios";
+import { showToast } from "@src/libs/Toast/Swal";
 
 export const DeleteModal = (notificationIdValue: number) => {
   Swal.fire({

@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
-import { NavigationProps } from "src/types/login/Sidebar.types";
+import { alimoV1Axios } from "src/libs/axios/CustomAxios";
+import { NavigationProps } from "src/Types/login/Sidebar.types";
 
 const Sidbar = () => {
   const navigate = useNavigate();

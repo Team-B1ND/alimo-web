@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { showToast } from "src/lib/Toast/Swal";
+import { showToast } from "src/libs/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
-import token from "src/lib/token/token";
-import { LoginResponse } from "src/types/login/login.type";
+import token from "src/libs/token/token";
+import { LoginResponse } from "src/Types/login/login.type";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const Uselogin = () => {
