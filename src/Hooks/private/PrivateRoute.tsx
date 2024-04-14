@@ -1,11 +1,7 @@
 import { Navigate } from "react-router-dom";
-import {PrivateRouteProps} from "src/Types/private/PrivateRoute.type"
-import {
-  ACCESS_TOKEN_KEY,
-} from "src/constants/token/token.constants";
+import { PrivateRouteProps } from "@src/Types/private/PrivateRoute.type";
+import { ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
 import token from "src/libs/token/token";
-
-
 
 const isAuthenticated = () => {
   const ACCESS_TOKEN = token.getToken(ACCESS_TOKEN_KEY);

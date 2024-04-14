@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { showToast } from "src/libs/Toast/Swal";
-import { CategoryData, MemberInCategoryData } from "src/Types/Category/interface";
-import { Student, MemberInfo } from "src/Types/Category/Add.types";
+import {
+  CategoryData,
+  MemberInCategoryData,
+} from "@src/Types/Category/interface";
+import { Student, MemberInfo } from "@src/Types/Category/Add.types";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const useCategoryManage = () => {
-  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
+  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(
+    null
+  );
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
@@ -33,7 +38,9 @@ const useCategoryManage = () => {
     console.log(isClickedCategory);
     try {
       await alimoV1Axios
-        .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+        .get(
+          `/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`
+        )
         .then((res) => {
           if (categoryName === "학부모") {
             setGradeName("학부모");
@@ -60,8 +67,8 @@ const useCategoryManage = () => {
       await alimoV1Axios
         .get(
           `category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchkeyword=${String(
-            searchMember,
-          )}`,
+            searchMember
+          )}`
         )
         .then((res) => {
           setMemberData(res.data.data);
@@ -85,7 +92,9 @@ const useCategoryManage = () => {
   const handleGetCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(`/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
+        .get(
+          `/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`
+        )
         .then((res) => {
           setCategoryData(res.data.data);
         });

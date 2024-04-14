@@ -7,7 +7,7 @@ import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/Types/Write/write.type";
+import { Category } from "@src/Types/Write/write.type";
 import cookie from "src/libs/cookies/cookie";
 
 const useWrite = () => {
@@ -89,9 +89,13 @@ const useWrite = () => {
 
   //카테고리 선택 로직 (중복선택 가능)
   const HandleAddCategory = async (CategoryName: string) => {
-    const isSelected = selectedCategory.some((category) => category.name === CategoryName);
+    const isSelected = selectedCategory.some(
+      (category) => category.name === CategoryName
+    );
     if (isSelected) {
-      setSelectedCategory(selectedCategory.filter((category) => category.name !== CategoryName));
+      setSelectedCategory(
+        selectedCategory.filter((category) => category.name !== CategoryName)
+      );
     } else {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
@@ -100,7 +104,9 @@ const useWrite = () => {
 
   //선택한 카테고리에 따른 멤버 수 확인 로직
   const GetMemberCnt = async () => {
-    const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
+    const categoryParams = selectedCategory
+      ? selectedCategory.map((category) => category.name)
+      : "";
     try {
       await alimoV1Axios
         .get(`/category/member-cnt`, {
@@ -158,7 +164,10 @@ const useWrite = () => {
 
       //data객체를 formData에 올리기위한 로직
       const JSONDATA = JSON.stringify(data);
-      formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
+      formData.append(
+        "data",
+        new Blob([JSONDATA], { type: "application/json" })
+      );
 
       //파일을 formData에 올리기위한 로직
       if (file) {
