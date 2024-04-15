@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "src/components/Header/style";
-import useHeader from "src/Hooks/common/useHeader";
+import useHeader from "src/hooks/common/useHeader";
 
 const Header = () => {
   const { handlePostNotification } = useHeader();

@@ -5,7 +5,7 @@ import axios from "axios";
 import CONFIG from "src/config/config.json";
 import { SHA512 } from "crypto-js";
 import token from "src/libs/token/token";
-import { LoginResponse } from "@src/Types/login/login.type";
+import { LoginResponse } from "@src/types/login/login.type";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const Uselogin = () => {

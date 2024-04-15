@@ -1,6 +1,6 @@
 import * as S from "./style/Alert";
-import UseLogout from "src/Hooks/auth/useLogout";
-import {ProfileAlertProps} from "src/Types/Profile/profileAlert.type"
+import UseLogout from "src/hooks/auth/useLogout";
+import {ProfileAlertProps} from "src/types/Profile/profileAlert.type"
 
 const ProfileAlert = ({ onClose, onOpen }: ProfileAlertProps) => {
   

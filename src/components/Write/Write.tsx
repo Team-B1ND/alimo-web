@@ -2,11 +2,11 @@ import React from "react";
 import * as S from "src/components/Write/style/Write.style";
 import SideBar from "../SideBar/SideBar";
 import Header from "../Header/Header";
-import useWrite from "src/Hooks/Write/useWrite";
+import useWrite from "src/hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
 import PreviewImage from "./PreviewImage";
-import useHeader from "src/Hooks/common/useHeader";
+import useHeader from "src/hooks/common/useHeader";
 
 const Write = () => {
   const { ...hooks } = useWrite();

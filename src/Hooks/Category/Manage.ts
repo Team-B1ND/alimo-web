@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json"
 import { showToast } from "@src/libs/Toast/Swal";
-import { CategoryData, MemberInCategoryData } from "@src/Types/Category/interface";
+import { CategoryData, MemberInCategoryData } from "@src/types/Category/interface";
 import { alimoV1Axios } from "@src/libs/axios/CustomAxios";
 
 const useCategoryManage = () => {
