@@ -1,21 +1,20 @@
-import axios from "axios";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
-import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/Types/Write/write.type";
-import cookie from "src/libs/cookies/cookie";
+import { Category } from "src/types/Write/write.type";
+import axios from "axios";
+import CONFIG from "src/config/config.json";
+import token from "src/libs/token/token";
 
 const useWrite = () => {
-  const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [context, setContext] = useState<string>("");
-  const [file, setFile] = useState<File[]>();
-  const [image, setImage] = useState<File[]>();
+  const [file, setFile] = useState<File[]>([]);
+  const [image, setImage] = useState<File[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
   const [notAllow, setNotAllow] = useState<boolean>(true);
@@ -120,75 +119,53 @@ const useWrite = () => {
     GetMemberCnt();
   }, [selectedCategory.length]);
 
-  //제목, 내용, 이미지, 파일을 담기위한 폼데이터 객체
   const formData = new FormData();
 
-  //게시하기 버튼 클릭시 사용되는 로직
-  const AllowWriteButton = async () => {
-    //버튼 비활성화일때 로직
-    if (notAllow) {
-      showToast("error", "빈곳이 없게 작성하여주세요");
-    } else {
-      //버튼이 활성화 되어있고, 클릭했을때 확성기 사용여부 체크 로직
-      await Swal.fire({
-        title: "확성기 기능을 사용하시겠습니까?",
-        text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
-        showCancelButton: true,
-        confirmButtonColor: "#FECE23",
-        focusConfirm: true,
-        cancelButtonColor: "#AAAAAA",
-        focusCancel: false,
-        confirmButtonText: "사용하기",
-        cancelButtonText: "사용안함",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setIsSpeaker(true);
-        } else {
-          setIsSpeaker(false);
-        }
-      });
+  const AllowWriteButton = async (notificationId: string) => {
+    await Swal.fire({
+      title: "확성기 기능을 사용하시겠습니까?",
+      text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
+      showCancelButton: true,
+      confirmButtonColor: "#FECE23",
+      focusConfirm: true,
+      cancelButtonColor: "#AAAAAA",
+      focusCancel: false,
+      confirmButtonText: "사용하기",
+      cancelButtonText: "사용안함",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsSpeaker(true);
+      } else {
+        setIsSpeaker(false);
+      }
+    });
 
-      //제목, 내용, 확성기 사용여부, 선택한 카테고리를 담은 객체
-      const data = {
+    try {
+      await alimoV1Axios.patch(`/notification/update/${127}`, {
         title: title,
         content: context,
         speaker: isSpeaker,
         categories: selectedCategory.map((category) => category.name),
-      };
+      });
 
-      //data객체를 formData에 올리기위한 로직
-      const JSONDATA = JSON.stringify(data);
-      formData.append("data", new Blob([JSONDATA], { type: "application/json" }));
-
-      //파일을 formData에 올리기위한 로직
-      if (file) {
-        Array.from(file).forEach((file) => {
-          formData.append("file", file);
-        });
-      }
-      //이미지를 formData에 올리기위한 로직
       if (image) {
         Array.from(image).forEach((image) => {
           formData.append("image", image);
         });
       }
 
-      try {
-        //alimoV1Axios사용시 Content-Type이 multipart/form-data로 가지 않기때문에 일반 axios사용 -> 추후 개선 예정
-        await axios
-          .post(`${CONFIG.serverUrl}/notification/generate`, formData, {
-            headers: {
-              Authorization: `Bearer ${cookie.getCookie("access-token")}`,
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then(() => {
-            navigate("/");
-          });
-      } catch (error) {
-        console.error(error);
-        showToast("error", "통신 오류");
+      if (file) {
+        Array.from(file).forEach((file) => {
+          formData.append("file", file);
+        });
       }
+
+      await alimoV1Axios.post(`files/create?notificationId=${127}`, {
+        image: formData.get("image"),
+        file: formData.get("file"),
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 

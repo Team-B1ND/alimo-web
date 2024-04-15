@@ -6,9 +6,11 @@ import useWrite from "src/Hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
 import PreviewImage from "./PreviewImage";
+import useHeader from "src/Hooks/common/useHeader";
 
 const Write = () => {
   const { ...hooks } = useWrite();
+  const { notificationId } = useHeader();
 
   return (
     <S.WriteMain>
@@ -68,7 +70,7 @@ const Write = () => {
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
             <S.SendShowMember>총{hooks.memberCnt}명 에게 전송되요.</S.SendShowMember>
-            <S.UploadButton disabled={hooks.notAllow} onClick={hooks.AllowWriteButton}>
+            <S.UploadButton disabled={hooks.notAllow} onClick={() => hooks.AllowWriteButton(notificationId)}>
               게시하기
             </S.UploadButton>
           </S.UplaodButtonWrap>

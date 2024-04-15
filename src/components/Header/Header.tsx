@@ -1,12 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import * as S from "src/components/Header/style";
+import useHeader from "src/Hooks/common/useHeader";
+
 const Header = () => {
-  const navigate = useNavigate();
+  const { handlePostNotification } = useHeader();
+
   return (
     <S.HeaderBarWrap>
-      <S.UploadNewNotifyButton onClick={() => navigate("/write")}>
-        <span>새 공지 작성</span>
+      <S.UploadNewNotifyButton>
+        <span onClick={handlePostNotification}>새 공지 작성</span>
       </S.UploadNewNotifyButton>
     </S.HeaderBarWrap>
   );
