@@ -42,8 +42,7 @@ const Login = () => {
                 <S.IdBtn
                   onClick={() => {
                     login.setIdValue("");
-                  }}
-                >
+                  }}>
                   <img
                     style={{
                       display: `${login.idValue !== "" ? "block" : "none"}`,
@@ -59,7 +58,7 @@ const Login = () => {
               </S.IdWrap>
               <S.PasswordWrap>
                 <S.Password
-                  type={login.isShowPswd === true ? "text" : "password"}
+                  type={login.isShowPswd ? "text" : "password"}
                   value={login.passwordValue}
                   placeholder={
                     login.clickName === "PassWord" && login.passwordValue !== ""
@@ -71,8 +70,7 @@ const Login = () => {
                   onKeyDown={login.handleKeyDown}
                 />
                 <S.PasswordBtn
-                  onClick={() => login.setIsShowPswd((current) => !current)}
-                >
+                  onClick={() => login.setIsShowPswd((current) => !current)}>
                   <img
                     style={{
                       display: `${
@@ -82,7 +80,7 @@ const Login = () => {
                     src={
                       login.clickName === "PassWord" &&
                       login.passwordValue !== ""
-                        ? login.isShowPswd === true
+                        ? login.isShowPswd
                           ? PasswordShow
                           : PasswordHide
                         : ""
@@ -94,9 +92,7 @@ const Login = () => {
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={login.LoginButton}>
               <S.LoginBtn>
-                {login.Loginloading === true
-                  ? "로그인중"
-                  : "도담도담 계정으로 로그인"}
+                {login.Loginloading ? "로그인중" : "도담도담 계정으로 로그인"}
               </S.LoginBtn>
             </S.LoginBtnWrap>
           </S.LoginWrap>
