@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import useCategoryManage from "src/hooks/Category/useCateogyManage";
+import useCategoryManage from "src/Hooks/Category/useCateogyManage";
 
 const PermissionModal = ({ onClose }: { onClose: () => void }) => {
   const { ...hooks } = useCategoryManage();
