@@ -121,7 +121,7 @@ const useWrite = () => {
 
   const formData = new FormData();
 
-  const AllowWriteButton = async (notificationId: string) => {
+  const AllowWriteButton = async (notificationId: number) => {
     await Swal.fire({
       title: "확성기 기능을 사용하시겠습니까?",
       text: "기능을 사용하지 않더라도 공지는 등록됩니다.",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style";
-import useMyNotification from "src/hooks/Notification/useMyNotification";
+import useMyNotification from "src/Hooks/Notification/useMyNotification";
 import NullSkeleton from "src/components/MyNotification/Skeleton/NullSkeleton";
 import SettingImg from "src/assets/img/SettingImage.png";
 import DefaultImg from "src/assets/img/profileimg.png";
@@ -27,7 +27,7 @@ const MyPostNotification = () => {
               <S.MyNotificationBox onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError}/>
+                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError} />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>
@@ -41,7 +41,9 @@ const MyPostNotification = () => {
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>
                       <S.MyContent>
-                        {notification.content.length < 50 ? notification.content : `${notification.content.substring(0, 50)}...`}
+                        {notification.content.length < 50
+                          ? notification.content
+                          : `${notification.content.substring(0, 50)}...`}
                       </S.MyContent>
                     </S.MyContentWrap>
                   </S.MyContentBoxWrap>
@@ -58,7 +60,12 @@ const MyPostNotification = () => {
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>
               <S.DeleteButtonWrap>
-                <S.DeleteButton src={SettingImg} onClick={() => {DeleteButtonClick(notification);}}></S.DeleteButton>
+                <S.DeleteButton
+                  src={SettingImg}
+                  onClick={() => {
+                    DeleteButtonClick(notification);
+                  }}
+                ></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>

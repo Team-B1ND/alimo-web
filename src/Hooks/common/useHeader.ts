@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useHeader = () => {
   const navigate = useNavigate();
-  const [notificationId, setNotificationId] = useState<string>("");
+  const [notificationId, setNotificationId] = useState<number>(0);
 
   const handlePostNotification = async () => {
     try {

@@ -1,4 +1,4 @@
-import { CommentData } from "@src/types/CommentList/CommentList.interface";
+import { CommentData } from "src/types/CommentList/CommentList.interface";
 
 export interface Props {
   commentData: CommentData;

@@ -2,7 +2,7 @@ import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import useMyNotificationDetail from "src/hooks/Notification/useMyNotificationDetail";
+import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
 import SideBar from "src/components/SideBar/SideBar";
 import PostClose from "src/assets/img/PostClose.svg";
 import defaultProfile from "src/assets/img/profileimg.png";
