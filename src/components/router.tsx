@@ -1,6 +1,6 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
-import GlobalStyles from "src/Styles/global";
+import GlobalStyles from "src/styles/global";
 import { Route, Routes } from "react-router-dom";
 import Login from "src/pages/auth/page";
 import Write from "./Write/Write";

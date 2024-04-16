@@ -58,11 +58,7 @@ const useCategoryManage = () => {
 
     try {
       await alimoV1Axios
-        .get(
-          `category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchkeyword=${String(
-            searchMember,
-          )}`,
-        )
+        .get(`category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchkeyword=${searchMember}`)
         .then((res) => {
           setMemberData(res.data.data);
           memberData.map((member) => {
