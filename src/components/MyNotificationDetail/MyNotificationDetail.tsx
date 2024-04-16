@@ -2,7 +2,7 @@ import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import useMyNotificationDetail from "src/Hooks/Notification/useMyNotificationDetail";
+import useMyNotificationDetail from "src/hooks/Notification/useMyNotificationDetail";
 import SideBar from "src/components/SideBar/SideBar";
 import PostClose from "src/assets/img/PostClose.svg";
 import defaultProfile from "src/assets/img/profileimg.png";
@@ -17,7 +17,7 @@ import "dayjs/locale/ko";
 
 const MyNotificationDetail = () => {
   const { ...MyNotificationDetail } = useMyNotificationDetail();
-  
+
   return (
     <S.MyNotificationDetailWrap>
       <SideBar />
@@ -29,10 +29,13 @@ const MyNotificationDetail = () => {
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile 
-                src={MyNotificationDetail.data.profileImage === null
-                  ? defaultProfile 
-                  : MyNotificationDetail.data.profileImage}/>
+              <S.MyProfile
+                src={
+                  MyNotificationDetail.data.profileImage === null
+                    ? defaultProfile
+                    : MyNotificationDetail.data.profileImage
+                }
+              />
               <S.InfoWrap>
                 <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
                 <S.MyNotificationDate>
@@ -64,7 +67,11 @@ const MyNotificationDetail = () => {
             {MyNotificationDetail.fileData &&
               MyNotificationDetail.fileData.length > 0 &&
               MyNotificationDetail.fileData.map((FileData: FileData, idx: number) => (
-                <S.MyNotificationFileWrap key={FileData.fileUrl} dataCnt={MyNotificationDetail.fileData.length} fileIndex={idx}>
+                <S.MyNotificationFileWrap
+                  key={FileData.fileUrl}
+                  dataCnt={MyNotificationDetail.fileData.length}
+                  fileIndex={idx}
+                >
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -73,7 +80,9 @@ const MyNotificationDetail = () => {
                         <S.FileSize>{MyNotificationDetail.fileSize[idx]}</S.FileSize>
                       </S.FileInfo>
                     </S.FileInfoWrap>
-                    <S.FileDownLoadWrap onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                    <S.FileDownLoadWrap
+                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}
+                    >
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -87,7 +96,8 @@ const MyNotificationDetail = () => {
         {/* 댓글 */}
         <S.CommentListWrap>
           <S.CommentListBox>
-            {MyNotificationDetail.commentData && MyNotificationDetail.commentData.length > 0 &&
+            {MyNotificationDetail.commentData &&
+              MyNotificationDetail.commentData.length > 0 &&
               MyNotificationDetail.commentData.map((CommentData: CommentData) => (
                 <CommentList
                   key={CommentData.commentId}

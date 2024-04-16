@@ -1,12 +1,12 @@
-import useComment from "src/Hooks/Comment/useComment";
+import useComment from "src/hooks/Comment/useComment";
 import CommentButtonImg from "src/assets/img/CommentButtonImage.svg";
 import * as S from "src/components/MyNotificationDetail/Comment/style";
 
 interface Props {
-  handleCommentCreate: (commentValue: string, setCommentValue: Function) => Promise<void>
+  handleCommentCreate: (commentValue: string, setCommentValue: Function) => Promise<void>;
 }
 
-const Comment = ({handleCommentCreate}: Props) => {
+const Comment = ({ handleCommentCreate }: Props) => {
   const { commentRef, commentValue, setCommentValue, handleChangeValue } = useComment();
   return (
     <S.CommentWrap>
@@ -16,7 +16,8 @@ const Comment = ({handleCommentCreate}: Props) => {
           ref={commentRef}
           value={commentValue}
           placeholder="댓글을 남겨보세요."
-          onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
+          onChange={(e) => handleChangeValue(e, commentRef)}
+        ></S.CommentInput>
         <S.CommentButtonWrap onClick={() => handleCommentCreate(commentValue, setCommentValue)}>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>

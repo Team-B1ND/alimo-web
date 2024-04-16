@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ProfileImg from "src/assets/img/profileimg.png";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilValue } from "recoil";
-import useSidbar from "src/Hooks/Sidbar/useSiebar";
+import useSidbar from "src/hooks/Sidbar/useSiebar";
 
 const UseProfile = () => {
   const { Name, image } = useSidbar();
@@ -10,7 +10,7 @@ const UseProfile = () => {
   const CategoryListValue = useRecoilValue(categoryListState); // 값만
 
   useEffect(() => {
-    setCategory(CategoryListValue)
+    setCategory(CategoryListValue);
   }, []);
 
   const finalImage = image && image.length > 0 ? image : ProfileImg;
