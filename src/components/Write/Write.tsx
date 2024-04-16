@@ -6,31 +6,32 @@ import useWrite from "src/Hooks/Write/useWrite";
 import ImageUploadImg from "src/assets/img/ImageUpload.svg";
 import FileUplaod from "src/assets/img/FileUpload.svg";
 import PreviewImage from "./PreviewImage";
-import useHeader from "src/Hooks/common/useHeader";
 
 const Write = () => {
   const { ...hooks } = useWrite();
-  const { notificationId } = useHeader();
 
   return (
     <S.WriteMain>
       <SideBar />
       <Header />
       <S.WriteView>
-        <S.InputWrap method="post" encType="multipart/form-data">
+        <S.InputWrap>
           <S.WriteTitleInput
             placeholder="제목을 입력해주세요"
             type="text"
-            value={hooks.title}
-            onChange={hooks.OnChangeTitle}
+            name="title"
+            value={hooks.wirteElem.title}
+            onChange={hooks.handleWriteElem}
           />
           <S.ViewImageWrap onClick={hooks.DeletePreviewImage}>
             <PreviewImage previewImage={hooks.image ? hooks.image : []} />
           </S.ViewImageWrap>
           <S.WriteContext
             placeholder="대소고에 새로운 소식을 전해보세요!"
-            value={hooks.context}
-            onChange={hooks.OnChangeContext}
+            typeof="text"
+            value={hooks.wirteElem.content}
+            name="content"
+            onChange={hooks.handleWriteElem}
           />
           <S.FileWrap>
             <S.ImageUploadImg src={ImageUploadImg} onClick={hooks.HandleImageClick} />
@@ -70,7 +71,7 @@ const Write = () => {
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>
             <S.SendShowMember>총{hooks.memberCnt}명 에게 전송되요.</S.SendShowMember>
-            <S.UploadButton disabled={hooks.notAllow} onClick={() => hooks.AllowWriteButton(notificationId)}>
+            <S.UploadButton disabled={hooks.notAllow} onClick={hooks.AllowWriteButton}>
               게시하기
             </S.UploadButton>
           </S.UplaodButtonWrap>

@@ -1,46 +1,47 @@
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import React, { useState, useRef, useEffect, ChangeEvent } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useNavigate } from "react-router-dom";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/types/Write/write.type";
+import { Category, WriteElemProps, notificationId } from "src/types/Write/write.type";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
 
 const useWrite = () => {
-  const [title, setTitle] = useState<string>("");
-  const [context, setContext] = useState<string>("");
+  const [wirteElem, setWirteElem] = useState<WriteElemProps>({
+    title: "",
+    content: "",
+  });
+  const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
+  const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const [file, setFile] = useState<File[]>([]);
   const [image, setImage] = useState<File[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
   const [notAllow, setNotAllow] = useState<boolean>(true);
-  const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
+  const [notificationId, setNotificationId] = useState<notificationId>();
   const CategoryList = useRecoilValue(categoryListState);
 
   //제목, 내용, 카테고리 미 입력 혹은 미 선택시 버튼 비활성화 로직
   useEffect(() => {
-    if (title && context && selectedCategory.length !== 0) {
+    if (wirteElem.title && wirteElem.content && selectedCategory.length !== 0) {
       setNotAllow(false);
     } else {
       setNotAllow(true);
     }
-  }, [title, context, selectedCategory]);
+  }, [wirteElem.title, wirteElem.content, selectedCategory]);
 
-  //제목 입력
-  const OnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  //내용 입력
-  const OnChangeContext = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContext(e.target.value);
-  };
+  const handleWriteElem = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+      const { value, name } = e.target;
+      setWirteElem((prev) => ({ ...prev, [name]: value }));
+      console.log(notificationId);
+    },
+    [setWirteElem],
+  );
 
   //사진업로드 이미지 클릭시 Ref로 선택창
   const HandleImageClick = () => {
@@ -121,7 +122,11 @@ const useWrite = () => {
 
   const formData = new FormData();
 
-  const AllowWriteButton = async (notificationId: number) => {
+  const AllowWriteButton = async () => {
+    const response = await alimoV1Axios.post("notification/create");
+    setNotificationId(response.data.data);
+    console.log(notificationId?.NotificationId);
+
     await Swal.fire({
       title: "확성기 기능을 사용하시겠습니까?",
       text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
@@ -141,9 +146,10 @@ const useWrite = () => {
     });
 
     try {
-      await alimoV1Axios.patch(`/notification/update/${127}`, {
-        title: title,
-        content: context,
+      const NotificationId = notificationId?.NotificationId;
+      await alimoV1Axios.patch(`/notification/update/${NotificationId}`, {
+        title: wirteElem.title,
+        content: wirteElem.content,
         speaker: isSpeaker,
         categories: selectedCategory.map((category) => category.name),
       });
@@ -160,25 +166,37 @@ const useWrite = () => {
         });
       }
 
-      await alimoV1Axios.post(`files/create?notificationId=${127}`, {
-        image: formData.get("image"),
-        file: formData.get("file"),
-      });
+      console.log(formData.get("image"), formData.get("file"));
+      try {
+        await axios.post(
+          `${CONFIG.serverUrl}/files/create?notificationId=${NotificationId}`,
+          {
+            image: formData.get("image"),
+            file: formData.get("file"),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token.getToken("access-token")}`,
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        );
+      } catch (error) {
+        console.log(error);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   return {
-    title,
-    context,
+    wirteElem,
     notAllow,
     image,
     CategoryList,
     memberCnt,
-    OnChangeTitle,
-    OnChangeContext,
     imageInputRef,
+    handleWriteElem,
     HandleImageClick,
     HandleFileChange,
     DeleteFile,
