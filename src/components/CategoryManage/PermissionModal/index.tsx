@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./style";
 import useCategoryManage from "src/hooks/Category/useCateogyManage";
 

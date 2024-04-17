@@ -5,10 +5,10 @@ import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
 import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
-import useCategoryManage from "src/hooks/Category/useCateogyManage";
+import useAddStudnet from "src/hooks/Category/useAddStudent";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
-  const { ...hooks } = useCategoryManage();
+  const { ...hooks } = useAddStudnet();
 
   return (
     <S.AddStudentWrap>

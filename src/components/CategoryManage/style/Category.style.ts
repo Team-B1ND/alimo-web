@@ -43,7 +43,7 @@ export const SearchCateogy = styled.input`
   margin-left: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-  padding-left: 2vw;
+  padding-left: 20px;
 
   color: #787878;
   font-family: Pretendard;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/components/SideBar/SideBar";
 import useCategoryManage from "src/hooks/Category/useCateogyManage";
@@ -8,9 +8,16 @@ import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
 import PermissionModal from "./PermissionModal";
+import useAddStudnet from "src/hooks/Category/useAddStudent";
 
 const CategoryManage = () => {
   const { ...hooks } = useCategoryManage();
+  const { showStudentList, handlePopUp, onClose } = useAddStudnet();
+
+  useEffect(() => {
+    hooks.getCategoryList();
+  }, []);
+
   return (
     <S.Main>
       <SideBar />
@@ -61,7 +68,7 @@ const CategoryManage = () => {
             <S.CategorySearchButton style={{ marginTop: "10px" }} onClick={hooks.handleGetMemberData}>
               <img src={searchImg} />
             </S.CategorySearchButton>
-            <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>
+            <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
           </S.MemberManageWrap>
           <S.MemberUtilityWrap>
             <S.MemberNameInfo>
@@ -88,8 +95,8 @@ const CategoryManage = () => {
         </S.CategoryMemberWrap>
       )}
       {hooks.viewPermission && <PermissionModal onClose={hooks.HandleViewPermission} />}
-      {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />}
-      {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
+      {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={onClose} />}
+      {showStudentList && <AddStudent onClose={onClose} />}
     </S.Main>
   );
 };
