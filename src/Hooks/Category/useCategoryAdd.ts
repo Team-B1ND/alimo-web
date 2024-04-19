@@ -3,7 +3,7 @@ import { showToast } from "src/lib/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
 import useCategoryManage from "./useCateogyManage";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/lib/Axios/customAxios";
 import { Student, MemberInfo } from "src/types/Category/Add.types";
 
 const useCategoryAdd = () => {

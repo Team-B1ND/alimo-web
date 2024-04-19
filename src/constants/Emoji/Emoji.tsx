@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/lib/Axios/customAxios";
 import CONFIG from "src/config/config.json";
 import * as S from "src/constants/Emoji/style/Emoji.style";
 

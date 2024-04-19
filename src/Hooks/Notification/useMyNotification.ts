@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/lib/Axios/customAxios";
 import Swal from "sweetalert2";
 import { showToast } from "src/lib/Toast/Swal";
 

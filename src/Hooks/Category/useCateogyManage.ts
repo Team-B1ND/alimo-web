@@ -6,7 +6,7 @@ import {
   CategoryData,
   MemberInCategoryData,
 } from "src/types/Category/interface";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/lib/Axios/customAxios";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useState<string | null>(

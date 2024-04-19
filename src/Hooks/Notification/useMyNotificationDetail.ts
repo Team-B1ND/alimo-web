@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
-import { alimoV1Axios } from "src/lib/axios/CustomAxios";
+import { alimoV1Axios } from "src/lib/Axios/customAxios";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();

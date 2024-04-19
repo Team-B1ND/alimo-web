@@ -5,7 +5,7 @@ import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
 import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
-import useCategoryAdd from "src/Hooks/Category/useCategoryAdd";
+import useCategoryAdd from "src/hooks/Category/useCategoryAdd";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
   const { ...hooks } = useCategoryAdd();

@@ -1,4 +1,4 @@
-import useCategoryManage from "src/Hooks/Category/useCateogyManage";
+import useCategoryManage from "src/hooks/Category/useCateogyManage";
 import * as S from "../style/CreateCategoryName";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
