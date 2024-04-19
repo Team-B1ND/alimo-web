@@ -10,7 +10,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
 const MyPostNotification = () => {
-  const { notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
+  const { notificationData, DataAbsence, DeleteButtonClick } =
+    useMyNotification();
   const navigate = useNavigate();
   const [, setIsImageError] = useState(true);
 
@@ -24,24 +25,35 @@ const MyPostNotification = () => {
         notificationData.map((notification: MyNotificationData) => (
           <S.MyPostNotificationWrap key={notification.notificationId}>
             <S.MyPostNotification>
-              <S.MyNotificationBox onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
+              <S.MyNotificationBox
+                onClick={() =>
+                  navigate(`/write-read/${notification.notificationId}`)
+                }>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError}/>
+                    <S.MyProfile
+                      src={notification.profileImage || DefaultImg}
+                      onError={HandleImageError}
+                    />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>
-                        {dayjs(notification.createdAt).locale("ko").format("YYYY년 MM월 DD일(ddd) HH:mm")}
+                        {dayjs(notification.createdAt)
+                          .locale("ko")
+                          .format("YYYY년 MM월 DD일(ddd) HH:mm")}
                       </S.MyNotificationDate>
                     </S.MyInfoText>
                   </S.MyInfoWrap>
                   <S.MyContentBoxWrap>
                     <S.MyContentTitleWrap>
-                      <S.MyContentTitle>{notification.title}</S.MyContentTitle>
+                      <S.MyContentTitle>{notification.title ? notification.title : ""}</S.MyContentTitle>
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>
                       <S.MyContent>
-                        {notification.content.length < 50 ? notification.content : `${notification.content.substring(0, 50)}...`}
+                        {notification.content
+                          ? notification.content.length < 50
+                            ? notification.content
+                            : `${notification.content.substring(0, 50)}...` : ""}
                       </S.MyContent>
                     </S.MyContentWrap>
                   </S.MyContentBoxWrap>
@@ -58,7 +70,11 @@ const MyPostNotification = () => {
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>
               <S.DeleteButtonWrap>
-                <S.DeleteButton src={SettingImg} onClick={() => {DeleteButtonClick(notification);}}></S.DeleteButton>
+                <S.DeleteButton
+                  src={SettingImg}
+                  onClick={() => {
+                    DeleteButtonClick(notification);
+                  }}></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>
