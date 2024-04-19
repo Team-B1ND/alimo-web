@@ -4,27 +4,32 @@ import { CategoryData, MemberInCategoryData } from "src/types/Category/interface
 import { Student, MemberInfo } from "src/types/Category/Add.types";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
-import { useRecoilValue } from "recoil";
-import { ShowStudentList, newCategoryNameState } from "src/store/category/category.store";
+import { useRecoilState } from "recoil";
+import {
+  MemberId,
+  newCategoryData,
+  newMemberData,
+  newMemberInfo,
+  newSelectedData,
+  newStudent,
+} from "src/store/category/category.store";
 
 const useCategoryManage = () => {
-  const [isClickedCategory, setIsClickedCategory] = useState<string>("");
+  const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
-  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
-  const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
-  const [permission, setPermission] = useState<string>("");
+  const [categoryData, setCategoryData] = useRecoilState(newCategoryData);
+  const [memberData, setMemberData] = useRecoilState(newMemberData);
+  const [permission, setPermission] = useRecoilState(MemberId);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [searchMember, setSearchMember] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
   const [GradeName, setGradeName] = useState<string>("");
-  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
+  const [selectedStudents, setSelectedStudents] = useRecoilState(newStudent);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [memberInfo, setMemberInfo] = useRecoilState(newMemberInfo);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [room, setRoom] = useState<string>("");
-  const NewCategoryNameState = useRecoilValue(newCategoryNameState);
-  const ShowStudentListState = useRecoilValue(ShowStudentList);
 
   const getCategoryList = async () => {
     try {
@@ -67,6 +72,11 @@ const useCategoryManage = () => {
         .then((res) => {
           setMemberData(res.data.data);
         });
+      console.log(
+        memberData.map((mem) => mem.id),
+        selectedStudents.map((std) => std.id),
+        memberInfo.map((memb) => memb.memberId),
+      );
     } catch (error) {
       console.log(error);
     }
@@ -90,10 +100,6 @@ const useCategoryManage = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const HandleViewPermission = () => {
-    setViewPermission((prev) => !prev);
   };
 
   const handleDeletetCategory = async () => {
@@ -161,42 +167,51 @@ const useCategoryManage = () => {
       });
   };
 
-  const handleGivePermission = async () => {
-    if (permission === "ACCESS_MEMBER") {
-      try {
-        await alimoV1Axios.patch("/permission/change-admin", {
-          memberId: memberData.map((member) => member.id),
-          categoryName: categoryData.map((category) => category.categoryName),
-        });
-        console.log(permission);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        await alimoV1Axios.patch("permission/change-student", {
-          memberId: selectedStudents.map((member) => member.id),
-          categoryName: categoryData.map((category) => category.categoryName),
-        });
-        console.log(permission);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  const handlePermission = (memberId: number) => {
+    setPermission(memberId);
+    setViewPermission((prev) => !prev);
   };
 
-  const handleDeleteMember = async () => {
-    try {
-      await alimoV1Axios.delete("category/delete-member", {
-        data: {
-          memberId: memberData.map((member) => member.id),
-          categoryName: isClickedCategory,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleViewPermission = () => {
+    setViewPermission((prev) => !prev);
   };
+
+  // const handleGivePermission = async () => {
+  //   if (permission === "ACCESS_MEMBER") {
+  //     try {
+  //       await alimoV1Axios.patch("/permission/change-admin", {
+  //         memberId: memberData.map((member) => member.id),
+  //         categoryName: categoryData.map((category) => category.categoryName),
+  //       });
+  //       console.log(permission);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   } else {
+  //     try {
+  //       await alimoV1Axios.patch("permission/change-student", {
+  //         memberId: selectedStudents.map((member) => member.id),
+  //         categoryName: categoryData.map((category) => category.categoryName),
+  //       });
+  //       console.log(permission);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+
+  // const handleDeleteMember = async () => {
+  //   try {
+  //     await alimoV1Axios.delete("category/delete-member", {
+  //       data: {
+  //         memberId: memberData.map((member) => member.id),
+  //         categoryName: isClickedCategory,
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return {
     GradeName,
@@ -224,10 +239,11 @@ const useCategoryManage = () => {
     OnCategoryName,
     SearchCategoryName,
     handleGetCategoryList,
-    HandleViewPermission,
+    handlePermission,
+    handleViewPermission,
     handleDeletetCategory,
-    handleGivePermission,
-    handleDeleteMember,
+    // handleGivePermission,
+    // handleDeleteMember,
   };
 };
 

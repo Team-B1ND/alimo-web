@@ -9,10 +9,12 @@ import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
 import PermissionModal from "./PermissionModal";
 import useAddStudnet from "src/hooks/Category/useAddStudent";
+import useMemberManage from "src/hooks/Category/useMemberManage";
 
 const CategoryManage = () => {
   const { ...hooks } = useCategoryManage();
   const { showStudentList, handlePopUp, onClose } = useAddStudnet();
+  const { handleGivePermission, handleDeleteMember } = useMemberManage();
 
   useEffect(() => {
     hooks.getCategoryList();
@@ -83,9 +85,9 @@ const CategoryManage = () => {
                   <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
                   <S.MemeberName>{member.name}</S.MemeberName>
                   <S.MemberClassNumber>
-                    {member.grade !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
+                    {member.name !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
                   </S.MemberClassNumber>
-                  <S.MoreImg src={MoreImg} onClick={hooks.HandleViewPermission} />
+                  <S.MoreImg src={MoreImg} onClick={() => hooks.handlePermission(member.id)} />
                 </S.Member>
               </S.MemberWrap>
             ))
@@ -94,7 +96,7 @@ const CategoryManage = () => {
           )}
         </S.CategoryMemberWrap>
       )}
-      {hooks.viewPermission && <PermissionModal onClose={hooks.HandleViewPermission} />}
+      {hooks.viewPermission && <PermissionModal onClose={hooks.handleViewPermission} />}
       {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={onClose} />}
       {showStudentList && <AddStudent onClose={onClose} />}
     </S.Main>

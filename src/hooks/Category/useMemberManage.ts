@@ -1,37 +1,41 @@
-import { useState } from "react";
-import { alimoV1Axios } from "@src/libs/axios/CustomAxios";
-import { CategoryData, MemberInCategoryData } from "@src/types/Category/interface";
+import { MemberId, newSelectedData } from "src/store/category/category.store";
+import { useRecoilValue } from "recoil";
+import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 
 const useMemberManage = () => {
-  // const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
-  // const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
-  // const handleGivePermission = async () => {
-  //   if (permission === "ACCESS_MEMBER") {
-  //     try {
-  //       await alimoV1Axios.patch("/permission/change-admin", {
-  //         memberId: memberData.map((member) => member.id),
-  //         categoryName: categoryData.map((category) => category.categoryName),
-  //       });
-  //       console.log(permission);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   } else {
-  //     try {
-  //       await alimoV1Axios.patch("permission/change-student", {
-  //         memberId: selectedStudents.map((member) => member.id),
-  //         categoryName: categoryData.map((category) => category.categoryName),
-  //       });
-  //       console.log(permission);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
+  const isSelctedCategory = useRecoilValue(newSelectedData);
+  const MemberID = useRecoilValue(MemberId);
 
-  // return {
-  //   handleGivePermission,
-  // };
+  const handleGivePermission = async () => {
+    try {
+      await alimoV1Axios.patch("/permissoin/change-admin", {
+        memberId: MemberID,
+        categoryName: isSelctedCategory,
+      });
+    } catch (e) {}
+  };
+
+  const handleDeleteMember = async () => {
+    try {
+      await alimoV1Axios
+        .delete("/category/delete-member", {
+          data: {
+            memberList: [MemberID],
+            categoroyName: isSelctedCategory,
+          },
+        })
+        .then(() => {
+          window.location.reload();
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return {
+    handleGivePermission,
+    handleDeleteMember,
+  };
 };
 
 export default useMemberManage;
