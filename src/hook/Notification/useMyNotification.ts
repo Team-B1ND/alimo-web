@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
+import { MyNotificationData } from "@src/types/MyNotification/MyNotification.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { showToast } from "src/libs/Toast/Swal";
@@ -24,12 +24,10 @@ const useMyNotification = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await alimoV1Axios
-            .delete(`notification/delete/${notificationIdValue}`)
-            .then(() => {
-              showToast("success", "공지 삭제성공");
-              setNotificationDelete((prev) => prev + 1);
-            });
+          await alimoV1Axios.delete(`notification/delete/${notificationIdValue}`).then(() => {
+            showToast("success", "공지 삭제성공");
+            setNotificationDelete((prev) => prev + 1);
+          });
         } catch (error) {
           showToast("error", "공지 삭제실패");
           console.log(error);

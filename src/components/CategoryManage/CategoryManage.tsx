@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/components/SideBar/SideBar";
-import useCategoryManage from "src/hooks/Category/useCateogyManage";
+import useCategoryManage from "@src/hook/Category/useCateogyManage";
 import AddStudent from "./StudentModal/AddStudent";
 import StudentList from "./CategoryNameModal";
 import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
 import PermissionModal from "./PermissionModal";
-import useAddStudnet from "src/hooks/Category/useAddStudent";
+import useAddStudnet from "@src/hook/Category/useAddStudent";
 
 const CategoryManage = () => {
   const { ...category } = useCategoryManage();
