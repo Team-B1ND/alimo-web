@@ -116,7 +116,7 @@ const useCategoryManage = () => {
   };
 
   const onClickAddStudent = (studentId: number) => {
-    setSelectedStudents((prev) => [...prev, { id: studentId }]);
+    setSelectedStudents((prev) => [...prev, { id: studentId, name: "" }]);
   };
 
   const onClickAccess = (access: string) => {

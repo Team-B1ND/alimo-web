@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import { MemberInfo, Student } from "src/types/Category/Add.types";
 import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/Toast/Swal";
-import { useRecoilState } from "recoil";
-import { ShowStudentList } from "src/store/category/category.store";
-import useCategoryManage from "./useCateogyManage";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { ShowStudentList, newSelectedData } from "src/store/category/category.store";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
@@ -14,13 +13,22 @@ const useAddStudnet = () => {
   const [room, setRoom] = useState<string>("");
   const [showStudentList, setShowStudentList] = useRecoilState(ShowStudentList);
   const [memberCnt, setMemberCnt] = useState<number>();
+  const [addMember, setAddMember] = useState<boolean>(false);
+  const SelctedCategory = useRecoilValue(newSelectedData);
   const { createCategoryName } = useCreateCategory();
 
-  const onClickAddStudent = (studentId: number) => {
+  const onClickAddStudent = (studentId: number, studentName: string) => {
     if (studentId === -1) {
-      setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId })));
+      setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId, name: member.name })));
+    } else if (selectedStudents.some((student) => student.id === studentId)) {
+      setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
+    } else {
+      setSelectedStudents((prev) => [...prev, { id: studentId, name: studentName }]);
     }
-    setSelectedStudents((prev) => [...prev, { id: studentId }]);
+  };
+
+  const onClickRemoveStudent = (studentId: number) => {
+    setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
   };
 
   const onLoadStudentInfo = async (grade: number, cls: number) => {
@@ -57,25 +65,41 @@ const useAddStudnet = () => {
 
   const onSearchMember = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchMember(e.target.value);
-  }
+  };
 
-  const onClickAddCategory = async () => {
-    try {
-      await alimoV1Axios
-        .post("/category/create", {
-          memberList: selectedStudents.map((member) => member.id),
-          categoryName: createCategoryName,
-        })
-        .then(() => {
-          setShowStudentList(false);
-        });
-    } catch (e) {
-      showToast("error", "서버 통신 오류");
+  const onClickAdd = async () => {
+    if (addMember === false) {
+      try {
+        await alimoV1Axios
+          .post("/category/create", {
+            memberList: selectedStudents.map((member) => member.id),
+            categoryName: createCategoryName,
+          })
+          .then(() => {
+            setShowStudentList(false);
+          });
+      } catch (e) {
+        showToast("error", "서버 통신 오류");
+      }
+    } else {
+      try {
+        await alimoV1Axios
+          .post("/category/add-member", {
+            memberList: selectedStudents.map((member) => member.id),
+            categoryName: SelctedCategory,
+          })
+          .then(() => {
+            setShowStudentList(false);
+            setAddMember(false);
+          });
+      } catch (error) {}
     }
   };
 
   const handlePopUp = () => {
     setShowStudentList(!showStudentList);
+    setAddMember(!addMember);
+    console.log(addMember);
   };
 
   const onClose = () => {
@@ -89,11 +113,13 @@ const useAddStudnet = () => {
     selectedStudents,
     showStudentList,
     searchMember,
+    addMember,
     onClickAddStudent,
+    onClickRemoveStudent,
     onLoadStudentInfo,
     onLoadMemberInfo,
     onSearchMember,
-    onClickAddCategory,
+    onClickAdd,
     handlePopUp,
     onClose,
   };

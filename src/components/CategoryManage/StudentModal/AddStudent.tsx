@@ -62,7 +62,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                 <S.Class>{student.room === "0반" ? "전체" : student.room}</S.Class>
                 &nbsp;
                 <S.ClassStudent>{student.memberCnt}</S.ClassStudent>
-                <S.AllSelect onClick={() => student.onClickAddStudent(-1)}>전체선택</S.AllSelect>
+                <S.AllSelect onClick={() => student.onClickAddStudent(-1, "")}>전체선택</S.AllSelect>
               </S.UtilityWrap>
               {student.memberInfo.map((stud, idx) => (
                 <S.StudentList key={idx}>
@@ -70,7 +70,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                     src={
                       student.selectedStudents.some((std) => std.id === stud.memberId) ? CheckStudent : NoneCheckStudent
                     }
-                    onClick={() => student.onClickAddStudent(stud.memberId)}
+                    onClick={() => student.onClickAddStudent(stud.memberId, stud.name)}
                   />
                   <S.ProfileImg src={stud.profileImage !== null ? stud.profileImage : ProfileImg} />
                   <S.StudentName>{stud.name}</S.StudentName>
@@ -78,16 +78,23 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               ))}
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
-              <S.ViewSelectedStudent>
-                <img src={ProfileImg} />
-                <S.ViewStudentName>김가영</S.ViewStudentName>
-                <S.DenyStudent style={{ marginLeft: "4vw" }} src={DenyStudent} />
-              </S.ViewSelectedStudent>
+              {student.selectedStudents.map((std) => (
+                <S.ViewSelectedStudent>
+                  <div style={{ marginLeft: "2vw" }}>
+                    <S.ViewStudentName>{std.name}</S.ViewStudentName>
+                    <S.DenyStudent
+                      src={DenyStudent}
+                      style={{ marginLeft: "1vw" }}
+                      onClick={() => student.onClickRemoveStudent(std.id)}
+                    />
+                  </div>
+                </S.ViewSelectedStudent>
+              ))}
             </S.ViewSelectedStudentWrap>
           </S.SelectionWrap>
           <S.ButtonWrap>
             <S.CancleButton onClick={onClose}>취소</S.CancleButton>
-            <S.ConfirmButton onClick={student.onClickAddCategory}>선택</S.ConfirmButton>
+            <S.ConfirmButton onClick={student.onClickAdd}>선택</S.ConfirmButton>
           </S.ButtonWrap>
           <S.CloseButton src={CloseImg} onClick={onClose} />
         </S.SelectStudentDialog>

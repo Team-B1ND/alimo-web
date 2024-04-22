@@ -1,6 +1,4 @@
-import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
 import { atom } from "recoil";
-import { MemberInfo, Student } from "src/types/Category/Add.types";
 
 export const newCategoryNameState = atom<string>({
   key: "newCategoryNameState",
