@@ -3,7 +3,7 @@ import * as S from "./AddStudent.style";
 import CheckStudent from "src/assets/img/CheckStudent.png";
 import NoneCheckStudent from "src/assets/img/NoneCheckStudent.png";
 import ProfileImg from "src/assets/img/ProfileImg.svg";
-import CloseImg from "src/assets/img/Closeimg.png";
+import CloseImg from "src/assets/img/CloseImg.png";
 import DenyStudent from "src/assets/img/DenyStudent.svg";
 import useAddStudnet from "src/hooks/Category/useAddStudent";
 
