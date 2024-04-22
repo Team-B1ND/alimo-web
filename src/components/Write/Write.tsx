@@ -59,14 +59,16 @@ const Write = () => {
           <S.SendCategoryWrap>
             <S.SendCategoryTitle>보낼 카테고리를 선택해주세요.</S.SendCategoryTitle>
             <S.CategoryWrap>
-              {hooks.CategoryList.map((CategoryName) => (
-                <S.Cateogory
-                  onClick={() => hooks.HandleAddCategory(CategoryName)}
-                  isClicked={hooks.selectedCategory.some((category) => category.name === CategoryName)}
-                >
-                  {CategoryName}
-                </S.Cateogory>
-              ))}
+              {hooks.categoryList &&
+                hooks.categoryList.map((Category, idx) => (
+                  <S.Cateogory
+                    onClick={() => hooks.HandleAddCategory(Category)}
+                    isClicked={hooks.selectedCategory.some((category) => category.name === Category)}
+                    key={idx}
+                  >
+                    {Category}
+                  </S.Cateogory>
+                ))}
             </S.CategoryWrap>
           </S.SendCategoryWrap>
           <S.UplaodButtonWrap>

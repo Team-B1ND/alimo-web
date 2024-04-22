@@ -14,3 +14,7 @@ export interface WriteElemProps {
 export interface notificationId {
   NotificationId: number;
 }
+
+export interface CategoryList {
+  categoryList: string;
+}

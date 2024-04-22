@@ -3,8 +3,7 @@ import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "re
 import { useRecoilValue } from "recoil";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
-import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category, WriteElemProps, notificationId } from "src/types/Write/write.type";
+import { Category, CategoryList, WriteElemProps, notificationId } from "src/types/Write/write.type";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
@@ -19,11 +18,11 @@ const useWrite = () => {
   const [file, setFile] = useState<File[]>([]);
   const [image, setImage] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
+  const [categoryList, setCategoryList] = useState<string[]>([]);
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [notificationId, setNotificationId] = useState<notificationId>();
-  const CategoryList = useRecoilValue(categoryListState);
 
   //제목, 내용, 카테고리 미 입력 혹은 미 선택시 버튼 비활성화 로직
   useEffect(() => {
@@ -86,6 +85,17 @@ const useWrite = () => {
   const DeletePreviewImage = () => {
     setImage([]);
   };
+
+  //글쓰기 카테고리 확인
+  const handleCheckCategory = async () => {
+    await alimoV1Axios.get("/category/get-notification-category").then((res) => {
+      setCategoryList(res.data.data.categoryNameList);
+    });
+  };
+
+  useEffect(() => {
+    handleCheckCategory();
+  }, []);
 
   //카테고리 선택 로직 (중복선택 가능)
   const HandleAddCategory = async (CategoryName: string) => {
@@ -193,7 +203,7 @@ const useWrite = () => {
     wirteElem,
     notAllow,
     image,
-    CategoryList,
+    categoryList,
     memberCnt,
     imageInputRef,
     handleWriteElem,
