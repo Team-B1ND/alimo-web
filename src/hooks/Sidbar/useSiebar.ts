@@ -4,7 +4,7 @@ import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import { NavigationProps } from "@src/type/login/Sidebar.types";
+import { NavigationProps } from "src/types/login/Sidebar.types";
 
 const Sidbar = () => {
   const navigate = useNavigate();

@@ -3,8 +3,8 @@ import { showToast } from "src/libs/Toast/Swal";
 import {
   CategoryData,
   MemberInCategoryData,
-} from "@src/type/Category/interface";
-import { Student, MemberInfo } from "@src/type/Category/Add.types";
+} from "src/types/Category/interface";
+import { Student, MemberInfo } from "src/types/Category/Add.types";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import axios from "axios";

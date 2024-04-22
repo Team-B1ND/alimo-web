@@ -1,7 +1,7 @@
 import { LinkItUrl } from "react-linkify-it";
-import { ImageData } from "@src/type/MyNotificationDetail/Image.interface";
-import { FileData } from "@src/type/MyNotificationDetail/File.interface";
-import { CommentData } from "@src/type/CommentList/CommentList.interface";
+import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
+import { FileData } from "src/types/MyNotificationDetail/File.interface";
+import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useMyNotificationDetail from "src/hooks/Notification/useMyNotificationDetail";
 import SideBar from "src/components/SideBar/SideBar";
 import PostClose from "src/assets/img/PostClose.svg";

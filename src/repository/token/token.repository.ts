@@ -1,4 +1,4 @@
-import { RefreshResponse } from "@src/type/token/token.type";
+import { RefreshResponse } from "src/types/token/token.type";
 import { RefreshTokenParam } from "./token.param";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
