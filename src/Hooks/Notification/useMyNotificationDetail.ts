@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
+import { fileSizeTransform } from "src/constants/data/fileSizeData.constants";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import { alimoV1Axios } from "src/lib/Axios/customAxios";
 
@@ -93,30 +94,15 @@ const useMyNotificationDetail = () => {
   // 공지글 디테일 데이터 요청
   useEffect(() => {
     const NotificationRead = async () => {
-      await alimoV1Axios
-        .get(`notification/read/${id}`)
-        .then((res) => {
-          setData(res.data.data);
-          setImageData(res.data.data.images);
-          setFileData(res.data.data.files);
-          setCommentData(res.data.data.comments);
+      await alimoV1Axios.get(`notification/read/${id}`).then((res) => {
+        setData(res.data.data);
+        setImageData(res.data.data.images);
+        setFileData(res.data.data.files);
+        setCommentData(res.data.data.comments);
 
-          let fileSizeData: Array<string> = [];
-          const fileData = res.data.data.files;
-          fileData.map((fileData: FileData) => {
-            let fileSize = fileData.fileSize;
-            const sizes = ["B", "KB", "MB", "GB", "TB"];
-
-            for (let i = 0; i < sizes.length; i++) {
-              if (parseInt(fileSize) < 1024) {
-                fileSizeData.push(`${fileSize} ${sizes[i]}`);
-                break;
-              }
-              fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
-            }
-          });
-          setFileSize(fileSizeData);
-        });
+        let fileSizeData = fileSizeTransform(res.data.data.files);
+        setFileSize(fileSizeData);
+      });
     };
     NotificationRead();
   }, [id, commentCreateCount]);
