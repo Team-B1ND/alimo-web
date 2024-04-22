@@ -28,7 +28,8 @@ const MyPostNotification = () => {
               <S.MyNotificationBox
                 onClick={() =>
                   navigate(`/write-read/${notification.notificationId}`)
-                }>
+                }
+              >
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
                     <S.MyProfile
@@ -46,14 +47,17 @@ const MyPostNotification = () => {
                   </S.MyInfoWrap>
                   <S.MyContentBoxWrap>
                     <S.MyContentTitleWrap>
-                      <S.MyContentTitle>{notification.title ? notification.title : ""}</S.MyContentTitle>
+                      <S.MyContentTitle>
+                        {notification.title ? notification.title : ""}
+                      </S.MyContentTitle>
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>
                       <S.MyContent>
                         {notification.content
                           ? notification.content.length < 50
                             ? notification.content
-                            : `${notification.content.substring(0, 50)}...` : ""}
+                            : `${notification.content.substring(0, 50)}...`
+                          : ""}
                       </S.MyContent>
                     </S.MyContentWrap>
                   </S.MyContentBoxWrap>
@@ -74,7 +78,8 @@ const MyPostNotification = () => {
                   src={SettingImg}
                   onClick={() => {
                     DeleteButtonClick(notification);
-                  }}></S.DeleteButton>
+                  }}
+                ></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>

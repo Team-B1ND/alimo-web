@@ -42,7 +42,8 @@ const Login = () => {
                 <S.IdBtn
                   onClick={() => {
                     login.setIdValue("");
-                  }}>
+                  }}
+                >
                   <img
                     style={{
                       display: `${login.idValue !== "" ? "block" : "none"}`,
@@ -70,7 +71,8 @@ const Login = () => {
                   onKeyDown={login.handleKeyDown}
                 />
                 <S.PasswordBtn
-                  onClick={() => login.setIsShowPswd((current) => !current)}>
+                  onClick={() => login.setIsShowPswd((current) => !current)}
+                >
                   <img
                     style={{
                       display: `${

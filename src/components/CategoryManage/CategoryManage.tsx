@@ -58,10 +58,15 @@ const CategoryManage = () => {
               value={hooks.searchMember}
               type="search"
             />
-            <S.CategorySearchButton style={{ marginTop: "10px" }} onClick={hooks.handleGetMemberData}>
+            <S.CategorySearchButton
+              style={{ marginTop: "10px" }}
+              onClick={hooks.handleGetMemberData}
+            >
               <img src={searchImg} />
             </S.CategorySearchButton>
-            <S.AddMemberButton onClick={hooks.handlePopUp}>새 멤버</S.AddMemberButton>
+            <S.AddMemberButton onClick={hooks.handlePopUp}>
+              새 멤버
+            </S.AddMemberButton>
           </S.MemberManageWrap>
           <S.MemberUtilityWrap>
             <S.MemberNameInfo>
@@ -73,12 +78,23 @@ const CategoryManage = () => {
             hooks.memberData.map((member, idx) => (
               <S.MemberWrap key={idx}>
                 <S.Member>
-                  <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
+                  <S.MemeberProfileImg
+                    src={
+                      member.profileImage !== null
+                        ? member.profileImage
+                        : ProfileImage
+                    }
+                  />
                   <S.MemeberName>{member.name}</S.MemeberName>
                   <S.MemberClassNumber>
-                    {member.grade !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
+                    {member.grade !== null && member.room !== null
+                      ? `${member.grade}학년 ${member.room}반`
+                      : "학부모"}
                   </S.MemberClassNumber>
-                  <S.MoreImg src={MoreImg} onClick={hooks.HandleViewPermission} />
+                  <S.MoreImg
+                    src={MoreImg}
+                    onClick={hooks.HandleViewPermission}
+                  />
                 </S.Member>
               </S.MemberWrap>
             ))
@@ -87,8 +103,12 @@ const CategoryManage = () => {
           )}
         </S.CategoryMemberWrap>
       )}
-      {hooks.viewPermission && <PermissionModal onClose={hooks.HandleViewPermission} />}
-      {hooks.showCategoryName && <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />}
+      {hooks.viewPermission && (
+        <PermissionModal onClose={hooks.HandleViewPermission} />
+      )}
+      {hooks.showCategoryName && (
+        <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />
+      )}
       {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
     </S.Main>
   );

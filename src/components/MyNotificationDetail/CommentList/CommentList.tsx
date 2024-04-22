@@ -6,21 +6,33 @@ import * as S from "src/components/MyNotificationDetail/CommentList/style";
 
 interface Props {
   comment: CommentData;
-  handleReplyCommentCreate: (replyCommentValue: string, parentId: number, setIsReplyCommentWriteShow: Function) => Promise<void>
+  handleReplyCommentCreate: (
+    replyCommentValue: string,
+    parentId: number,
+    setIsReplyCommentWriteShow: Function
+  ) => Promise<void>;
 }
 
 const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
   const { ...CommentList } = useCommentList();
-  
+
   return (
     <S.MyNotificationCommentWrap>
       {/* 댓글 뷰 컴포넌트 */}
       <S.MyNotificationCommentBox>
         <S.MyNotificationComment>
           <S.CommentInfoWrap>
-            <S.CommentProfile src={comment.profileImage === null ? defaultProfile: comment.profileImage}/>
-            {(comment.subComments.length > 0 || CommentList.isReplyCommentWriteShow) &&
-              (CommentList.isReplyCommentShow || CommentList.isReplyCommentWriteShow) && (
+            <S.CommentProfile
+              src={
+                comment.profileImage === null
+                  ? defaultProfile
+                  : comment.profileImage
+              }
+            />
+            {(comment.subComments.length > 0 ||
+              CommentList.isReplyCommentWriteShow) &&
+              (CommentList.isReplyCommentShow ||
+                CommentList.isReplyCommentWriteShow) && (
                 <S.CommentConnectLine></S.CommentConnectLine>
               )}
           </S.CommentInfoWrap>
@@ -30,14 +42,24 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
               <S.CommentContent replyCommentCnt={comment.subComments.length}>
                 {comment.content}
               </S.CommentContent>
-              <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
-                {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
+              <S.ReplyCommentWriteBtn
+                onClick={CommentList.handleReplyCommentWrite}
+              >
+                {CommentList.isReplyCommentWriteShow
+                  ? "답글 닫기"
+                  : "답글 달기"}
               </S.ReplyCommentWriteBtn>
             </S.CommentContentBox>
             {comment.subComments.length > 0 && (
               <S.ReplyCommentShowBtnWrap>
-                <S.ReplyCommentShowBtn onClick={() => CommentList.setIsReplyCommentShow((current) => !current)}>
-                  {CommentList.isReplyCommentShow ? "답글 닫기" : `답글 ${comment.subComments.length}개 모두 보기`}
+                <S.ReplyCommentShowBtn
+                  onClick={() =>
+                    CommentList.setIsReplyCommentShow((current) => !current)
+                  }
+                >
+                  {CommentList.isReplyCommentShow
+                    ? "답글 닫기"
+                    : `답글 ${comment.subComments.length}개 모두 보기`}
                 </S.ReplyCommentShowBtn>
               </S.ReplyCommentShowBtnWrap>
             )}
@@ -48,10 +70,10 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
 
       {/* 답글 달기 */}
       {CommentList.isReplyCommentWriteShow && (
-        <ReplyComment 
-          commentData={comment} 
-          isReplyCommentShow={CommentList.isReplyCommentShow} 
-          setIsReplyCommentWriteShow = {CommentList.setIsReplyCommentWriteShow}
+        <ReplyComment
+          commentData={comment}
+          isReplyCommentShow={CommentList.isReplyCommentShow}
+          setIsReplyCommentWriteShow={CommentList.setIsReplyCommentWriteShow}
           handleReplyCommentCreate={handleReplyCommentCreate}
         />
       )}
