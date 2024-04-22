@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "../style/CreateCategoryName";
-import useCreateCategory from "@src/hook/Category/useCreateCategory";
+import useCreateCategory from "src/hooks/Category/useCreateCategory";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
   const { createCategoryName, handleChangeCategoryName } = useCreateCategory();

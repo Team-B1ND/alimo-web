@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import GlobalStyles from "src/Style/global";
+import GlobalStyles from "src/style/global";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

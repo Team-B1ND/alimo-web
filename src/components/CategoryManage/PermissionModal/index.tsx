@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as S from "./style";
-import useMemberManage from "@src/hook/Category/useMemberManage";
+import useMemberManage from "src/hooks/Category/useMemberManage";
 
 const PermissionModal = ({ onClose }: { onClose: () => void }) => {
   const { ...member } = useMemberManage();
