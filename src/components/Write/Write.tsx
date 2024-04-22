@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "src/components/Write/style/Write.style";
+import * as S from "./style";
 import SideBar from "../SideBar/SideBar";
 import Header from "../Header/Header";
 import useWrite from "src/hooks/Write/useWrite";

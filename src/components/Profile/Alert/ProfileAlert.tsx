@@ -1,4 +1,4 @@
-import * as S from "./style/Alert";
+import * as S from "./style";
 import UseLogout from "src/hooks/auth/useLogout";
 import { ProfileAlertProps } from "src/types/Profile/profileAlert.type";
 

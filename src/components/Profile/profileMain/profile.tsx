@@ -1,4 +1,4 @@
-import * as S from "src/components/Profile/style/Profile.style";
+import * as S from "./style";
 import SideBar from "src/components/SideBar/SideBar";
 import CloseImg from "src/assets/img/CloseImg.png";
 import UseProfile from "src/hooks/Profile/useProfile";
