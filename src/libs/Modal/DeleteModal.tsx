@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/Category.style/Modal.style/DeleteModal.css";
+import "../../style/Category.style/Modal.style/DeleteModal.css";
 import { Image } from "react-bootstrap";
 import DeleteImg from "../../img/Category-Delete.svg";
 import { showToast } from "../Toast/Swal";
@@ -36,17 +36,20 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ onDeleteCategory }) => {
         marginTop: "1vh",
         marginLeft: "35vw",
         cursor: "pointer",
-      }}>
+      }}
+    >
       <Image src={DeleteImg} onClick={handleShow} />
       <Modal
         show={show}
         onHide={handleClose}
         centered
-        dialogClassName="custom-modal">
+        dialogClassName="custom-modal"
+      >
         <Modal.Dialog style={{ height: "30vh" }}>
           <Modal.Header
             style={{ marginTop: "-3vh" }}
-            className="DeleteTitleWrap">
+            className="DeleteTitleWrap"
+          >
             <Modal.Title>정말 카테고리를 삭제하시겠습니까?</Modal.Title>
           </Modal.Header>
           <Modal.Body className="DeleteContentWrap">

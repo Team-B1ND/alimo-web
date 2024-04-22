@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import CONFIG from "src/config/config.json"
+import CONFIG from "src/config/config.json";
 import { showToast } from "@src/libs/Toast/Swal";
-import { CategoryData, MemberInCategoryData } from "@src/types/Category/interface";
+import {
+  CategoryData,
+  MemberInCategoryData,
+} from "@src/type/Category/interface";
 import { alimoV1Axios } from "@src/libs/axios/CustomAxios";
 
 const useCategoryManage = () => {
-  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(null);
+  const [isClickedCategory, setIsClickedCategory] = useState<string | null>(
+    null
+  );
   const [createCategoryName, setCreateCategoryName] = useState<string>("");
   const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
@@ -25,7 +30,9 @@ const useCategoryManage = () => {
 
     try {
       await alimoV1Axios
-        .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+        .get(
+          `/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`
+        )
         .then((res) => {
           setMemberData(res.data.data);
         });
@@ -40,7 +47,9 @@ const useCategoryManage = () => {
   };
 
   //카테고리 생성 시 사용되는 인풋 로직
-  const OnChangeCreateCategoryName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const OnChangeCreateCategoryName = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCreateCategoryName(e.target.value);
   };
 
@@ -52,7 +61,9 @@ const useCategoryManage = () => {
   //카테고리 검색 로직
   const SearchCategory = async () => {
     try {
-      await alimoV1Axios.get(`${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`);
+      await alimoV1Axios.get(
+        `${CONFIG.serverUrl}/category/get-category?page=1&size=1&searchKeyword=${searchKeyword}`
+      );
     } catch (e) {
       showToast("eror", "서버 통신 오류");
     }
@@ -62,7 +73,11 @@ const useCategoryManage = () => {
   const getCategoryList = async () => {
     try {
       await alimoV1Axios
-        .get(`${CONFIG.serverUrl}/category/get-category?page=${1}&size=${15}&searchKeyword=`)
+        .get(
+          `${
+            CONFIG.serverUrl
+          }/category/get-category?page=${1}&size=${15}&searchKeyword=`
+        )
         .then((res) => {
           setCategoryData(res.data.data);
         });

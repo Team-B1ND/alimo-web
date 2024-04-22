@@ -7,7 +7,7 @@ import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "@src/types/Write/write.type";
+import { Category } from "@src/type/Write/write.type";
 import cookie from "src/libs/cookies/cookie";
 
 const useWrite = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "../style/CreateCategoryName";
-import useCategoryManage from "src/hook/Category/useCateogyManage";
+import useCategoryManage from "src/hooks/Category/useCateogyManage";
 
 const StudentList = ({
   onClose,

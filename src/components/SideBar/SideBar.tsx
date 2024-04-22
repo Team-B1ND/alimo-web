@@ -8,7 +8,7 @@ import Profile from "src/components/Profile/profile";
 import DefaultPrfoile from "src/assets/img/profileimg.png";
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
-import UseSideBar from "src/hook/Sidbar/useSiebar";
+import UseSideBar from "src/hooks/Sidbar/useSiebar";
 import Setting from "src/components/SettingPage/setting";
 import { useNavigate } from "react-router-dom";
 
