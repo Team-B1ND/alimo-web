@@ -18,9 +18,9 @@ const Sidbar = () => {
   const [categoryList, setCategoryList] = useRecoilState(categoryListState);
   const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
   const CategoryList = async () => {
-    const response = await alimoV1Axios.get(
-      `${CONFIG.serverUrl}/category/list/member`
-    );
+
+    const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`);
+
     const CategoryData = response.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
@@ -28,9 +28,8 @@ const Sidbar = () => {
 
   const ProfileInfo = async () => {
     try {
-      const response = await alimoV1Axios.get(
-        `${CONFIG.serverUrl}/member/info`
-      );
+
+      const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
       const userData = response.data.data;
       setName(userData.name);
       setimage(userData.image);

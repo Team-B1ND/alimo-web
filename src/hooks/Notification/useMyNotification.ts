@@ -5,9 +5,7 @@ import Swal from "sweetalert2";
 import { showToast } from "src/libs/Toast/Swal";
 
 const useMyNotification = () => {
-  const [notificationData, setNotificationData] = useState<
-    MyNotificationData[]
-  >([]);
+  const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
   const [notificationDelete, setNotificationDelete] = useState<number>(0);
 
@@ -26,12 +24,10 @@ const useMyNotification = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await alimoV1Axios
-            .delete(`notification/delete/${notificationIdValue}`)
-            .then(() => {
-              showToast("success", "공지 삭제성공");
-              setNotificationDelete((prev) => prev + 1);
-            });
+          await alimoV1Axios.delete(`notification/delete/${notificationIdValue}`).then(() => {
+            showToast("success", "공지 삭제성공");
+            setNotificationDelete((prev) => prev + 1);
+          });
         } catch (error) {
           showToast("error", "공지 삭제실패");
           console.log(error);

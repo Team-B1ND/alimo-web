@@ -11,6 +11,8 @@ export const CategoryManageView = styled.div`
   flex-direction: column;
 
   margin-top: 10vh;
+  margin-left: 12px;
+  margin-right: 12px;
 `;
 export const CategorySearchButton = styled.div`
   display: flex;
@@ -41,7 +43,7 @@ export const SearchCateogy = styled.input`
   margin-left: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-  padding-left: 2vw;
+  padding-left: 20px;
 
   color: #787878;
   font-family: Pretendard;
@@ -84,7 +86,7 @@ export const CategoryNameInfo = styled.span`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1rem;
-  margin-left: 5vw;
+  margin-left: 1vw;
 `;
 
 export const CategoryMemberInfo = styled.span`
@@ -92,12 +94,12 @@ export const CategoryMemberInfo = styled.span`
   font-family: Pretendard;
   font-weight: 400;
   font-size: 1rem;
-  margin-left: 16vw;
+  margin-left: 11vw;
 `;
 
 export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   width: calc(100vw - 65vw);
-  height: calc(100vh - 90vh);
+  height: 80px;
 
   background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
   border: none;
@@ -130,6 +132,18 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
   /* 파이어폭스 */
   scrollbar-width: none;
+
+  &:hover {
+    background: #f4f5f9;
+  }
+
+  &:active {
+    background: #f0eff2;
+    scale: 0.97;
+  }
+
+  transition: background 0.2s ease;
+  transition: scale 0.4s;
 `;
 
 export const CategoryName = styled.span`
@@ -251,9 +265,10 @@ export const MemberWrap = styled.div`
   display: flex;
   flex-direction: column;
 
+  width: 600px;
   margin-top: 1vh;
 
-  margin-left: 1vw;
+  margin-left: 7vw;
 `;
 
 export const MemeberProfileImg = styled.img`
@@ -281,6 +296,7 @@ export const MemeberName = styled.span`
   font-family: Prentendard;
   font-size: 1.3rem;
   font-weight: 500;
+  width: 200px;
 `;
 
 export const MemberClassNumber = styled.span`

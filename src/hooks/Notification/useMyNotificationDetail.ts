@@ -43,10 +43,7 @@ const useMyNotificationDetail = () => {
   };
 
   // 댓글 달기
-  const handleCommentCreate = async (
-    commentValue: string,
-    setCommentValue: Function
-  ) => {
+  const handleCommentCreate = async (commentValue: string, setCommentValue: Function) => {
     if (commentValue !== "") {
       try {
         setCommentValue("");
@@ -73,7 +70,8 @@ const useMyNotificationDetail = () => {
   const handleReplyCommentCreate = async (
     replyCommentValue: string,
     commentId: number,
-    setIsReplyCommentWriteShow: Function
+    setIsReplyCommentWriteShow: Function,
+
   ) => {
     try {
       await alimoV1Axios

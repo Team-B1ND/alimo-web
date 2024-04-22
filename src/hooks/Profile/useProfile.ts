@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import SidbarInfo from "src/hooks/Sidbar/useSiebar";
 import ProfileImg from "src/assets/img/profileimg.png";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilValue } from "recoil";
