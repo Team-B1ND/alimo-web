@@ -1,16 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "../style/CreateCategoryName";
-import useCategoryManage from "src/hooks/Category/useCateogyManage";
+import useCreateCategory from "src/hooks/Category/useCreateCategory";
 
-const StudentList = ({
-  onClose,
-  onNext,
-}: {
-  onClose: () => void;
-  onNext: () => void;
-}) => {
-  const { ...hooks } = useCategoryManage();
-
+const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
+  const { createCategoryName, handleChangeCategoryName } = useCreateCategory();
   return (
     <S.CreateWrap>
       <S.Main>
@@ -19,7 +12,8 @@ const StudentList = ({
           <S.InputWrap
             placeholder="카테고리 이름"
             type="text"
-            onChange={hooks.handleChangeCategoryName}
+            onChange={handleChangeCategoryName}
+            value={createCategoryName}
           />
           <S.ButtonWrap>
             <S.ConfirmButton onClick={onNext}>다음</S.ConfirmButton>

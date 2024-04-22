@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "src/components/CategoryManage/style/Category.style";
 import SideBar from "src/components/SideBar/SideBar";
 import useCategoryManage from "src/hooks/Category/useCateogyManage";
@@ -8,24 +8,31 @@ import MoreImg from "src/assets/img/MoreImg.svg";
 import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
 import PermissionModal from "./PermissionModal";
+import useAddStudnet from "src/hooks/Category/useAddStudent";
 
 const CategoryManage = () => {
-  const { ...hooks } = useCategoryManage();
+  const { ...category } = useCategoryManage();
+  const { showStudentList, handlePopUp, onClose } = useAddStudnet();
+
+  useEffect(() => {
+    category.getCategoryList();
+  }, []);
+
   return (
     <S.Main>
       <SideBar />
       <S.CategoryManageView>
         <S.CateogyManageUtilityWrap>
           <S.SearchCateogy
-            onChange={hooks.SearchCategoryName}
+            onChange={category.SearchCategoryName}
             placeholder="카테고리 검색"
             type="search"
-            value={hooks.searchKeyword}
+            value={category.searchKeyword}
           />
-          <S.CategorySearchButton onClick={hooks.handleGetCategoryList}>
+          <S.CategorySearchButton onClick={category.handleGetCategoryList}>
             <img src={searchImg} />
           </S.CategorySearchButton>
-          <S.CreateCategoryButton onClick={hooks.OnCategoryName}>
+          <S.CreateCategoryButton onClick={category.OnCategoryName}>
             <span> 새 카테고리</span>
           </S.CreateCategoryButton>
         </S.CateogyManageUtilityWrap>
@@ -33,68 +40,55 @@ const CategoryManage = () => {
           <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
           <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
         </S.CategoryInfoWrap>
-        {hooks.categoryData.length > 0 ? (
-          hooks.categoryData.map((item, idx) => (
+        {category.categoryData.length > 0 ? (
+          category.categoryData.map((item, idx) => (
             <S.CategoryInfo
-              isClicked={hooks.isClickedCategory === `${item.categoryName}`}
-              onClick={() => hooks.handleCategoryClick(`${item.categoryName}`)}
+              isClicked={category.isClickedCategory === `${item.categoryName}`}
+              onClick={() => category.handleCategoryClick(`${item.categoryName}`)}
               key={idx}
             >
               <S.CategoryName>{item.categoryName}</S.CategoryName>
               <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
-              <S.MoreImg src={MoreImg} onClick={hooks.handleDeletetCategory} />
+              <S.MoreImg src={MoreImg} onClick={category.handleDeletetCategory} />
             </S.CategoryInfo>
           ))
         ) : (
           <>카테고리데이터가 존재하지 않아요.</>
         )}
       </S.CategoryManageView>
-      {hooks.isClickedCategory && (
+      {category.isClickedCategory && (
         <S.CategoryMemberWrap>
           <S.MemberManageWrap>
             <S.MemberSearch
               placeholder="멤버 검색"
-              onChange={hooks.onSearchMemberName}
-              value={hooks.searchMember}
+              onChange={category.onSearchMemberName}
+              value={category.searchMember}
               type="search"
             />
             <S.CategorySearchButton
-              style={{ marginTop: "10px" }}
-              onClick={hooks.handleGetMemberData}
+              style={{ marginTop: "10px", marginLeft: "8px" }}
+              onClick={category.handleGetMemberData}
             >
               <img src={searchImg} />
             </S.CategorySearchButton>
-            <S.AddMemberButton onClick={hooks.handlePopUp}>
-              새 멤버
-            </S.AddMemberButton>
+            <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
           </S.MemberManageWrap>
           <S.MemberUtilityWrap>
             <S.MemberNameInfo>
               <span>이름</span>
             </S.MemberNameInfo>
-            <S.MemberClassNumberInfo>{hooks.GradeName}</S.MemberClassNumberInfo>
+            <S.MemberClassNumberInfo>{category.GradeName}</S.MemberClassNumberInfo>
           </S.MemberUtilityWrap>
-          {hooks.memberData.length > 0 ? (
-            hooks.memberData.map((member, idx) => (
+          {category.memberData.length > 0 ? (
+            category.memberData.map((member, idx) => (
               <S.MemberWrap key={idx}>
                 <S.Member>
-                  <S.MemeberProfileImg
-                    src={
-                      member.profileImage !== null
-                        ? member.profileImage
-                        : ProfileImage
-                    }
-                  />
+                  <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
                   <S.MemeberName>{member.name}</S.MemeberName>
                   <S.MemberClassNumber>
-                    {member.grade !== null && member.room !== null
-                      ? `${member.grade}학년 ${member.room}반`
-                      : "학부모"}
+                    {member.name !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
                   </S.MemberClassNumber>
-                  <S.MoreImg
-                    src={MoreImg}
-                    onClick={hooks.HandleViewPermission}
-                  />
+                  <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(member.id, member.permission)} />
                 </S.Member>
               </S.MemberWrap>
             ))
@@ -103,13 +97,9 @@ const CategoryManage = () => {
           )}
         </S.CategoryMemberWrap>
       )}
-      {hooks.viewPermission && (
-        <PermissionModal onClose={hooks.HandleViewPermission} />
-      )}
-      {hooks.showCategoryName && (
-        <StudentList onClose={hooks.OnCategoryName} onNext={hooks.onClose} />
-      )}
-      {hooks.showStudentList && <AddStudent onClose={hooks.onClose} />}
+      {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
+      {category.showCategoryName && <StudentList onClose={category.OnCategoryName} onNext={onClose} />}
+      {showStudentList && <AddStudent onClose={onClose} />}
     </S.Main>
   );
 };
