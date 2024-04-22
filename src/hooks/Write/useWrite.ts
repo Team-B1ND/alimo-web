@@ -1,47 +1,46 @@
-import axios from "axios";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import React, { useState, useRef, useEffect, ChangeEvent } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useNavigate } from "react-router-dom";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
+import { Category, CategoryList, WriteElemProps, notificationId } from "src/types/Write/write.type";
+import axios from "axios";
 import CONFIG from "src/config/config.json";
-import { categoryListState } from "src/store/profile/ProfileStore";
-import { Category } from "src/types/Write/write.type";
-import cookie from "src/libs/cookies/cookie";
+import token from "src/libs/token/token";
 
 const useWrite = () => {
-  const navigate = useNavigate();
-  const [title, setTitle] = useState<string>("");
-  const [context, setContext] = useState<string>("");
-  const [file, setFile] = useState<File[]>();
-  const [image, setImage] = useState<File[]>();
+  const [wirteElem, setWirteElem] = useState<WriteElemProps>({
+    title: "",
+    content: "",
+  });
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [fileName, setFileName] = useState<string[]>([]);
-  const [notAllow, setNotAllow] = useState<boolean>(true);
   const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
+  const [file, setFile] = useState<File[]>([]);
+  const [image, setImage] = useState<File[]>([]);
+  const [fileName, setFileName] = useState<string[]>([]);
+  const [categoryList, setCategoryList] = useState<string[]>([]);
+  const [notAllow, setNotAllow] = useState<boolean>(true);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
-  const CategoryList = useRecoilValue(categoryListState);
+  const [notificationId, setNotificationId] = useState<notificationId>();
 
   //제목, 내용, 카테고리 미 입력 혹은 미 선택시 버튼 비활성화 로직
   useEffect(() => {
-    if (title && context && selectedCategory.length !== 0) {
+    if (wirteElem.title && wirteElem.content && selectedCategory.length !== 0) {
       setNotAllow(false);
     } else {
       setNotAllow(true);
     }
-  }, [title, context, selectedCategory]);
+  }, [wirteElem.title, wirteElem.content, selectedCategory]);
 
-  //제목 입력
-  const OnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  //내용 입력
-  const OnChangeContext = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContext(e.target.value);
-  };
+  const handleWriteElem = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+      const { value, name } = e.target;
+      setWirteElem((prev) => ({ ...prev, [name]: value }));
+      console.log(notificationId);
+    },
+    [setWirteElem],
+  );
 
   //사진업로드 이미지 클릭시 Ref로 선택창
   const HandleImageClick = () => {
@@ -87,15 +86,22 @@ const useWrite = () => {
     setImage([]);
   };
 
+  //글쓰기 카테고리 확인
+  const handleCheckCategory = async () => {
+    await alimoV1Axios.get("/category/get-notification-category").then((res) => {
+      setCategoryList(res.data.data.categoryNameList);
+    });
+  };
+
+  useEffect(() => {
+    handleCheckCategory();
+  }, []);
+
   //카테고리 선택 로직 (중복선택 가능)
   const HandleAddCategory = async (CategoryName: string) => {
-    const isSelected = selectedCategory.some(
-      (category) => category.name === CategoryName
-    );
+    const isSelected = selectedCategory.some((category) => category.name === CategoryName);
     if (isSelected) {
-      setSelectedCategory(
-        selectedCategory.filter((category) => category.name !== CategoryName)
-      );
+      setSelectedCategory(selectedCategory.filter((category) => category.name !== CategoryName));
     } else {
       const newCategory: Category = { name: CategoryName };
       setSelectedCategory([...selectedCategory, newCategory]);
@@ -104,9 +110,7 @@ const useWrite = () => {
 
   //선택한 카테고리에 따른 멤버 수 확인 로직
   const GetMemberCnt = async () => {
-    const categoryParams = selectedCategory
-      ? selectedCategory.map((category) => category.name)
-      : "";
+    const categoryParams = selectedCategory ? selectedCategory.map((category) => category.name) : "";
     try {
       await alimoV1Axios
         .get(`/category/member-cnt`, {
@@ -126,91 +130,83 @@ const useWrite = () => {
     GetMemberCnt();
   }, [selectedCategory.length]);
 
-  //제목, 내용, 이미지, 파일을 담기위한 폼데이터 객체
   const formData = new FormData();
 
-  //게시하기 버튼 클릭시 사용되는 로직
   const AllowWriteButton = async () => {
-    //버튼 비활성화일때 로직
-    if (notAllow) {
-      showToast("error", "빈곳이 없게 작성하여주세요");
-    } else {
-      //버튼이 활성화 되어있고, 클릭했을때 확성기 사용여부 체크 로직
-      await Swal.fire({
-        title: "확성기 기능을 사용하시겠습니까?",
-        text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
-        showCancelButton: true,
-        confirmButtonColor: "#FECE23",
-        focusConfirm: true,
-        cancelButtonColor: "#AAAAAA",
-        focusCancel: false,
-        confirmButtonText: "사용하기",
-        cancelButtonText: "사용안함",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setIsSpeaker(true);
-        } else {
-          setIsSpeaker(false);
-        }
-      });
+    const response = await alimoV1Axios.post("notification/create");
+    setNotificationId(response.data.data);
+    console.log(notificationId?.NotificationId);
 
-      //제목, 내용, 확성기 사용여부, 선택한 카테고리를 담은 객체
-      const data = {
-        title: title,
-        content: context,
+    await Swal.fire({
+      title: "확성기 기능을 사용하시겠습니까?",
+      text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
+      showCancelButton: true,
+      confirmButtonColor: "#FECE23",
+      focusConfirm: true,
+      cancelButtonColor: "#AAAAAA",
+      focusCancel: false,
+      confirmButtonText: "사용하기",
+      cancelButtonText: "사용안함",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsSpeaker(true);
+      } else {
+        setIsSpeaker(false);
+      }
+    });
+
+    try {
+      const NotificationId = notificationId?.NotificationId;
+      await alimoV1Axios.patch(`/notification/update/${NotificationId}`, {
+        title: wirteElem.title,
+        content: wirteElem.content,
         speaker: isSpeaker,
         categories: selectedCategory.map((category) => category.name),
-      };
+      });
 
-      //data객체를 formData에 올리기위한 로직
-      const JSONDATA = JSON.stringify(data);
-      formData.append(
-        "data",
-        new Blob([JSONDATA], { type: "application/json" })
-      );
-
-      //파일을 formData에 올리기위한 로직
-      if (file) {
-        Array.from(file).forEach((file) => {
-          formData.append("file", file);
-        });
-      }
-      //이미지를 formData에 올리기위한 로직
       if (image) {
         Array.from(image).forEach((image) => {
           formData.append("image", image);
         });
       }
 
+      if (file) {
+        Array.from(file).forEach((file) => {
+          formData.append("file", file);
+        });
+      }
+
+      console.log(formData.get("image"), formData.get("file"));
       try {
-        //alimoV1Axios사용시 Content-Type이 multipart/form-data로 가지 않기때문에 일반 axios사용 -> 추후 개선 예정
-        await axios
-          .post(`${CONFIG.serverUrl}/notification/generate`, formData, {
+        await axios.post(
+          `${CONFIG.serverUrl}/files/create?notificationId=${NotificationId}`,
+          {
+            image: formData.get("image"),
+            file: formData.get("file"),
+          },
+          {
             headers: {
-              Authorization: `Bearer ${cookie.getCookie("access-token")}`,
+              Authorization: `Bearer ${token.getToken("access-token")}`,
               "Content-Type": "multipart/form-data",
             },
-          })
-          .then(() => {
-            navigate("/");
-          });
+          },
+        );
       } catch (error) {
-        console.error(error);
-        showToast("error", "통신 오류");
+        console.log(error);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return {
-    title,
-    context,
+    wirteElem,
     notAllow,
     image,
-    CategoryList,
+    categoryList,
     memberCnt,
-    OnChangeTitle,
-    OnChangeContext,
     imageInputRef,
+    handleWriteElem,
     HandleImageClick,
     HandleFileChange,
     DeleteFile,

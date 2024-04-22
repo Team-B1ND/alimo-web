@@ -15,15 +15,9 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/write" element={<PrivateRoute component={Write} />} />
-        <Route
-          path="/write-read"
-          element={<PrivateRoute component={MyNotificationPage} />}
-        />
+        <Route path="/write-read" element={<PrivateRoute component={MyNotificationPage} />} />
         <Route path="/" element={<PrivateRoute component={CategoryManage} />} />
-        <Route
-          path="/write-read/:id"
-          element={<PrivateRoute component={MyNotificationDetailPage} />}
-        />
+        <Route path="/write-read/:id" element={<PrivateRoute component={MyNotificationDetailPage} />} />
       </Routes>
     </RecoilRoot>
   );

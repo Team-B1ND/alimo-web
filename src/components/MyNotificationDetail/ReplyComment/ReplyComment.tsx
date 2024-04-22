@@ -11,7 +11,7 @@ interface Props {
   handleReplyCommentCreate: (
     replyCommentValue: string,
     parentId: number,
-    setIsReplyCommentWriteShow: Function
+    setIsReplyCommentWriteShow: Function,
   ) => Promise<void>;
 }
 
@@ -21,8 +21,7 @@ const ReplyComment = ({
   setIsReplyCommentWriteShow,
   handleReplyCommentCreate,
 }: Props) => {
-  const { replyCommentRef, replyCommentValue, handleChangeValue } =
-    useReplyComment();
+  const { replyCommentRef, replyCommentValue, handleChangeValue } = useReplyComment();
 
   const { Name, image } = useSidebar();
   return (
@@ -35,9 +34,7 @@ const ReplyComment = ({
           )}
         </S.ReplyCommentConnectLineWrap>
         <S.ReplyCommentInfoWrap>
-          <S.ReplyCommentProfile
-            src={commentData.profileImage === null ? defaultProfile : image}
-          />
+          <S.ReplyCommentProfile src={commentData.profileImage === null ? defaultProfile : image} />
         </S.ReplyCommentInfoWrap>
         <S.ReplyCommentContentWrap>
           <S.ReplyCommentName>{Name}</S.ReplyCommentName>
@@ -50,11 +47,7 @@ const ReplyComment = ({
             />
             <S.ReplyCommentButton
               onClick={() =>
-                handleReplyCommentCreate(
-                  replyCommentValue,
-                  commentData.commentId,
-                  setIsReplyCommentWriteShow
-                )
+                handleReplyCommentCreate(replyCommentValue, commentData.commentId, setIsReplyCommentWriteShow)
               }
             >
               등록
