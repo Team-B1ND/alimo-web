@@ -1,6 +1,7 @@
 import { MemberId, newSelectedData } from "src/store/category/category.store";
 import { useRecoilValue } from "recoil";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
+import { showToast } from "src/libs/Toast/Swal";
 
 const useMemberManage = () => {
   const isSelctedCategory = useRecoilValue(newSelectedData);
@@ -21,11 +22,11 @@ const useMemberManage = () => {
         .delete("/category/delete-member", {
           data: {
             memberList: [MemberID],
-            categoroyName: isSelctedCategory,
+            categoryName: isSelctedCategory,
           },
         })
         .then(() => {
-          window.location.reload();
+          showToast("success", "멤버가 삭제되었습니다.");
         });
     } catch (error) {
       console.log(error);

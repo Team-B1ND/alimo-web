@@ -52,12 +52,17 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               </S.ParantWrap>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
-              <S.MemberSearchInput placeholder="멤버 검색" type="search" />
+              <S.MemberSearchInput
+                placeholder="멤버 검색"
+                type="search"
+                onChange={hooks.onSearchMember}
+                value={hooks.searchMember}
+              />
               <S.UtilityWrap>
                 <S.Class>{hooks.room}</S.Class>
                 &nbsp;
                 <S.ClassStudent>{hooks.memberCnt}</S.ClassStudent>
-                <S.AllSelect>전체선택</S.AllSelect>
+                <S.AllSelect onClick={() => hooks.onClickAddStudent(-1)}>전체선택</S.AllSelect>
               </S.UtilityWrap>
               {hooks.memberInfo.map((student, idx) => (
                 <S.StudentList key={idx}>

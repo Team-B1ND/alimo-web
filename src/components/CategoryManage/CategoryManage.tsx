@@ -9,12 +9,10 @@ import ProfileImage from "src/assets/img/profileimg.png";
 import searchImg from "src/assets/img/searchImg.png";
 import PermissionModal from "./PermissionModal";
 import useAddStudnet from "src/hooks/Category/useAddStudent";
-import useMemberManage from "src/hooks/Category/useMemberManage";
 
 const CategoryManage = () => {
   const { ...hooks } = useCategoryManage();
   const { showStudentList, handlePopUp, onClose } = useAddStudnet();
-  const { handleGivePermission, handleDeleteMember } = useMemberManage();
 
   useEffect(() => {
     hooks.getCategoryList();

@@ -5,9 +5,11 @@ import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/Toast/Swal";
 import { useRecoilState } from "recoil";
 import { ShowStudentList } from "src/store/category/category.store";
+import useCategoryManage from "./useCateogyManage";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
+  const [searchMember, setSearchMember] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [room, setRoom] = useState<string>("");
   const [showStudentList, setShowStudentList] = useRecoilState(ShowStudentList);
@@ -15,6 +17,9 @@ const useAddStudnet = () => {
   const { createCategoryName } = useCreateCategory();
 
   const onClickAddStudent = (studentId: number) => {
+    if (studentId === -1) {
+      setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId })));
+    }
     setSelectedStudents((prev) => [...prev, { id: studentId }]);
   };
 
@@ -50,6 +55,10 @@ const useAddStudnet = () => {
       });
   };
 
+  const onSearchMember = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchMember(e.target.value);
+  }
+
   const onClickAddCategory = async () => {
     try {
       await alimoV1Axios
@@ -79,9 +88,11 @@ const useAddStudnet = () => {
     memberCnt,
     selectedStudents,
     showStudentList,
+    searchMember,
     onClickAddStudent,
     onLoadStudentInfo,
     onLoadMemberInfo,
+    onSearchMember,
     onClickAddCategory,
     handlePopUp,
     onClose,

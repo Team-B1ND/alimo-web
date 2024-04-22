@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { showToast } from "src/libs/Toast/Swal";
-import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
-import { Student, MemberInfo } from "src/types/Category/Add.types";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
@@ -16,7 +14,6 @@ import {
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
-  const [showStudentList, setShowStudentList] = useState<boolean>(false);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
   const [categoryData, setCategoryData] = useRecoilState(newCategoryData);
   const [memberData, setMemberData] = useRecoilState(newMemberData);
@@ -72,11 +69,6 @@ const useCategoryManage = () => {
         .then((res) => {
           setMemberData(res.data.data);
         });
-      console.log(
-        memberData.map((mem) => mem.id),
-        selectedStudents.map((std) => std.id),
-        memberInfo.map((memb) => memb.memberId),
-      );
     } catch (error) {
       console.log(error);
     }
@@ -176,43 +168,6 @@ const useCategoryManage = () => {
     setViewPermission((prev) => !prev);
   };
 
-  // const handleGivePermission = async () => {
-  //   if (permission === "ACCESS_MEMBER") {
-  //     try {
-  //       await alimoV1Axios.patch("/permission/change-admin", {
-  //         memberId: memberData.map((member) => member.id),
-  //         categoryName: categoryData.map((category) => category.categoryName),
-  //       });
-  //       console.log(permission);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   } else {
-  //     try {
-  //       await alimoV1Axios.patch("permission/change-student", {
-  //         memberId: selectedStudents.map((member) => member.id),
-  //         categoryName: categoryData.map((category) => category.categoryName),
-  //       });
-  //       console.log(permission);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-
-  // const handleDeleteMember = async () => {
-  //   try {
-  //     await alimoV1Axios.delete("category/delete-member", {
-  //       data: {
-  //         memberId: memberData.map((member) => member.id),
-  //         categoryName: isClickedCategory,
-  //       },
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return {
     GradeName,
     isClickedCategory,
@@ -242,8 +197,6 @@ const useCategoryManage = () => {
     handlePermission,
     handleViewPermission,
     handleDeletetCategory,
-    // handleGivePermission,
-    // handleDeleteMember,
   };
 };
 
