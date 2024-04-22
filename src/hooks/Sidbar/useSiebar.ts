@@ -4,7 +4,7 @@ import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/ProfileStore";
 import { useRecoilState } from "recoil";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import { NavigationProps } from "@src/types/login/Sidebar.types";
+import { NavigationProps } from "src/types/login/Sidebar.types";
 
 const Sidbar = () => {
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ const Sidbar = () => {
   const [categoryList, setCategoryList] = useRecoilState(categoryListState);
   const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
   const CategoryList = async () => {
+
     const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`);
+
     const CategoryData = response.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
@@ -26,6 +28,7 @@ const Sidbar = () => {
 
   const ProfileInfo = async () => {
     try {
+
       const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
       const userData = response.data.data;
       setName(userData.name);

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "re
 import { useRecoilValue } from "recoil";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
-import { Category, CategoryList, WriteElemProps, notificationId } from "@src/types/Write/write.type";
+import { Category, CategoryList, WriteElemProps, notificationId } from "src/types/Write/write.type";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
@@ -220,3 +220,4 @@ const useWrite = () => {
 };
 
 export default useWrite;
+

@@ -31,16 +31,30 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ onDeleteCategory }) => {
   return (
     <div
       className="d-flex align-items-center justify-content-center"
-      style={{ position: "absolute", marginTop: "1vh", marginLeft: "35vw", cursor: "pointer" }}
+      style={{
+        position: "absolute",
+        marginTop: "1vh",
+        marginLeft: "35vw",
+        cursor: "pointer",
+      }}
     >
       <Image src={DeleteImg} onClick={handleShow} />
-      <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        dialogClassName="custom-modal"
+      >
         <Modal.Dialog style={{ height: "30vh" }}>
-          <Modal.Header style={{ marginTop: "-3vh" }} className="DeleteTitleWrap">
+          <Modal.Header
+            style={{ marginTop: "-3vh" }}
+            className="DeleteTitleWrap"
+          >
             <Modal.Title>정말 카테고리를 삭제하시겠습니까?</Modal.Title>
           </Modal.Header>
           <Modal.Body className="DeleteContentWrap">
-            삭제 하시게되면 해당 카테고리의 공지를 보거나 작성하실 수 없게 됩니다. 그래도 삭제 하시겠습니까?
+            삭제 하시게되면 해당 카테고리의 공지를 보거나 작성하실 수 없게
+            됩니다. 그래도 삭제 하시겠습니까?
           </Modal.Body>
           <Modal.Footer className="DeleteButtonWrap">
             <Button className="cancle-button" onClick={handleClose}>
