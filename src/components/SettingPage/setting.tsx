@@ -1,4 +1,4 @@
-import CloseButton from "src/assets/img/CloseImg.png";
+import CloseButton from "src/assets/images/common/Closeimg.png";
 import * as S from "src/components/SettingPage/style/style";
 
 const Setting = ({ onClose }: { onClose: () => void }) => {

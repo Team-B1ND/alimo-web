@@ -1,11 +1,11 @@
 import * as S from "src/components/SideBar/style/SideBar.style";
-import ClickSideBarCategoryManageImg from "src/assets/img/ClickSideBarCateogryManage.svg";
-import SideBarCategoryManageImg from "src/assets/img/SideBarCategoryManage.png";
-import ClickSideBarWriteReadImg from "src/assets/img/ClickSideBarHome.svg";
-import SideBarWriteReadImg from "src/assets/img/SideBarHome.svg";
-import SideBarProfileSetting from "src/assets/img/SideBarSetting.svg";
+import ClickSideBarCategoryManageImg from "src/assets/images/common/sidebar/ClickSideBarCateogryManage.svg";
+import SideBarCategoryManageImg from "src/assets/images/common/sidebar/SideBarCategoryManage.png";
+import ClickSideBarWriteReadImg from "src/assets/images/common/sidebar/ClickSideBarHome.svg";
+import SideBarWriteReadImg from "src/assets/images/common/sidebar/SideBarHome.svg";
+import SideBarProfileSetting from "src/assets/images/common/sidebar/SideBarSetting.svg";
 import Profile from "src/components/Profile/profile";
-import DefaultPrfoile from "src/assets/img/profileimg.png";
+import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg"
 import Header from "../Header/Header";
 import ProfileAlert from "src/components/Profile/ProfileAlert";
 import UseSideBar from "src/hooks/Sidbar/useSiebar";

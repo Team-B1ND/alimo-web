@@ -1,6 +1,6 @@
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import useCommentList from "src/hooks/Comment/useCommentList";
-import defaultProfile from "src/assets/img/profileimg.png";
+import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import ReplyComment from "src/components/MyNotificationDetail/ReplyComment/ReplyComment";
 import * as S from "src/components/MyNotificationDetail/CommentList/style";
 
