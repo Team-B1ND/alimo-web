@@ -65,7 +65,10 @@ const CategoryManage = () => {
               value={category.searchMember}
               type="search"
             />
-            <S.CategorySearchButton style={{ marginTop: "10px" }} onClick={category.handleGetMemberData}>
+            <S.CategorySearchButton
+              style={{ marginTop: "10px", marginLeft: "8px" }}
+              onClick={category.handleGetMemberData}
+            >
               <img src={searchImg} />
             </S.CategorySearchButton>
             <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
@@ -85,7 +88,7 @@ const CategoryManage = () => {
                   <S.MemberClassNumber>
                     {member.name !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
                   </S.MemberClassNumber>
-                  <S.MoreImg src={MoreImg} onClick={() => category.handlePermission(member.id)} />
+                  <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(member.id, member.permission)} />
                 </S.Member>
               </S.MemberWrap>
             ))

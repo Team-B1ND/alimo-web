@@ -59,7 +59,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                 value={student.searchMember}
               />
               <S.UtilityWrap>
-                <S.Class>{student.room}</S.Class>
+                <S.Class>{student.room === "0반" ? "전체" : student.room}</S.Class>
                 &nbsp;
                 <S.ClassStudent>{student.memberCnt}</S.ClassStudent>
                 <S.AllSelect onClick={() => student.onClickAddStudent(-1)}>전체선택</S.AllSelect>

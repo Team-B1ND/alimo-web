@@ -3,28 +3,24 @@ import { showToast } from "src/libs/Toast/Swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import {
-  MemberId,
-  newCategoryData,
-  newMemberData,
-  newMemberInfo,
-  newSelectedData,
-  newStudent,
-} from "src/store/category/category.store";
+import { MemberId, Permission, newSelectedData } from "src/store/category/category.store";
+import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
+import { MemberInfo, Student } from "src/types/Category/Add.types";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
   const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
-  const [categoryData, setCategoryData] = useRecoilState(newCategoryData);
-  const [memberData, setMemberData] = useRecoilState(newMemberData);
-  const [permission, setPermission] = useRecoilState(MemberId);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
+  const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
+  const [permissoinToMemb, setPermissoinToMemb] = useRecoilState(MemberId);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [searchMember, setSearchMember] = useState<string>("");
   const [viewPermission, setViewPermission] = useState(false);
+  const [permission, setPermission] = useRecoilState(Permission);
   const [GradeName, setGradeName] = useState<string>("");
-  const [selectedStudents, setSelectedStudents] = useRecoilState(newStudent);
+  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [memberInfo, setMemberInfo] = useRecoilState(newMemberInfo);
+  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [room, setRoom] = useState<string>("");
 
@@ -100,7 +96,7 @@ const useCategoryManage = () => {
       showCancelButton: true,
       confirmButtonText: "삭제",
       cancelButtonText: "취소",
-      confirmButtonColor: "#FFE8E8",
+      confirmButtonColor: "#F40240",
       preConfirm: async () => {
         try {
           await alimoV1Axios
@@ -159,8 +155,9 @@ const useCategoryManage = () => {
       });
   };
 
-  const handlePermission = (memberId: number) => {
-    setPermission(memberId);
+  const handleMemberId = (memberId: number, permission: string) => {
+    setPermissoinToMemb(memberId);
+    setPermission(permission);
     setViewPermission((prev) => !prev);
   };
 
@@ -172,6 +169,7 @@ const useCategoryManage = () => {
     GradeName,
     isClickedCategory,
     categoryData,
+    permissoinToMemb,
     permission,
     searchKeyword,
     memberData,
@@ -194,7 +192,7 @@ const useCategoryManage = () => {
     OnCategoryName,
     SearchCategoryName,
     handleGetCategoryList,
-    handlePermission,
+    handleMemberId,
     handleViewPermission,
     handleDeletetCategory,
   };

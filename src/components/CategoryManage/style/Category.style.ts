@@ -265,9 +265,10 @@ export const MemberWrap = styled.div`
   display: flex;
   flex-direction: column;
 
+  width: 600px;
   margin-top: 1vh;
 
-  margin-left: 1vw;
+  margin-left: 7vw;
 `;
 
 export const MemeberProfileImg = styled.img`
@@ -295,6 +296,7 @@ export const MemeberName = styled.span`
   font-family: Prentendard;
   font-size: 1.3rem;
   font-weight: 500;
+  width: 200px;
 `;
 
 export const MemberClassNumber = styled.span`
