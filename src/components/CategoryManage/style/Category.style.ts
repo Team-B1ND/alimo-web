@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import "src/styles/font.css"
+import "src/styles/font.css";
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
@@ -7,6 +7,8 @@ export const Main = styled.div`
 `;
 
 export const CategoryManageView = styled.div`
+  width: 700px;
+
   display: flex;
   flex-direction: column;
 
@@ -47,7 +49,7 @@ export const SearchCateogy = styled.input`
 
   color: #787878;
   font-size: 1rem;
-  font-family: 'Pretendard-Medium' ;
+  font-family: "Pretendard-Medium";
 
   &:focus {
     outline: none;
@@ -138,7 +140,6 @@ export const CategoryName = styled.span`
   font-family: "PretendardMedium";
   font-size: 1.2rem;
 
-
   /* margin-left: 2vw; */
 
   width: 50px;
@@ -162,11 +163,7 @@ export const CategoryMemberWrap = styled.div`
   background-color: #f4f5f9;
 
   overflow: scroll;
-  p {
-    display: flex;
-    margin-top: 10%;
-    justify-content: center;
-  }
+  overflow-x: hidden;
 `;
 
 export const MemberManageWrap = styled.div`
@@ -207,7 +204,6 @@ export const AddMemberButton = styled.button`
   color: #fff;
   font-family: "PretendardMedium";
   font-size: 1rem;
-
 
   margin-left: 2vw;
   margin-right: 3vw;
