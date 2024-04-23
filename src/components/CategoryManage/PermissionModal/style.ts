@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
 `;
 
 export const PermissionModalWrap = styled.div`
@@ -12,8 +13,8 @@ export const PermissionModalWrap = styled.div`
   height: 10vh;
 
   background-color: white;
-  top: 50%;
-  left: 50%;
+top: 50%;
+  left: 0;
 
   border: none;
   border-radius: 10px;
@@ -32,22 +33,14 @@ export const PermissionModalWrap = styled.div`
 
 export const GivePermission = styled.span`
   color: var(--Primary900, #020202);
-
-  font-family: Pretendard;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
   margin-bottom: 1vh;
+  cursor: pointer;
 `;
 
 export const DenyMember = styled.span`
   color: var(--Red500, #f90707);
-
-  font-family: Pretendard;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
   margin-top: 1vh;
+  cursor: pointer;
 `;

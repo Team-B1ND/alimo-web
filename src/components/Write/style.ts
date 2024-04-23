@@ -33,9 +33,6 @@ export const WriteTitleInput = styled.input`
   margin-left: 2vw;
   margin-top: 2vh;
 
-  font-family: Pretendard;
-  font-weight: 600;
-
   font-size: 2rem;
 
   &::placeholder {
@@ -152,13 +149,13 @@ export const FileChange = styled.input`
 
 export const SelectCategoryWrap = styled.div`
   width: 500px;
-  height: 700px;
+  height: 100vh;
   min-width: 500px;
 `;
 
 export const SendCategoryWrap = styled.div`
   width: 500px;
-  height: 750px;
+  height: 80%;
   background-color: #f4f5f9;
   display: flex;
   flex-direction: column;
@@ -192,15 +189,15 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   -webkit-tap-highlight-color: transparent;
 
   //더블클릭시 폰트 블럭처리를 막아주는 코드
-  -webkit-user-select: none;
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
-  -ms-user-select: none;
+  -ms-user-select: none; */
 `;
 
 export const UplaodButtonWrap = styled.div`
   width: calc(100vw - 70vw);
-  height: calc(100vh - 90vh);
+  height: 100px;
   display: flex;
   flex-direction: row;
 `;

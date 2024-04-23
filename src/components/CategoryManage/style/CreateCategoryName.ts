@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const CreateWrap = styled.div`
   width: 100vw;
   height: 100vh;
-
   position: absolute;
-  display: flex;
+  z-index: 5;
 `;
 
 export const Main = styled.div`

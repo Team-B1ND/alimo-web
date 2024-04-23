@@ -14,8 +14,8 @@ const Sidbar = () => {
   const [isSetting, setSetting] = useState(false);
   const [Name, setName] = useState<string>("");
   const [image, setimage] = useState("");
-  const [category, setCategory] = useState<string[]>([]);
-  const [categoryList, setCategoryList] = useRecoilState(categoryListState);
+  const [, setCategory] = useState<string[]>([]);
+  const [, setCategoryList] = useRecoilState(categoryListState);
   const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
   const CategoryList = async () => {
 
