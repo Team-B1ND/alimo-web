@@ -6,7 +6,7 @@ import {
 } from "src/constants/token/token.constants";
 // import tokenRepository from "src/repository/token/token.repository";
 import token from "../token/token";
-import { alimoV1Axios } from "./customAxios";
+import { alimoV1Axios } from "./CustomAxios";
 import CONFIG from "src/config/config.json";
 
 //리프레쉬 작업중인지 아닌지를 구분하는 변수

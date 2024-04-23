@@ -50,12 +50,16 @@ const CategoryManage = () => {
           category.categoryData.map((item, idx) => (
             <S.CategoryInfo
               isClicked={category.isClickedCategory === `${item.categoryName}`}
-              onClick={() => category.handleCategoryClick(`${item.categoryName}`)}
-              key={idx}
-            >
+              onClick={() =>
+                category.handleCategoryClick(`${item.categoryName}`)
+              }
+              key={idx}>
               <S.CategoryName>{item.categoryName}</S.CategoryName>
               <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
-              <S.MoreImg src={MoreImg} onClick={category.handleDeletetCategory} />
+              <S.MoreImg
+                src={MoreImg}
+                onClick={category.handleDeletetCategory}
+              />
             </S.CategoryInfo>
           ))
         ) : (
@@ -73,8 +77,7 @@ const CategoryManage = () => {
             />
             <S.CategorySearchButton
               style={{ marginTop: "10px", marginLeft: "8px" }}
-              onClick={category.handleGetMemberData}
-            >
+              onClick={category.handleGetMemberData}>
               <img src={searchImg} />
             </S.CategorySearchButton>
             <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
@@ -83,18 +86,33 @@ const CategoryManage = () => {
             <S.MemberNameInfo>
               <span>이름</span>
             </S.MemberNameInfo>
-            <S.MemberClassNumberInfo>{category.GradeName}</S.MemberClassNumberInfo>
+            <S.MemberClassNumberInfo>
+              {category.GradeName}
+            </S.MemberClassNumberInfo>
           </S.MemberUtilityWrap>
           {category.memberData.length > 0 ? (
             category.memberData.map((member, idx) => (
               <S.MemberWrap key={idx}>
                 <S.Member>
-                  <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
+                  <S.MemeberProfileImg
+                    src={
+                      member.profileImage !== null
+                        ? member.profileImage
+                        : ProfileImage
+                    }
+                  />
                   <S.MemeberName>{member.name}</S.MemeberName>
                   <S.MemberClassNumber>
-                    {member.name !== null && member.room !== null ? `${member.grade}학년 ${member.room}반` : "학부모"}
+                    {member.name !== null && member.room !== null
+                      ? `${member.grade}학년 ${member.room}반`
+                      : "학부모"}
                   </S.MemberClassNumber>
-                  <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(member.id, member.permission)} />
+                  <S.MoreImg
+                    src={MoreImg}
+                    onClick={() =>
+                      category.handleMemberId(member.id, member.permission)
+                    }
+                  />
                 </S.Member>
               </S.MemberWrap>
             ))
@@ -103,8 +121,12 @@ const CategoryManage = () => {
           )}
         </S.CategoryMemberWrap>
       )}
-      {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
-      {category.showCategoryName && <StudentList onClose={category.OnCategoryName} onNext={onClose} />}
+      {category.viewPermission && (
+        <PermissionModal onClose={category.handleViewPermission} />
+      )}
+      {category.showCategoryName && (
+        <StudentList onClose={category.OnCategoryName} onNext={onClose} />
+      )}
       {showStudentList && <AddStudent onClose={onClose} />}
     </S.Main>
   );
