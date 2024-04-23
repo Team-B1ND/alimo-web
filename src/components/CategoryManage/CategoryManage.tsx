@@ -25,9 +25,15 @@ const CategoryManage = () => {
         <S.CateogyManageUtilityWrap>
           <S.SearchCateogy
             onChange={category.SearchCategoryName}
+            onKeyUp={category.handleGetCategoryList}
             placeholder="카테고리 검색"
             type="search"
             value={category.searchKeyword}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                category.handleGetCategoryList();
+              }
+            }}
           />
           <S.CategorySearchButton onClick={category.handleGetCategoryList}>
             <img src={searchImg} />
