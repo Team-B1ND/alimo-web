@@ -3,7 +3,6 @@ import { showToast } from "src/libs/Toast/Swal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
-import { SHA512 } from "crypto-js";
 import token from "src/libs/token/token";
 import { LoginResponse } from "src/types/login/login.type";
 import {
@@ -19,7 +18,7 @@ const Uselogin = () => {
   const [idValue, setIdValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [isShowPswd, setIsShowPswd] = useState(false);
-  const hash = SHA512(passwordValue).toString();
+  
 
   const InputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const idRegex = /^[A-Za-z0-9@.]+$/;
@@ -54,7 +53,7 @@ const Uselogin = () => {
         },
       } = await axios.post(`${CONFIG.DAuth}`, {
         id: idValue,
-        pw: hash,
+        pw: passwordValue,
         clientId: `${CONFIG.clientId}`,
         redirectUrl: `${CONFIG.redirectUrl}`,
       });

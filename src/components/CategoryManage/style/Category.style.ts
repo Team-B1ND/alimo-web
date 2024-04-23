@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import "src/styles/font.css"
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
@@ -46,9 +46,8 @@ export const SearchCateogy = styled.input`
   padding-left: 20px;
 
   color: #787878;
-  font-family: Pretendard;
   font-size: 1rem;
-  font-weight: 400;
+  font-family: 'Pretendard-Medium' ;
 
   &:focus {
     outline: none;
@@ -62,8 +61,7 @@ export const CreateCategoryButton = styled.button`
   background-color: #000;
 
   color: #fff;
-  font-family: Pretendard;
-  font-weight: 400;
+  font-family: "PretendardMedium";
   font-size: 1rem;
 
   border: none;
@@ -83,17 +81,13 @@ export const CategoryInfoWrap = styled.div`
 
 export const CategoryNameInfo = styled.span`
   color: #aaaaaa;
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 1rem;
+  font-family: "PretendardMedium";
   margin-left: 1vw;
 `;
 
 export const CategoryMemberInfo = styled.span`
   color: #aaaaaa;
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 1rem;
+  font-family: "PretendardMedium";
   margin-left: 11vw;
 `;
 
@@ -104,20 +98,13 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
   background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
   border: none;
   border-radius: 15px;
-
   display: flex;
   flex-direction: row;
-
   justify-content: space-evenly;
-
   align-items: center;
   align-self: center;
-
-  /* margin-left: 3vw; */
   margin-top: 1vh;
-
   overflow: scroll;
-
   cursor: pointer;
 
   & > img {
@@ -148,9 +135,9 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
 export const CategoryName = styled.span`
   color: #000;
-  font-family: Pretendard;
+  font-family: "PretendardMedium";
   font-size: 1.2rem;
-  font-weight: 400;
+
 
   /* margin-left: 2vw; */
 
@@ -159,9 +146,8 @@ export const CategoryName = styled.span`
 
 export const CategoryInMember = styled.span`
   color: #000;
-  font-family: Pretendard;
+  font-family: "PretendardMedium";
   font-size: 1.2rem;
-  font-weight: 400;
 
   width: calc(100vw - 97vw);
 
@@ -197,12 +183,8 @@ export const MemberSearch = styled.input`
 
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-
   padding-left: 2vw;
-
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: "PretendardMedium";
 
   &:focus {
     outline: none;
@@ -223,9 +205,9 @@ export const AddMemberButton = styled.button`
   background-color: #000;
 
   color: #fff;
-  font-family: Pretendard;
+  font-family: "PretendardMedium";
   font-size: 1rem;
-  font-weight: 400;
+
 
   margin-left: 2vw;
   margin-right: 3vw;
@@ -246,9 +228,8 @@ export const MemberUtilityWrap = styled.div`
 
 export const MemberNameInfo = styled.div`
   color: #aaaaaa;
-  font-family: Pretendard;
+  font-family: "PretendardMedium";
   font-size: 1rem;
-  font-weight: 400;
   width: 50px;
   align-items: center;
   justify-content: center;
@@ -256,9 +237,8 @@ export const MemberNameInfo = styled.div`
 
 export const MemberClassNumberInfo = styled.span`
   color: #aaaaaa;
-  font-family: Pretendard;
+  font-family: "PretendardMedium";
   font-size: 1rem;
-  font-weight: 400;
 `;
 
 export const MemberWrap = styled.div`
@@ -293,9 +273,8 @@ export const Member = styled.div`
 `;
 
 export const MemeberName = styled.span`
-  font-family: Prentendard;
+  font-family: "PretendardMedium";
   font-size: 1.3rem;
-  font-weight: 500;
   width: 200px;
 `;
 
