@@ -4,8 +4,8 @@ import { MyNotificationData } from "src/types/MyNotification/MyNotification.inte
 import * as S from "src/components/MyNotification/style";
 import useMyNotification from "src/hooks/Notification/useMyNotification";
 import NullSkeleton from "src/components/MyNotification/Skeleton/NullSkeleton";
-import SettingImg from "src/assets/img/SettingImage.png";
-import DefaultImg from "src/assets/img/profileimg.png";
+import SettingImg from "src/assets/images/notification/SettingImage.png";
+import DefaultImg from "src/assets/images/common/ProfileImg.svg";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -31,10 +31,7 @@ const MyPostNotification = () => {
                 }>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile
-                      src={notification.profileImage || DefaultImg}
-                      onError={HandleImageError}
-                    />
+                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError} />
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>

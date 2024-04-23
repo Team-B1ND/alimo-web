@@ -2,5 +2,4 @@ import { MyNotificationData } from "src/types/MyNotification/MyNotification.inte
 
 export interface Props {
   notificationData: MyNotificationData;
-  
 }

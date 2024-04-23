@@ -4,6 +4,7 @@ export interface CategoryData {
 }
 
 export interface MemberInCategoryData {
+  id: number;
   name: string;
   grade: number;
   room: number;

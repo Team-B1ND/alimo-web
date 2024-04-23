@@ -66,6 +66,8 @@ export const SelectionWrap = styled.div`
 
   width: 100%;
   height: calc(100vh - 50vh);
+
+  overflow: scroll;
 `;
 
 export const ChoiceInfoWrap = styled.div`
@@ -88,7 +90,9 @@ export const ChoiceInfoWrap = styled.div`
   }
 `;
 
-export const StudentWrap = styled.div``;
+export const StudentWrap = styled.div`
+  overflow: scroll;
+`;
 
 export const ParantWrap = styled.div``;
 
@@ -155,6 +159,8 @@ export const StudentSelectionWrap = styled.div`
   border: 1px solid #e6e6e6;
   border-top: none;
   border-left: none;
+
+  overflow: scroll;
 `;
 
 export const MemberSearchInput = styled.input`
@@ -243,6 +249,7 @@ export const StudentList = styled.div`
     height: calc(100vw - 98vw);
 
     margin-left: 1vw;
+    border-radius: 50%;
   }
 `;
 
@@ -270,6 +277,8 @@ export const ViewSelectedStudentWrap = styled.div`
 
   border-bottom: 1px solid #e6e6e6;
   background: var(--Gray100, #f4f5f9);
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ViewSelectedStudent = styled.div`
@@ -278,13 +287,14 @@ export const ViewSelectedStudent = styled.div`
   width: 100%;
   height: 13%;
 
-  display: flex;
+  margin-bottom: 20px;
 
+  display: flex;
   align-items: center;
 
-  img {
-    width: calc(100vw - 98vw);
-    height: calc(100vw - 98vw);
+  & img {
+    width: 30px;
+    height: 30px;
 
     margin-left: 1vw;
   }
