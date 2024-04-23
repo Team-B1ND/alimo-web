@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import "./font.css";
-import PretendardMedium from "src/assets/fonts/Pretendard/Pretendard-Medium.otf"
-import PretendardRegular from "src/assets/fonts/Pretendard/Pretendard-Regular.otf"
-import PretendardSemiBold from "src/assets/fonts/Pretendard/Pretendard-SemiBold.otf"
+import PretendardMedium from "src/assets/fonts/Pretendard/Pretendard-Medium.otf";
+import PretendardRegular from "src/assets/fonts/Pretendard/Pretendard-Regular.otf";
+import PretendardSemiBold from "src/assets/fonts/Pretendard/Pretendard-SemiBold.otf";
 
 const globalStyles = createGlobalStyle`
 ${reset}
@@ -31,5 +31,5 @@ ${reset}
     font-style: normal;
     src: url(${PretendardSemiBold}) format('truetype');
   }
-`
+`;
 export default globalStyles;
