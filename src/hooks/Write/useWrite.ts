@@ -180,6 +180,8 @@ const useWrite = () => {
 
     try {
       const NotificationId = notificationId?.NotificationId;
+    console.log(NotificationId);
+    
       await alimoV1Axios.patch(`/notification/update/${NotificationId}`, {
         title: wirteElem.title,
         content: wirteElem.content,

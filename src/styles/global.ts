@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import "./font.css";
 import PretendardMedium from "src/assets/fonts/Pretendard/Pretendard-Medium.otf";
 import PretendardRegular from "src/assets/fonts/Pretendard/Pretendard-Regular.otf";
 import PretendardSemiBold from "src/assets/fonts/Pretendard/Pretendard-SemiBold.otf";
