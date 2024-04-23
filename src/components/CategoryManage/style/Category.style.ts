@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "src/styles/font.css";
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
