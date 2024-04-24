@@ -51,11 +51,10 @@ const MyPostNotification = () => {
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>
                       <S.MyContent>
-                        {notification.content
-                          ? notification.content.length < 50
-                            ? notification.content
-                            : `${notification.content.substring(0, 50)}...`
-                          : ""}
+                        {notification.content 
+                           ? notification.content.length < 50
+                             ? notification.content
+                             : `${notification.content.substring(0, 50)}...` : ""}
                       </S.MyContent>
                     </S.MyContentWrap>
                   </S.MyContentBoxWrap>

@@ -6,16 +6,13 @@ import { showToast } from "src/libs/Toast/Swal";
 import { useInView } from "react-intersection-observer";
 
 const useMyNotification = () => {
-  const sizeNum = 6;
+  const sizeNum = 20;
   const [pageNum, setPageNum] = useState(0);
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
   const [isDelete, setIsDelete] = useState(false);
   const [isView, setIsView] = useState(true);
-  const [observerRef, inView] = useInView({
-    threshold: 0,
-    delay: 200,
-  });
+  const [observerRef, inView] = useInView({threshold: 0, delay: 200,});
 
   useEffect(() => {
     if (inView && isView && notificationData.length % sizeNum === 0) {
