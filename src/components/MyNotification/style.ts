@@ -145,6 +145,7 @@ export const MyContent = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  white-space: pre-line;
 `;
 
 export const MyNotificationImgWrap = styled.div`

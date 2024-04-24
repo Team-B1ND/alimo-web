@@ -73,6 +73,7 @@ export const CommentContent = styled.p<{ replyCommentCnt: number }>`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  white-space: pre-line;
   margin-bottom: ${(props) => (props.replyCommentCnt > 0 ? "" : "20px")};
 `;
 
@@ -191,4 +192,5 @@ export const ReplyCommentContent = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  white-space: pre-line;
 `;

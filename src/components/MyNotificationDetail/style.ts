@@ -118,6 +118,7 @@ export const Content = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  white-space: pre-line;
 `;
 
 export const ImgWrap = styled.div`
