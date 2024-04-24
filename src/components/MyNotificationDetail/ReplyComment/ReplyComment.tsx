@@ -11,7 +11,7 @@ interface Props {
   handleReplyCommentCreate: (
     replyCommentValue: string,
     parentId: number,
-    setIsReplyCommentWriteShow: Function,
+    setIsReplyCommentWriteShow: Function
   ) => Promise<void>;
 }
 
@@ -21,9 +21,10 @@ const ReplyComment = ({
   setIsReplyCommentWriteShow,
   handleReplyCommentCreate,
 }: Props) => {
-  const { replyCommentRef, replyCommentValue, handleChangeValue } = useReplyComment();
-
+  const { replyCommentRef, replyCommentValue, handleChangeValue } =
+    useReplyComment();
   const { Name, image } = useSidebar();
+
   return (
     <S.ReplyCommentWrap>
       <S.ReplyComment>
@@ -34,7 +35,9 @@ const ReplyComment = ({
           )}
         </S.ReplyCommentConnectLineWrap>
         <S.ReplyCommentInfoWrap>
-          <S.ReplyCommentProfile src={commentData.profileImage === null ? defaultProfile : image} />
+          <S.ReplyCommentProfile
+            src={commentData.profileImage === null ? defaultProfile : image}
+          />
         </S.ReplyCommentInfoWrap>
         <S.ReplyCommentContentWrap>
           <S.ReplyCommentName>{Name}</S.ReplyCommentName>
@@ -43,13 +46,28 @@ const ReplyComment = ({
               rows={1}
               ref={replyCommentRef}
               value={replyCommentValue}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.shiftKey) {
+                  return;
+                } else if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleReplyCommentCreate(
+                    replyCommentValue,
+                    commentData.commentId,
+                    setIsReplyCommentWriteShow
+                  );
+                }
+              }}
               onChange={(e) => handleChangeValue(e, replyCommentRef)}
             />
             <S.ReplyCommentButton
               onClick={() =>
-                handleReplyCommentCreate(replyCommentValue, commentData.commentId, setIsReplyCommentWriteShow)
-              }
-            >
+                handleReplyCommentCreate(
+                  replyCommentValue,
+                  commentData.commentId,
+                  setIsReplyCommentWriteShow
+                )
+              }>
               등록
             </S.ReplyCommentButton>
           </S.ReplyCommentContent>
