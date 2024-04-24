@@ -6,10 +6,9 @@ import { showToast } from "src/libs/Toast/Swal";
 import { useInView } from "react-intersection-observer";
 
 const useMyNotification = () => {
+  const sizeNum = 20;
   const [pageNum, setPageNum] = useState(0);
-  const [notificationData, setNotificationData] = useState<
-    MyNotificationData[]
-  >([]);
+  const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
   const [observerRef, inView] = useInView({
     threshold: 0,
@@ -17,7 +16,7 @@ const useMyNotification = () => {
   });
 
   useEffect(() => {
-    if (inView && notificationData.length%20 === 0) {
+    if (inView && notificationData.length % sizeNum === 0) {
       setPageNum((current) => current + 1);
     }
   }, [inView]);
@@ -41,7 +40,6 @@ const useMyNotification = () => {
             .delete(`notification/delete/${notificationIdValue}`)
             .then(() => {
               showToast("success", "공지 삭제성공");
-              setPageNum(1);
             });
         } catch (error) {
           showToast("error", "공지 삭제실패");
@@ -57,12 +55,18 @@ const useMyNotification = () => {
         try {
           await alimoV1Axios
             .get(`notification/load/my`, {
-              params: { page: pageNum, size: 20 },
+              params: { page: pageNum, size: sizeNum },
             })
             .then((res) => {
               const newNotificationData = res.data.data;
-              setNotificationData([...notificationData, ...newNotificationData]);
-              if (newNotificationData.length === 0) {
+              if (newNotificationData.length > 0) {
+                if (pageNum === 1) {
+                  setNotificationData(newNotificationData)
+                } else {
+                  setNotificationData([...notificationData, ...newNotificationData]);
+                }
+              }
+              if (pageNum === 1 && newNotificationData.length === 0) {
                 setDataAbsence(false);
               }
             });
