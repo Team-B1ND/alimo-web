@@ -10,7 +10,6 @@ const useMyNotification = () => {
   const [pageNum, setPageNum] = useState(0);
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
-  const [isDelete, setIsDelete] = useState(false);
   const [isView, setIsView] = useState(true);
   const [observerRef, inView] = useInView({threshold: 0, delay: 200,});
 
@@ -39,8 +38,7 @@ const useMyNotification = () => {
             .delete(`notification/delete/${notificationIdValue}`)
             .then(() => {
               showToast("success", "공지 삭제성공");
-              setPageNum(1);
-              setIsDelete(true);
+              setNotificationData(prevData => prevData.filter(item => item.notificationId !== notificationIdValue))
             });
         } catch (error) {
           showToast("error", "공지 삭제실패");
@@ -61,9 +59,8 @@ const useMyNotification = () => {
             .then((res) => {
               const newNotificationData = res.data.data;
               if (newNotificationData.length > 0) {
-                if (isDelete && pageNum === 1) {
+                if (pageNum === 1) {
                   setNotificationData(newNotificationData);
-                  setIsDelete(false);
                 } else {
                   setNotificationData([...notificationData, ...newNotificationData]);
                 }
@@ -82,7 +79,7 @@ const useMyNotification = () => {
     };
 
     MyNotificationLoad();
-  }, [pageNum, isDelete]);
+  }, [pageNum]);
 
   return {
     observerRef,
