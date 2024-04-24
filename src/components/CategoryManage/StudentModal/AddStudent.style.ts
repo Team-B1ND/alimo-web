@@ -5,6 +5,7 @@ export const AddStudentWrap = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  z-index: 6;
 `;
 
 export const Main = styled.div`

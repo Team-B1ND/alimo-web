@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import "src/styles/font.css"
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
 `;
-
+export const CategoryMain = styled.main`
+  display: flex;
+  margin-top: 10vh;
+  width: 100%;
+`;
 export const CategoryManageView = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-top: 10vh;
   margin-left: 12px;
   margin-right: 12px;
 `;
@@ -47,7 +49,7 @@ export const SearchCateogy = styled.input`
 
   color: #787878;
   font-size: 1rem;
-  font-family: 'Pretendard-Medium' ;
+  font-family: "Pretendard-Medium";
 
   &:focus {
     outline: none;
@@ -137,10 +139,6 @@ export const CategoryName = styled.span`
   color: #000;
   font-family: "PretendardMedium";
   font-size: 1.2rem;
-
-
-  /* margin-left: 2vw; */
-
   width: 50px;
 `;
 
@@ -155,18 +153,13 @@ export const CategoryInMember = styled.span`
 `;
 
 export const CategoryMemberWrap = styled.div`
-  width: calc(100vw - 49vw);
+  width: 100%;
   height: calc(100vh - 10vh);
-
-  margin-top: 10vh;
+overflow: hidden;
   background-color: #f4f5f9;
+position: relative;
 
-  overflow: scroll;
-  p {
-    display: flex;
-    margin-top: 10%;
-    justify-content: center;
-  }
+
 `;
 
 export const MemberManageWrap = styled.div`
@@ -183,8 +176,7 @@ export const MemberSearch = styled.input`
 
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-  padding-left: 2vw;
-  font-family: "PretendardMedium";
+  padding-left: 8px;
 
   &:focus {
     outline: none;
@@ -203,11 +195,9 @@ export const AddMemberButton = styled.button`
   border-radius: 15px;
 
   background-color: #000;
-
-  color: #fff;
   font-family: "PretendardMedium";
+  color: #fff;
   font-size: 1rem;
-
 
   margin-left: 2vw;
   margin-right: 3vw;
@@ -222,33 +212,32 @@ export const AddMemberButton = styled.button`
 export const MemberUtilityWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   margin-top: 10px;
+  justify-content: space-around;
+  span {
+    color: #aaaaaa;
+    font-size: 1rem;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-export const MemberNameInfo = styled.div`
-  color: #aaaaaa;
-  font-family: "PretendardMedium";
-  font-size: 1rem;
-  width: 50px;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const MemberClassNumberInfo = styled.span`
-  color: #aaaaaa;
-  font-family: "PretendardMedium";
-  font-size: 1rem;
-`;
+export const MemberList = styled.div`
+ display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
+`
 
 export const MemberWrap = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 600px;
-  margin-top: 1vh;
-
-  margin-left: 7vw;
+  width: 100%;
+  margin-top: 10px;
 `;
 
 export const MemeberProfileImg = styled.img`
@@ -259,8 +248,8 @@ export const MemeberProfileImg = styled.img`
 `;
 
 export const Member = styled.div`
-  width: calc(100vw - 52vw);
-  height: calc(100vh - 90vh);
+  width: 100%;
+  height: 80px;
 
   border: none;
   border-top: 1px solid #e6e6e6;
@@ -279,11 +268,12 @@ export const MemeberName = styled.span`
 `;
 
 export const MemberClassNumber = styled.span`
-  font-family: Prentendard;
+  font-family: "PretendardMedium";
   font-size: 1.3rem;
-  font-weight: 500;
+  
 `;
 
 export const MoreImg = styled.img`
   cursor: pointer;
+  z-index: 5;
 `;
