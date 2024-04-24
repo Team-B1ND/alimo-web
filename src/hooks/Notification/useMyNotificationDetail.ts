@@ -50,13 +50,13 @@ const useMyNotificationDetail = () => {
   ) => {
     if (commentValue !== "") {
       try {
-        setCommentValue("");
         await alimoV1Axios
           .post(`comment/create/${id}`, {
             content: commentValue,
             parentId: null,
           })
           .then(() => {
+            setCommentValue("");
             setCommentCreateCount((prev) => prev + 1);
           });
       } catch (error) {
