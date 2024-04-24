@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ImageData } from "src/types/MyNotificationDetail/Image.interface";
 import { FileData } from "src/types/MyNotificationDetail/File.interface";
+import { FILE_SIZES } from "src/constants/data/fileSize.constants";
 import { CommentData } from "src/types/CommentList/CommentList.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 
@@ -43,7 +44,10 @@ const useMyNotificationDetail = () => {
   };
 
   // 댓글 달기
-  const handleCommentCreate = async (commentValue: string, setCommentValue: Function) => {
+  const handleCommentCreate = async (
+    commentValue: string,
+    setCommentValue: Function
+  ) => {
     if (commentValue !== "") {
       try {
         setCommentValue("");
@@ -70,8 +74,7 @@ const useMyNotificationDetail = () => {
   const handleReplyCommentCreate = async (
     replyCommentValue: string,
     commentId: number,
-    setIsReplyCommentWriteShow: Function,
-
+    setIsReplyCommentWriteShow: Function
   ) => {
     try {
       await alimoV1Axios
@@ -101,11 +104,10 @@ const useMyNotificationDetail = () => {
         const fileData = res.data.data.files;
         fileData.map((fileData: FileData) => {
           let fileSize = fileData.fileSize;
-          const sizes = ["B", "KB", "MB", "GB", "TB"];
 
-          for (let i = 0; i < sizes.length; i++) {
+          for (let i = 0; i < FILE_SIZES.length; i++) {
             if (parseInt(fileSize) < 1024) {
-              fileSizeData.push(`${fileSize} ${sizes[i]}`);
+              fileSizeData.push(`${fileSize} ${FILE_SIZES[i]}`);
               break;
             }
             fileSize = `${(parseInt(fileSize) / 1024).toFixed(1)}`;
