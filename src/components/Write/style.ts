@@ -54,7 +54,6 @@ export const WriteContext = styled.textarea`
   margin-top: 2vh;
   margin-left: 2vw;
 
-  font-family: Pretendard;
   font-size: 1rem;
   font-weight: 600;
 
@@ -132,7 +131,7 @@ export const ViewFileName = styled.input`
   width: calc(100vw - 80vw);
   height: calc(100vh - 95vh);
   border: none;
-  font-family: Pretendard;
+
   font-size: 1rem;
   font-weight: 600;
 
@@ -149,7 +148,7 @@ export const FileChange = styled.input`
 
 export const SelectCategoryWrap = styled.div`
   width: 500px;
-  height: 100vh;
+  height: 750px;
   min-width: 500px;
 `;
 
@@ -189,10 +188,10 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   -webkit-tap-highlight-color: transparent;
 
   //더블클릭시 폰트 블럭처리를 막아주는 코드
-  /* -webkit-user-select: none;
+  -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
-  -ms-user-select: none; */
+  -ms-user-select: none;
 `;
 
 export const UplaodButtonWrap = styled.div`
@@ -203,7 +202,6 @@ export const UplaodButtonWrap = styled.div`
 `;
 
 export const SendShowMember = styled.span`
-  font-family: Prentendard;
   font-size: 1.1rem;
   font-weight: 400;
   color: #787878;
@@ -219,7 +217,7 @@ export const UploadButton = styled.button`
   height: calc(100vh - 95vh);
   background-color: #000;
   color: #fff;
-  font-family: Pretendard;
+
   font-weight: 400;
   font-size: 1rem;
   border: none;

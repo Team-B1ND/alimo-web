@@ -4,7 +4,7 @@ import { MemberInfo, Student } from "@src/types/Category/Add.types";
 import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/Toast/Swal";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { ShowStudentList, newSelectedData } from "src/store/category/category.store";
+import { AddMember, ShowStudentList, newSelectedData } from "src/store/category/category.store";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
@@ -13,7 +13,7 @@ const useAddStudnet = () => {
   const [room, setRoom] = useState<string>("");
   const [showStudentList, setShowStudentList] = useRecoilState(ShowStudentList);
   const [memberCnt, setMemberCnt] = useState<number>();
-  const [addMember, setAddMember] = useState<boolean>(false);
+  const [addMember, setAddMember] = useRecoilState(AddMember);
   const SelctedCategory = useRecoilValue(newSelectedData);
   const { createCategoryName } = useCreateCategory();
 
@@ -98,7 +98,7 @@ const useAddStudnet = () => {
 
   const handlePopUp = () => {
     setShowStudentList(!showStudentList);
-    setAddMember(!addMember);
+    setAddMember((prev) => !prev);
     console.log(addMember);
   };
 
@@ -126,4 +126,3 @@ const useAddStudnet = () => {
 };
 
 export default useAddStudnet;
-

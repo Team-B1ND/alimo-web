@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from "../style/CreateCategoryName";
+import * as S from "./CreateCategoryName";
 import useCreateCategory from "src/hooks/Category/useCreateCategory";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderBarWrap = styled.div`
-  width: 100vw;  
+  width: 100vw;
   height: calc(100vh - 90vh);
   border-bottom: 1px solid #e6e6e6;
   display: flex;
@@ -22,7 +22,7 @@ export const UploadNewNotifyButton = styled.button`
   border-radius: 10px;
   background-color: #fece23;
   color: #000;
-  font-family: Pretendard;
+
   font-weight: 600;
   font-size: 1rem;
 

@@ -3,12 +3,15 @@ import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "re
 import { useRecoilValue } from "recoil";
 import { showToast } from "src/libs/Toast/Swal";
 import Swal from "sweetalert2";
-import { Category, CategoryList, WriteElemProps, notificationId } from "src/types/Write/write.type";
+import { Category, WriteElemProps } from "src/types/Write/write.type";
 import axios from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
+import { NotificationIdData } from "src/store/write/write.store";
+import { useNavigate } from "react-router-dom";
 
 const useWrite = () => {
+  const navigate = useNavigate();
   const [wirteElem, setWirteElem] = useState<WriteElemProps>({
     title: "",
     content: "",
@@ -22,7 +25,7 @@ const useWrite = () => {
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [memberCnt, setMemberCnt] = useState<number>();
-  const [notificationId, setNotificationId] = useState<notificationId>();
+  const NotificationId = useRecoilValue(NotificationIdData);
 
   //제목, 내용, 카테고리 미 입력 혹은 미 선택시 버튼 비활성화 로직
   useEffect(() => {
@@ -37,7 +40,6 @@ const useWrite = () => {
     (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
       const { value, name } = e.target;
       setWirteElem((prev) => ({ ...prev, [name]: value }));
-      console.log(notificationId);
     },
     [setWirteElem],
   );
@@ -48,7 +50,7 @@ const useWrite = () => {
   };
 
   //파일 선택 전체 로직
-  const HandleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const HandleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
 
@@ -62,11 +64,42 @@ const useWrite = () => {
     } else {
       showToast("info", "파일은 최대 3개까지 올릴 수 있습니다.");
     }
+
+    if (image) {
+      Array.from(image).forEach((image) => {
+        formData.append("image", image);
+      });
+    }
+
+    if (file) {
+      Array.from(file).forEach((file) => {
+        formData.append("file", file);
+      });
+    }
+    try {
+      await axios
+        .post(
+          `${CONFIG.serverUrl}/files/create?notificationId=${NotificationId}`,
+          {
+            formData,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token.getToken("access-token")}`,
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        )
+        .then(() => {
+          showToast("sucess", "공지가 등록되었습니다.");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const DeleteFile = () => {
     setFile([]);
-    setFileName([]);
   };
 
   //이미지 업로드 전체 로직
@@ -133,10 +166,6 @@ const useWrite = () => {
   const formData = new FormData();
 
   const AllowWriteButton = async () => {
-    const response = await alimoV1Axios.post("notification/create");
-    setNotificationId(response.data.data);
-    console.log(notificationId?.NotificationId);
-
     await Swal.fire({
       title: "확성기 기능을 사용하시겠습니까?",
       text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
@@ -156,46 +185,16 @@ const useWrite = () => {
     });
 
     try {
-      const NotificationId = notificationId?.NotificationId;
-    console.log(NotificationId);
-    
-      await alimoV1Axios.patch(`/notification/update/${NotificationId}`, {
-        title: wirteElem.title,
-        content: wirteElem.content,
-        speaker: isSpeaker,
-        categories: selectedCategory.map((category) => category.name),
-      });
-
-      if (image) {
-        Array.from(image).forEach((image) => {
-          formData.append("image", image);
+      await alimoV1Axios
+        .patch(`/notification/update/${NotificationId}`, {
+          title: wirteElem.title,
+          content: wirteElem.content,
+          speaker: isSpeaker,
+          categories: selectedCategory.map((category) => category.name),
+        })
+        .then(() => {
+          navigate("/");
         });
-      }
-
-      if (file) {
-        Array.from(file).forEach((file) => {
-          formData.append("file", file);
-        });
-      }
-
-      console.log(formData.get("image"), formData.get("file"));
-      try {
-        await axios.post(
-          `${CONFIG.serverUrl}/files/create?notificationId=${NotificationId}`,
-          {
-            image: formData.get("image"),
-            file: formData.get("file"),
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token.getToken("access-token")}`,
-              "Content-Type": "multipart/form-data",
-            },
-          },
-        );
-      } catch (error) {
-        console.log(error);
-      }
     } catch (error) {
       console.log(error);
     }
@@ -222,4 +221,3 @@ const useWrite = () => {
 };
 
 export default useWrite;
-

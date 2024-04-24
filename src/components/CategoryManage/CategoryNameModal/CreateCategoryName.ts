@@ -81,7 +81,7 @@ export const ConfirmButton = styled.button`
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
-  font-family: Pretendard;
+  
 
   background: #fece23;
 
@@ -103,7 +103,7 @@ export const DenyButton = styled.button`
 
   font-size: 1rem;
   font-weight: 500;
-  font-family: Pretendard;
+  
 
   background: #787878;
   color: #fff;

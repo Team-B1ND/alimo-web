@@ -9,8 +9,7 @@ ${reset}
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Pretendard-Medium' ;
-
+    font-family: 'PretendardMedium';
   }
   @font-face {
     font-family: "PretendardMedium";

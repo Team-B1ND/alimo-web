@@ -52,7 +52,7 @@ export const SelectedStudnetTitle = styled.h1`
   color: #000;
 
   /* Subtitle */
-  font-family: Pretendard;
+
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 700;
@@ -103,7 +103,7 @@ export const GradeInfo = styled.span`
   color: #000;
 
   /* Label */
-  font-family: Pretendard;
+  
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -132,7 +132,7 @@ export const ClassInfo = styled.div`
   cursor: pointer;
 
   span {
-    font-family: Pretendard;
+    
     margin-bottom: 1vh;
   }
 `;
@@ -141,7 +141,7 @@ export const TeacherAndParentsInfo = styled.span`
   color: #000;
 
   /* Label */
-  font-family: Pretendard;
+  
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -177,7 +177,7 @@ export const MemberSearchInput = styled.input`
   margin-left: 15vw;
 
   /* Caption */
-  font-family: Pretendard;
+  
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
@@ -200,7 +200,7 @@ export const Class = styled.span`
   color: #000;
 
   /* Body */
-  font-family: Pretendard;
+  
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -213,7 +213,7 @@ export const ClassStudent = styled.span`
   color: var(--Gray500, #aaa);
 
   /* Body */
-  font-family: Pretendard;
+  
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -222,7 +222,7 @@ export const ClassStudent = styled.span`
 
 export const AllSelect = styled.span`
   color: var(--Gray600, #787878);
-  font-family: Pretendard;
+  
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
@@ -263,7 +263,7 @@ export const StudentName = styled.span`
   color: var(--Main900, #020202);
 
   /* Label */
-  font-family: Pretendard;
+  
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
@@ -302,7 +302,7 @@ export const ViewSelectedStudent = styled.div`
 `;
 
 export const ViewStudentName = styled.span`
-  font-family: Pretendard;
+  
   font-size: 1.2rem;
   font-weight: 400;
 
@@ -340,7 +340,7 @@ export const CancleButton = styled.button`
   background: #fff;
   color: #787878;
 
-  font-family: Pretendard;
+  
   font-size: 1rem;
   font-weight: 400;
 `;
@@ -356,7 +356,7 @@ export const ConfirmButton = styled.button`
   margin-right: 2vw;
   margin-left: 1vw;
 
-  font-family: Pretendard;
+  
   font-size: 1rem;
   font-weight: 400;
 `;

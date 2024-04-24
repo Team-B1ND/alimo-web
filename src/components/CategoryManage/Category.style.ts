@@ -49,7 +49,6 @@ export const SearchCateogy = styled.input`
 
   color: #787878;
   font-size: 1rem;
-  font-family: "Pretendard-Medium";
 
   &:focus {
     outline: none;
@@ -63,7 +62,6 @@ export const CreateCategoryButton = styled.button`
   background-color: #000;
 
   color: #fff;
-  font-family: "PretendardMedium";
   font-size: 1rem;
 
   border: none;
@@ -83,13 +81,11 @@ export const CategoryInfoWrap = styled.div`
 
 export const CategoryNameInfo = styled.span`
   color: #aaaaaa;
-  font-family: "PretendardMedium";
   margin-left: 1vw;
 `;
 
 export const CategoryMemberInfo = styled.span`
   color: #aaaaaa;
-  font-family: "PretendardMedium";
   margin-left: 11vw;
 `;
 
@@ -137,14 +133,14 @@ export const CategoryInfo = styled.div<{ isClicked: boolean }>`
 
 export const CategoryName = styled.span`
   color: #000;
-  font-family: "PretendardMedium";
+
   font-size: 1.2rem;
   width: 50px;
 `;
 
 export const CategoryInMember = styled.span`
   color: #000;
-  font-family: "PretendardMedium";
+
   font-size: 1.2rem;
 
   width: calc(100vw - 97vw);
@@ -155,11 +151,9 @@ export const CategoryInMember = styled.span`
 export const CategoryMemberWrap = styled.div`
   width: 100%;
   height: calc(100vh - 10vh);
-overflow: hidden;
+  overflow: hidden;
   background-color: #f4f5f9;
-position: relative;
-
-
+  position: relative;
 `;
 
 export const MemberManageWrap = styled.div`
@@ -195,7 +189,7 @@ export const AddMemberButton = styled.button`
   border-radius: 15px;
 
   background-color: #000;
-  font-family: "PretendardMedium";
+
   color: #fff;
   font-size: 1rem;
 
@@ -224,13 +218,13 @@ export const MemberUtilityWrap = styled.div`
 `;
 
 export const MemberList = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
   overflow: scroll;
   overflow-x: hidden;
-`
+`;
 
 export const MemberWrap = styled.div`
   display: flex;
@@ -262,15 +256,12 @@ export const Member = styled.div`
 `;
 
 export const MemeberName = styled.span`
-  font-family: "PretendardMedium";
   font-size: 1.3rem;
   width: 200px;
 `;
 
 export const MemberClassNumber = styled.span`
-  font-family: "PretendardMedium";
   font-size: 1.3rem;
-  
 `;
 
 export const MoreImg = styled.img`

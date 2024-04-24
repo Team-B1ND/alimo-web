@@ -25,7 +25,7 @@ export const AlimoLogoTitle = styled.h1`
   font-weight: 700;
   color: #000;
   z-index: 2;
-  
+
   cursor: pointer;
 
   & > span {
@@ -77,9 +77,10 @@ export const SideBarCategory = styled.div`
   height: 50px;
   flex-direction: row;
   cursor: pointer;
+
   & > img {
-    width: calc(100vw - 98vw);
-    height: calc(100vw - 98vw);
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -114,8 +115,8 @@ export const SidbarClickarea = styled.div`
 export const SideBarTeacherProfileImg = styled.div`
   display: flex;
   margin-left: 10px;
-  width: calc(100vw - 97vw);
-  height: calc(100vw - 97vw);
+  width: 30px;
+  height: 30px;
   border: none;
   img {
     border-radius: 50%;

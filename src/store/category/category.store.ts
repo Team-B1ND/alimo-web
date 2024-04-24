@@ -25,3 +25,7 @@ export const Permission = atom<string>({
   default: "",
 });
 
+export const AddMember = atom<boolean>({
+  key: "AddMember",
+  default: false,
+});
