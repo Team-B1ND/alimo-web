@@ -6,17 +6,19 @@ import { showToast } from "src/libs/Toast/Swal";
 import { useInView } from "react-intersection-observer";
 
 const useMyNotification = () => {
-  const sizeNum = 20;
+  const sizeNum = 6;
   const [pageNum, setPageNum] = useState(0);
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [DataAbsence, setDataAbsence] = useState(true);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isView, setIsView] = useState(true);
   const [observerRef, inView] = useInView({
     threshold: 0,
     delay: 200,
   });
 
   useEffect(() => {
-    if (inView && notificationData.length % sizeNum === 0) {
+    if (inView && isView && notificationData.length % sizeNum === 0) {
       setPageNum((current) => current + 1);
     }
   }, [inView]);
@@ -40,6 +42,8 @@ const useMyNotification = () => {
             .delete(`notification/delete/${notificationIdValue}`)
             .then(() => {
               showToast("success", "공지 삭제성공");
+              setPageNum(1);
+              setIsDelete(true);
             });
         } catch (error) {
           showToast("error", "공지 삭제실패");
@@ -60,11 +64,15 @@ const useMyNotification = () => {
             .then((res) => {
               const newNotificationData = res.data.data;
               if (newNotificationData.length > 0) {
-                if (pageNum === 1) {
-                  setNotificationData(newNotificationData)
+                if (isDelete && pageNum === 1) {
+                  setNotificationData(newNotificationData);
+                  setIsDelete(false);
                 } else {
                   setNotificationData([...notificationData, ...newNotificationData]);
                 }
+                setIsView(true);
+              } else {
+                setIsView(false);
               }
               if (pageNum === 1 && newNotificationData.length === 0) {
                 setDataAbsence(false);
@@ -77,7 +85,7 @@ const useMyNotification = () => {
     };
 
     MyNotificationLoad();
-  }, [pageNum]);
+  }, [pageNum, isDelete]);
 
   return {
     observerRef,
