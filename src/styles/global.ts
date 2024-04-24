@@ -5,13 +5,7 @@ import PretendardRegular from "src/assets/fonts/Pretendard/Pretendard-Regular.ot
 import PretendardSemiBold from "src/assets/fonts/Pretendard/Pretendard-SemiBold.otf";
 
 const globalStyles = createGlobalStyle`
-${reset}
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'PretendardMedium';
-  }
-  @font-face {
+@font-face {
     font-family: "PretendardMedium";
     src: local('PretendardMedium'), local('PretendardMedium');
     font-style: normal;
@@ -29,5 +23,16 @@ ${reset}
     font-style: normal;
     src: url(${PretendardSemiBold}) format('truetype');
   }
+
+${reset}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'PretendardMedium' !important;
+  }
+  a {
+      text-decoration: none;
+    }
+  
 `;
 export default globalStyles;
