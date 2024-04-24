@@ -38,7 +38,7 @@ const useMyNotification = () => {
             .delete(`notification/delete/${notificationIdValue}`)
             .then(() => {
               showToast("success", "공지 삭제성공");
-              setNotificationData(prevData => prevData.filter(item => item.notificationId !== notificationIdValue))
+              setNotificationData(prevData => prevData.filter(item => item.notificationId !== notificationIdValue));
             });
         } catch (error) {
           showToast("error", "공지 삭제실패");
@@ -59,11 +59,7 @@ const useMyNotification = () => {
             .then((res) => {
               const newNotificationData = res.data.data;
               if (newNotificationData.length > 0) {
-                if (pageNum === 1) {
-                  setNotificationData(newNotificationData);
-                } else {
-                  setNotificationData([...notificationData, ...newNotificationData]);
-                }
+                setNotificationData([...notificationData, ...newNotificationData]);
                 setIsView(true);
               } else {
                 setIsView(false);
