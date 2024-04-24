@@ -176,3 +176,6 @@ export const DeleteButton = styled.img`
   cursor: pointer;
 `;
 
+export const ObserveBox = styled.div`
+  width: 100%;
+`;
