@@ -17,7 +17,7 @@ const useMyNotification = () => {
   });
 
   useEffect(() => {
-    if (inView) {
+    if (inView && notificationData.length%20 === 0) {
       setPageNum((current) => current + 1);
     }
   }, [inView]);
