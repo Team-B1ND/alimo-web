@@ -23,9 +23,7 @@ export const CommentInput = styled.textarea`
   width: calc(100% - 35px);
   height: 20px;
   color: #000;
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
   resize: none;

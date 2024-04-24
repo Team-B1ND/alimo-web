@@ -92,18 +92,14 @@ export const MyInfoText = styled.div`
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotificationDate = styled.p`
   color: #aaaaaa;
-  font-family: Pretendard;
   font-size: 13px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
@@ -123,9 +119,7 @@ export const MyContentTitleWrap = styled.div`
 
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 18px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
@@ -140,9 +134,7 @@ export const MyContentWrap = styled.div`
 
 export const MyContent = styled.span`
   color: var(--Main600, #787878);
-  font-family: Pretendard;
   font-size: 15px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   white-space: pre-line;

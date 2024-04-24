@@ -73,18 +73,14 @@ export const InfoWrap = styled.div`
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotificationDate = styled.p`
   color: var(--Gray500, #aaa);
-  font-family: Pretendard;
   font-size: 13px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
@@ -97,9 +93,7 @@ export const TitleWrap = styled.div`
 
 export const Title = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 20px;
-  font-style: normal;
   font-weight: 900;
   line-height: normal;
 `;
@@ -113,9 +107,7 @@ export const ContentWrap = styled.div`
 
 export const Content = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 15px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   white-space: pre-line;
@@ -185,18 +177,14 @@ export const FileInfo = styled.div`
 
 export const FileName = styled.p`
   color: var(--Primary900, #020202);
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
 
 export const FileSize = styled.p`
   color: var(--Gray600, #787878);
-  font-family: Pretendard;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-top: 2px;
