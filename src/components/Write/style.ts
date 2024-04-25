@@ -10,8 +10,7 @@ export const WriteMain = styled.div`
 `;
 
 export const WriteView = styled.div`
-  width: calc(100vw - 15vw);
-
+  width: 100vw;
   display: flex;
   flex-direction: row;
 
@@ -19,13 +18,15 @@ export const WriteView = styled.div`
 `;
 
 export const InputWrap = styled.form`
+  width: 90%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
 export const WriteTitleInput = styled.input`
-  width: calc(100vw - 45vw);
-  height: calc(100vh - 93vh);
+  width: 90%;
+  height: 9%;
 
   border: none;
   border-bottom: 1px solid #aaa;
@@ -46,7 +47,7 @@ export const WriteTitleInput = styled.input`
 `;
 
 export const WriteContext = styled.textarea`
-  width: calc(100vw - 45vw);
+  width: 90%;
   height: calc(100vh - 40vh);
 
   border: none;
@@ -71,7 +72,7 @@ export const WriteContext = styled.textarea`
 `;
 
 export const FileWrap = styled.div`
-  width: calc(100vw - 45vw);
+  width: 90%;
   height: calc(100vw - 90vw);
 
   margin-left: 2vw;
@@ -147,13 +148,14 @@ export const FileChange = styled.input`
 `;
 
 export const SelectCategoryWrap = styled.div`
-  width: 500px;
-  height: 750px;
-  min-width: 500px;
+display: flex;
+flex-direction: column;
+
+  height: 100vh;
+  min-width: 300px;
 `;
 
 export const SendCategoryWrap = styled.div`
-  width: 500px;
   height: 80%;
   background-color: #f4f5f9;
   display: flex;
@@ -161,37 +163,42 @@ export const SendCategoryWrap = styled.div`
 `;
 
 export const SendCategoryTitle = styled.h1`
-  font-family: Prentendard;
+  width: 100%;
   font-size: 1.4rem;
-  font-weight: 600;
-  margin-left: 2vw;
-  margin-top: 3vh;
+  text-align: center;
+  padding: 20px 10px 10px 10px ;
 `;
 
 export const CategoryWrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
 export const Cateogory = styled.span<{ isClicked: boolean }>`
+min-width: 50px;
+height: 20px;
   display: inline-flex;
   padding: 7px var(--Largee, 20px);
   justify-content: center;
   align-items: center;
-  margin-left: 2vw;
+  margin-left: 20px;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${({ isClicked }) => (isClicked ? "2px solid #FECE23" : "2px solid #fff")};
+  border: ${({ isClicked }) =>
+    isClicked ? "2px solid #FECE23" : "2px solid #fff"};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 `;
 
 export const UplaodButtonWrap = styled.div`
-  width: calc(100vw - 70vw);
-  height: 100px;
+  width: 100%;
+  height: calc(100% - 90%);
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   flex-direction: row;
 `;
 
@@ -199,7 +206,7 @@ export const SendShowMember = styled.span`
   font-size: 1.1rem;
   font-weight: 400;
   color: #787878;
-  margin-top: 4vh;
+
   margin-left: 2vw;
   & > span {
     color: #fece23;
@@ -216,8 +223,7 @@ export const UploadButton = styled.button`
   font-size: 1rem;
   border: none;
   border-radius: 15px;
-  margin-top: 3vh;
-  margin-left: 8vw;
+
   cursor: pointer;
   &:disabled {
     background: #f4f5f9;
