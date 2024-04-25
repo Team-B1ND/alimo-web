@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style";
@@ -12,11 +11,6 @@ import "dayjs/locale/ko";
 const MyPostNotification = () => {
   const { observerRef, notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
   const navigate = useNavigate();
-  const [, setIsImageError] = useState(true);
-
-  const HandleImageError = () => {
-    setIsImageError(false);
-  };
 
   return (
     <S.MyNotificationWrap>
@@ -25,15 +19,10 @@ const MyPostNotification = () => {
           <S.MyPostNotificationWrap key={notification.notificationId}>
             <S.MyPostNotification>
               <S.MyNotificationBox
-                onClick={() =>
-                  navigate(`/write-read/${notification.notificationId}`)
-                }>
+                onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile
-                      src={notification.profileImage || DefaultImg}
-                      onError={HandleImageError}
-                    />
+                    <S.MyProfile src={notification.profileImage || DefaultImg}/>
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>
@@ -63,19 +52,16 @@ const MyPostNotification = () => {
                   {notification.images && notification.images.length > 0 && (
                     <S.MyNotificationImg
                       rel="preconnect"
+                      loading="lazy"
                       decoding="async"
-                      src={notification.images[0].fileUrl}
-                      onError={HandleImageError}
-                    />
+                      src={notification.images[0].fileUrl}/>
                   )}
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>
               <S.DeleteButtonWrap>
                 <S.DeleteButton
                   src={SettingImg}
-                  onClick={() => {
-                    DeleteButtonClick(notification);
-                  }}></S.DeleteButton>
+                  onClick={() => {DeleteButtonClick(notification)}}></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>
