@@ -50,7 +50,7 @@ const CategoryManage = () => {
             {category.categoryData && category.categoryData.length > 0 ? (
               category.categoryData.map((item, idx) => (
                 <S.CategoryInfo
-                  isClicked={category.isClickedCategory === `${item.categoryName}`}
+                  $isclicked={category.isClickedCategory === `${item.categoryName}` ? "true" : "false"}
                   onClick={() => category.handleCategoryClick(`${item.categoryName}`)}
                   key={idx}
                 >

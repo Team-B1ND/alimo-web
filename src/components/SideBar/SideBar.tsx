@@ -35,7 +35,7 @@ const SideBar = () => {
                 }
               />
               <S.SideBarMenu
-                isClicked={sidbar.isClickCategory === "카테고리 관리"}
+                $isclicked={sidbar.isClickCategory === "카테고리 관리" ? "true" : "false"}
                 onClick={() => sidbar.HandleCategoryClick("카테고리 관리")}
               >
                 카테고리 관리
@@ -46,7 +46,7 @@ const SideBar = () => {
                 src={sidbar.isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg}
               />
               <S.SideBarMenu
-                isClicked={sidbar.isClickCategory === "내가 쓴 공지보기"}
+                $isclicked={sidbar.isClickCategory === "내가 쓴 공지보기" ? "true" : "false"}
                 onClick={() => sidbar.HandleCategoryClick("내가 쓴 공지보기")}
               >
                 내가 쓴 공지보기

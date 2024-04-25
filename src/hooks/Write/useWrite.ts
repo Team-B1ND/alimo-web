@@ -9,7 +9,6 @@ import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
 import { NotificationIdData } from "src/store/write/write.store";
 import { useNavigate } from "react-router-dom";
-import { error } from "console";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -215,7 +214,7 @@ const useWrite = () => {
           categories: selectedCategory.map((category) => category.name),
         })
         .then(() => {
-          navigate("/");
+          navigate("/write-read");
         });
     } catch (error) {
       console.log(error);

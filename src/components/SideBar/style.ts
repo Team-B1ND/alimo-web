@@ -93,8 +93,8 @@ export const SideBarCategory = styled.div`
   }
 `;
 
-export const SideBarMenu = styled.span<{ isClicked: boolean }>`
-  color: ${(props) => (props.isClicked ? "#000" : "#aaa")};
+export const SideBarMenu = styled.span<{ $isclicked: string }>`
+  color: ${({ $isclicked }) => ($isclicked === "true" ? "#000" : "#aaa")};
   margin-left: 10px;
   font-family: Pretendard;
   font-size: 1rem;

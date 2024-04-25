@@ -148,8 +148,8 @@ export const FileChange = styled.input`
 `;
 
 export const SelectCategoryWrap = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
   height: 100vh;
   min-width: 300px;
@@ -166,7 +166,7 @@ export const SendCategoryTitle = styled.h1`
   width: 100%;
   font-size: 1.4rem;
   text-align: center;
-  padding: 20px 10px 10px 10px ;
+  padding: 20px 10px 10px 10px;
 `;
 
 export const CategoryWrap = styled.div`
@@ -176,9 +176,9 @@ export const CategoryWrap = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Cateogory = styled.span<{ isClicked: boolean }>`
-min-width: 50px;
-height: 20px;
+export const Cateogory = styled.span<{ $isclicked: boolean }>`
+  min-width: 50px;
+  height: 20px;
   display: inline-flex;
   padding: 7px var(--Largee, 20px);
   justify-content: center;
@@ -186,8 +186,7 @@ height: 20px;
   margin-left: 20px;
   margin-top: 2vh;
   border-radius: var(--Large, 20px);
-  border: ${({ isClicked }) =>
-    isClicked ? "2px solid #FECE23" : "2px solid #fff"};
+  border: ${({ $isclicked }) => ($isclicked ? "2px solid #FECE23" : "2px solid #fff")};
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;

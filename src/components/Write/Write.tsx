@@ -63,7 +63,7 @@ const Write = () => {
                 write.categoryList.map((Category, idx) => (
                   <S.Cateogory
                     onClick={() => write.HandleAddCategory(Category)}
-                    isClicked={write.selectedCategory.some((category) => category.name === Category)}
+                    $isclicked={write.selectedCategory.some((category) => category.name === Category)}
                     key={idx}
                   >
                     {Category}

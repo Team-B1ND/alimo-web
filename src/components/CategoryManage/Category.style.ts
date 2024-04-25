@@ -99,11 +99,11 @@ export const CategoryMemberInfo = styled.span`
   margin-left: 11vw;
 `;
 
-export const CategoryInfo = styled.div<{ isClicked: boolean }>`
+export const CategoryInfo = styled.div<{ $isclicked: string }>`
   width: calc(100vw - 65vw);
   height: 80px;
 
-  background: ${(props) => (props.isClicked ? "#f4f5f9" : "#fff")};
+  background: ${({ $isclicked }) => ($isclicked === "true" ? "#f4f5f9" : "#fff")};
   border: none;
   border-radius: 15px;
   display: flex;
