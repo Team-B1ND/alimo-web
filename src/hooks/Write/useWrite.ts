@@ -214,6 +214,7 @@ const useWrite = () => {
           categories: selectedCategory.map((category) => category.name),
         })
         .then(() => {
+          showToast("success", "공지 등록 성공!");
           navigate("/write-read");
         });
     } catch (error) {
