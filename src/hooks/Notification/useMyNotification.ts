@@ -46,7 +46,6 @@ const useMyNotification = () => {
           .then((res) => {
             const NotificationData = res.data.data;
             setNotificationData(NotificationData);
-            console.log(NotificationData);
             if (NotificationData.length === 0) {
               setDataAbsence(false);
             }
