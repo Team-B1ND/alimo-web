@@ -23,6 +23,19 @@ const ReplyComment = ({
   const { replyCommentRef, replyCommentValue, handleChangeValue } = useReplyComment();
   const { Name, image } = useSidebar();
 
+  const handleKeydown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && e.shiftKey) {
+      return;
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      handleReplyCommentCreate(
+        replyCommentValue,
+        commentData.commentId,
+        setIsReplyCommentWriteShow
+      );
+    }
+  }
+
   return (
     <S.ReplyCommentWrap>
       <S.ReplyComment>
@@ -44,18 +57,7 @@ const ReplyComment = ({
               rows={1}
               ref={replyCommentRef}
               value={replyCommentValue}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && e.shiftKey) {
-                  return;
-                } else if (e.key === "Enter") {
-                  e.preventDefault();
-                  handleReplyCommentCreate(
-                    replyCommentValue,
-                    commentData.commentId,
-                    setIsReplyCommentWriteShow
-                  );
-                }
-              }}
+              onKeyDown={handleKeydown}
               onChange={(e) => handleChangeValue(e, replyCommentRef)}
             />
             <S.ReplyCommentButton

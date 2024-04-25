@@ -52,7 +52,6 @@ export const CommentContentWrap = styled.div`
 export const CommentName = styled.p`
   color: var(--Gray700, #333);
   font-size: 16px;
-  font-weight: 700;
   line-height: normal;
 `;
 
@@ -67,7 +66,6 @@ export const CommentContentBox = styled.div`
 export const CommentContent = styled.p<{ replyCommentCnt: number }>`
   max-width: 70%;
   font-size: 16px;
-  font-weight: 400;
   line-height: normal;
   white-space: pre-line;
   margin-bottom: ${(props) => (props.replyCommentCnt > 0 ? "" : "20px")};
@@ -76,7 +74,6 @@ export const CommentContent = styled.p<{ replyCommentCnt: number }>`
 export const ReplyCommentWriteBtn = styled.button`
   color: var(--Gray500, #aaa);
   font-size: 14px;
-  font-weight: 500;
   line-height: normal;
   cursor: pointer;
   border: 0;
@@ -96,7 +93,6 @@ export const ReplyCommentShowBtn = styled.button`
   width: auto;
   color: var(--Primary500, #fece23);
   font-size: 14px;
-  font-weight: 500;
   line-height: normal;
   cursor: pointer;
   border: 0;
@@ -165,7 +161,6 @@ export const ReplyCommentContentWrap = styled.div`
 export const ReplyCommentName = styled.p`
   color: var(--Gray700, #333);
   font-size: 16px;
-  font-weight: 700;
   line-height: normal;
 `;
 
@@ -178,7 +173,6 @@ export const ReplyCommentWrap = styled.div`
 export const ReplyCommentContent = styled.p`
   max-width: 70%;
   font-size: 16px;
-  font-weight: 400;
   line-height: normal;
   white-space: pre-line;
 `;

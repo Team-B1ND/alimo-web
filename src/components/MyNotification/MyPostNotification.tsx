@@ -69,7 +69,7 @@ const MyPostNotification = () => {
       ) : (
         <NullSkeleton />
       )}
-      {notificationData ? <S.ObserveBox ref={observerRef}></S.ObserveBox> : ""}
+      {notificationData ? <div ref={observerRef}></div> : ""}
     </S.MyNotificationWrap>
   );
 };

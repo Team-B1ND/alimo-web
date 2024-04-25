@@ -10,8 +10,16 @@ interface Props {
 }
 
 const Comment = ({ handleCommentCreate }: Props) => {
-  const { commentRef, commentValue, setCommentValue, handleChangeValue } =
-    useComment();
+  const { commentRef, commentValue, setCommentValue, handleChangeValue } = useComment();
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && e.shiftKey) {
+      return;
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      handleCommentCreate(commentValue, setCommentValue);
+    }
+  };
 
   return (
     <S.CommentWrap>
@@ -21,14 +29,7 @@ const Comment = ({ handleCommentCreate }: Props) => {
           ref={commentRef}
           value={commentValue}
           placeholder="댓글을 남겨보세요."
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && e.shiftKey) {
-              return;
-            } else if (e.key === "Enter") {
-              e.preventDefault()
-              handleCommentCreate(commentValue, setCommentValue);
-            }
-          }}
+          onKeyDown={handleKeyDown}
           onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
         <S.CommentButtonWrap
           onClick={() => handleCommentCreate(commentValue, setCommentValue)}>

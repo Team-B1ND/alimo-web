@@ -94,14 +94,12 @@ export const MyInfoText = styled.div`
 export const MyName = styled.p`
   color: var(--Gray700, #333);
   font-size: 14px;
-  font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotificationDate = styled.p`
   color: #aaaaaa;
   font-size: 13px;
-  font-weight: 500;
   line-height: normal;
 `;
 
@@ -121,7 +119,6 @@ export const MyContentTitleWrap = styled.div`
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
   font-size: 18px;
-  font-weight: 700;
   line-height: normal;
 `;
 
@@ -134,7 +131,6 @@ export const MyContentWrap = styled.div`
 export const MyContent = styled.span`
   color: var(--Main600, #787878);
   font-size: 15px;
-  font-weight: 500;
   line-height: normal;
   white-space: pre-line;
 `;
@@ -166,8 +162,4 @@ export const DeleteButton = styled.img`
   height: 32px;
   transform: rotate(90deg);
   cursor: pointer;
-`;
-
-export const ObserveBox = styled.div`
-  width: 100%;
 `;
