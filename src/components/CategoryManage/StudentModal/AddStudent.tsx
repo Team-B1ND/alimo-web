@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./AddStudent.style";
 import CheckStudent from "src/assets/images/category/CheckStudent.png";
 import NoneCheckStudent from "src/assets/images/category/NoneCheckStudent.png";
@@ -10,6 +10,10 @@ import useAddStudnet from "src/hooks/Category/useAddStudent";
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
   const { ...student } = useAddStudnet();
 
+  useEffect(() => {
+    student.getMemberCntList();
+  }, []);
+
   return (
     <S.AddStudentWrap>
       <S.Main>
@@ -20,35 +24,50 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
               <S.StudentWrap>
-                <S.GradeInfo onClick={() => student.onLoadStudentInfo(1, 0)}>1학년 (72)</S.GradeInfo>
-                <S.ClassInfo>
-                  <span onClick={() => student.onLoadStudentInfo(1, 1)}>1반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(1, 2)}>2반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(1, 3)}>3반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(1, 4)}>4반 {student.memberCnt}</span>
-                </S.ClassInfo>
-                <S.GradeInfo onClick={() => student.onLoadStudentInfo(2, 0)}>2학년 (72)</S.GradeInfo>
-                <S.ClassInfo>
-                  <span onClick={() => student.onLoadStudentInfo(2, 1)}>1반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(2, 2)}>2반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(2, 3)}>3반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(2, 4)}>4반 {student.memberCnt}</span>
-                </S.ClassInfo>
-                <S.GradeInfo onClick={() => student.onLoadStudentInfo(3, 0)}>3학년 (72)</S.GradeInfo>
-                <S.ClassInfo>
-                  <span onClick={() => student.onLoadStudentInfo(3, 1)}>1반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(3, 2)}>2반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(3, 3)}>3반 {student.memberCnt}</span>
-                  <span onClick={() => student.onLoadStudentInfo(3, 4)}>4반 {student.memberCnt}</span>
-                </S.ClassInfo>
+                {student.memberCntList?.student?.map((std) => (
+                  <>
+                    <div key={std.grade1[0].cls}>
+                      <S.GradeInfo onClick={() => student.onLoadStudentInfo(1, 0)}>1학년</S.GradeInfo>
+                      <S.ClassInfo>
+                        {std.grade1.map((g1) => (
+                          <span key={g1.cls} onClick={() => student.onLoadStudentInfo(1, g1.cls)}>
+                            {g1.cls}반 ({g1.count})
+                          </span>
+                        ))}
+                      </S.ClassInfo>
+                    </div>
+                    <div key={std.grade2[0].cls}>
+                      <S.GradeInfo onClick={() => student.onLoadStudentInfo(2, 0)}>2학년</S.GradeInfo>
+                      <S.ClassInfo>
+                        {std.grade2.map((g2) => (
+                          <span key={g2.cls} onClick={() => student.onLoadStudentInfo(2, g2.cls)}>
+                            {g2.cls}반 ({g2.count})
+                          </span>
+                        ))}
+                      </S.ClassInfo>
+                    </div>
+                    <div key={std.grade3[0].cls}>
+                      <S.GradeInfo onClick={() => student.onLoadStudentInfo(3, 0)}>3학년</S.GradeInfo>
+                      <S.ClassInfo>
+                        {std.grade3.map((g3) => (
+                          <span key={g3.cls} onClick={() => student.onLoadStudentInfo(3, g3.cls)}>
+                            {g3.cls}반 ({g3.count})
+                          </span>
+                        ))}
+                      </S.ClassInfo>
+                    </div>
+                  </>
+                ))}
               </S.StudentWrap>
               <S.TeacherWrap>
-                <S.TeacherAndParentsInfo onClick={() => student.onLoadMemberInfo("teacher")}>
-                  교사 (20)
+                <S.TeacherAndParentsInfo onClick={student.onLoadTeacherInfo}>
+                  교사 ({student.memberCntList?.teacher})
                 </S.TeacherAndParentsInfo>
               </S.TeacherWrap>
               <S.ParantWrap>
-                <S.TeacherAndParentsInfo>학부모</S.TeacherAndParentsInfo>
+                <S.TeacherAndParentsInfo onClick={student.onLoadParentInfo}>
+                  학부모 ({student.memberCntList?.parent})
+                </S.TeacherAndParentsInfo>
               </S.ParantWrap>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
@@ -61,35 +80,52 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               <S.UtilityWrap>
                 <S.Class>{student.room === "0반" ? "전체" : student.room}</S.Class>
                 &nbsp;
-                <S.ClassStudent>{student.memberCnt}</S.ClassStudent>
                 <S.AllSelect onClick={() => student.onClickAddStudent(-1, "")}>전체선택</S.AllSelect>
               </S.UtilityWrap>
-              {student.memberInfo.map((stud, idx) => (
-                <S.StudentList key={idx}>
-                  <img
-                    src={
-                      student.selectedStudents.some((std) => std.id === stud.memberId) ? CheckStudent : NoneCheckStudent
-                    }
-                    onClick={() => student.onClickAddStudent(stud.memberId, stud.name)}
-                  />
-                  <S.ProfileImg src={stud.profileImage !== null ? stud.profileImage : ProfileImg} />
-                  <S.StudentName>{stud.name}</S.StudentName>
-                </S.StudentList>
-              ))}
+              {!student.searchMember && student.memberInfo.length > 0
+                ? student.memberInfo.map((stud, idx) => (
+                    <S.StudentList key={idx}>
+                      <img
+                        src={
+                          student.selectedStudents.some((std) => std.id === stud.memberId)
+                            ? CheckStudent
+                            : NoneCheckStudent
+                        }
+                        onClick={() => student.onClickAddStudent(stud.memberId, stud.name)}
+                      />
+                      <S.ProfileImg src={stud.profileImage !== null ? stud.profileImage : ProfileImg} />
+                      <S.StudentName>{stud.name}</S.StudentName>
+                    </S.StudentList>
+                  ))
+                : student.filteredMemberInfo.map((member, idx) => (
+                    <S.StudentList key={idx}>
+                      <img
+                        src={
+                          student.selectedStudents.some((std) => std.id === member.memberId)
+                            ? CheckStudent
+                            : NoneCheckStudent
+                        }
+                        onClick={() => student.onClickAddStudent(member.memberId, member.name)}
+                      />
+                      <S.ProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImg} />
+                      <S.StudentName>{member.name}</S.StudentName>
+                    </S.StudentList>
+                  ))}
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
-              {student.selectedStudents.map((std) => (
-                <S.ViewSelectedStudent>
-                  <div style={{ marginLeft: "2vw" }}>
-                    <S.ViewStudentName>{std.name}</S.ViewStudentName>
-                    <S.DenyStudent
-                      src={DenyStudent}
-                      style={{ marginLeft: "1vw" }}
-                      onClick={() => student.onClickRemoveStudent(std.id)}
-                    />
-                  </div>
-                </S.ViewSelectedStudent>
-              ))}
+              {student.selectedStudents &&
+                student.selectedStudents.map((std) => (
+                  <S.ViewSelectedStudent>
+                    <div style={{ marginLeft: "2vw" }}>
+                      <S.ViewStudentName>{std.name}</S.ViewStudentName>
+                      <S.DenyStudent
+                        src={DenyStudent}
+                        style={{ marginLeft: "1vw" }}
+                        onClick={() => student.onClickRemoveStudent(std.id)}
+                      />
+                    </div>
+                  </S.ViewSelectedStudent>
+                ))}
             </S.ViewSelectedStudentWrap>
           </S.SelectionWrap>
           <S.ButtonWrap>

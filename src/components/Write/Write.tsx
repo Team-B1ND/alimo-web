@@ -37,8 +37,8 @@ const Write = () => {
             <S.ImageUploadImg src={ImageUploadImg} onClick={write.HandleImageClick} />
             <S.ImageInputRef
               type="file"
-              accept=".jpeg, .jpg, .png"
               multiple
+              accept=".jpeg, .jpg, .png"
               ref={write.imageInputRef}
               onChange={write.HandleImageChange}
             />
@@ -52,7 +52,7 @@ const Write = () => {
               placeholder="파일은 최대 3개, 각각 100MB"
               onClick={write.DeleteFile}
             />
-            <S.FileChange type="file" id="file-change" multiple onChange={write.HandleFileChange} />
+            <S.FileChange type="file" id="file-change" onChange={write.HandleFileChange} />
           </S.FileWrap>
         </S.InputWrap>
         <S.SelectCategoryWrap>

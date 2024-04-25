@@ -9,6 +9,7 @@ import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
 import { NotificationIdData } from "src/store/write/write.store";
 import { useNavigate } from "react-router-dom";
+import { error } from "console";
 
 const useWrite = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const useWrite = () => {
   const [file, setFile] = useState<File[]>([]);
   const [image, setImage] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
+  const [fileId, setFileId] = useState<number>(0);
+  const [imageId, setImageId] = useState<number>(0);
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [notAllow, setNotAllow] = useState<boolean>(true);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -55,33 +58,21 @@ const useWrite = () => {
     const fileArray = Array.prototype.slice.call(files);
 
     //파일 갯수 제한
-    if (fileArray.length <= 3) {
-      setFile(fileArray);
 
-      //파일 이름
-      const newFileNames = fileArray.map((file) => file.name);
-      setFileName(newFileNames);
-    } else {
-      showToast("info", "파일은 최대 3개까지 올릴 수 있습니다.");
-    }
+    //파일 이름
+    const newFileNames = fileArray.map((file) => file.name);
+    setFileName(newFileNames);
+    setFile(fileArray);
+    fileArray.map((file) => {
+      formData.append("file", file);
+    });
 
-    if (image) {
-      Array.from(image).forEach((image) => {
-        formData.append("image", image);
-      });
-    }
-
-    if (file) {
-      Array.from(file).forEach((file) => {
-        formData.append("file", file);
-      });
-    }
     try {
       await axios
         .post(
-          `${CONFIG.serverUrl}/files/create?notificationId=${NotificationId}`,
+          `${CONFIG.serverUrl}/files/save?notificationId=${NotificationId}`,
           {
-            formData,
+            file: formData.get("file"),
           },
           {
             headers: {
@@ -90,32 +81,63 @@ const useWrite = () => {
             },
           },
         )
-        .then(() => {
-          showToast("sucess", "공지가 등록되었습니다.");
+        .then((res) => {
+          setFileId(res.data.data.id);
         });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const DeleteFile = () => {
-    setFile([]);
-  };
-
-  //이미지 업로드 전체 로직
-  const HandleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    const fileArray: File[] = Array.prototype.slice.call(files);
-
-    //이미지 업로드 개수 제한
-    if (fileArray.length <= 2) {
-      setImage(fileArray);
-    } else {
-      showToast("info", "이미지는 최대 2개까지 올릴 수 있습니다.");
+  const DeleteFile = async () => {
+    try {
+      await alimoV1Axios.delete(`files/delete?fileId=${fileId}`).then(() => {
+        setFile([]);
+        setFileName([]);
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const DeletePreviewImage = () => {
+  //이미지 업로드 전체 로직
+  const HandleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const files = e.target.files;
+      const fileArray: File[] = Array.prototype.slice.call(files);
+      setImage(fileArray);
+      fileArray.map((file) => {
+        formData.append("image", file);
+      });
+
+      await axios
+        .post(
+          `${CONFIG.serverUrl}/files/save?notificationId=${NotificationId}`,
+          {
+            file: formData.get("image"),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token.getToken("access-token")}`,
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        )
+        .then((res) => {
+          setImageId(res.data.data.id);
+          console.log(image);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const DeletePreviewImage = async () => {
+    try {
+      await alimoV1Axios.delete(`/files/delete?fileId=${imageId}`);
+    } catch (error) {
+      console.log(error);
+    }
     setImage([]);
   };
 

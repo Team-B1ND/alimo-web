@@ -3,13 +3,14 @@ import { showToast } from "src/libs/Toast/Swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { MemberId, Permission, newSelectedData } from "src/store/category/category.store";
-import { CategoryData, MemberInCategoryData } from "@src/types/Category/interface";
-import { MemberInfo, Student } from "@src/types/Category/Add.types";
+import { MemberId, Permission, ShowCategoryName, newSelectedData } from "src/store/category/category.store";
+import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
+import { MemberInfo, Student } from "src/types/Category/Add.types";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
-  const [showCategoryName, setShowCategoryName] = useState<boolean>(false);
+  const [clickedCategory, setClickedCategory] = useState<string | null>(null);
+  const [showCategoryName, setShowCategoryName] = useRecoilState(ShowCategoryName);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
   const [permissoinToMemb, setPermissoinToMemb] = useRecoilState(MemberId);
@@ -35,22 +36,28 @@ const useCategoryManage = () => {
   };
 
   const handleCategoryClick = async (categoryName: string) => {
-    try {
-      await alimoV1Axios
-        .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
-        .then((res) => {
-          if (categoryName === "학부모") {
-            setGradeName("학부모");
-          } else if (categoryName === "선생님") {
-            setGradeName("선생님");
-          } else {
-            setGradeName("학번");
-          }
-          setMemberData(res.data.data);
-        });
-      setIsClickedCategory(categoryName);
-    } catch (e) {
-      showToast("error", "서버 연결오류");
+    if (clickedCategory === categoryName) {
+      setClickedCategory(null);
+      setIsClickedCategory("");
+    } else {
+      try {
+        await alimoV1Axios
+          .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+          .then((res) => {
+            if (categoryName === "학부모") {
+              setGradeName("학부모");
+            } else if (categoryName === "선생님") {
+              setGradeName("선생님");
+            } else {
+              setGradeName("학번");
+            }
+            setMemberData(res.data.data);
+          });
+        setIsClickedCategory(categoryName);
+        setClickedCategory(categoryName);
+      } catch (e) {
+        showToast("error", "서버 연결오류");
+      }
     }
   };
 
@@ -90,7 +97,7 @@ const useCategoryManage = () => {
     }
   };
 
-  const handleDeletetCategory = async () => {
+  const handleDeletetCategory = async (categoryName: string) => {
     await Swal.fire({
       title: "정말 카테고리를 삭제하시겠습니까?",
       showCancelButton: true,
@@ -102,7 +109,7 @@ const useCategoryManage = () => {
           await alimoV1Axios
             .delete("/category/delete", {
               params: {
-                category: isClickedCategory,
+                category: categoryName,
               },
             })
             .then(() => {
@@ -168,6 +175,7 @@ const useCategoryManage = () => {
   return {
     GradeName,
     isClickedCategory,
+    clickedCategory,
     categoryData,
     permissoinToMemb,
     permission,
