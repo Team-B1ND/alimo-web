@@ -22,6 +22,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.8.2",
     "react-linkify": "^1.0.0-alpha",
     "react-linkify-it": "^1.0.8",
     "react-modal": "^3.16.1",

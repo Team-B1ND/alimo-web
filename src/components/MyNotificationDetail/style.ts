@@ -9,8 +9,8 @@ export const MyNotificationDetailWrap = styled.div`
 `;
 
 export const MyNotificationDetailBox = styled.div`
-  width: 85vw;
-  height: calc(100% - 10vh);
+  width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: row;
   margin-top: 85px;
@@ -73,19 +73,13 @@ export const InfoWrap = styled.div`
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotificationDate = styled.p`
   color: var(--Gray500, #aaa);
-  font-family: Pretendard;
   font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
 `;
 
@@ -97,10 +91,7 @@ export const TitleWrap = styled.div`
 
 export const Title = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 20px;
-  font-style: normal;
-  font-weight: 900;
   line-height: normal;
 `;
 
@@ -113,11 +104,9 @@ export const ContentWrap = styled.div`
 
 export const Content = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
+  white-space: pre-line;
 `;
 
 export const ImgWrap = styled.div`
@@ -126,21 +115,21 @@ export const ImgWrap = styled.div`
 `;
 
 export const Img = styled.img<{
-  dataCnt: number;
-  imageIndex: number;
+  $data_cnt: number;
+  $image_index: number;
 }>`
   max-width: 60%;
   min-width: 20%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: ${(props) =>
-    props.dataCnt > props.imageIndex + 1 ? "3px" : "20px"};
+  margin-bottom: ${({$data_cnt, $image_index}) =>
+    $data_cnt > $image_index + 1 ? "3px" : "20px"};
 `;
 
 export const MyNotificationFileWrap = styled.div<{
-  dataCnt: number;
-  fileIndex: number;
+  $data_cnt: number;
+  $file_index: number;
 }>`
   max-width: 100%;
   width: fit-content;
@@ -148,8 +137,8 @@ export const MyNotificationFileWrap = styled.div<{
   border-radius: 8px;
   background: var(--Gray100, #f4f5f9);
   padding: 15px;
-  margin-bottom: ${(props) =>
-    props.dataCnt > props.fileIndex + 1 ? "10px" : "35px"};
+  margin-bottom: ${({$data_cnt, $file_index}) =>
+    $data_cnt > $file_index + 1 ? "10px" : "35px"};
 `;
 
 export const MyNotificationFile = styled.div`
@@ -184,19 +173,13 @@ export const FileInfo = styled.div`
 
 export const FileName = styled.p`
   color: var(--Primary900, #020202);
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
 `;
 
 export const FileSize = styled.p`
   color: var(--Gray600, #787878);
-  font-family: Pretendard;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
   margin-top: 2px;
 `;

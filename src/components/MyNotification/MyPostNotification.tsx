@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyNotificationData } from "src/types/MyNotification/MyNotification.interface";
 import * as S from "src/components/MyNotification/style";
@@ -10,13 +9,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
 const MyPostNotification = () => {
-  const { notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
+  const { observerRef, notificationData, DataAbsence, DeleteButtonClick } = useMyNotification();
   const navigate = useNavigate();
-  const [, setIsImageError] = useState(true);
-
-  const HandleImageError = () => {
-    setIsImageError(false);
-  };
 
   return (
     <S.MyNotificationWrap>
@@ -24,26 +18,32 @@ const MyPostNotification = () => {
         notificationData.map((notification: MyNotificationData) => (
           <S.MyPostNotificationWrap key={notification.notificationId}>
             <S.MyPostNotification>
-              <S.MyNotificationBox onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
+              <S.MyNotificationBox
+                onClick={() => navigate(`/write-read/${notification.notificationId}`)}>
                 <S.MyNotificationTextWrap>
                   <S.MyInfoWrap>
-                    <S.MyProfile src={notification.profileImage || DefaultImg} onError={HandleImageError} />
+                    <S.MyProfile src={notification.profileImage || DefaultImg}/>
                     <S.MyInfoText>
                       <S.MyName>{notification.name}</S.MyName>
                       <S.MyNotificationDate>
-                        {dayjs(notification.createdAt).locale("ko").format("YYYY년 MM월 DD일(ddd) HH:mm")}
+                        {dayjs(notification.createdAt)
+                          .locale("ko")
+                          .format("YYYY년 MM월 DD일(ddd) HH:mm")}
                       </S.MyNotificationDate>
                     </S.MyInfoText>
                   </S.MyInfoWrap>
                   <S.MyContentBoxWrap>
                     <S.MyContentTitleWrap>
-                      <S.MyContentTitle>{notification.title ? notification.title : ""}</S.MyContentTitle>
+                      <S.MyContentTitle>
+                        {notification.title || ""}
+                      </S.MyContentTitle>
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>
                       <S.MyContent>
-                        {notification.content ? notification.content.length < 50
-                          ? notification.content
-                          : `${notification.content.substring(0, 50)}...` : ""}
+                        {notification.content 
+                           ? notification.content.length < 50
+                             ? notification.content
+                             : `${notification.content.substring(0, 50)}...` : ""}
                       </S.MyContent>
                     </S.MyContentWrap>
                   </S.MyContentBoxWrap>
@@ -52,20 +52,16 @@ const MyPostNotification = () => {
                   {notification.images && notification.images.length > 0 && (
                     <S.MyNotificationImg
                       rel="preconnect"
+                      loading="lazy"
                       decoding="async"
-                      src={notification.images[0].fileUrl}
-                      onError={HandleImageError}
-                    />
+                      src={notification.images[0].fileUrl}/>
                   )}
                 </S.MyNotificationImgWrap>
               </S.MyNotificationBox>
               <S.DeleteButtonWrap>
                 <S.DeleteButton
                   src={SettingImg}
-                  onClick={() => {
-                    DeleteButtonClick(notification);
-                  }}
-                ></S.DeleteButton>
+                  onClick={() => {DeleteButtonClick(notification)}}></S.DeleteButton>
               </S.DeleteButtonWrap>
             </S.MyPostNotification>
           </S.MyPostNotificationWrap>
@@ -73,6 +69,7 @@ const MyPostNotification = () => {
       ) : (
         <NullSkeleton />
       )}
+      {notificationData ? <div ref={observerRef}></div> : ""}
     </S.MyNotificationWrap>
   );
 };

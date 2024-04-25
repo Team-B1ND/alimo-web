@@ -17,7 +17,7 @@ export const MyNotification = styled.div`
 `;
 
 export const MyNotificationView = styled.div`
-  width: 85vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -59,20 +59,20 @@ export const MyNotificationBox = styled.div`
   height: 90%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   cursor: pointer;
 `;
 
 export const MyNotificationTextWrap = styled.div`
-  display: flex;
-  width: 80%;
+  width: auto;
   height: 100%;
+  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
 `;
 
 export const MyInfoWrap = styled.div`
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -93,24 +93,18 @@ export const MyInfoText = styled.div`
 
 export const MyName = styled.p`
   color: var(--Gray700, #333);
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
   line-height: normal;
 `;
 
 export const MyNotificationDate = styled.p`
   color: #aaaaaa;
-  font-family: Pretendard;
   font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
 `;
 
 export const MyContentBoxWrap = styled.div`
-  width: 100%;
+  width: auto;
   height: 70%;
   display: flex;
   flex-direction: column;
@@ -124,27 +118,21 @@ export const MyContentTitleWrap = styled.div`
 
 export const MyContentTitle = styled.span`
   color: var(--Main900, #020202);
-  font-family: Pretendard;
   font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
   line-height: normal;
 `;
 
 export const MyContentWrap = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 40%;
   overflow: hidden;
 `;
 
 export const MyContent = styled.span`
   color: var(--Main600, #787878);
-  font-family: Pretendard;
   font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
+  white-space: pre-line;
 `;
 
 export const MyNotificationImgWrap = styled.div`
@@ -175,4 +163,3 @@ export const DeleteButton = styled.img`
   transform: rotate(90deg);
   cursor: pointer;
 `;
-

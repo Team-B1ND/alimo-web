@@ -1,19 +1,10 @@
-import { CommentData } from "src/types/CommentList/CommentList.interface";
+import { CommentListProps } from "src/types/CommentList/CommentListProps.interface";
 import useCommentList from "src/hooks/Comment/useCommentList";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import ReplyComment from "src/components/MyNotificationDetail/ReplyComment/ReplyComment";
 import * as S from "src/components/MyNotificationDetail/CommentList/style";
 
-interface Props {
-  comment: CommentData;
-  handleReplyCommentCreate: (
-    replyCommentValue: string,
-    parentId: number,
-    setIsReplyCommentWriteShow: Function,
-  ) => Promise<void>;
-}
-
-const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
+const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();
 
   return (
@@ -22,7 +13,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
       <S.MyNotificationCommentBox>
         <S.MyNotificationComment>
           <S.CommentInfoWrap>
-            <S.CommentProfile src={comment.profileImage === null ? defaultProfile : comment.profileImage} />
+            <S.CommentProfile src={comment.profileImage || defaultProfile} />
             {(comment.subComments.length > 0 || CommentList.isReplyCommentWriteShow) &&
               (CommentList.isReplyCommentShow || CommentList.isReplyCommentWriteShow) && (
                 <S.CommentConnectLine></S.CommentConnectLine>
@@ -31,7 +22,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
           <S.CommentContentWrap>
             <S.CommentName>{comment.commentor}</S.CommentName>
             <S.CommentContentBox>
-              <S.CommentContent replyCommentCnt={comment.subComments.length}>{comment.content}</S.CommentContent>
+              <S.CommentContent $reply_comment_cnt={comment.subComments.length}>{comment.content}</S.CommentContent>
               <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
                 {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
               </S.ReplyCommentWriteBtn>
@@ -70,7 +61,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
               </S.ReplyCommentConnectLineWrap>
               <S.ReplyCommentInfoWrap>
                 <S.ReplyCommentProfile
-                  src={replyCommentData.profileImage === null ? defaultProfile : replyCommentData.profileImage}
+                  src={replyCommentData.profileImage || defaultProfile}
                 />
               </S.ReplyCommentInfoWrap>
               <S.ReplyCommentContentWrap>

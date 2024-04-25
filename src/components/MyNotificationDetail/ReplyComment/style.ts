@@ -61,10 +61,7 @@ export const ReplyCommentContentWrap = styled.div`
 
 export const ReplyCommentName = styled.p`
   color: var(--Gray700, #333);
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
   line-height: normal;
 `;
 
@@ -78,10 +75,7 @@ export const ReplyCommentInput = styled.textarea`
   width: 50%;
   height: auto;
   resize: none;
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 20px;
   margin-top: 5px;
   border: none;
@@ -94,10 +88,7 @@ export const ReplyCommentButton = styled.button`
   width: 45px;
   height: 30px;
   color: #fff;
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
   border: 0;
   border-radius: 6px;

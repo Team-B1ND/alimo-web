@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { CommentParams } from "src/types/Comment/CommentProps.interface";
 
 const useComment = () => {
   const commentRef = useRef(null);
@@ -16,11 +17,21 @@ const useComment = () => {
     }
   };
 
+  const handleKeyDown = ({e, handleCommentCreate}: CommentParams) => {
+    if (e.key === "Enter" && e.shiftKey) {
+      return;
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      handleCommentCreate(commentValue, setCommentValue);
+    }
+  };
+
   return {
     commentRef,
     commentValue,
     setCommentValue,
     handleChangeValue,
+    handleKeyDown,
   };
 };
 

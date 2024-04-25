@@ -29,13 +29,7 @@ const MyNotificationDetail = () => {
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile
-                src={
-                  MyNotificationDetail.data.profileImage === null
-                    ? defaultProfile
-                    : MyNotificationDetail.data.profileImage
-                }
-              />
+              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile}/>
               <S.InfoWrap>
                 <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
                 <S.MyNotificationDate>
@@ -55,13 +49,12 @@ const MyNotificationDetail = () => {
               MyNotificationDetail.imageData.length > 0 &&
               MyNotificationDetail.isImageError &&
               MyNotificationDetail.imageData.map((ImageData: ImageData, idx: number) => (
-                <S.ImgWrap>
+                <S.ImgWrap key={ImageData.fileUrl}>
                   <S.Img
                     src={ImageData.fileUrl}
-                    dataCnt={MyNotificationDetail.imageData.length}
-                    imageIndex={idx}
-                    onError={MyNotificationDetail.HandleImageError}
-                  />
+                    $data_cnt={MyNotificationDetail.imageData.length}
+                    $image_index={idx}
+                    onError={MyNotificationDetail.HandleImageError}/>
                 </S.ImgWrap>
               ))}
             {MyNotificationDetail.fileData &&
@@ -69,9 +62,8 @@ const MyNotificationDetail = () => {
               MyNotificationDetail.fileData.map((FileData: FileData, idx: number) => (
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
-                  dataCnt={MyNotificationDetail.fileData.length}
-                  fileIndex={idx}
-                >
+                  $data_cnt={MyNotificationDetail.fileData.length}
+                  $file_index={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -81,8 +73,7 @@ const MyNotificationDetail = () => {
                       </S.FileInfo>
                     </S.FileInfoWrap>
                     <S.FileDownLoadWrap
-                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}
-                    >
+                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -102,8 +93,7 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
-                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
-                />
+                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}/>
               ))}
           </S.CommentListBox>
           <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />
