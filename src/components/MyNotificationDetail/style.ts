@@ -9,8 +9,8 @@ export const MyNotificationDetailWrap = styled.div`
 `;
 
 export const MyNotificationDetailBox = styled.div`
-  width: 85vw;
-  height: calc(100% - 10vh);
+  width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: row;
   margin-top: 85px;

@@ -17,7 +17,7 @@ export const MyNotification = styled.div`
 `;
 
 export const MyNotificationView = styled.div`
-  width: 85vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -59,19 +59,20 @@ export const MyNotificationBox = styled.div`
   height: 90%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   cursor: pointer;
 `;
 
 export const MyNotificationTextWrap = styled.div`
-  display: flex;
-  width: 80%;
+  width: auto;
   height: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 `;
 
 export const MyInfoWrap = styled.div`
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -105,7 +106,7 @@ export const MyNotificationDate = styled.p`
 `;
 
 export const MyContentBoxWrap = styled.div`
-  width: 80%;
+  width: auto;
   height: 70%;
   display: flex;
   flex-direction: column;
@@ -125,10 +126,8 @@ export const MyContentTitle = styled.span`
 `;
 
 export const MyContentWrap = styled.div`
-  display: flex;
-  width: 80%;
+  width: auto;
   height: 40%;
-  /* background-color: blue; */
   overflow: hidden;
 `;
 
