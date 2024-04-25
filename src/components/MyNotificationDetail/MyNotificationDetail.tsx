@@ -52,8 +52,8 @@ const MyNotificationDetail = () => {
                 <S.ImgWrap key={ImageData.fileUrl}>
                   <S.Img
                     src={ImageData.fileUrl}
-                    data_cnt={MyNotificationDetail.imageData.length}
-                    image_index={idx}
+                    $data_cnt={MyNotificationDetail.imageData.length}
+                    $image_index={idx}
                     onError={MyNotificationDetail.HandleImageError}/>
                 </S.ImgWrap>
               ))}
@@ -62,8 +62,8 @@ const MyNotificationDetail = () => {
               MyNotificationDetail.fileData.map((FileData: FileData, idx: number) => (
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
-                  data_cnt={MyNotificationDetail.fileData.length}
-                  file_index={idx}>
+                  $data_cnt={MyNotificationDetail.fileData.length}
+                  $file_index={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>

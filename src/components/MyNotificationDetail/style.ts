@@ -115,21 +115,21 @@ export const ImgWrap = styled.div`
 `;
 
 export const Img = styled.img<{
-  data_cnt: number;
-  image_index: number;
+  $data_cnt: number;
+  $image_index: number;
 }>`
   max-width: 60%;
   min-width: 20%;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: ${(props) =>
-    props.data_cnt > props.image_index + 1 ? "3px" : "20px"};
+  margin-bottom: ${({$data_cnt, $image_index}) =>
+    $data_cnt > $image_index + 1 ? "3px" : "20px"};
 `;
 
 export const MyNotificationFileWrap = styled.div<{
-  data_cnt: number;
-  file_index: number;
+  $data_cnt: number;
+  $file_index: number;
 }>`
   max-width: 100%;
   width: fit-content;
@@ -137,8 +137,8 @@ export const MyNotificationFileWrap = styled.div<{
   border-radius: 8px;
   background: var(--Gray100, #f4f5f9);
   padding: 15px;
-  margin-bottom: ${(props) =>
-    props.data_cnt > props.file_index + 1 ? "10px" : "35px"};
+  margin-bottom: ${({$data_cnt, $file_index}) =>
+    $data_cnt > $file_index + 1 ? "10px" : "35px"};
 `;
 
 export const MyNotificationFile = styled.div`

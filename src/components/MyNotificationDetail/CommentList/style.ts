@@ -63,12 +63,12 @@ export const CommentContentBox = styled.div`
   margin-top: 5px;
 `;
 
-export const CommentContent = styled.p<{ reply_comment_cnt: number }>`
+export const CommentContent = styled.p<{ $reply_comment_cnt: number }>`
   max-width: 70%;
   font-size: 16px;
   line-height: normal;
   white-space: pre-line;
-  margin-bottom: ${(props) => (props.reply_comment_cnt > 0 ? "" : "20px")};
+  margin-bottom: ${({$reply_comment_cnt}) => ($reply_comment_cnt > 0 ? "" : "20px")};
 `;
 
 export const ReplyCommentWriteBtn = styled.button`
