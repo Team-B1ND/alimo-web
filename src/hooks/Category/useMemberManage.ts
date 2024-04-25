@@ -9,19 +9,17 @@ const useMemberManage = () => {
   const permission = useRecoilValue(Permission);
 
   const handleGivePermission = async () => {
-    try {
-      if (permission === "ACCESS_MEMBER") {
-        await alimoV1Axios.patch("/permission/change-admin", {
-          memberId: MemberID,
-          categoryName: isSelctedCategory,
-        });
-      } else if (permission === "ACCESS_ADMIN") {
-        await alimoV1Axios.patch("permission/change-student", {
-          memberId: MemberID,
-          categoryName: isSelctedCategory,
-        });
-      }
-    } catch (error) {}
+    if (permission === "ACCESS_MEMBER") {
+      await alimoV1Axios.patch("/permission/change-admin", {
+        memberId: MemberID,
+        categoryName: isSelctedCategory,
+      });
+    } else {
+      await alimoV1Axios.patch("permission/change-student", {
+        memberId: MemberID,
+        categoryName: isSelctedCategory,
+      });
+    }
   };
 
   const handleDeleteMember = async () => {
@@ -46,6 +44,5 @@ const useMemberManage = () => {
     handleDeleteMember,
   };
 };
-
 
 export default useMemberManage;

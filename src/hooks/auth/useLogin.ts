@@ -47,17 +47,18 @@ const Uselogin = () => {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
       //DAuth
-      const {
-        data: {
-          data: { location },
-        },
-      } = await axios.post(`${CONFIG.DAuth}`, {
-        id: idValue,
-        pw: passwordValue,
-        clientId: `${CONFIG.clientId}`,
-        redirectUrl: `${CONFIG.redirectUrl}`,
-      });
+    
       try {
+        const {
+          data: {
+            data: { location },
+          },
+        } = await axios.post(`${CONFIG.DAuth}`, {
+          id: idValue,
+          pw: passwordValue,
+          clientId: `${CONFIG.clientId}`,
+          redirectUrl: `${CONFIG.redirectUrl}`,
+        });
         const code = location.split("=")[1].split("&state")[0];
         await axios
           .post<LoginResponse>(`${CONFIG.serverUrl}/sign-in/dodam`, {

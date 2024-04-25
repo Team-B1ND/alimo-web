@@ -29,3 +29,8 @@ export const AddMember = atom<boolean>({
   key: "AddMember",
   default: false,
 });
+
+export const ShowCategoryName = atom<boolean>({
+  key: "ShowCategoryName",
+  default: false,
+});
