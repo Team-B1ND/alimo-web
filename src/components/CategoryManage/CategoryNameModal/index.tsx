@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import * as S from "./CreateCategoryName";
 import useCreateCategory from "src/hooks/Category/useCreateCategory";
+import { useRecoilValue } from "recoil";
+import { ShowStudentList } from "src/store/category/category.store";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
   const { createCategoryName, handleChangeCategoryName } = useCreateCategory();
   
+  
   return (
-    <S.CreateWrap >
+    <S.CreateWrap>
       <S.Main>
         <S.InputDialog>
           <S.Title>카테고리 이름을 입력해주세요.</S.Title>

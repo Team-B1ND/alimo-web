@@ -99,7 +99,7 @@ const useWrite = () => {
   };
 
   const DeleteFile = () => {
-    setFile([]);
+    // setFile([]);
   };
 
   //이미지 업로드 전체 로직

@@ -15,6 +15,16 @@ export const CategoryManageView = styled.div`
 
   margin-left: 12px;
   margin-right: 12px;
+
+  width: 600px;
+  min-width: 600px;
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    margin-top: 20px;
+  }
 `;
 export const CategorySearchButton = styled.div`
   display: flex;
@@ -224,6 +234,13 @@ export const MemberList = styled.div`
   height: 100vh;
   overflow: scroll;
   overflow-x: hidden;
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-top: 20px;
+  }
 `;
 
 export const MemberWrap = styled.div`

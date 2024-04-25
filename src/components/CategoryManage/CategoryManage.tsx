@@ -29,7 +29,6 @@ const CategoryManage = () => {
                 onChange={category.SearchCategoryName}
                 onKeyUp={category.handleGetCategoryList}
                 placeholder="카테고리 검색"
-                type="search"
                 value={category.searchKeyword}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -48,7 +47,7 @@ const CategoryManage = () => {
               <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
               <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
             </S.CategoryInfoWrap>
-            {category.categoryData.length > 0 ? (
+            {category.categoryData && category.categoryData.length > 0 ? (
               category.categoryData.map((item, idx) => (
                 <S.CategoryInfo
                   isClicked={category.isClickedCategory === `${item.categoryName}`}
@@ -57,14 +56,14 @@ const CategoryManage = () => {
                 >
                   <S.CategoryName>{item.categoryName}</S.CategoryName>
                   <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
-                  <S.MoreImg src={MoreImg} onClick={category.handleDeletetCategory} />
+                  <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
                 </S.CategoryInfo>
               ))
             ) : (
-              <>카테고리데이터가 존재하지 않아요.</>
+              <p>카테고리데이터가 존재하지 않아요.</p>
             )}
           </S.CategoryManageView>
-          {category.isClickedCategory && (
+          {category.clickedCategory && category.isClickedCategory && (
             <S.CategoryMemberWrap>
               <S.MemberManageWrap>
                 <S.MemberSearch
@@ -72,7 +71,6 @@ const CategoryManage = () => {
                   onChange={category.onSearchMemberName}
                   onKeyUp={category.handleGetMemberData}
                   value={category.searchMember}
-                  type="search"
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       category.handleGetMemberData();
@@ -92,7 +90,7 @@ const CategoryManage = () => {
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
               <S.MemberList>
-                {category.memberData.length > 0 ? (
+                {category.memberData && category.memberData.length > 0 ? (
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
@@ -111,7 +109,7 @@ const CategoryManage = () => {
                     </S.MemberWrap>
                   ))
                 ) : (
-                  <>아직 구성원이 null이에요</>
+                  <p>아직 구성원이 없습니다.</p>
                 )}
               </S.MemberList>
               {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
@@ -119,7 +117,6 @@ const CategoryManage = () => {
           )}
         </S.CategoryMain>
         {category.showCategoryName ? <StudentList onClose={category.OnCategoryName} onNext={onClose} /> : <></>}
-
         {showStudentList && <AddStudent onClose={onClose} />}
       </S.Main>
     </>
