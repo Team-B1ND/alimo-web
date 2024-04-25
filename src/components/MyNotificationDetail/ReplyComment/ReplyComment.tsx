@@ -19,10 +19,8 @@ const ReplyComment = ({
   commentData,
   isReplyCommentShow,
   setIsReplyCommentWriteShow,
-  handleReplyCommentCreate,
-}: Props) => {
-  const { replyCommentRef, replyCommentValue, handleChangeValue } =
-    useReplyComment();
+  handleReplyCommentCreate }: Props) => {
+  const { replyCommentRef, replyCommentValue, handleChangeValue } = useReplyComment();
   const { Name, image } = useSidebar();
 
   return (
@@ -36,7 +34,7 @@ const ReplyComment = ({
         </S.ReplyCommentConnectLineWrap>
         <S.ReplyCommentInfoWrap>
           <S.ReplyCommentProfile
-            src={commentData.profileImage === null ? defaultProfile : image}
+            src={image || defaultProfile}
           />
         </S.ReplyCommentInfoWrap>
         <S.ReplyCommentContentWrap>

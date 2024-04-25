@@ -22,7 +22,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
       <S.MyNotificationCommentBox>
         <S.MyNotificationComment>
           <S.CommentInfoWrap>
-            <S.CommentProfile src={comment.profileImage === null ? defaultProfile : comment.profileImage} />
+            <S.CommentProfile src={comment.profileImage || defaultProfile} />
             {(comment.subComments.length > 0 || CommentList.isReplyCommentWriteShow) &&
               (CommentList.isReplyCommentShow || CommentList.isReplyCommentWriteShow) && (
                 <S.CommentConnectLine></S.CommentConnectLine>
@@ -70,7 +70,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
               </S.ReplyCommentConnectLineWrap>
               <S.ReplyCommentInfoWrap>
                 <S.ReplyCommentProfile
-                  src={replyCommentData.profileImage === null ? defaultProfile : replyCommentData.profileImage}
+                  src={replyCommentData.profileImage || defaultProfile}
                 />
               </S.ReplyCommentInfoWrap>
               <S.ReplyCommentContentWrap>

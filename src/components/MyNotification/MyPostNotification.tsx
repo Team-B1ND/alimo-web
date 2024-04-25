@@ -46,7 +46,7 @@ const MyPostNotification = () => {
                   <S.MyContentBoxWrap>
                     <S.MyContentTitleWrap>
                       <S.MyContentTitle>
-                        {notification.title ? notification.title : ""}
+                        {notification.title || ""}
                       </S.MyContentTitle>
                     </S.MyContentTitleWrap>
                     <S.MyContentWrap>

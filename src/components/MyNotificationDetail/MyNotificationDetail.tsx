@@ -29,13 +29,7 @@ const MyNotificationDetail = () => {
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile
-                src={
-                  MyNotificationDetail.data.profileImage === null
-                    ? defaultProfile
-                    : MyNotificationDetail.data.profileImage
-                }
-              />
+              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile}/>
               <S.InfoWrap>
                 <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
                 <S.MyNotificationDate>
