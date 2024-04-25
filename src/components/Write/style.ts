@@ -186,12 +186,6 @@ export const Cateogory = styled.span<{ isClicked: boolean }>`
   background: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-
-  //더블클릭시 폰트 블럭처리를 막아주는 코드
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
 `;
 
 export const UplaodButtonWrap = styled.div`
