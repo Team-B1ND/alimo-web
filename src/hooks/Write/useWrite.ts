@@ -17,8 +17,7 @@ const useWrite = () => {
     content: "",
   });
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
-  const [isSpeaker, setIsSpeaker] = useState<boolean>(false);
-  const [file, setFile] = useState<File[]>([]);
+  const [, setFile] = useState<File[]>([]);
   const [image, setImage] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
   const [fileId, setFileId] = useState<number>(0);
@@ -185,36 +184,37 @@ const useWrite = () => {
   }, [selectedCategory.length]);
 
   const formData = new FormData();
-
+  let speaker = false;
   const AllowWriteButton = async () => {
-    await Swal.fire({
-      title: "확성기 기능을 사용하시겠습니까?",
-      text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
-      showCancelButton: true,
-      confirmButtonColor: "#FECE23",
-      focusConfirm: true,
-      cancelButtonColor: "#AAAAAA",
-      focusCancel: false,
-      confirmButtonText: "사용하기",
-      cancelButtonText: "사용안함",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setIsSpeaker(true);
-      } else {
-        setIsSpeaker(false);
-      }
-    });
-
     try {
+    
+      await Swal.fire({
+        title: "확성기 기능을 사용하시겠습니까?",
+        text: "기능을 사용하지 않더라도 공지는 등록됩니다.",
+        showCancelButton: true,
+        confirmButtonColor: "#FECE23",
+        focusConfirm: true,
+        cancelButtonColor: "#AAAAAA",
+        focusCancel: false,
+        confirmButtonText: "사용하기",
+        cancelButtonText: "사용안함",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          speaker= true;
+        } else {
+          speaker = false;
+        }
+      });
+
       await alimoV1Axios
         .patch(`/notification/update/${NotificationId}`, {
           title: wirteElem.title,
           content: wirteElem.content,
-          speaker: isSpeaker,
+          speaker: speaker,
           categories: selectedCategory.map((category) => category.name),
         })
         .then(() => {
-          showToast("success", "공지 등록 성공!");
+          showToast("success", "공지작성 성공");
           navigate("/write-read");
         });
     } catch (error) {
