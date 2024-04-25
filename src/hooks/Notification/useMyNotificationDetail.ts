@@ -94,7 +94,9 @@ const useMyNotificationDetail = () => {
   // 공지글 디테일 데이터 요청
   useEffect(() => {
     const NotificationRead = async () => {
-      await alimoV1Axios.get(`notification/read/${id}`).then((res) => {
+      await alimoV1Axios
+      .get(`notification/read/${id}`)
+      .then((res) => {
         setData(res.data.data);
         setImageData(res.data.data.images);
         setFileData(res.data.data.files);

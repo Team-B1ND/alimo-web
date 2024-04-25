@@ -22,7 +22,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) =>
           <S.CommentContentWrap>
             <S.CommentName>{comment.commentor}</S.CommentName>
             <S.CommentContentBox>
-              <S.CommentContent replyCommentCnt={comment.subComments.length}>{comment.content}</S.CommentContent>
+              <S.CommentContent reply_comment_cnt={comment.subComments.length}>{comment.content}</S.CommentContent>
               <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
                 {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
               </S.ReplyCommentWriteBtn>

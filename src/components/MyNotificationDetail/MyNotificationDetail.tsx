@@ -49,11 +49,11 @@ const MyNotificationDetail = () => {
               MyNotificationDetail.imageData.length > 0 &&
               MyNotificationDetail.isImageError &&
               MyNotificationDetail.imageData.map((ImageData: ImageData, idx: number) => (
-                <S.ImgWrap>
+                <S.ImgWrap key={ImageData.fileUrl}>
                   <S.Img
                     src={ImageData.fileUrl}
-                    dataCnt={MyNotificationDetail.imageData.length}
-                    imageIndex={idx}
+                    data_cnt={MyNotificationDetail.imageData.length}
+                    image_index={idx}
                     onError={MyNotificationDetail.HandleImageError}/>
                 </S.ImgWrap>
               ))}
@@ -62,8 +62,8 @@ const MyNotificationDetail = () => {
               MyNotificationDetail.fileData.map((FileData: FileData, idx: number) => (
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
-                  dataCnt={MyNotificationDetail.fileData.length}
-                  fileIndex={idx}>
+                  data_cnt={MyNotificationDetail.fileData.length}
+                  file_index={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
