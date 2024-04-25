@@ -54,8 +54,7 @@ const MyNotificationDetail = () => {
                     src={ImageData.fileUrl}
                     dataCnt={MyNotificationDetail.imageData.length}
                     imageIndex={idx}
-                    onError={MyNotificationDetail.HandleImageError}
-                  />
+                    onError={MyNotificationDetail.HandleImageError}/>
                 </S.ImgWrap>
               ))}
             {MyNotificationDetail.fileData &&
@@ -64,8 +63,7 @@ const MyNotificationDetail = () => {
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
                   dataCnt={MyNotificationDetail.fileData.length}
-                  fileIndex={idx}
-                >
+                  fileIndex={idx}>
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -75,8 +73,7 @@ const MyNotificationDetail = () => {
                       </S.FileInfo>
                     </S.FileInfoWrap>
                     <S.FileDownLoadWrap
-                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}
-                    >
+                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -96,8 +93,7 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
-                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
-                />
+                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}/>
               ))}
           </S.CommentListBox>
           <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />

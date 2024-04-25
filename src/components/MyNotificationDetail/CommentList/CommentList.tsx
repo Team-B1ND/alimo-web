@@ -1,19 +1,10 @@
-import { CommentData } from "src/types/CommentList/CommentList.interface";
+import { CommentListProps } from "src/types/CommentList/CommentListProps.interface";
 import useCommentList from "src/hooks/Comment/useCommentList";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import ReplyComment from "src/components/MyNotificationDetail/ReplyComment/ReplyComment";
 import * as S from "src/components/MyNotificationDetail/CommentList/style";
 
-interface Props {
-  comment: CommentData;
-  handleReplyCommentCreate: (
-    replyCommentValue: string,
-    parentId: number,
-    setIsReplyCommentWriteShow: Function,
-  ) => Promise<void>;
-}
-
-const CommentList = ({ comment, handleReplyCommentCreate }: Props) => {
+const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();
 
   return (

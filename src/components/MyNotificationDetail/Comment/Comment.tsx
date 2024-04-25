@@ -1,38 +1,23 @@
 import useComment from "src/hooks/Comment/useComment";
 import CommentButtonImg from "src/assets/images/notification/CommentButtonImage.svg";
+import { CommentProps } from "src/types/Comment/CommentProps.interface";
 import * as S from "src/components/MyNotificationDetail/Comment/style";
 
-interface Props {
-  handleCommentCreate: (
-    commentValue: string,
-    setCommentValue: Function
-  ) => Promise<void>;
-}
-
-const Comment = ({ handleCommentCreate }: Props) => {
-  const { commentRef, commentValue, setCommentValue, handleChangeValue } = useComment();
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && e.shiftKey) {
-      return;
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      handleCommentCreate(commentValue, setCommentValue);
-    }
-  };
+const Comment = ({ handleCommentCreate }: CommentProps) => {
+  const { ...Comment } = useComment();
 
   return (
     <S.CommentWrap>
       <S.Comment>
         <S.CommentInput
           rows={1}
-          ref={commentRef}
-          value={commentValue}
+          ref={Comment.commentRef}
+          value={Comment.commentValue}
           placeholder="댓글을 남겨보세요."
-          onKeyDown={handleKeyDown}
-          onChange={(e) => handleChangeValue(e, commentRef)}></S.CommentInput>
+          onKeyDown={(e) => Comment.handleKeyDown({e, handleCommentCreate})}
+          onChange={(e) => Comment.handleChangeValue(e, Comment.commentRef)}></S.CommentInput>
         <S.CommentButtonWrap
-          onClick={() => handleCommentCreate(commentValue, setCommentValue)}>
+          onClick={() => handleCommentCreate(Comment.commentValue, Comment.setCommentValue)}>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>
       </S.Comment>

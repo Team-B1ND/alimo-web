@@ -1,40 +1,16 @@
-import { CommentData } from "src/types/CommentList/CommentList.interface";
+import { ReplyCommentProps } from "src/types/ReplyComment/ReplyCommentProps.interface";
 import useReplyComment from "src/hooks/Comment/useReplyComment";
 import useSidebar from "src/hooks/Sidbar/useSiebar";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import * as S from "src/components/MyNotificationDetail/ReplyComment/style";
 
-interface Props {
-  commentData: CommentData;
-  isReplyCommentShow: boolean;
-  setIsReplyCommentWriteShow: Function;
-  handleReplyCommentCreate: (
-    replyCommentValue: string,
-    parentId: number,
-    setIsReplyCommentWriteShow: Function
-  ) => Promise<void>;
-}
-
 const ReplyComment = ({
   commentData,
   isReplyCommentShow,
   setIsReplyCommentWriteShow,
-  handleReplyCommentCreate }: Props) => {
-  const { replyCommentRef, replyCommentValue, handleChangeValue } = useReplyComment();
+  handleReplyCommentCreate }: ReplyCommentProps) => {
+  const { replyCommentRef, replyCommentValue, handleChangeValue, handleKeydown } = useReplyComment();
   const { Name, image } = useSidebar();
-
-  const handleKeydown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && e.shiftKey) {
-      return;
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      handleReplyCommentCreate(
-        replyCommentValue,
-        commentData.commentId,
-        setIsReplyCommentWriteShow
-      );
-    }
-  }
 
   return (
     <S.ReplyCommentWrap>
@@ -57,7 +33,7 @@ const ReplyComment = ({
               rows={1}
               ref={replyCommentRef}
               value={replyCommentValue}
-              onKeyDown={handleKeydown}
+              onKeyDown={(e) => handleKeydown({e, commentData, setIsReplyCommentWriteShow, handleReplyCommentCreate})}
               onChange={(e) => handleChangeValue(e, replyCommentRef)}
             />
             <S.ReplyCommentButton
