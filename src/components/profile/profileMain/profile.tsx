@@ -1,7 +1,7 @@
 import * as S from "./style";
-import SideBar from "src/components/SideBar/SideBar";
+import SideBar from "src/components/sideBar/sideBar";
 import CloseImg from "src/assets/images/common/Closeimg.png";
-import UseProfile from "src/hooks/Profile/useProfile";
+import UseProfile from "src/hooks/profile/useProfile";
 import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
 const Profile = ({ onClose }: { onClose: () => void }) => {
   const { Name, image, Category } = UseProfile();

@@ -1,8 +1,8 @@
-import { ReplyCommentProps } from "src/types/ReplyComment/ReplyCommentProps.interface";
-import useReplyComment from "src/hooks/Comment/useReplyComment";
-import useSidebar from "src/hooks/Sidbar/useSiebar";
+import { ReplyCommentProps } from "src/types/replyComment/replyCommentProps.interface";
+import useReplyComment from "src/hooks/comment/useReplyComment";
+import useSidebar from "src/hooks/sidbar/useSiebar";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
-import * as S from "src/components/MyNotificationDetail/ReplyComment/style";
+import * as S from "src/components/mynotificationDetail/replyComment/style";
 
 const ReplyComment = ({
   commentData,

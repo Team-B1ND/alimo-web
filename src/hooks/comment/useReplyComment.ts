@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ReplyCommentParams } from "src/types/ReplyComment/ReplyCommentProps.interface";
+import { ReplyCommentParams } from "src/types/replyComment/replyCommentProps.interface";
 
 const useReplyComment = () => {
   const replyCommentRef = useRef(null);

@@ -1,4 +1,4 @@
-import { CommentData } from "../CommentList/CommentList.interface";
+import { CommentData } from "../commentList/commentList.interface";
 
 export interface ReplyCommentProps {
   commentData: CommentData;

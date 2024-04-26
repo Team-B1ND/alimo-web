@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./style";
 import useCreateCategory from "src/hooks/category/useCreateCategory";
-import { useRecoilValue } from "recoil";
-import { ShowStudentList } from "src/store/category/category.store";
 
 const StudentList = ({ onClose, onNext }: { onClose: () => void; onNext: () => void }) => {
   const { createCategoryName, handleChangeCategoryName } = useCreateCategory();

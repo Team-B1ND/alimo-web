@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import { MemberCntList, MemberInfo, Student } from "src/types/Category/Add.types";
+import { MemberCntList, MemberInfo, Student } from "src/types/categorys/add.types";
 import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/Toast/Swal";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";

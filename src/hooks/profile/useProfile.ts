@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import ProfileImg from "src/assets/images/common/ProfileImg.svg";
-import { categoryListState } from "src/store/profile/ProfileStore";
+import { categoryListState } from "src/store/profile/profileStore";
 import { useRecoilValue } from "recoil";
-import useSidbar from "src/hooks/Sidbar/useSiebar";
+import useSidbar from "src/hooks/sidbar/useSiebar";
 
 const UseProfile = () => {
   const { Name, image } = useSidbar();

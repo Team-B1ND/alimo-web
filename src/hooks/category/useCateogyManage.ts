@@ -4,8 +4,8 @@ import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
 import { MemberId, Permission, ShowCategoryName, newSelectedData } from "src/store/category/category.store";
-import { CategoryData, MemberInCategoryData } from "src/types/Category/interface";
-import { MemberInfo, Student } from "src/types/Category/Add.types";
+import { CategoryData, MemberInCategoryData } from "src/types/categorys/interface";
+import { MemberInfo, Student } from "src/types/categorys/add.types";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);

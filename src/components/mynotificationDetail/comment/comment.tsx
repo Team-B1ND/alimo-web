@@ -1,7 +1,7 @@
-import useComment from "src/hooks/Comment/useComment";
+import useComment from "src/hooks/comment/useComment";
 import CommentButtonImg from "src/assets/images/notification/CommentButtonImage.svg";
-import { CommentProps } from "src/types/Comment/CommentProps.interface";
-import * as S from "src/components/MyNotificationDetail/Comment/style";
+import { CommentProps } from "src/types/comment/commentProps.interface";
+import * as S from "src/components/mynotificationDetail/comment/style";
 
 const Comment = ({ handleCommentCreate }: CommentProps) => {
   const { ...Comment } = useComment();

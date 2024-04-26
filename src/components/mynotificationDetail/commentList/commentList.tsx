@@ -1,8 +1,8 @@
-import { CommentListProps } from "src/types/CommentList/CommentListProps.interface";
-import useCommentList from "src/hooks/Comment/useCommentList";
+import { CommentListProps } from "src/types/commentList/commentListProps.interface";
+import useCommentList from "src/hooks/comment/useCommentList";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
-import ReplyComment from "src/components/MyNotificationDetail/ReplyComment/ReplyComment";
-import * as S from "src/components/MyNotificationDetail/CommentList/style";
+import ReplyComment from "src/components/mynotificationDetail/replyComment/replyComment";
+import * as S from "src/components/mynotificationDetail/commentList/style";
 
 const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();

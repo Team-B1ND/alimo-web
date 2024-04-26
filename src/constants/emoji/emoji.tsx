@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { EmojiData } from "src/types/MyNotificationDetail/Emoji.interface";
+import { EmojiData } from "src/types/mynotificationDetail/Emoji.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import * as S from "src/constants/Emoji/style/Emoji.style";
+import * as S from "src/constants/emoji/style";
 
 const Emoji = () => {
   const { id } = useParams();

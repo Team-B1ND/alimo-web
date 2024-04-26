@@ -1,12 +1,9 @@
-import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { showToast } from "src/libs/Toast/Swal";
+import { showToast } from "src/libs/toast/swal";
+import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
-import { Category, WriteElemProps } from "src/types/Write/write.type";
-import axios from "axios";
-import CONFIG from "src/config/config.json";
-import token from "src/libs/token/token";
+import { Category, WriteElemProps } from "src/types/write/write.type";
 import { NotificationIdData } from "src/store/write/write.store";
 import { useNavigate } from "react-router-dom";
 
@@ -66,15 +63,14 @@ const useWrite = () => {
     });
 
     try {
-      await axios
+      await alimoV1Axios
         .post(
-          `${CONFIG.serverUrl}/files/save?notificationId=${NotificationId}`,
+          `/files/save?notificationId=${NotificationId}`,
           {
             file: formData.get("file"),
           },
           {
             headers: {
-              Authorization: `Bearer ${token.getToken("access-token")}`,
               "Content-Type": "multipart/form-data",
             },
           },
@@ -108,15 +104,14 @@ const useWrite = () => {
         formData.append("image", file);
       });
 
-      await axios
+      await alimoV1Axios
         .post(
-          `${CONFIG.serverUrl}/files/save?notificationId=${NotificationId}`,
+          `/files/save?notificationId=${NotificationId}`,
           {
             file: formData.get("image"),
           },
           {
             headers: {
-              Authorization: `Bearer ${token.getToken("access-token")}`,
               "Content-Type": "multipart/form-data",
             },
           },

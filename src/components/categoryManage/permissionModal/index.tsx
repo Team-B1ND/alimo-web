@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "src/components/categoryManage/permissionModal/style";
 import useMemberManage from "src/hooks/category/useMemberManage";
 
