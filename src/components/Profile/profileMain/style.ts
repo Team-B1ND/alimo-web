@@ -28,7 +28,6 @@ export const ProfilePageNanme = styled.div`
   position: absolute;
   left: 30px;
   top: 30px;
-  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -75,11 +74,7 @@ export const User = styled.div`
   justify-content: center;
   span {
     display: flex;
-    font-family: Pretendard;
     font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
   }
 `;
 

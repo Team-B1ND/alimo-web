@@ -280,5 +280,5 @@ export const MemberClassNumber = styled.span`
 
 export const MoreImg = styled.img`
   cursor: pointer;
-  z-index: 5;
+  
 `;
