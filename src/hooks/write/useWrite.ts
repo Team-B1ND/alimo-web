@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ChangeEvent, useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { showToast } from "src/libs/toast/swal";
+import { showToast } from "src/libs/test/es";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { Category, WriteElemProps } from "src/types/write/write.type";
