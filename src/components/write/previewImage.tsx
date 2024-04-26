@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import { ImagePreViewProps } from "@src/types/Write/write.type";
+import { ImagePreViewProps } from "src/types/write/write.type";
 const PreviewImage: React.FC<ImagePreViewProps> = ({ previewImage }) => {
   return (
     <>
