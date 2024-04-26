@@ -97,11 +97,11 @@ const CategoryManage = () => {
                       <S.Member>
                         <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
                         <S.MemeberName>{member.name}</S.MemeberName>
-                        <S.MemberClassNumber>
+                        <span>
                           {member.name !== null && member.room !== null
                             ? `${member.grade}학년 ${member.room}반`
                             : "학부모"}
-                        </S.MemberClassNumber>
+                        </span>
                         <S.MoreImg
                           src={MoreImg}
                           onClick={() => category.handleMemberId(member.id, member.permission)}

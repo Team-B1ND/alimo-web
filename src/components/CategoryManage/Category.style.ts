@@ -261,7 +261,7 @@ export const Member = styled.div`
 
   border: none;
   border-top: 1px solid #e6e6e6;
-
+  font-size: 1.3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -274,11 +274,7 @@ export const MemeberName = styled.span`
   width: 200px;
 `;
 
-export const MemberClassNumber = styled.span`
-  font-size: 1.3rem;
-`;
 
 export const MoreImg = styled.img`
   cursor: pointer;
-  
 `;
