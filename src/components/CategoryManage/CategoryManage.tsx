@@ -66,24 +66,27 @@ const CategoryManage = () => {
           {category.clickedCategory && category.isClickedCategory && (
             <S.CategoryMemberWrap>
               <S.MemberManageWrap>
-                <S.MemberSearch
-                  placeholder="멤버 검색"
-                  onChange={category.onSearchMemberName}
-                  onKeyUp={category.handleGetMemberData}
-                  value={category.searchMember}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      category.handleGetMemberData();
-                    }
-                  }}
-                />
-                <S.CategorySearchButton
-                  style={{ marginTop: "10px", marginLeft: "8px" }}
-                  onClick={category.handleGetMemberData}
-                >
-                  <img src={searchImg} />
-                </S.CategorySearchButton>
-                <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
+                <S.MemberSearchWrap>
+                  <S.MemberSearch
+                    placeholder="멤버 검색"
+                    onChange={category.onSearchMemberName}
+                    onKeyUp={category.handleGetMemberData}
+                    value={category.searchMember}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        category.handleGetMemberData();
+                      }
+                    }}
+                  />
+                  <S.CategorySearchButton
+                    style={{ marginTop: "10px", marginLeft: "8px" }}
+                    onClick={category.handleGetMemberData}
+                  >
+                    <img src={searchImg} />
+                  </S.CategorySearchButton>
+
+                  <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
+                </S.MemberSearchWrap>
               </S.MemberManageWrap>
               <S.MemberUtilityWrap>
                 <span>이름</span>

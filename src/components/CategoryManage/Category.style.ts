@@ -18,6 +18,14 @@ export const CategoryManageView = styled.div`
 
   width: 600px;
 
+  @media only screen and (width: 1080px) {
+    width: 400px;
+  }
+
+  @media only screen and (width: 1920px) {
+    width: 800px;
+  }
+
   p {
     align-items: center;
     align-self: center;
@@ -81,19 +89,19 @@ export const CreateCategoryButton = styled.button`
 `;
 
 export const CategoryInfoWrap = styled.div`
+  width: 270px;
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
+  justify-content: space-between;
 `;
 
 export const CategoryNameInfo = styled.span`
   color: #aaaaaa;
-  margin-left: 1vw;
 `;
 
 export const CategoryMemberInfo = styled.span`
   color: #aaaaaa;
-  margin-left: 11vw;
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
@@ -104,7 +112,7 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
   }
 
   @media only screen and (width: 1920px) {
-    width: 600px;
+    width: 800px;
   }
 
   height: 80px;
@@ -114,7 +122,7 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
   border-radius: 15px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   align-self: center;
   margin-top: 1vh;
@@ -153,20 +161,27 @@ export const CategoryName = styled.span`
   font-size: 1.2rem;
   width: 50px;
   white-space: nowrap;
+  margin-left: 1vw;
 `;
 
 export const CategoryInMember = styled.span`
   color: #000;
 
   font-size: 1.2rem;
-
-  width: calc(100vw - 97vw);
-
-  margin-left: 11vw;
+  margin-left: 3vw;
 `;
 
 export const CategoryMemberWrap = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  width: 870px;
+  @media only screen and (width: 1080px) {
+    width: 450px;
+  }
+  @media only screen and (width: 1920px) {
+    width: 900px;
+  }
   height: calc(100vh - 10vh);
   overflow: hidden;
   background-color: #f4f5f9;
@@ -177,17 +192,25 @@ export const MemberManageWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  align-self: end;
 
   margin-top: 3vh;
+
+  width: 600px;
+`;
+
+export const MemberSearchWrap = styled.div`
+  display: flex;
 `;
 
 export const MemberSearch = styled.input`
-  width: calc(100vw - 90vw);
-  height: calc(100vh - 95vh);
+  width: 180px;
+  height: 45px;
 
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-  padding-left: 8px;
+  padding-left: 20px;
 
   &:focus {
     outline: none;
@@ -199,8 +222,8 @@ export const MemberSearch = styled.input`
 `;
 
 export const AddMemberButton = styled.button`
-  width: calc(100vw - 95vw);
-  height: calc(100vh - 95vh);
+  width: 80px;
+  height: 50px;
 
   border: none;
   border-radius: 15px;
@@ -224,13 +247,13 @@ export const MemberUtilityWrap = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
+
   span {
     color: #aaaaaa;
     font-size: 1rem;
     width: 50px;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
@@ -257,8 +280,18 @@ export const MemberWrap = styled.div`
 `;
 
 export const MemeberProfileImg = styled.img`
-  width: calc(100vw - 97vw);
-  height: calc(100vw - 97vw);
+  width: 30px;
+  height: 30px;
+
+  @media only srcreen and (width: 1080px) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media only screen and (width: 1920px) {
+    width: 40px;
+    height: 40px;
+  }
 
   border-radius: 50%;
 `;
@@ -289,4 +322,5 @@ export const MemberClassNumber = styled.span`
 export const MoreImg = styled.img`
   cursor: pointer;
   z-index: 5;
+  margin-right: 1vw;
 `;
