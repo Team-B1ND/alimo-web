@@ -131,16 +131,6 @@ export const SideBarTeacherProfileImg = styled.div`
     border-radius: 50%;
     width: 100%;
     height: 100%;
-
-    @media only screen and (min-width: 1080px) {
-      width: 40px;
-      height: 40px;
-    }
-
-    @media only screen and (min-width: 1920px) {
-      width: 45px;
-      height: 45px;
-    }
   }
 `;
 
