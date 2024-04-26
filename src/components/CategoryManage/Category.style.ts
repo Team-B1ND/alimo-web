@@ -17,13 +17,10 @@ export const CategoryManageView = styled.div`
   margin-right: 12px;
 
   width: 600px;
-  min-width: 600px;
 
   p {
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    margin-top: 20px;
+    align-items: center;
+    align-self: center;
   }
 `;
 export const CategorySearchButton = styled.div`
@@ -100,7 +97,16 @@ export const CategoryMemberInfo = styled.span`
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
-  width: calc(100vw - 65vw);
+  width: 600px;
+
+  @media only screen and (width: 1080px) {
+    width: 400px;
+  }
+
+  @media only screen and (width: 1920px) {
+    width: 600px;
+  }
+
   height: 80px;
 
   background: ${({ $isclicked }) => ($isclicked === "true" ? "#f4f5f9" : "#fff")};
@@ -146,6 +152,7 @@ export const CategoryName = styled.span`
 
   font-size: 1.2rem;
   width: 50px;
+  white-space: nowrap;
 `;
 
 export const CategoryInMember = styled.span`
@@ -236,10 +243,8 @@ export const MemberList = styled.div`
   overflow-x: hidden;
 
   p {
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    margin-top: 20px;
+    align-items: center;
+    align-content: center;
   }
 `;
 
