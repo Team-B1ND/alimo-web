@@ -110,7 +110,7 @@ const CategoryManage = () => {
                     </S.MemberWrap>
                   ))
                 ) : (
-                  <p>아직 구성원이 없습니다.</p>
+                  <p>구성원이 존재하지 않습니다.</p>
                 )}
               </S.MemberList>
               {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}

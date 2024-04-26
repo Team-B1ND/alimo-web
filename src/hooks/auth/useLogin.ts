@@ -5,10 +5,7 @@ import axios from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
 import { LoginResponse } from "src/types/login/login.type";
-import {
-  ACCESS_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-} from "src/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
 const Uselogin = () => {
   const navigate = useNavigate();
@@ -18,7 +15,6 @@ const Uselogin = () => {
   const [idValue, setIdValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [isShowPswd, setIsShowPswd] = useState(false);
-  
 
   const InputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const idRegex = /^[A-Za-z0-9@.]+$/;
@@ -31,6 +27,7 @@ const Uselogin = () => {
       setIdError(true); // 한글 입력 시 에러 상태 활성화
     }
   };
+
   const InputChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value);
   };
@@ -47,7 +44,7 @@ const Uselogin = () => {
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
       //DAuth
-    
+
       try {
         const {
           data: {

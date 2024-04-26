@@ -22,8 +22,8 @@ const Header = () => {
 
   return (
     <S.HeaderBarWrap>
-      <S.UploadNewNotifyButton>
-        <span onClick={onGetNotificationId}>새 공지 작성</span>
+      <S.UploadNewNotifyButton onClick={onGetNotificationId}>
+        새 공지 작성
       </S.UploadNewNotifyButton>
     </S.HeaderBarWrap>
   );

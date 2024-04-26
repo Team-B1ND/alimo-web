@@ -16,8 +16,6 @@ export const CategoryManageView = styled.div`
   margin-left: 12px;
   margin-right: 12px;
 
-  width: 600px;
-
   p {
     align-items: center;
     align-self: center;
@@ -48,7 +46,7 @@ export const CateogyManageUtilityWrap = styled.div`
 
 export const SearchCateogy = styled.input`
   width: calc(100vw - 80vw);
-  height: calc(100vh - 95vh);
+  height: 50px;
   margin-left: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 15px;
@@ -64,7 +62,7 @@ export const SearchCateogy = styled.input`
 
 export const CreateCategoryButton = styled.button`
   min-width: 100px;
-  height: calc(100vh - 95vh);
+  height: 50px;
 
   background-color: #000;
 
@@ -81,9 +79,11 @@ export const CreateCategoryButton = styled.button`
 `;
 
 export const CategoryInfoWrap = styled.div`
+  width: 350px;
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
+  justify-content: space-evenly;
 `;
 
 export const CategoryNameInfo = styled.span`
@@ -97,15 +97,7 @@ export const CategoryMemberInfo = styled.span`
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
-  width: 600px;
-
-  @media only screen and (width: 1080px) {
-    width: 400px;
-  }
-
-  @media only screen and (width: 1920px) {
-    width: 600px;
-  }
+  width: calc(100vw - 65vw);
 
   height: 80px;
 
