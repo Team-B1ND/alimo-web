@@ -27,28 +27,22 @@ const SideBar = () => {
         </S.SideBarLogoWrap>
         <S.SideBarMenuWrap>
           <S.SideBarMenuFlex>
-            <S.SideBarCategory>
+            <S.SideBarCategory onClick={() => sidbar.HandleCategoryClick("카테고리 관리")}>
               <img
                 alt="ggg"
                 src={
                   sidbar.isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg
                 }
               />
-              <S.SideBarMenu
-                $isclicked={sidbar.isClickCategory === "카테고리 관리" ? "true" : "false"}
-                onClick={() => sidbar.HandleCategoryClick("카테고리 관리")}
-              >
+              <S.SideBarMenu $isclicked={sidbar.isClickCategory === "카테고리 관리" ? "true" : "false"}>
                 카테고리 관리
               </S.SideBarMenu>
             </S.SideBarCategory>
-            <S.SideBarCategory>
+            <S.SideBarCategory onClick={() => sidbar.HandleCategoryClick("내가 쓴 공지보기")}>
               <img
                 src={sidbar.isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg}
               />
-              <S.SideBarMenu
-                $isclicked={sidbar.isClickCategory === "내가 쓴 공지보기" ? "true" : "false"}
-                onClick={() => sidbar.HandleCategoryClick("내가 쓴 공지보기")}
-              >
+              <S.SideBarMenu $isclicked={sidbar.isClickCategory === "내가 쓴 공지보기" ? "true" : "false"}>
                 내가 쓴 공지보기
               </S.SideBarMenu>
             </S.SideBarCategory>
