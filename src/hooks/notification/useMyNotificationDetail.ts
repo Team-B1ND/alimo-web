@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ImageData } from "src/types/mynotificationDetail/Image.interface";
-import { FileData } from "src/types/mynotificationDetail/File.interface";
+import { ImageData } from "src/types/myNotificationDetail/Image.interface";
+import { FileData } from "src/types/myNotificationDetail/File.interface";
 import { FILE_SIZES } from "src/constants/data/fileSize.constants";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";

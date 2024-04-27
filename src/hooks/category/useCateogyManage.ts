@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { showToast } from "src/libs/test/es";
+import { showToast } from "src/libs/toast/swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
