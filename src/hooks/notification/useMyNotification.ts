@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MyNotificationData } from "src/types/mynotification/mynotification.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
-import { showToast } from "src/libs/toast/swal";
+import { showToast } from "src/libs/test/es";
 import { useInView } from "react-intersection-observer";
 
 const useMyNotification = () => {

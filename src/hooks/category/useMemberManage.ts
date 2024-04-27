@@ -1,7 +1,7 @@
 import { MemberId, Permission, newSelectedData } from "src/store/category/category.store";
 import { useRecoilValue } from "recoil";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import { showToast } from "src/libs/toast/swal";
+import { showToast } from "src/libs/test/es";
 
 const useMemberManage = () => {
   const isSelctedCategory = useRecoilValue(newSelectedData);
