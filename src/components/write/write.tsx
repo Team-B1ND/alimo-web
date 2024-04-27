@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
-import SideBar from "../sideBar/sideBar";
-import Header from "../header/header";
+import SideBar from "src/components/sideBar/sideBar";
+import Header from "src/components/header/header";
 import useWrite from "src/hooks/write/useWrite";
 import ImageUploadImg from "src/assets/images/write/ImageUpload.svg";
 import FileUplaod from "src/assets/images/write/FileUpload.svg";
