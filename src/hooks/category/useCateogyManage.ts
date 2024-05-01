@@ -24,11 +24,13 @@ const useCategoryManage = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [memberCnt, setMemberCnt] = useState<number>();
   const [room, setRoom] = useState<string>("");
+  const [isLodding, setIsLodding] = useState(false);
 
   const getCategoryList = async () => {
     try {
       await alimoV1Axios.get(`/category/get-category?page=${1}&size=${15}&searchKeyword=`).then((res) => {
         setCategoryData(res.data.data);
+        setIsLodding(false);
       });
     } catch (error) {
       console.log(error);
@@ -172,6 +174,10 @@ const useCategoryManage = () => {
     setViewPermission((prev) => !prev);
   };
 
+  window.onload = () => {
+    setIsLodding(true);
+  };
+
   return {
     GradeName,
     isClickedCategory,
@@ -189,6 +195,7 @@ const useCategoryManage = () => {
     memberInfo,
     memberCnt,
     room,
+    isLodding,
     getCategoryList,
     onClickAddStudent,
     onClickAccess,

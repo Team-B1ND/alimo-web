@@ -1,4 +1,14 @@
 import styled from "styled-components";
+
+export const LoadigSkeleton = styled.div`
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+`;
+
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
@@ -273,7 +283,6 @@ export const MemeberName = styled.span`
   font-size: 1.3rem;
   width: 200px;
 `;
-
 
 export const MoreImg = styled.img`
   cursor: pointer;
