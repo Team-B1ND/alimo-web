@@ -16,6 +16,7 @@ const Write = () => {
       <Header />
       <S.WriteView>
         <S.InputWrap>
+          
           <S.WriteTitleInput
             placeholder="제목을 입력해주세요"
             type="text"
@@ -23,6 +24,7 @@ const Write = () => {
             value={write.wirteElem.title}
             onChange={write.handleWriteElem}
           />
+          <S.InputSrcoll>
           <S.ViewImageWrap onClick={write.DeletePreviewImage}>
             <PreviewImage previewImage={write.image ? write.image : []} />
           </S.ViewImageWrap>
@@ -54,6 +56,7 @@ const Write = () => {
             />
             <S.FileChange type="file" id="file-change" onChange={write.HandleFileChange} />
           </S.FileWrap>
+          </S.InputSrcoll>
         </S.InputWrap>
         <S.SelectCategoryWrap>
           <S.SendCategoryWrap>

@@ -22,7 +22,7 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
           </S.User>
           <S.Category>
             {Category.map((Categorys, index) => (
-              <S.IndividualCategories>
+              <S.IndividualCategories key={index}>
                 <span>{Categorys}</span>
               </S.IndividualCategories>
             ))}

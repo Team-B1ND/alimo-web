@@ -67,8 +67,9 @@ const MyPostNotification = () => {
           </S.MyPostNotificationWrap>
         ))
       ) : (
-        <NullSkeleton />
+    <></>
       )}
+      {!DataAbsence &&   <NullSkeleton />}
       {notificationData ? <div ref={observerRef}></div> : ""}
     </S.MyNotificationWrap>
   );
