@@ -95,7 +95,7 @@ const CategoryManage = () => {
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
-                        <S.MemeberProfileImg src={member.profileImage !== null ? member.profileImage : ProfileImage} />
+                        <S.MemeberProfileImg src={member.profileImage !== null && member.profileImage !== "" ? member.profileImage : ProfileImage} />
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
                           {member.name !== null && member.room !== null
