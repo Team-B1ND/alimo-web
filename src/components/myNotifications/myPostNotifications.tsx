@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { MyNotificationData } from "src/types/myNotification/myNotifications.interface";
-import * as S from "src/components/myNotification/style";
-import useMyNotification from "src/hooks/notification/useMyNotification";
-import NullSkeleton from "src/components/myNotification/skeleton/nullSkeleton";
-import SettingImg from "src/assets/images/notification/SettingImage.png";
+import { MyNotificationData } from "src/types/myNotifications/myNotifications.interface";
+import * as S from "src/components/myNotifications/style";
+import useMyNotification from "src/hooks/notifications/useMyNotifications";
+import NullSkeleton from "src/components/myNotifications/skeleton/nullSkeleton";
+import SettingImg from "src/assets/images/notifications/SettingImage.png";
 import DefaultImg from "src/assets/images/common/ProfileImg.svg";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";

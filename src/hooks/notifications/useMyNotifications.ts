@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MyNotificationData } from "src/types/myNotification/myNotifications.interface";
+import { MyNotificationData } from "src/types/myNotifications/myNotifications.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { showToast } from "src/libs/toast/swal";

@@ -1,4 +1,4 @@
-import MyNotification from "src/components/myNotification/myNotifications";
+import MyNotification from "src/components/myNotifications/myNotifications";
 
 const MyNotificationPage = () => {
   return <MyNotification />;
