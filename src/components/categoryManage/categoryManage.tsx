@@ -26,17 +26,12 @@ const CategoryManage = () => {
           <S.CategoryManageView>
             <S.CateogyManageUtilityWrap>
               <S.SearchCateogy
-                onChange={category.SearchCategoryName}
-                onKeyUp={category.handleGetCategoryList}
+                onChange={(e) => category.SearchCategoryName(e.target.value)}
+                onKeyUp={category.handGetCategoryList}
                 placeholder="카테고리 검색"
                 value={category.searchKeyword}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    category.handleGetCategoryList();
-                  }
-                }}
               />
-              <S.CategorySearchButton onClick={category.handleGetCategoryList}>
+              <S.CategorySearchButton>
                 <img src={searchImg} />
               </S.CategorySearchButton>
               <S.CreateCategoryButton onClick={category.OnCategoryName}>
@@ -47,11 +42,23 @@ const CategoryManage = () => {
               <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
               <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
             </S.CategoryInfoWrap>
-            {category.categoryData && category.categoryData.length > 0 ? (
+            {category.searchKeyword.length > 1 ? (
+              category.filteredCategory.map((item, idx) => (
+                <S.CategoryInfo
+                  $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
+                  onClick={() => category.handleCategoryClick(item.categoryName)}
+                  key={idx}
+                >
+                  <S.CategoryName>{item.categoryName}</S.CategoryName>
+                  <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
+                  <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
+                </S.CategoryInfo>
+              ))
+            ) : category.categoryData && category.categoryData.length > 0 ? (
               category.categoryData.map((item, idx) => (
                 <S.CategoryInfo
-                  $isclicked={category.isClickedCategory === `${item.categoryName}` ? "true" : "false"}
-                  onClick={() => category.handleCategoryClick(`${item.categoryName}`)}
+                  $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
+                  onClick={() => category.handleCategoryClick(item.categoryName)}
                   key={idx}
                 >
                   <S.CategoryName>{item.categoryName}</S.CategoryName>
@@ -60,7 +67,7 @@ const CategoryManage = () => {
                 </S.CategoryInfo>
               ))
             ) : (
-              <p>카테고리데이터가 존재하지 않아요.</p>
+              <p>카테고리 데이터가 존재하지 않아요.</p>
             )}
           </S.CategoryManageView>
           {category.clickedCategory && category.isClickedCategory && (
@@ -68,14 +75,9 @@ const CategoryManage = () => {
               <S.MemberManageWrap>
                 <S.MemberSearch
                   placeholder="멤버 검색"
-                  onChange={category.onSearchMemberName}
+                  onChange={(e) => category.onSearchMemberName(e.target.value)}
                   onKeyUp={category.handleGetMemberData}
                   value={category.searchMember}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      category.handleGetMemberData();
-                    }
-                  }}
                 />
                 <S.CategorySearchButton
                   style={{ marginTop: "10px", marginLeft: "8px" }}
@@ -83,7 +85,6 @@ const CategoryManage = () => {
                 >
                   <img src={searchImg} />
                 </S.CategorySearchButton>
-
                 <S.AddMemberButton onClick={handlePopUp}>새 멤버</S.AddMemberButton>
               </S.MemberManageWrap>
               <S.MemberUtilityWrap>
@@ -91,11 +92,34 @@ const CategoryManage = () => {
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
               <S.MemberList>
-                {category.memberData && category.memberData.length > 0 ? (
+                {category.searchMember.length > 1 ? (
+                  category.filteredMember.map((item, idx) => (
+                    <S.MemberWrap key={idx}>
+                      <S.Member>
+                        <S.MemeberProfileImg
+                          src={
+                            item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
+                          }
+                        />
+                        <S.MemeberName>{item.name}</S.MemeberName>
+                        <span>
+                          {item.name !== null && item.room !== null ? `${item.grade}학년 ${item.room}반` : "학부모"}
+                        </span>
+                        <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(item.id, item.permission)} />
+                      </S.Member>
+                    </S.MemberWrap>
+                  ))
+                ) : category.memberData && category.memberData.length > 0 ? (
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
-                        <S.MemeberProfileImg src={member.profileImage !== null && member.profileImage !== "" ? member.profileImage : ProfileImage} />
+                        <S.MemeberProfileImg
+                          src={
+                            member.profileImage !== null && member.profileImage !== ""
+                              ? member.profileImage
+                              : ProfileImage
+                          }
+                        />
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
                           {member.name !== null && member.room !== null
