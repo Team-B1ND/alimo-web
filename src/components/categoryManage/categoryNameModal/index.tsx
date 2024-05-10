@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./style";
 import useCreateCategory from "src/hooks/category/useCreateCategory";
 

@@ -3,6 +3,8 @@ export const Main = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+
+  overflow: scroll;
 `;
 export const CategoryMain = styled.main`
   display: flex;
@@ -10,6 +12,9 @@ export const CategoryMain = styled.main`
   width: 100%;
 `;
 export const CategoryManageView = styled.div`
+  width: calc(100vw - 65vw);
+  height: 100%;
+
   display: flex;
   flex-direction: column;
 
@@ -21,6 +26,24 @@ export const CategoryManageView = styled.div`
     align-self: center;
   }
 `;
+
+export const CategoryWrap = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 파이어폭스 */
+  scrollbar-width: none;
+`;
+
 export const CategorySearchButton = styled.div`
   display: flex;
   align-items: center;
@@ -98,7 +121,7 @@ export const CategoryMemberInfo = styled.span`
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
   width: calc(100vw - 65vw);
-
+  min-height: 80px;
   height: 80px;
 
   background: ${({ $isclicked }) => ($isclicked === "true" ? "#f4f5f9" : "#fff")};
@@ -163,6 +186,13 @@ export const CategoryMemberWrap = styled.div`
   overflow: hidden;
   background-color: #f4f5f9;
   position: relative;
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+  }
 `;
 
 export const MemberManageWrap = styled.div`
@@ -174,12 +204,12 @@ export const MemberManageWrap = styled.div`
 `;
 
 export const MemberSearch = styled.input`
-  width: calc(100vw - 90vw);
-  height: calc(100vh - 95vh);
+  width: 150px;
+  height: 45px;
 
   border: 1px solid #e6e6e6;
   border-radius: 15px;
-  padding-left: 8px;
+  padding-left: 10px;
 
   &:focus {
     outline: none;
@@ -234,9 +264,12 @@ export const MemberList = styled.div`
   overflow: scroll;
   overflow-x: hidden;
 
+  position: relative;
+
   p {
-    align-items: center;
-    align-content: center;
+    position: absolute;
+
+    top: 30%;
   }
 `;
 
@@ -246,13 +279,8 @@ export const MemberWrap = styled.div`
 
   width: 100%;
   margin-top: 10px;
-`;
 
-export const MemeberProfileImg = styled.img`
-  width: calc(100vw - 97vw);
-  height: calc(100vw - 97vw);
-
-  border-radius: 50%;
+  position: relative;
 `;
 
 export const Member = styled.div`
@@ -263,17 +291,33 @@ export const Member = styled.div`
   border-top: 1px solid #e6e6e6;
   font-size: 1.3rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   align-self: center;
+
+  position: relative;
+`;
+
+export const CrownImg = styled.img`
+  width: 30px;
+  height: 30px;
+
+  position: absolute;
+  left: 15%;
+  top: 10%;
+`;
+
+export const MemeberProfileImg = styled.img`
+  width: calc(100vw - 97vw);
+  height: calc(100vw - 97vw);
+
+  border-radius: 50%;
 `;
 
 export const MemeberName = styled.span`
   font-size: 1.3rem;
   width: 200px;
 `;
-
 
 export const MoreImg = styled.img`
   cursor: pointer;

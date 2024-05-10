@@ -7,6 +7,7 @@ import StudentList from "src/components/categoryManage/categoryNameModal/index";
 import MoreImg from "src/assets/images/category/MoreImg.svg";
 import ProfileImage from "src/assets/images/common/ProfileImg.svg";
 import searchImg from "src/assets/images/category/searchImg.png";
+import CrownImage from "src/assets/images/category/king2.svg";
 import PermissionModal from "src/components/categoryManage/permissionModal/index";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 
@@ -42,33 +43,35 @@ const CategoryManage = () => {
               <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
               <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
             </S.CategoryInfoWrap>
-            {category.searchKeyword.length > 1 ? (
-              category.filteredCategory.map((item, idx) => (
-                <S.CategoryInfo
-                  $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
-                  onClick={() => category.handleCategoryClick(item.categoryName)}
-                  key={idx}
-                >
-                  <S.CategoryName>{item.categoryName}</S.CategoryName>
-                  <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
-                  <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
-                </S.CategoryInfo>
-              ))
-            ) : category.categoryData && category.categoryData.length > 0 ? (
-              category.categoryData.map((item, idx) => (
-                <S.CategoryInfo
-                  $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
-                  onClick={() => category.handleCategoryClick(item.categoryName)}
-                  key={idx}
-                >
-                  <S.CategoryName>{item.categoryName}</S.CategoryName>
-                  <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
-                  <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
-                </S.CategoryInfo>
-              ))
-            ) : (
-              <p>카테고리 데이터가 존재하지 않아요.</p>
-            )}
+            <S.CategoryWrap>
+              {category.searchKeyword.length > 1 ? (
+                category.filteredCategory.map((item, idx) => (
+                  <S.CategoryInfo
+                    $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
+                    onClick={() => category.handleCategoryClick(item.categoryName)}
+                    key={idx}
+                  >
+                    <S.CategoryName>{item.categoryName}</S.CategoryName>
+                    <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
+                    <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
+                  </S.CategoryInfo>
+                ))
+              ) : category.categoryData && category.categoryData.length > 0 ? (
+                category.categoryData.map((item, idx) => (
+                  <S.CategoryInfo
+                    $isclicked={category.isClickedCategory === item.categoryName ? "true" : "false"}
+                    onClick={() => category.handleCategoryClick(item.categoryName)}
+                    key={idx}
+                  >
+                    <S.CategoryName>{item.categoryName}</S.CategoryName>
+                    <S.CategoryInMember>{item.memberCnt}</S.CategoryInMember>
+                    <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
+                  </S.CategoryInfo>
+                ))
+              ) : (
+                <p>카테고리 데이터가 존재하지 않아요.</p>
+              )}
+            </S.CategoryWrap>
           </S.CategoryManageView>
           {category.clickedCategory && category.isClickedCategory && (
             <S.CategoryMemberWrap>
@@ -96,6 +99,7 @@ const CategoryManage = () => {
                   category.filteredMember.map((item, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
+                        <S.CrownImg src={CrownImage} />
                         <S.MemeberProfileImg
                           src={
                             item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
@@ -113,6 +117,11 @@ const CategoryManage = () => {
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
+                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
+                          <S.CrownImg src={CrownImage} />
+                        ) : (
+                          <></>
+                        )}
                         <S.MemeberProfileImg
                           src={
                             member.profileImage !== null && member.profileImage !== ""
@@ -136,8 +145,8 @@ const CategoryManage = () => {
                 ) : (
                   <p>구성원이 존재하지 않습니다.</p>
                 )}
+                {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
               </S.MemberList>
-              {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
             </S.CategoryMemberWrap>
           )}
         </S.CategoryMain>

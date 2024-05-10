@@ -8,16 +8,16 @@ export const Main = styled.div`
 `;
 
 export const PermissionModalWrap = styled.div`
-  position: absolute;
+  position: relative;
   width: 13vw;
   height: 10vh;
 
   background-color: white;
-top: 50%;
-  left: 0;
 
   border: none;
   border-radius: 10px;
+  top: 10%;
+  left: 60%;
 
   display: flex;
   flex-direction: column;
