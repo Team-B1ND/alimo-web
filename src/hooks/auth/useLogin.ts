@@ -7,6 +7,7 @@ import token from "src/libs/token/token";
 import { LoginResponse } from "src/types/login/login.type";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 
+
 const Uselogin = () => {
   const navigate = useNavigate();
   const [idError, setIdError] = useState(false);
@@ -67,6 +68,8 @@ const Uselogin = () => {
             token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
             showToast("success", "로그인 성공");
             navigate("/");
+           
+            
           });
       } catch (error) {
         SetLoginloading(false);

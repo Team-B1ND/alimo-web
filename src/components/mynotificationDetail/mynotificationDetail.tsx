@@ -3,7 +3,7 @@ import { ImageData } from "src/types/myNotificationDetail/Image.interface";
 import { FileData } from "src/types/myNotificationDetail/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import useMyNotificationDetail from "src/hooks/notification/useMyNotificationDetail";
-import SideBar from "src/components/sideBar/sideBar";
+
 import PostClose from "src/assets/images/notification/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";
@@ -20,7 +20,7 @@ const MyNotificationDetail = () => {
 
   return (
     <S.MyNotificationDetailWrap>
-      <SideBar />
+      
       <S.MyNotificationDetailBox>
         {/* 공지 글 */}
         <S.MyNotificationDetail>
