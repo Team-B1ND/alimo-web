@@ -9,7 +9,8 @@ const useMyNotification = () => {
   const sizeNum = 20;
   const [pageNum, setPageNum] = useState(0);
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
-  const [DataAbsence, setDataAbsence] = useState(true);
+  const [loding, setLoding] = useState(false)
+  const [DataAbsence, setDataAbsence] = useState(false);
   const [isView, setIsView] = useState(true);
   const [observerRef, inView] = useInView({threshold: 0, delay: 200,});
 
@@ -51,21 +52,25 @@ const useMyNotification = () => {
   useEffect(() => {
     const MyNotificationLoad = async () => {
       if (pageNum) {
+        if (pageNum === 1) {
+          setLoding(true);
+          setDataAbsence(true);
+        }
         try {
           await alimoV1Axios
             .get(`notification/load/my`, {
               params: { page: pageNum, size: sizeNum },
             })
             .then((res) => {
+              setLoding(false);
               const newNotificationData = res.data.data;
+              
               if (newNotificationData.length > 0) {
                 setNotificationData([...notificationData, ...newNotificationData]);
+                setDataAbsence(false);
                 setIsView(true);
               } else {
                 setIsView(false);
-              }
-              if (pageNum === 1 && newNotificationData.length === 0) {
-                setDataAbsence(false);
               }
             });
         } catch (error) {
@@ -80,6 +85,7 @@ const useMyNotification = () => {
   return {
     observerRef,
     notificationData,
+    loding,
     DataAbsence,
     DeleteButtonClick,
   };
