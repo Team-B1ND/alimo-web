@@ -9,11 +9,9 @@ const Providers = () => {
   return (
     <RecoilRoot>
       <GlobalStyles/>
-      
         <PageTemplate>
           <Router />
         </PageTemplate>
-      
     </RecoilRoot>
   );
 };
