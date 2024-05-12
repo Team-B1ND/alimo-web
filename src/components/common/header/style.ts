@@ -15,15 +15,13 @@ export const HeaderBarWrap = styled.div`
 export const UploadNewNotifyButton = styled.button`
   position: absolute;
   min-width: 100px;
-  height: calc(100vh - 95vh);
+  height: 40px;
   gap: 10px;
   border: none;
   margin-right: 100px;
   border-radius: 10px;
   background-color: #fece23;
   color: #000;
-
-  font-weight: 600;
   font-size: 1rem;
 
   cursor: pointer;
