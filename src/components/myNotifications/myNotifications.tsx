@@ -1,6 +1,6 @@
-import * as S from "src/components/myNotification/style";
+import * as S from "./style";
 
-import Mypost from "src/components/myNotification/myPostNotifications";
+import Mypost from "src/components/myNotifications/myPostNotifications";
 
 
 const MyNotification = () => {
