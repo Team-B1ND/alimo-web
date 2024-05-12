@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import SideBar from "src/components/sideBar/sideBar";
-import Header from "src/components/header/header";
+
 import useWrite from "src/hooks/write/useWrite";
 import ImageUploadImg from "src/assets/images/write/ImageUpload.svg";
 import FileUplaod from "src/assets/images/write/FileUpload.svg";
@@ -12,10 +11,9 @@ const Write = () => {
 
   return (
     <S.WriteMain>
-      <SideBar />
-      <Header />
       <S.WriteView>
         <S.InputWrap>
+          
           <S.WriteTitleInput
             placeholder="제목을 입력해주세요"
             type="text"
@@ -23,6 +21,7 @@ const Write = () => {
             value={write.wirteElem.title}
             onChange={write.handleWriteElem}
           />
+          <S.InputSrcoll>
           <S.ViewImageWrap onClick={write.DeletePreviewImage}>
             <PreviewImage previewImage={write.image ? write.image : []} />
           </S.ViewImageWrap>
@@ -54,6 +53,7 @@ const Write = () => {
             />
             <S.FileChange type="file" id="file-change" onChange={write.HandleFileChange} />
           </S.FileWrap>
+          </S.InputSrcoll>
         </S.InputWrap>
         <S.SelectCategoryWrap>
           <S.SendCategoryWrap>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ProfileImg from "src/assets/images/common/ProfileImg.svg";
-import { categoryListState } from "src/store/profile/profileStore";
+import { categoryListState } from "src/store/profile/profileStores";
 import { useRecoilValue } from "recoil";
 import useSidbar from "src/hooks/sidbar/useSiebar";
 

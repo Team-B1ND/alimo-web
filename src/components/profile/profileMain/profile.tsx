@@ -1,5 +1,4 @@
 import * as S from "./style";
-import SideBar from "src/components/sideBar/sideBar";
 import CloseImg from "src/assets/images/common/Closeimg.png";
 import UseProfile from "src/hooks/profile/useProfile";
 import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
@@ -8,7 +7,6 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <S.Profile>
-      <SideBar />
       <S.Main>
         <S.UserProfile>
           <S.ProfilePageNanme>프로필</S.ProfilePageNanme>
@@ -22,7 +20,7 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
           </S.User>
           <S.Category>
             {Category.map((Categorys, index) => (
-              <S.IndividualCategories>
+              <S.IndividualCategories key={index}>
                 <span>{Categorys}</span>
               </S.IndividualCategories>
             ))}

@@ -3,7 +3,7 @@ export interface Category {
 }
 
 export interface ImagePreViewProps {
-  previewImage: File[];
+  previewImage: string[];
 }
 
 export interface WriteElemProps {

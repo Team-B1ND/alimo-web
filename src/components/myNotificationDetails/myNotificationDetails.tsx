@@ -1,17 +1,17 @@
 import { LinkItUrl } from "react-linkify-it";
-import { ImageData } from "src/types/myNotificationDetail/Image.interface";
+import { ImageData } from "src/types/mynotificationDetail/Image.interface";
 import { FileData } from "src/types/myNotificationDetail/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
-import useMyNotificationDetail from "src/hooks/notification/useMyNotificationDetail";
+import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetail";
 import SideBar from "src/components/sideBar/sideBar";
-import PostClose from "src/assets/images/notification/PostClose.svg";
+import PostClose from "src/assets/images/notifications/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
-import Emoji from "src/constants/emoji/emoji";
-import CommentList from "src/components/myNotificationDetail/commentList/commentList";
-import FileImage from "src/assets/images/notification/FileImage.svg";
-import FileDownLoadIcon from "src/assets/images/notification/FileDownloadIcon.svg";
-import Comment from "src/components/myNotificationDetail/comment/comment";
-import * as S from "src/components/myNotificationDetail/style";
+import Emoji from "src/constants/emoji/emoji";    
+import CommentList from "src/components/myNotificationDetails/commentList/commentList";
+import FileImage from "src/assets/images/notifications/FileImage.svg";
+import FileDownLoadIcon from "src/assets/images/notifications/FileDownloadIcon.svg";
+import Comment from "src/components/myNotificationDetails/comment/comment";
+import * as S from "src/components/myNotificationDetails/style";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 

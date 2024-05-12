@@ -1,4 +1,33 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// Skeleton code
+
+const move = keyframes`
+  0% {
+    background-color: rgba(182, 182, 182, 0.1)
+  }
+  50% {
+    background-color: rgba(182, 182, 182, 0.25)
+  }
+  100% {
+    background-color: rgba(182, 182, 182, 0.1)
+  }
+`;
+
+export const SkeltonWrap = styled.div`
+  width: 95%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const Skelton = styled.div`
+  width: 100%;
+  height: 90%;
+  animation: ${move} 1.5s infinite ease-in-out;
+`;
 
 export const NullSkelton = styled.div`
   width: 95%;
@@ -8,6 +37,8 @@ export const NullSkelton = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+
+// MyNotification Code
 
 export const MyNotification = styled.div`
   width: 100vw;
@@ -51,7 +82,6 @@ export const MyPostNotification = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px solid #f4f5f9;
-  /* animation: ${""} 1s infinite ease-in-out; */
 `;
 
 export const MyNotificationBox = styled.div`

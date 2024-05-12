@@ -23,7 +23,7 @@ export const SettingMain = styled.div`
   img{
     position: absolute;
     right: 10px;
-    top: 15px;
+    top: 30px;
     display: flex;
     width: 30px;
     height: 30px;
@@ -68,12 +68,9 @@ export const SettingDetail = styled.div`
   span{
     margin-left: 30px;
     color: var(--Gray600, #787878);
-font-family: Pretendard;
 font-size: 0.9rem;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
 text-decoration-line: underline;
+cursor: pointer;
   }
 `;
 
@@ -90,10 +87,7 @@ export const Texts = styled.div`
   width: 200px;
   height: 50%;
   align-items: center;
-  font-family: Pretendard;
   font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
   line-height: normal;
 `;
 export const AlarmSetting = styled.div`
@@ -130,10 +124,8 @@ export const SettingLink = styled.div`
   height: 28px;
   margin-top: 10px;
   color: var(--Main500, #fece23);
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
-  font-weight: 500;
   line-height: normal;
   text-decoration-line: underline;
 `;

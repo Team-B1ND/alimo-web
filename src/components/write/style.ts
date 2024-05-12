@@ -13,7 +13,6 @@ export const WriteView = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: row;
-
   margin-top: 10vh;
 `;
 
@@ -22,7 +21,16 @@ export const InputWrap = styled.form`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x:hidden;
+  overflow-y: scroll;
 `;
+export const InputSrcoll = styled.div`
+ width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+ 
+`
 
 export const WriteTitleInput = styled.input`
   width: 90%;
@@ -49,7 +57,7 @@ export const WriteTitleInput = styled.input`
 export const WriteContext = styled.textarea`
   width: 90%;
   height: calc(100vh - 40vh);
-
+  overflow:hidden;
   border: none;
   border-bottom: 1px solid #aaa;
   margin-top: 2vh;
