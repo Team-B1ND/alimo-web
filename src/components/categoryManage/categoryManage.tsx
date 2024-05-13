@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import * as S from "src/components/categoryManage/style";
 import SideBar from "src/components/sideBar/sideBar";
 import useCategoryManage from "src/hooks/category/useCateogyManage";
@@ -10,6 +10,7 @@ import searchImg from "src/assets/images/category/searchImg.png";
 import CrownImage from "src/assets/images/category/king2.svg";
 import PermissionModal from "src/components/categoryManage/permissionModal/index";
 import useAddStudnet from "src/hooks/category/useAddStudent";
+import Skeleton from "../skelton";
 
 const CategoryManage = () => {
   const { ...category } = useCategoryManage();
@@ -56,6 +57,8 @@ const CategoryManage = () => {
                     <S.MoreImg src={MoreImg} onClick={() => category.handleDeletetCategory(item.categoryName)} />
                   </S.CategoryInfo>
                 ))
+              ) : category.isLoading === true ? (
+                <Skeleton height={85} />
               ) : category.categoryData && category.categoryData.length > 0 ? (
                 category.categoryData.map((item, idx) => (
                   <S.CategoryInfo
@@ -69,7 +72,7 @@ const CategoryManage = () => {
                   </S.CategoryInfo>
                 ))
               ) : (
-                <p>카테고리 데이터가 존재하지 않아요.</p>
+                <p>권한이 있는 카테고리가 없어요.</p>
               )}
             </S.CategoryWrap>
           </S.CategoryManageView>
@@ -113,6 +116,10 @@ const CategoryManage = () => {
                       </S.Member>
                     </S.MemberWrap>
                   ))
+                ) : category.isMemberLoading === true ? (
+                  <S.MemberWrap>
+                    <Skeleton height={85} />
+                  </S.MemberWrap>
                 ) : category.memberData && category.memberData.length > 0 ? (
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
@@ -143,7 +150,7 @@ const CategoryManage = () => {
                     </S.MemberWrap>
                   ))
                 ) : (
-                  <p>구성원이 존재하지 않습니다.</p>
+                  <p>카테고리에 속한 멤버가 없어요.</p>
                 )}
                 {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
               </S.MemberList>

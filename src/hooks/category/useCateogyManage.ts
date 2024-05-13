@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/libs/toast/swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { MemberId, Permission, ShowCategoryName, newSelectedData } from "src/store/category/category.store";
+import {
+  CategoryDataAtom,
+  MemberData,
+  MemberId,
+  Permission,
+  ShowCategoryName,
+  newSelectedData,
+} from "src/store/category/category.store";
 import { CategoryData, MemberInCategoryData } from "src/types/categorys/interface";
 import { MemberInfo, Student } from "src/types/categorys/add.types";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isMemberLoading, setIsMemberLoading] = useState<boolean>(true);
   const [clickedCategory, setClickedCategory] = useState<string | null>(null);
   const [showCategoryName, setShowCategoryName] = useRecoilState(ShowCategoryName);
-  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
+  const [categoryData, setCategoryData] = useRecoilState(CategoryDataAtom);
   const [filteredCategory, setFilteredCategory] = useState<CategoryData[]>([]);
   const [filteredMember, setFilteredMember] = useState<MemberInCategoryData[]>([]);
-  const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
+  const [memberData, setMemberData] = useRecoilState(MemberData);
   const [permissoinToMemb, setPermissoinToMemb] = useRecoilState(MemberId);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [searchMember, setSearchMember] = useState<string>("");
@@ -29,8 +38,9 @@ const useCategoryManage = () => {
 
   const getCategoryList = async () => {
     try {
-      await alimoV1Axios.get(`/category/get-category?page=${1}&size=${1000}&searchKeyword=`).then((res) => {
+      await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
         setCategoryData(res.data.data);
+        setIsLoading(false);
       });
     } catch (error) {
       console.log(error);
@@ -44,7 +54,7 @@ const useCategoryManage = () => {
     } else {
       try {
         await alimoV1Axios
-          .get(`/category/get-member?page=${1}&size=${1000}&categoryName=${categoryName}&searchKeyword=`)
+          .get(`/category/get-member?page=1&size=1000&categoryName=${categoryName}&searchKeyword=`)
           .then((res) => {
             if (categoryName === "학부모") {
               setGradeName("학부모");
@@ -57,6 +67,7 @@ const useCategoryManage = () => {
           });
         setIsClickedCategory(categoryName);
         setClickedCategory(categoryName);
+        setIsMemberLoading(false);
       } catch (e) {
         showToast("error", "서버 연결오류");
       }
@@ -159,6 +170,9 @@ const useCategoryManage = () => {
     room,
     filteredCategory,
     filteredMember,
+    isLoading,
+    isMemberLoading,
+    setMemberData,
     getCategoryList,
     onClickAddStudent,
     handGetCategoryList,

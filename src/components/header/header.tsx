@@ -10,9 +10,9 @@ const Header = () => {
 
   const onGetNotificationId = async () => {
     try {
+      navigate("/write");
       await alimoV1Axios.post("/notification/create").then((res) => {
         setNotificationId(res.data.data.NotificationId);
-        navigate("/write");
       });
     } catch (error) {
       console.log(error);
@@ -21,9 +21,7 @@ const Header = () => {
 
   return (
     <S.HeaderBarWrap>
-      <S.UploadNewNotifyButton onClick={onGetNotificationId}>
-        새 공지 작성
-      </S.UploadNewNotifyButton>
+      <S.UploadNewNotifyButton onClick={onGetNotificationId}>새 공지 작성</S.UploadNewNotifyButton>
     </S.HeaderBarWrap>
   );
 };

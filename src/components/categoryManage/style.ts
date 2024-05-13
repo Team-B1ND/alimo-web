@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Main = styled.div`
   width: 100vw;
   height: 100vh;
@@ -20,11 +21,6 @@ export const CategoryManageView = styled.div`
 
   margin-left: 12px;
   margin-right: 12px;
-
-  p {
-    align-items: center;
-    align-self: center;
-  }
 `;
 
 export const CategoryWrap = styled.div`
@@ -42,6 +38,15 @@ export const CategoryWrap = styled.div`
 
   /* 파이어폭스 */
   scrollbar-width: none;
+
+  position: relative;
+
+  p {
+    position: absolute;
+
+    top: 30%;
+    left: 30%;
+  }
 `;
 
 export const CategorySearchButton = styled.div`
@@ -312,6 +317,7 @@ export const MemeberProfileImg = styled.img`
   height: calc(100vw - 97vw);
 
   border-radius: 50%;
+  border: 1px solid #d7d7d7;
 `;
 
 export const MemeberName = styled.span`
