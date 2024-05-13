@@ -16,7 +16,7 @@ const PageTemplate = ({ children }: ProvidersProps) => {
   );
 };
 const Container = styled.div`
-  width: 100vw;
+  min-width:  800px;
   height: 100vh;
   display: flex;
 `;
