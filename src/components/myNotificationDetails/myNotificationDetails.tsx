@@ -1,9 +1,9 @@
 import { LinkItUrl } from "react-linkify-it";
-import { ImageData } from "src/types/mynotificationDetail/Image.interface";
-import { FileData } from "src/types/myNotificationDetail/File.interface";
+import { ImageData } from "src/types/mynotificationDetails/Image.interface";
+import { FileData } from "src/types/mynotificationDetails/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
-import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetail";
-import SideBar from "src/components/sideBar/sideBar";
+import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
+import SidBar from "src/components/sideBar/sideBar";
 import PostClose from "src/assets/images/notifications/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";    
@@ -20,7 +20,7 @@ const MyNotificationDetail = () => {
 
   return (
     <S.MyNotificationDetailWrap>
-      <SideBar />
+      <SidBar/>
       <S.MyNotificationDetailBox>
         {/* 공지 글 */}
         <S.MyNotificationDetail>
