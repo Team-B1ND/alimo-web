@@ -1,9 +1,9 @@
 import { LinkItUrl } from "react-linkify-it";
-import { ImageData } from "src/types/mynotificationDetails/Image.interface";
-import { FileData } from "src/types/mynotificationDetails/File.interface";
+import { ImageData } from "src/types/myNotificationDetails/Image.interface";
+import { FileData } from "src/types/myNotificationDetails/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
-import SidBar from "src/components/sideBar/sideBar";
+import SideBar from "src/components/sideBar/sideBar";
 import PostClose from "src/assets/images/notifications/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";    
