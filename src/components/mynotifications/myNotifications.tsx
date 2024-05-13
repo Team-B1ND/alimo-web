@@ -1,5 +1,5 @@
 import * as S from "src/components/mynotifications/style";
-import SideBar from "src/components/sideBar/sideBar";
+import SideBar from "src/components/common/sideBar/sideBar";
 import Mypost from "src/components/mynotifications/myPostNotifications";
 
 const MyNotification = () => {

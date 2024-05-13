@@ -3,7 +3,7 @@ import { ImageData } from "src/types/mynotificationDetail/Image.interface";
 import { FileData } from "src/types/mynotificationDetail/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
-import SideBar from "src/components/sideBar/sideBar";
+import SideBar from "src/components/common/sideBar/sideBar";
 import PostClose from "src/assets/images/notification/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";

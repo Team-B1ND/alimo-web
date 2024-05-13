@@ -1,5 +1,5 @@
 import * as S from "./style";
-import SideBar from "src/components/sideBar/sideBar";
+import SideBar from "src/components/common/sideBar/sideBar";
 import CloseImg from "src/assets/images/common/Closeimg.png";
 import UseProfile from "src/hooks/profile/useProfile";
 import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
