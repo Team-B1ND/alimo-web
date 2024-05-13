@@ -2,16 +2,16 @@ import { LinkItUrl } from "react-linkify-it";
 import { ImageData } from "src/types/mynotificationDetail/Image.interface";
 import { FileData } from "src/types/mynotificationDetail/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
-import useMyNotificationDetail from "src/hooks/notification/useMyNotificationDetail";
+import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
 import SideBar from "src/components/sideBar/sideBar";
 import PostClose from "src/assets/images/notification/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";
-import CommentList from "src/components/mynotificationDetail/commentList/commentList";
+import CommentList from "src/components/mynotificationDetails/commentList/commentList";
 import FileImage from "src/assets/images/notification/FileImage.svg";
 import FileDownLoadIcon from "src/assets/images/notification/FileDownloadIcon.svg";
-import Comment from "src/components/mynotificationDetail/comment/comment";
-import * as S from "src/components/mynotificationDetail/style";
+import Comment from "src/components/mynotificationDetails/comment/comment";
+import * as S from "src/components/mynotificationDetails/style";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -29,7 +29,7 @@ const MyNotificationDetail = () => {
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile}/>
+              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile} />
               <S.InfoWrap>
                 <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
                 <S.MyNotificationDate>
@@ -54,7 +54,8 @@ const MyNotificationDetail = () => {
                     src={ImageData.fileUrl}
                     $data_cnt={MyNotificationDetail.imageData.length}
                     $image_index={idx}
-                    onError={MyNotificationDetail.HandleImageError}/>
+                    onError={MyNotificationDetail.HandleImageError}
+                  />
                 </S.ImgWrap>
               ))}
             {MyNotificationDetail.fileData &&
@@ -63,7 +64,8 @@ const MyNotificationDetail = () => {
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
                   $data_cnt={MyNotificationDetail.fileData.length}
-                  $file_index={idx}>
+                  $file_index={idx}
+                >
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -73,7 +75,8 @@ const MyNotificationDetail = () => {
                       </S.FileInfo>
                     </S.FileInfoWrap>
                     <S.FileDownLoadWrap
-                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}
+                    >
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -93,7 +96,8 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
-                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}/>
+                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
+                />
               ))}
           </S.CommentListBox>
           <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />

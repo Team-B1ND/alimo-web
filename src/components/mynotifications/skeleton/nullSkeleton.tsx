@@ -1,4 +1,4 @@
-import * as S from "src/components/mynotification/style";
+import * as S from "src/components/mynotifications/style";
 
 const NullSkeleton = () => {
   return (

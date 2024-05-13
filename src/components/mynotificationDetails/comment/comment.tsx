@@ -1,7 +1,7 @@
 import useComment from "src/hooks/comment/useComment";
 import CommentButtonImg from "src/assets/images/notification/CommentButtonImage.svg";
 import { CommentProps } from "src/types/comment/commentProps";
-import * as S from "src/components/mynotificationDetail/comment/style";
+import * as S from "src/components/mynotificationDetails/comment/style";
 
 const Comment = ({ handleCommentCreate }: CommentProps) => {
   const { ...Comment } = useComment();
@@ -14,10 +14,10 @@ const Comment = ({ handleCommentCreate }: CommentProps) => {
           ref={Comment.commentRef}
           value={Comment.commentValue}
           placeholder="댓글을 남겨보세요."
-          onKeyDown={(e) => Comment.handleKeyDown({e, handleCommentCreate})}
-          onChange={(e) => Comment.handleChangeValue(e, Comment.commentRef)}></S.CommentInput>
-        <S.CommentButtonWrap
-          onClick={() => handleCommentCreate(Comment.commentValue, Comment.setCommentValue)}>
+          onKeyDown={(e) => Comment.handleKeyDown({ e, handleCommentCreate })}
+          onChange={(e) => Comment.handleChangeValue(e, Comment.commentRef)}
+        ></S.CommentInput>
+        <S.CommentButtonWrap onClick={() => handleCommentCreate(Comment.commentValue, Comment.setCommentValue)}>
           <S.CommentButton src={CommentButtonImg}></S.CommentButton>
         </S.CommentButtonWrap>
       </S.Comment>

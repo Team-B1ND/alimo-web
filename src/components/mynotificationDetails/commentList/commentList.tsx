@@ -1,8 +1,8 @@
 import { CommentListProps } from "src/types/commentList/commentListProps.interface";
 import useCommentList from "src/hooks/comment/useCommentList";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
-import ReplyComment from "src/components/mynotificationDetail/replyComment/replyComment";
-import * as S from "src/components/mynotificationDetail/commentList/style";
+import ReplyComment from "src/components/mynotificationDetails/replyComment/replyComment";
+import * as S from "src/components/mynotificationDetails/commentList/style";
 
 const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();
@@ -60,9 +60,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) =>
                 {comment.subComments.length > idx + 1 && <S.ReplyCommentConnectLine></S.ReplyCommentConnectLine>}
               </S.ReplyCommentConnectLineWrap>
               <S.ReplyCommentInfoWrap>
-                <S.ReplyCommentProfile
-                  src={replyCommentData.profileImage || defaultProfile}
-                />
+                <S.ReplyCommentProfile src={replyCommentData.profileImage || defaultProfile} />
               </S.ReplyCommentInfoWrap>
               <S.ReplyCommentContentWrap>
                 <S.ReplyCommentName>{replyCommentData.commentor}</S.ReplyCommentName>
