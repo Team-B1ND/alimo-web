@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import * as S from "src/components/categoryManage/style";
-import SideBar from "src/components/sideBar/sideBar";
 import useCategoryManage from "src/hooks/category/useCateogyManage";
 import AddStudent from "src/components/categoryManage/studentModal/addStudent";
 import StudentList from "src/components/categoryManage/categoryNameModal/index";
@@ -21,7 +20,7 @@ const CategoryManage = () => {
   return (
     <>
       <S.Main>
-        <SideBar />
+        
         <S.CategoryMain>
           <S.CategoryManageView>
             <S.CateogyManageUtilityWrap>

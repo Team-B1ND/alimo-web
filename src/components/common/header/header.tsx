@@ -1,6 +1,6 @@
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import { useNavigate } from "react-router-dom";
-import * as S from "src/components/header/style";
+import * as S from "./style";
 import { useRecoilState } from "recoil";
 import { NotificationIdData } from "src/store/write/write.store";
 

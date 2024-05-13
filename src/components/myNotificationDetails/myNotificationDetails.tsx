@@ -20,7 +20,7 @@ const MyNotificationDetail = () => {
 
   return (
     <S.MyNotificationDetailWrap>
-      <SideBar />
+      <SidBar/>
       <S.MyNotificationDetailBox>
         {/* 공지 글 */}
         <S.MyNotificationDetail>

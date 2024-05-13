@@ -25,4 +25,5 @@ const Comment = ({ handleCommentCreate }: CommentProps) => {
   );
 };
 
+
 export default Comment;
