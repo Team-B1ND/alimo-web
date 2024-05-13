@@ -4,7 +4,7 @@ export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 200px;
-  width: 250px;
+  width: 10%;
   height: 100vh;
   overflow: hidden;
 `;

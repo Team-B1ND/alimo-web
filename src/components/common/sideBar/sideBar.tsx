@@ -1,12 +1,11 @@
 import * as S from "src/components/common/sideBar/style";
 import ClickSideBarCategoryManageImg from "src/assets/images/common/sidebar/ClickSideBarCateogryManage.svg";
-import SideBarCategoryManageImg from "src/assets/images/common/sidebar/SideBarCategoryManage.png";
+import SideBarCategoryManageImg from "src/assets/images/common/sidebar/Category.svg";
 import ClickSideBarWriteReadImg from "src/assets/images/common/sidebar/ClickSideBarHome.svg";
 import SideBarWriteReadImg from "src/assets/images/common/sidebar/SideBarHome.svg";
 import SideBarProfileSetting from "src/assets/images/common/sidebar/SideBarSetting.svg";
 import Profile from "src/components/profile/profileMain/profile";
 import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
-import Header from "src/components/common/header/header";
 import ProfileAlert from "src/components/profile/alert/profileAlert";
 import UseSideBar from "src/hooks/sidbar/useSiebar";
 import Setting from "src/components/settingPage/setting";
@@ -17,7 +16,6 @@ const SideBar = () => {
   const navigate = useNavigate();
   return (
     <S.SideBarWrap>
-      <Header />
       <S.SideBarMenuBack>
         <S.SideBarLogoWrap onClick={() => navigate("/")}>
           <S.AlimoLogoTitle>
