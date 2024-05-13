@@ -4,17 +4,17 @@ import styled, { keyframes } from "styled-components";
 
 const move = keyframes`
   0% {
-    background-color: rgba(182, 182, 182, 0.1)
+    background-color: rgba(146, 146, 146, 0.1)
   }
   50% {
-    background-color: rgba(182, 182, 182, 0.25)
+    background-color: rgba(146, 146, 146, 0.25)
   }
   100% {
-    background-color: rgba(182, 182, 182, 0.1)
+    background-color: rgba(146, 146, 146, 0.1)
   }
 `;
 
-export const SkeltonWrap = styled.div`
+export const SkeletonWrap = styled.div`
   width: 95%;
   height: 150px;
   display: flex;
@@ -23,13 +23,39 @@ export const SkeltonWrap = styled.div`
   align-items: flex-end;
 `;
 
-export const Skelton = styled.div`
+export const SkeletonBox = styled.div`
   width: 100%;
   height: 90%;
-  animation: ${move} 1.5s infinite ease-in-out;
+  border-bottom: 1px solid #f4f5f9;
 `;
 
-export const NullSkelton = styled.div`
+export const ProfileSkeleton = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const MyInfoSkeleton = styled.div`
+  width: 150px;
+  height: 22px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const TitleSkeleton = styled.div`
+  width: 180px;
+  height: 15px;
+  margin: 15px 0 10px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const ContentSkeleton = styled.div`
+  width: 400px;
+  height: 15px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const Skeleton = styled.div`
   width: 95%;
   height: 150px;
   display: flex;
@@ -128,7 +154,7 @@ export const MyName = styled.p`
 `;
 
 export const MyNotificationDate = styled.p`
-  color: #aaaaaa;
+  color: #aaa;
   font-size: 13px;
   line-height: normal;
 `;
