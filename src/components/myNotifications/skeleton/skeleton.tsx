@@ -1,12 +1,8 @@
 import * as S from "src/components/myNotifications/style";
 
-interface Props {
-  key: number;
-}
-
-const Skeleton = ({ key }: Props) => {
+const Skeleton = () => {
   return (
-    <S.MyPostNotificationWrap key={key}>
+    <S.MyPostNotificationWrap>
       <S.SkeletonWrap>
         <S.SkeletonBox>
           <S.MyNotificationTextWrap>
