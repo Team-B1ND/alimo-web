@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MyNotificationData } from "src/types/myNotification/myNotifications.interface";
+import { MyNotificationData } from "@src/types/myNotifications/myNotifications.interface";
 import * as S from "src/components/mynotifications/style";
 import useMyNotification from "src/hooks/notifications/useMyNotifications";
 import NullSkeleton from "src/components/mynotifications/skeleton/nullSkeleton";

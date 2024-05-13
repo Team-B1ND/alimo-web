@@ -1,6 +1,6 @@
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import { useNavigate } from "react-router-dom";
-import * as S from "src/components/common/header/style";
+import * as S from "./style";
 import { useRecoilState } from "recoil";
 import { NotificationIdData } from "src/store/write/write.store";
 
@@ -10,9 +10,9 @@ const Header = () => {
 
   const onGetNotificationId = async () => {
     try {
-      navigate("/write");
       await alimoV1Axios.post("/notification/create").then((res) => {
         setNotificationId(res.data.data.NotificationId);
+        navigate("/write");
       });
     } catch (error) {
       console.log(error);
@@ -21,7 +21,9 @@ const Header = () => {
 
   return (
     <S.HeaderBarWrap>
-      <S.UploadNewNotifyButton onClick={onGetNotificationId}>새 공지 작성</S.UploadNewNotifyButton>
+      <S.UploadNewNotifyButton onClick={onGetNotificationId}>
+        새 공지 작성
+      </S.UploadNewNotifyButton>
     </S.HeaderBarWrap>
   );
 };

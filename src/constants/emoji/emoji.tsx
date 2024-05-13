@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { EmojiData } from "src/types/mynotificationDetail/Emoji.interface"; 
+import { EmojiData } from "src/types/mynotificationDetails/Emoji.interface"; 
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import * as S from "src/constants/emoji/style";
 

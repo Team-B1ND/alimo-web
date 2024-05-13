@@ -1,6 +1,6 @@
 import { LinkItUrl } from "react-linkify-it";
-import { ImageData } from "src/types/mynotificationDetail/Image.interface";
-import { FileData } from "src/types/mynotificationDetail/File.interface";
+import { ImageData } from "@src/types/mynotificationDetails/Image.interface";
+import { FileData } from "@src/types/mynotificationDetails/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
 import SideBar from "src/components/common/sideBar/sideBar";
