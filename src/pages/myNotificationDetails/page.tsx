@@ -1,5 +1,5 @@
 
-import MyNotificationDetail from "src/components/myNotificationDetails/myNotificationDetails";
+import MyNotificationDetail from "src/components/myNotificationDetailse/mynotificationDetails";
 
 const MyNotificationDetailPage = () => {
   return <MyNotificationDetail />;

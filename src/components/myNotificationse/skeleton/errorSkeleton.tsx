@@ -1,4 +1,4 @@
-import * as S from "src/components/myNotifications/style";
+import * as S from "src/components/myNotificationse/style";
 
 const ErrorSkeleton = () => {
   return (

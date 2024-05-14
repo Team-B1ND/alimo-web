@@ -2,11 +2,8 @@ import { ReplyCommentProps } from "src/types/replyComment/replyCommentProps.inte
 import useReplyComment from "src/hooks/comment/useReplyComment";
 import useSidebar from "src/hooks/sidbar/useSiebar";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
-<<<<<<<< HEAD:src/components/mynotificationDetails/replyComment/replyComment.tsx
-import * as S from "./style";
-========
-import * as S from "src/components/myNotificationDetails/replyComment/style";
->>>>>>>> main:src/components/myNotificationDetails/replyComment/replyComment.tsx
+import * as S from "src/components/myNotificationDetailse/replyComment/style";
+
 
 const ReplyComment = ({
   commentData,
