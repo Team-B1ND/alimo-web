@@ -1,13 +1,6 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-export const Profileani = keyframes`
-  0%{
-    opacity: 0;
-  }
-  100%{
-    opacity: 1;
-  }
-`;
+
 export const Profile = styled.div`
   position: absolute;
   width: 100vw;
@@ -43,7 +36,6 @@ export const UserProfile = styled.div`
   height: calc(100vw - 75vw);
   border-radius: 10px;
   background-color: #ffffff;
-  animation: ${Profileani} 1s linear;
   position: absolute;
   overflow: hidden;
 `;

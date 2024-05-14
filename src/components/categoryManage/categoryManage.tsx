@@ -40,8 +40,8 @@ const CategoryManage = () => {
               </S.CreateCategoryButton>
             </S.CateogyManageUtilityWrap>
             <S.CategoryInfoWrap>
-              <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
-              <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
+              <S.CategoryTitleInfo>카테고리명</S.CategoryTitleInfo>
+              <S.CategoryTitleInfo>멤버수</S.CategoryTitleInfo>
             </S.CategoryInfoWrap>
             <S.CategoryWrap>
               {category.searchKeyword.length > 1 ? (

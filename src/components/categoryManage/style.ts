@@ -18,7 +18,7 @@ export const CategoryManageView = styled.div`
 
   display: flex;
   flex-direction: column;
-
+justify-content: center;
   margin-left: 12px;
   margin-right: 12px;
 `;
@@ -107,21 +107,20 @@ export const CreateCategoryButton = styled.button`
 `;
 
 export const CategoryInfoWrap = styled.div`
-  width: 350px;
+  width: 90%;
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 
-export const CategoryNameInfo = styled.span`
+export const CategoryTitleInfo = styled.span`
+width: 50%;
+padding-left: 20px;
   color: #aaaaaa;
-  margin-left: 1vw;
-`;
-
-export const CategoryMemberInfo = styled.span`
-  color: #aaaaaa;
-  margin-left: 11vw;
+  :nth-child(2){
+    padding-left: 10px;
+  }
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
@@ -191,7 +190,9 @@ export const CategoryMemberWrap = styled.div`
   overflow: hidden;
   background-color: #f4f5f9;
   position: relative;
-
+display: flex;
+flex-direction: column;
+align-items: center;
   p {
     display: flex;
     align-items: center;
@@ -201,6 +202,7 @@ export const CategoryMemberWrap = styled.div`
 `;
 
 export const MemberManageWrap = styled.div`
+width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -248,16 +250,18 @@ export const AddMemberButton = styled.button`
 `;
 
 export const MemberUtilityWrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   span {
+    display: flex;
+    width: 100px;
     color: #aaaaaa;
     font-size: 1rem;
-    width: 50px;
-    align-items: center;
     justify-content: center;
+  
   }
 `;
 

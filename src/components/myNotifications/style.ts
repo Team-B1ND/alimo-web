@@ -80,6 +80,7 @@ export const MyNotificationView = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  
 `;
 
 export const MyNotificationWrap = styled.div`
@@ -90,6 +91,7 @@ export const MyNotificationWrap = styled.div`
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
+  margin-top: calc(100vh - 90vh);;
 `;
 
 export const MyPostNotificationWrap = styled.div`
