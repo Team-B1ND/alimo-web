@@ -1,6 +1,6 @@
-import Router from "src/components/router/router";
+import Providers from "./components/common/Provider/index";
 function App() {
-  return <Router />;
+  return <Providers />;
 }
 
 export default App;

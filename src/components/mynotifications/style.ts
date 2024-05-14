@@ -1,6 +1,61 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const NullSkelton = styled.div`
+// Skeleton code
+
+const move = keyframes`
+  0% {
+    background-color: rgba(146, 146, 146, 0.1)
+  }
+  50% {
+    background-color: rgba(146, 146, 146, 0.25)
+  }
+  100% {
+    background-color: rgba(146, 146, 146, 0.1)
+  }
+`;
+
+export const SkeletonWrap = styled.div`
+  width: 95%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const SkeletonBox = styled.div`
+  width: 100%;
+  height: 90%;
+  border-bottom: 1px solid #f4f5f9;
+`;
+
+export const ProfileSkeleton = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const MyInfoSkeleton = styled.div`
+  width: 150px;
+  height: 22px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const TitleSkeleton = styled.div`
+  width: 180px;
+  height: 15px;
+  margin: 15px 0 10px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const ContentSkeleton = styled.div`
+  width: 400px;
+  height: 15px;
+  animation: ${move} 1.5s infinite ease-in-out;
+`
+
+export const Skeleton = styled.div`
   width: 95%;
   height: 150px;
   display: flex;
@@ -8,6 +63,8 @@ export const NullSkelton = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+
+// MyNotification Code
 
 export const MyNotification = styled.div`
   width: 100vw;
@@ -51,7 +108,6 @@ export const MyPostNotification = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px solid #f4f5f9;
-  /* animation: ${""} 1s infinite ease-in-out; */
 `;
 
 export const MyNotificationBox = styled.div`
@@ -98,7 +154,7 @@ export const MyName = styled.p`
 `;
 
 export const MyNotificationDate = styled.p`
-  color: #aaaaaa;
+  color: #aaa;
   font-size: 13px;
   line-height: normal;
 `;

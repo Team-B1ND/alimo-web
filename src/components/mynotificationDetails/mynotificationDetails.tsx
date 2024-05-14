@@ -1,4 +1,5 @@
 import { LinkItUrl } from "react-linkify-it";
+<<<<<<<< HEAD:src/components/mynotificationDetails/mynotificationDetails.tsx
 import { ImageData } from "@src/types/mynotificationDetails/Image.interface";
 import { FileData } from "@src/types/mynotificationDetails/File.interface";
 import { CommentData } from "src/types/commentList/commentList.interface";
@@ -12,6 +13,20 @@ import FileImage from "src/assets/images/notification/FileImage.svg";
 import FileDownLoadIcon from "src/assets/images/notification/FileDownloadIcon.svg";
 import Comment from "src/components/mynotificationDetails/comment/comment";
 import * as S from "src/components/mynotificationDetails/style";
+========
+import { ImageData } from "src/types/myNotificationDetails/Image.interface";
+import { FileData } from "src/types/myNotificationDetails/File.interface";
+import { CommentData } from "src/types/commentList/commentList.interface";
+import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDetails";
+import PostClose from "src/assets/images/notifications/PostClose.svg";
+import defaultProfile from "src/assets/images/common/ProfileImg.svg";
+import Emoji from "src/constants/emoji/emoji";    
+import CommentList from "src/components/myNotificationDetails/commentList/commentList";
+import FileImage from "src/assets/images/notifications/FileImage.svg";
+import FileDownLoadIcon from "src/assets/images/notifications/FileDownloadIcon.svg";
+import Comment from "src/components/myNotificationDetails/comment/comment";
+import * as S from "src/components/myNotificationDetails/style";
+>>>>>>>> main:src/components/myNotificationDetails/myNotificationDetails.tsx
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -20,7 +35,7 @@ const MyNotificationDetail = () => {
 
   return (
     <S.MyNotificationDetailWrap>
-      <SideBar />
+      
       <S.MyNotificationDetailBox>
         {/* 공지 글 */}
         <S.MyNotificationDetail>

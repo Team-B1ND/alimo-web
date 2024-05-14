@@ -1,7 +1,11 @@
 import useComment from "src/hooks/comment/useComment";
-import CommentButtonImg from "src/assets/images/notification/CommentButtonImage.svg";
+import CommentButtonImg from "src/assets/images/notifications/CommentButtonImage.svg";
 import { CommentProps } from "src/types/comment/commentProps";
+<<<<<<<< HEAD:src/components/mynotificationDetails/comment/comment.tsx
 import * as S from "src/components/mynotificationDetails/comment/style";
+========
+import * as S from "src/components/myNotificationDetails/comment/style";
+>>>>>>>> main:src/components/myNotificationDetails/comment/comment.tsx
 
 const Comment = ({ handleCommentCreate }: CommentProps) => {
   const { ...Comment } = useComment();
@@ -24,5 +28,6 @@ const Comment = ({ handleCommentCreate }: CommentProps) => {
     </S.CommentWrap>
   );
 };
+
 
 export default Comment;

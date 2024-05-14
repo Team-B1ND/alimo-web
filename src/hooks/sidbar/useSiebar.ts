@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/profileStores";
@@ -18,25 +18,29 @@ const Sidbar = () => {
   const [, setCategoryList] = useRecoilState(categoryListState);
   const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
   const CategoryList = async () => {
-
-    const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`);
-
-    const CategoryData = response.data.data.roles;
+   await alimoV1Axios.get(
+      `${CONFIG.serverUrl}/category/list/member`
+    ).then((res)=>{
+      const CategoryData = res.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
+    })
+
+    
   };
 
-  const ProfileInfo = async () => {
+  const ProfileInfo = useCallback(() => {
     try {
-
-      const response = await alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`);
-      const userData = response.data.data;
-      setName(userData.name);
-      setimage(userData.image);
+      alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`).then((res) => {
+        const userData = res.data.data;
+        setName(userData.name);
+        setimage(userData.image);
+      });
     } catch (error) {
       console.log(error);
     }
-  };
+  },[]);
+  
   //프로필 설정
   const OpenProfileSetting = () => {
     setProfileAlert((prev) => !prev);
@@ -49,8 +53,8 @@ const Sidbar = () => {
     setSetting((prev) => !prev);
   };
   useEffect(() => {
-    CategoryList();
     ProfileInfo();
+    CategoryList();
   }, []);
 
   //페이지 이동
