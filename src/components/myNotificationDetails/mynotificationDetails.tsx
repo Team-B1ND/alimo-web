@@ -6,11 +6,11 @@ import useMyNotificationDetail from "src/hooks/notifications/useMyNotificationDe
 import PostClose from "src/assets/images/notifications/PostClose.svg";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import Emoji from "src/constants/emoji/emoji";    
-import CommentList from "src/components/myNotificationDetailse/commentList/commentList";
+import CommentList from "src/components/myNotificationDetails/commentList/commentList";
 import FileImage from "src/assets/images/notifications/FileImage.svg";
 import FileDownLoadIcon from "src/assets/images/notifications/FileDownloadIcon.svg";
-import Comment from "src/components/myNotificationDetailse/comment/comment";
-import * as S from "src/components/myNotificationDetailse/style";
+import Comment from "src/components/myNotificationDetails/comment/comment";
+import * as S from "src/components/myNotificationDetails/style";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
