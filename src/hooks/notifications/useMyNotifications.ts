@@ -10,6 +10,7 @@ const useMyNotification = () => {
   const [pageNum, setPageNum] = useState(0);
   const [notificationData, setNotificationData] = useState<MyNotificationData[]>([]);
   const [loding, setLoding] = useState(false)
+  const [error, setError] = useState(false);
   const [DataAbsence, setDataAbsence] = useState(false);
   const [isView, setIsView] = useState(true);
   const [observerRef, inView] = useInView({threshold: 0, delay: 200,});
@@ -74,6 +75,9 @@ const useMyNotification = () => {
               }
             });
         } catch (error) {
+          showToast("error", "공지 불러오기 실패");
+          setLoding(false);
+          setError(true);
           console.log(error);
         }
       }
@@ -86,6 +90,7 @@ const useMyNotification = () => {
     observerRef,
     notificationData,
     loding,
+    error,
     DataAbsence,
     DeleteButtonClick,
   };
