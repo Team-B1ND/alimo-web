@@ -317,7 +317,6 @@ export const MemeberProfileImg = styled.img`
   height: calc(100vw - 97vw);
 
   border-radius: 50%;
-  border: 1px solid #d7d7d7;
 `;
 
 export const MemeberName = styled.span`
