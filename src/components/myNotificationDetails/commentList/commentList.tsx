@@ -60,9 +60,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) =>
                 {comment.subComments.length > idx + 1 && <S.ReplyCommentConnectLine></S.ReplyCommentConnectLine>}
               </S.ReplyCommentConnectLineWrap>
               <S.ReplyCommentInfoWrap>
-                <S.ReplyCommentProfile
-                  src={replyCommentData.profileImage || defaultProfile}
-                />
+                <S.ReplyCommentProfile src={replyCommentData.profileImage || defaultProfile} />
               </S.ReplyCommentInfoWrap>
               <S.ReplyCommentContentWrap>
                 <S.ReplyCommentName>{replyCommentData.commentor}</S.ReplyCommentName>

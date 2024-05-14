@@ -89,10 +89,17 @@ export const ChoiceInfoWrap = styled.div`
     /* 크롬, 사파리, 오페라, 마소엣지 브라우저에서 스크롤바를 안보이게  */
     display: none;
   }
+
+  gap: 10px;
 `;
 
 export const StudentWrap = styled.div`
   overflow: scroll;
+  
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
 `;
 
 export const ParantWrap = styled.div``;
@@ -103,7 +110,7 @@ export const GradeInfo = styled.span`
   color: #000;
 
   /* Label */
-  
+
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -132,7 +139,6 @@ export const ClassInfo = styled.div`
   cursor: pointer;
 
   span {
-    
     margin-bottom: 1vh;
   }
 `;
@@ -141,7 +147,7 @@ export const TeacherAndParentsInfo = styled.span`
   color: #000;
 
   /* Label */
-  
+
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -177,7 +183,7 @@ export const MemberSearchInput = styled.input`
   margin-left: 15vw;
 
   /* Caption */
-  
+
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 500;
@@ -200,7 +206,7 @@ export const Class = styled.span`
   color: #000;
 
   /* Body */
-  
+
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -213,7 +219,7 @@ export const ClassStudent = styled.span`
   color: var(--Gray500, #aaa);
 
   /* Body */
-  
+
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -222,7 +228,7 @@ export const ClassStudent = styled.span`
 
 export const AllSelect = styled.span`
   color: var(--Gray600, #787878);
-  
+
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
@@ -263,7 +269,7 @@ export const StudentName = styled.span`
   color: var(--Main900, #020202);
 
   /* Label */
-  
+
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
@@ -302,7 +308,6 @@ export const ViewSelectedStudent = styled.div`
 `;
 
 export const ViewStudentName = styled.span`
-  
   font-size: 1.2rem;
   font-weight: 400;
 
@@ -340,7 +345,6 @@ export const CancleButton = styled.button`
   background: #fff;
   color: #787878;
 
-  
   font-size: 1rem;
   font-weight: 400;
 `;
@@ -356,7 +360,6 @@ export const ConfirmButton = styled.button`
   margin-right: 2vw;
   margin-left: 1vw;
 
-  
   font-size: 1rem;
   font-weight: 400;
 `;

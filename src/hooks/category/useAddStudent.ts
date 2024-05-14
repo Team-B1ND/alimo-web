@@ -4,7 +4,14 @@ import { MemberCntList, MemberInfo, Student } from "src/types/categorys/add.type
 import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/toast/swal";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { AddMember, ShowCategoryName, ShowStudentList, newSelectedData } from "src/store/category/category.store";
+import {
+  AddMember,
+  CategoryDataAtom,
+  MemberData,
+  ShowCategoryName,
+  ShowStudentList,
+  newSelectedData,
+} from "src/store/category/category.store";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
@@ -17,13 +24,19 @@ const useAddStudnet = () => {
   const SelctedCategory = useRecoilValue(newSelectedData);
   const showCategoryName = useSetRecoilState(ShowCategoryName);
   const { createCategoryName } = useCreateCategory();
+  const setMemberData = useSetRecoilState(MemberData);
+  const setCatgoryData = useSetRecoilState(CategoryDataAtom);
+
+  const onLoadWasList = (studentId: number) => {};
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
     if (studentId === -1) {
+      // 전체 멤버 선택
       setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId, name: member.name })));
     } else if (selectedStudents.some((student) => student.id === studentId)) {
       setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
     } else {
+      // 새로운 멤버 선택
       setSelectedStudents((prev) => [...prev, { id: studentId, name: studentName }]);
     }
   };
@@ -59,14 +72,14 @@ const useAddStudnet = () => {
   };
 
   const onLoadTeacherInfo = async () => {
-    await alimoV1Axios.get("/member/teacher-list?page=1&size=15").then((res) => {
+    await alimoV1Axios.get("/member/teacher-list?page=1&size=1000").then((res) => {
       setMemberInfo(res.data.data);
       setRoom("선생님");
     });
   };
 
   const onLoadParentInfo = async () => {
-    await alimoV1Axios.get(`/member/parent-list?page=1&size=15`).then((res) => {
+    await alimoV1Axios.get(`/member/parent-list?page=1&size=1000`).then((res) => {
       setMemberInfo(res.data.data);
       setRoom("학부모");
     });
@@ -100,12 +113,25 @@ const useAddStudnet = () => {
             memberList: selectedStudents.map((member) => member.id),
             categoryName: SelctedCategory,
           })
-          .then(() => {
+          .then(async () => {
             showCategoryName(false);
             setShowStudentList(false);
             setAddMember(false);
+            try {
+              await alimoV1Axios
+                .get(`/category/get-member?page=1&size=1000&categoryName=${SelctedCategory}&searchKeyword=`)
+                .then((res) => {
+                  setMemberData(res.data.data);
+                  console.log(res.data.data);
+                });
+              await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
+                setCatgoryData(res.data.data);
+              });
+            } catch (error) {}
           });
-      } catch (error) {}
+      } catch (error) {
+        showToast("error", "알 수 없는 에러가 발생하였습니다.");
+      }
     }
   };
 
@@ -135,6 +161,7 @@ const useAddStudnet = () => {
     onLoadTeacherInfo,
     onLoadParentInfo,
     onSearchMember,
+    onLoadWasList,
     onClickAdd,
     handlePopUp,
     onClose,

@@ -1,5 +1,6 @@
 import * as S from "src/components/myNotifications/style";
 
+
 const NullSkeleton = () => {
   return (
     <S.MyPostNotificationWrap>

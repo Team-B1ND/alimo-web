@@ -28,7 +28,7 @@ const MyNotificationDetail = () => {
           </S.Notificationclose>
           <S.MyNotification>
             <S.MyInfoWrap>
-              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile}/>
+              <S.MyProfile src={MyNotificationDetail.data.profileImage || defaultProfile} />
               <S.InfoWrap>
                 <S.MyName>{MyNotificationDetail.data.name}</S.MyName>
                 <S.MyNotificationDate>
@@ -53,7 +53,8 @@ const MyNotificationDetail = () => {
                     src={ImageData.fileUrl}
                     $data_cnt={MyNotificationDetail.imageData.length}
                     $image_index={idx}
-                    onError={MyNotificationDetail.HandleImageError}/>
+                    onError={MyNotificationDetail.HandleImageError}
+                  />
                 </S.ImgWrap>
               ))}
             {MyNotificationDetail.fileData &&
@@ -62,7 +63,8 @@ const MyNotificationDetail = () => {
                 <S.MyNotificationFileWrap
                   key={FileData.fileUrl}
                   $data_cnt={MyNotificationDetail.fileData.length}
-                  $file_index={idx}>
+                  $file_index={idx}
+                >
                   <S.MyNotificationFile>
                     <S.FileInfoWrap>
                       <S.FileImage src={FileImage}></S.FileImage>
@@ -72,7 +74,8 @@ const MyNotificationDetail = () => {
                       </S.FileInfo>
                     </S.FileInfoWrap>
                     <S.FileDownLoadWrap
-                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}>
+                      onClick={() => MyNotificationDetail.HandleFileDownLoad(FileData.fileUrl, FileData.fileName)}
+                    >
                       <S.FileDownLoad src={FileDownLoadIcon}></S.FileDownLoad>
                     </S.FileDownLoadWrap>
                   </S.MyNotificationFile>
@@ -92,7 +95,8 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
-                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}/>
+                  handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
+                />
               ))}
           </S.CommentListBox>
           <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />

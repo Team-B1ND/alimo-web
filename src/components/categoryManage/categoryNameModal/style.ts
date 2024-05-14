@@ -20,8 +20,8 @@ export const Main = styled.div`
 
 export const InputDialog = styled.div`
   position: absolute;
-  width: calc(100vw - 70vw);
-  height: calc(100vh - 75vh);
+  width: 500px;
+  height: 240px;
 
   background: #fff;
   border: none;
@@ -75,14 +75,13 @@ export const ButtonWrap = styled.div`
 `;
 
 export const ConfirmButton = styled.button`
-  width: calc(100vw - 95vw);
-  height: calc(100vh - 96vh);
+  width: 85px;
+  height: 37px;
 
   border: none;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
-  
 
   background: #fece23;
 
@@ -96,15 +95,14 @@ export const ConfirmButton = styled.button`
 `;
 
 export const DenyButton = styled.button`
-  width: calc(100vw - 95vw);
-  height: calc(100vh - 96vh);
+  width: 85px;
+  height: 37px;
 
   border: none;
   border-radius: 10px;
 
   font-size: 1rem;
   font-weight: 500;
-  
 
   background: #787878;
   color: #fff;

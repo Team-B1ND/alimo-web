@@ -1,3 +1,4 @@
+import { CategoryData, MemberInCategoryData } from "@src/types/categorys/interface";
 import { atom } from "recoil";
 
 export const newCategoryNameState = atom<string>({
@@ -33,4 +34,14 @@ export const AddMember = atom<boolean>({
 export const ShowCategoryName = atom<boolean>({
   key: "ShowCategoryName",
   default: false,
+});
+
+export const MemberData = atom<MemberInCategoryData[]>({
+  key: "MemberData",
+  default: [],
+});
+
+export const CategoryDataAtom = atom<CategoryData[]>({
+  key: "CategoryDataAtom",
+  default: [],
 });

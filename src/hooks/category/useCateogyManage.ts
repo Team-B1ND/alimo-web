@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/libs/toast/swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { MemberId, Permission, ShowCategoryName, newSelectedData } from "src/store/category/category.store";
+import {
+  CategoryDataAtom,
+  MemberData,
+  MemberId,
+  Permission,
+  ShowCategoryName,
+  newSelectedData,
+} from "src/store/category/category.store";
 import { CategoryData, MemberInCategoryData } from "src/types/categorys/interface";
 import { MemberInfo, Student } from "src/types/categorys/add.types";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isMemberLoading, setIsMemberLoading] = useState<boolean>(true);
   const [clickedCategory, setClickedCategory] = useState<string | null>(null);
   const [showCategoryName, setShowCategoryName] = useRecoilState(ShowCategoryName);
-  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
-  const [memberData, setMemberData] = useState<MemberInCategoryData[]>([]);
+  const [categoryData, setCategoryData] = useRecoilState(CategoryDataAtom);
+  const [filteredCategory, setFilteredCategory] = useState<CategoryData[]>([]);
+  const [filteredMember, setFilteredMember] = useState<MemberInCategoryData[]>([]);
+  const [memberData, setMemberData] = useRecoilState(MemberData);
   const [permissoinToMemb, setPermissoinToMemb] = useRecoilState(MemberId);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [searchMember, setSearchMember] = useState<string>("");
@@ -27,8 +38,9 @@ const useCategoryManage = () => {
 
   const getCategoryList = async () => {
     try {
-      await alimoV1Axios.get(`/category/get-category?page=${1}&size=${15}&searchKeyword=`).then((res) => {
+      await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
         setCategoryData(res.data.data);
+        setIsLoading(false);
       });
     } catch (error) {
       console.log(error);
@@ -42,7 +54,7 @@ const useCategoryManage = () => {
     } else {
       try {
         await alimoV1Axios
-          .get(`/category/get-member?page=${1}&size=${15}&categoryName=${categoryName}&searchKeyword=`)
+          .get(`/category/get-member?page=1&size=1000&categoryName=${categoryName}&searchKeyword=`)
           .then((res) => {
             if (categoryName === "학부모") {
               setGradeName("학부모");
@@ -55,25 +67,36 @@ const useCategoryManage = () => {
           });
         setIsClickedCategory(categoryName);
         setClickedCategory(categoryName);
+        setIsMemberLoading(false);
       } catch (e) {
         showToast("error", "서버 연결오류");
       }
     }
   };
 
-  const onSearchMemberName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchMember(e.target.value);
+  const onSearchMemberName = (value: string) => {
+    setSearchMember(value);
   };
 
   const handleGetMemberData = async () => {
-    try {
-      await alimoV1Axios
-        .get(`category/get-member?page=${1}&size=${15}&categoryName=${isClickedCategory}&searchKeyword=${searchMember}`)
-        .then((res) => {
-          setMemberData(res.data.data);
-        });
-    } catch (error) {
-      console.log(error);
+    if (searchMember !== "") {
+      const filteredData = memberData.filter((item) => {
+        return Object.values(item).join("").toLowerCase().includes(searchMember.toLowerCase());
+      });
+      setFilteredMember(filteredData);
+    } else {
+      setFilteredMember(memberData);
+    }
+  };
+
+  const handGetCategoryList = () => {
+    if (searchKeyword !== "") {
+      const filteredData = categoryData.filter((item) => {
+        return Object.values(item).join("").toLowerCase().includes(searchKeyword.toLowerCase());
+      });
+      setFilteredCategory(filteredData);
+    } else {
+      setFilteredCategory(categoryData);
     }
   };
 
@@ -81,20 +104,8 @@ const useCategoryManage = () => {
     setShowCategoryName((prev) => !prev);
   };
 
-  const SearchCategoryName = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchKeyword(e.target.value);
-  };
-
-  const handleGetCategoryList = async () => {
-    try {
-      await alimoV1Axios
-        .get(`/category/get-category?page=${1}&size=${15}&searchKeyword=${searchKeyword}`)
-        .then((res) => {
-          setCategoryData(res.data.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+  const SearchCategoryName = async (value: string) => {
+    setSearchKeyword(value);
   };
 
   const handleDeletetCategory = async (categoryName: string) => {
@@ -130,38 +141,6 @@ const useCategoryManage = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const onLoadStudentInfo = async (grade: number, cls: number) => {
-    await alimoV1Axios
-      .get(`/member/student-list`, {
-        params: {
-          page: 1,
-          size: 15,
-          grade: grade,
-          room: cls,
-        },
-      })
-      .then((res) => {
-        setMemberInfo(res.data.data.memberList);
-        setRoom(`${cls}반`);
-        memberInfo.map((member) => {
-          setMemberCnt(member.cnt);
-        });
-      });
-  };
-
-  const onLoadMemberInfo = async (role: string) => {
-    await alimoV1Axios
-      .get(`member/${role}-list`, {
-        params: {
-          page: 1,
-          size: 1,
-        },
-      })
-      .then((res) => {
-        setMemberInfo(res.data.data);
-      });
-  };
-
   const handleMemberId = (memberId: number, permission: string) => {
     setPermissoinToMemb(memberId);
     setPermission(permission);
@@ -189,17 +168,20 @@ const useCategoryManage = () => {
     memberInfo,
     memberCnt,
     room,
+    filteredCategory,
+    filteredMember,
+    isLoading,
+    isMemberLoading,
+    setMemberData,
     getCategoryList,
     onClickAddStudent,
+    handGetCategoryList,
     onClickAccess,
-    onLoadStudentInfo,
-    onLoadMemberInfo,
     onSearchMemberName,
     handleGetMemberData,
     handleCategoryClick,
     OnCategoryName,
     SearchCategoryName,
-    handleGetCategoryList,
     handleMemberId,
     handleViewPermission,
     handleDeletetCategory,
