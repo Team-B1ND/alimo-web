@@ -102,9 +102,12 @@ const useAddStudnet = () => {
             memberList: selectedStudents.map((member) => member.id),
             categoryName: createCategoryName,
           })
-          .then(() => {
+          .then(async () => {
             setShowStudentList(false);
             showCategoryName(false);
+            await alimoV1Axios.get(`/category/get-category?searchKeyword=`).then((res) => {
+              setCatgoryData(res.data.data);
+            });
           });
       } catch (e) {
         showToast("error", "서버 통신 오류");
