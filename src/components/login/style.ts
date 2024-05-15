@@ -45,9 +45,7 @@ export const LoginWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  input:disabled{
-    background: #fff;
-  }
+
 `;
 
 export const LogoWrap = styled.div`
@@ -114,6 +112,8 @@ export const LoginInputWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-top: 50px;
+  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; }
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
 `;
 
 export const IdWrap = styled.label`
@@ -156,6 +156,7 @@ export const PasswordWrap = styled.label`
   width: 100%;
   height: 100%;
   position: relative;
+
 `;
 
 export const Password = styled.input`
