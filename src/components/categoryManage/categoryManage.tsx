@@ -123,11 +123,8 @@ const CategoryManage = () => {
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
-                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
-                          <S.CrownImg src={CrownImage} />
-                        ) : (
-                          <></>
-                        )}
+                       
+                        <S.MemberProfile>
                         <S.MemeberProfileImg
                           src={
                             member.profileImage !== null && member.profileImage !== ""
@@ -135,6 +132,13 @@ const CategoryManage = () => {
                               : ProfileImage
                           }
                         />
+                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
+                          <S.CrownImg src={CrownImage} />
+                        ) : (
+                          <></>
+                        )}
+                        </S.MemberProfile>
+                        
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
                           {member.name !== null && member.room !== null
@@ -145,13 +149,14 @@ const CategoryManage = () => {
                           src={MoreImg}
                           onClick={() => category.handleMemberId(member.id, member.permission)}
                         />
+                        {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
                       </S.Member>
                     </S.MemberWrap>
                   ))
                 ) : (
                   <p>카테고리에 속한 멤버가 없어요.</p>
                 )}
-                {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
+                
               </S.MemberList>
             </S.CategoryMemberWrap>
           )}

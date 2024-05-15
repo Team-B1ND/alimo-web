@@ -310,12 +310,18 @@ export const Member = styled.div`
 export const CrownImg = styled.img`
   width: 30px;
   height: 30px;
-
   position: absolute;
-  left: 15%;
-  top: 10%;
+  right: 4px;
+  top: -9px;
 `;
+export const MemberProfile = styled.div`
+display: flex;
+align-items: center;
+position: relative;
+ width: calc(100vw - 96vw);
+  height: calc(100vw - 96vw);
 
+`
 export const MemeberProfileImg = styled.img`
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);

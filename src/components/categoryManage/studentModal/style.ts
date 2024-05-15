@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const AddStudentWrap = styled.div`
   position: absolute;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
