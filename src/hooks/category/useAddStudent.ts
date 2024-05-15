@@ -27,7 +27,10 @@ const useAddStudnet = () => {
   const setMemberData = useSetRecoilState(MemberData);
   const setCatgoryData = useSetRecoilState(CategoryDataAtom);
 
-  const onLoadWasList = (studentId: number) => {};
+  const OnLoadWasList = () => {
+    const memberData = useRecoilValue(MemberData);
+    setSelectedStudents(memberData.map((mebmer) => ({ id: mebmer.id, name: mebmer.name })));
+  };
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
     if (studentId === -1) {
@@ -154,6 +157,7 @@ const useAddStudnet = () => {
     searchMember,
     addMember,
     filteredMemberInfo,
+    setSelectedStudents,
     onClickAddStudent,
     onClickRemoveStudent,
     getMemberCntList,
@@ -161,7 +165,7 @@ const useAddStudnet = () => {
     onLoadTeacherInfo,
     onLoadParentInfo,
     onSearchMember,
-    onLoadWasList,
+    OnLoadWasList,
     onClickAdd,
     handlePopUp,
     onClose,

@@ -6,12 +6,16 @@ import ProfileImg from "src/assets/images/common/ProfileImg.svg";
 import CloseImg from "src/assets/images/common/Closeimg.png";
 import DenyStudent from "src/assets/images/category/DenyStudent.svg";
 import useAddStudnet from "src/hooks/category/useAddStudent";
+import { useRecoilValue } from "recoil";
+import { MemberData } from "src/store/category/category.store";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
   const { ...student } = useAddStudnet();
+  const MEMBER_DATA = useRecoilValue(MemberData);
 
   useEffect(() => {
     student.getMemberCntList();
+    student.setSelectedStudents(MEMBER_DATA.map((member) => ({ id: member.id, name: member.name })));
   }, []);
 
   return (
