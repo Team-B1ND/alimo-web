@@ -18,7 +18,7 @@ export const CategoryManageView = styled.div`
 
   display: flex;
   flex-direction: column;
-justify-content: center;
+
   margin-left: 12px;
   margin-right: 12px;
 `;
@@ -107,20 +107,21 @@ export const CreateCategoryButton = styled.button`
 `;
 
 export const CategoryInfoWrap = styled.div`
-  width: 90%;
+  width: 350px;
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
-export const CategoryTitleInfo = styled.span`
-width: 50%;
-padding-left: 20px;
+export const CategoryNameInfo = styled.span`
   color: #aaaaaa;
-  :nth-child(2){
-    padding-left: 10px;
-  }
+  margin-left: 1vw;
+`;
+
+export const CategoryMemberInfo = styled.span`
+  color: #aaaaaa;
+  margin-left: 11vw;
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
@@ -190,9 +191,7 @@ export const CategoryMemberWrap = styled.div`
   overflow: hidden;
   background-color: #f4f5f9;
   position: relative;
-display: flex;
-flex-direction: column;
-align-items: center;
+
   p {
     display: flex;
     align-items: center;
@@ -202,7 +201,6 @@ align-items: center;
 `;
 
 export const MemberManageWrap = styled.div`
-width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -250,18 +248,16 @@ export const AddMemberButton = styled.button`
 `;
 
 export const MemberUtilityWrap = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   span {
-    display: flex;
-    width: 100px;
     color: #aaaaaa;
     font-size: 1rem;
+    width: 50px;
+    align-items: center;
     justify-content: center;
-  
   }
 `;
 
@@ -310,18 +306,12 @@ export const Member = styled.div`
 export const CrownImg = styled.img`
   width: 30px;
   height: 30px;
-  position: absolute;
-  right: 4px;
-  top: -9px;
-`;
-export const MemberProfile = styled.div`
-display: flex;
-align-items: center;
-position: relative;
- width: calc(100vw - 96vw);
-  height: calc(100vw - 96vw);
 
-`
+  position: absolute;
+  left: 15%;
+  top: 10%;
+`;
+
 export const MemeberProfileImg = styled.img`
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);
