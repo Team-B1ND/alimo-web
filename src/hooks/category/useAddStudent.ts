@@ -27,7 +27,10 @@ const useAddStudnet = () => {
   const setMemberData = useSetRecoilState(MemberData);
   const setCatgoryData = useSetRecoilState(CategoryDataAtom);
 
-  const onLoadWasList = (studentId: number) => {};
+  const OnLoadWasList = () => {
+    const memberData = useRecoilValue(MemberData);
+    setSelectedStudents(memberData.map((mebmer) => ({ id: mebmer.id, name: mebmer.name })));
+  };
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
     if (studentId === -1) {
@@ -99,9 +102,12 @@ const useAddStudnet = () => {
             memberList: selectedStudents.map((member) => member.id),
             categoryName: createCategoryName,
           })
-          .then(() => {
+          .then(async () => {
             setShowStudentList(false);
             showCategoryName(false);
+            await alimoV1Axios.get(`/category/get-category?searchKeyword=`).then((res) => {
+              setCatgoryData(res.data.data);
+            });
           });
       } catch (e) {
         showToast("error", "서버 통신 오류");
@@ -154,6 +160,7 @@ const useAddStudnet = () => {
     searchMember,
     addMember,
     filteredMemberInfo,
+    setSelectedStudents,
     onClickAddStudent,
     onClickRemoveStudent,
     getMemberCntList,
@@ -161,7 +168,7 @@ const useAddStudnet = () => {
     onLoadTeacherInfo,
     onLoadParentInfo,
     onSearchMember,
-    onLoadWasList,
+    OnLoadWasList,
     onClickAdd,
     handlePopUp,
     onClose,
