@@ -99,7 +99,11 @@ const CategoryManage = () => {
                   category.filteredMember.map((item, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
-                        <S.CrownImg src={CrownImage} />
+                        {item.permission === "ACCESS_ADMIN" || item.permission === "ACCESS_TEACHER" ? (
+                          <S.CrownImg src={CrownImage} />
+                        ) : (
+                          <></>
+                        )}
                         <S.MemeberProfileImg
                           src={
                             item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
