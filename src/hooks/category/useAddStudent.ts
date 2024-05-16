@@ -17,6 +17,7 @@ const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [searchMember, setSearchMember] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
+  const [allSelectedStudents, setAllSelectedStudents] = useState(false);
   const [room, setRoom] = useState<string>("");
   const [showStudentList, setShowStudentList] = useRecoilState(ShowStudentList);
   const [memberCntList, setMemberCntList] = useState<MemberCntList>();
@@ -34,8 +35,14 @@ const useAddStudnet = () => {
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
     if (studentId === -1) {
-      // 전체 멤버 선택
-      setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId, name: member.name })));
+      // 전체 멤버 선택 && 전체 멤버 선택 취소
+      if (allSelectedStudents) {
+        setAllSelectedStudents(false);
+        setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId, name: member.name })));
+      } else {
+        setAllSelectedStudents(true);
+        setSelectedStudents([]);
+      }
     } else if (selectedStudents.some((student) => student.id === studentId)) {
       setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
     } else {
@@ -161,6 +168,7 @@ const useAddStudnet = () => {
     memberInfo,
     room,
     selectedStudents,
+    allSelectedStudents,
     memberCntList,
     showStudentList,
     searchMember,

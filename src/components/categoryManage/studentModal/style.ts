@@ -91,21 +91,48 @@ export const ChoiceInfoWrap = styled.div`
     display: none;
   }
 
-  gap: 10px;
+  gap: 20px;
 `;
 
 export const StudentWrap = styled.div`
-  overflow: scroll;
-
   display: flex;
   flex-direction: column;
 
-  gap: 10px;
+  margin-top: 20px;
+  gap: 20px;
 `;
 
-export const ParantWrap = styled.div``;
+export const TeacherWrap = styled.div`
+  color: #000;
 
-export const TeacherWrap = styled.div``;
+  /* Label */
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 2vh;
+  margin-left: 1vw;
+
+  cursor: pointer;
+`;
+
+export const ParantWrap = styled.div`
+  color: #000;
+
+  /* Label */
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 2vh;
+  margin: 0 0 20px 1vw;
+
+  cursor: pointer;
+`;
 
 export const GradeInfo = styled.span`
   color: #000;
@@ -142,22 +169,6 @@ export const ClassInfo = styled.div`
   span {
     margin-bottom: 1vh;
   }
-`;
-
-export const TeacherAndParentsInfo = styled.span`
-  color: #000;
-
-  /* Label */
-
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  margin-top: 2vh;
-  margin-left: 1vw;
-
-  cursor: pointer;
 `;
 
 export const StudentSelectionWrap = styled.div`
@@ -201,6 +212,10 @@ export const MemberSearchInput = styled.input`
 
 export const UtilityWrap = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 0 2vw 0 1vw;
 `;
 
 export const Class = styled.span`
@@ -212,8 +227,6 @@ export const Class = styled.span`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-
-  margin-left: 1vw;
 `;
 
 export const ClassStudent = styled.span`
@@ -227,7 +240,7 @@ export const ClassStudent = styled.span`
   line-height: normal;
 `;
 
-export const AllSelect = styled.span`
+export const AllSelect = styled.p`
   color: var(--Gray600, #787878);
 
   font-size: 0.875rem;
@@ -236,7 +249,10 @@ export const AllSelect = styled.span`
   line-height: normal;
   text-decoration-line: underline;
 
-  margin-left: 19vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
   margin-top: 1vh;
 `;
 
@@ -304,7 +320,8 @@ export const ViewSelectedStudent = styled.div`
   width: 100%;
   height: 13%;
 
-  margin-bottom: 20px;
+  margin: 10px 0;
+  padding-left: 2vw;
 
   display: flex;
   align-items: center;
