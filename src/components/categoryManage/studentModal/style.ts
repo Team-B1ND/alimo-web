@@ -96,7 +96,7 @@ export const ChoiceInfoWrap = styled.div`
 
 export const StudentWrap = styled.div`
   overflow: scroll;
-  
+
   display: flex;
   flex-direction: column;
 
@@ -168,7 +168,7 @@ export const StudentSelectionWrap = styled.div`
   border-top: none;
   border-left: none;
 
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const MemberSearchInput = styled.input`
@@ -287,6 +287,15 @@ export const ViewSelectedStudentWrap = styled.div`
   background: var(--Gray100, #f4f5f9);
   display: flex;
   flex-direction: column;
+
+  overflow: scroll;
+
+  scrollbar-width: none; /* 파이어폭스에서 스크롤바를 안보이게 */
+
+  &::-webkit-scrollbar {
+    /* 크롬, 사파리, 오페라, 마소엣지 브라우저에서 스크롤바를 안보이게  */
+    display: none;
+  }
 `;
 
 export const ViewSelectedStudent = styled.div`

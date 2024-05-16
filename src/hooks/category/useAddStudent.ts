@@ -63,11 +63,11 @@ const useAddStudnet = () => {
       .get(`/member/student-list`, {
         params: {
           page: 1,
-          size: 15,
+          size: 1000,
           grade: grade,
           room: cls,
-        },
-      })
+          },
+        })
       .then((res) => {
         setMemberInfo(res.data.data);
         setRoom(`${cls}반`);
@@ -105,9 +105,12 @@ const useAddStudnet = () => {
           .then(async () => {
             setShowStudentList(false);
             showCategoryName(false);
-            await alimoV1Axios.get(`/category/get-category?searchKeyword=`).then((res) => {
-              setCatgoryData(res.data.data);
-            }).then(() => showToast("success", "카테고리 추가 성공"));
+            await alimoV1Axios
+              .get(`/category/get-category?searchKeyword=`)
+              .then((res) => {
+                setCatgoryData(res.data.data);
+              })
+              .then(() => showToast("success", "카테고리 추가 성공"));
           });
       } catch (e) {
         showToast("error", "서버 통신 오류");
@@ -130,9 +133,12 @@ const useAddStudnet = () => {
                   setMemberData(res.data.data);
                   console.log(res.data.data);
                 });
-              await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
-                setCatgoryData(res.data.data);
-              }).then(() => showToast("success", "멤버 추가 성공"));
+              await alimoV1Axios
+                .get(`/category/get-category?page=1&size=1000&searchKeyword=`)
+                .then((res) => {
+                  setCatgoryData(res.data.data);
+                })
+                .then(() => showToast("success", "멤버 추가 성공"));
             } catch (error) {}
           });
       } catch (error) {
