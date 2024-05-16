@@ -49,6 +49,7 @@ export const CategoryWrap = styled.div`
   }
 `;
 
+
 export const CategorySearchButton = styled.div`
   display: flex;
   align-items: center;
@@ -105,23 +106,20 @@ export const CreateCategoryButton = styled.button`
     outline: none;
   }
 `;
-
+export const CategoryTitleInfo = styled.div`
+width: 50%;
+padding-left: 20px;
+  color: #aaaaaa;
+  :nth-child(2){
+    padding-left: 10px;
+  }
+`
 export const CategoryInfoWrap = styled.div`
-  width: 350px;
+  width: 90%;
   display: flex;
   flex-direction: row;
   margin-top: 2vh;
-  justify-content: space-evenly;
-`;
-
-export const CategoryNameInfo = styled.span`
-  color: #aaaaaa;
-  margin-left: 1vw;
-`;
-
-export const CategoryMemberInfo = styled.span`
-  color: #aaaaaa;
-  margin-left: 11vw;
+  justify-content: center;
 `;
 
 export const CategoryInfo = styled.div<{ $isclicked: string }>`
@@ -129,7 +127,8 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
   min-height: 80px;
   height: 80px;
 
-  background: ${({ $isclicked }) => ($isclicked === "true" ? "#f4f5f9" : "#fff")};
+  background: ${({ $isclicked }) =>
+    $isclicked === "true" ? "#f4f5f9" : "#fff"};
   border: none;
   border-radius: 15px;
   display: flex;
@@ -248,15 +247,18 @@ export const AddMemberButton = styled.button`
 `;
 
 export const MemberUtilityWrap = styled.div`
+width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   span {
+    display: flex;
+    width: 100px;
     color: #aaaaaa;
     font-size: 1rem;
     width: 50px;
-    align-items: center;
+    
     justify-content: center;
   }
 `;
@@ -308,10 +310,17 @@ export const CrownImg = styled.img`
   height: 30px;
 
   position: absolute;
-  left: 15%;
-  top: 10%;
+  right: 4px;
+  top: -9px;
 `;
+export const MemberProfile = styled.div`
+  width: calc(100vw - 96vw);
+  height: calc(100vw - 96vw);
+  display: flex;
+  align-items: center;
+  position: relative;
 
+`;
 export const MemeberProfileImg = styled.img`
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);

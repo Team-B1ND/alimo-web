@@ -38,8 +38,8 @@ const CategoryManage = () => {
               </S.CreateCategoryButton>
             </S.CateogyManageUtilityWrap>
             <S.CategoryInfoWrap>
-              <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
-              <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
+              <S.CategoryTitleInfo>카테고리명</S.CategoryTitleInfo>
+              <S.CategoryTitleInfo>멤버수</S.CategoryTitleInfo>
             </S.CategoryInfoWrap>
             <S.CategoryWrap>
               {category.searchKeyword.length > 1 ? (
@@ -104,11 +104,14 @@ const CategoryManage = () => {
                         ) : (
                           <></>
                         )}
-                        <S.MemeberProfileImg
+                          <S.MemeberProfileImg
                           src={
-                            item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
+                            item.profileImage !== null && item.profileImage !== ""
+                              ? item.profileImage
+                              : ProfileImage
                           }
                         />
+                    
                         <S.MemeberName>{item.name}</S.MemeberName>
                         <span>
                           {item.name !== null && item.room !== null ? `${item.grade}학년 ${item.room}반` : "학부모"}
@@ -125,6 +128,7 @@ const CategoryManage = () => {
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
+                        <S.MemberProfile>
                         {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
                           <S.CrownImg src={CrownImage} />
                         ) : (
@@ -137,6 +141,7 @@ const CategoryManage = () => {
                               : ProfileImage
                           }
                         />
+                        </S.MemberProfile>
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
                           {member.name !== null && member.room !== null
