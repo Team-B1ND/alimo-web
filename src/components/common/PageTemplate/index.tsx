@@ -19,5 +19,6 @@ const Container = styled.div`
   min-width:  800px;
   height: 100vh;
   display: flex;
+  user-select: none;
 `;
 export default PageTemplate;
