@@ -7,7 +7,6 @@ import MoreImg from "src/assets/images/category/MoreImg.svg";
 import ProfileImage from "src/assets/images/common/ProfileImg.svg";
 import searchImg from "src/assets/images/category/searchImg.png";
 import CrownImage from "src/assets/images/category/king2.svg";
-import PermissionModal from "src/components/categoryManage/permissionModal/index";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 import Skeleton from "../skelton";
 
@@ -150,7 +149,6 @@ const CategoryManage = () => {
                 ) : (
                   <p>카테고리에 속한 멤버가 없어요.</p>
                 )}
-                {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
               </S.MemberList>
             </S.CategoryMemberWrap>
           )}

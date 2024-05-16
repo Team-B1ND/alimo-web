@@ -27,7 +27,6 @@ const useCategoryManage = () => {
   const [permissoinToMemb, setPermissoinToMemb] = useRecoilState(MemberId);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [searchMember, setSearchMember] = useState<string>("");
-  const [viewPermission, setViewPermission] = useState(false);
   const [permission, setPermission] = useRecoilState(Permission);
   const [GradeName, setGradeName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
@@ -123,8 +122,13 @@ const useCategoryManage = () => {
                 category: categoryName,
               },
             })
-            .then(() => {
-              window.location.reload();
+            .then(async () => {
+              await alimoV1Axios
+                .get(`/category/get-category?page=1&size=1000&searchKeyword=`)
+                .then((res) => {
+                  setCategoryData(res.data.data);
+                })
+                .then(() => showToast("success", "카테고리 삭제 성공"));
             });
         } catch (error) {
           showToast("error", "서버 통신 오류");
@@ -141,14 +145,81 @@ const useCategoryManage = () => {
     setSelectAccess((prevAccess) => (access === prevAccess ? null : access));
   };
 
-  const handleMemberId = (memberId: number, permission: string) => {
+  const handleMemberId = async (memberId: number, permission: string) => {
     setPermissoinToMemb(memberId);
     setPermission(permission);
-    setViewPermission((prev) => !prev);
-  };
 
-  const handleViewPermission = () => {
-    setViewPermission((prev) => !prev);
+    await Swal.fire({
+      title: "멤버 권한부여 또는 삭제하기",
+      showCancelButton: false,
+      confirmButtonText: "권한 부여",
+      denyButtonText: "삭제",
+      showDenyButton: true,
+      confirmButtonColor: "#d1d1d1",
+      denyButtonColor: "#F40240",
+      preConfirm: async () => {
+        try {
+          if (permission === "ACCESS_MEMBER") {
+            await alimoV1Axios
+              .patch("/permission/change-admin", {
+                memberId: memberId,
+                categoryName: isClickedCategory,
+              })
+              .then(async () => {
+                await alimoV1Axios
+                  .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
+                  .then((res) => {
+                    setMemberData(res.data.data);
+                  });
+              })
+              .then(() => {
+                showToast("success", "권한 부여 성공");
+              });
+          } else {
+            await alimoV1Axios
+              .patch("/permission/change-student", {
+                memberId: memberId,
+                categoryName: isClickedCategory,
+              })
+              .then(() => {
+                showToast("success", "권한 부여 성공");
+              });
+          }
+        } catch (error) {
+          showToast("error", "서버 통신 오류");
+        }
+      },
+      preDeny: async () => {
+        try {
+          await alimoV1Axios
+            .delete("/category/delete-member", {
+              data: {
+                memberList: [memberId],
+                categoryName: isClickedCategory,
+              },
+            })
+            .then(async () => {
+              try {
+                await alimoV1Axios
+                  .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
+                  .then((res) => {
+                    setMemberData(res.data.data);
+                  });
+                await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
+                  setCategoryData(res.data.data);
+                });
+              } catch (error) {
+                console.log(error);
+              }
+            })
+            .then(() => {
+              showToast("success", "멤버가 삭제되었습니다.");
+            });
+        } catch (error) {
+          showToast("error", "서버 통신 오류");
+        }
+      },
+    });
   };
 
   return {
@@ -162,7 +233,6 @@ const useCategoryManage = () => {
     memberData,
     showCategoryName,
     searchMember,
-    viewPermission,
     selectedStudents,
     selectAccess,
     memberInfo,
@@ -183,7 +253,6 @@ const useCategoryManage = () => {
     OnCategoryName,
     SearchCategoryName,
     handleMemberId,
-    handleViewPermission,
     handleDeletetCategory,
   };
 };
