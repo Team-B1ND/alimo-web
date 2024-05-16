@@ -150,10 +150,10 @@ const useCategoryManage = () => {
     setPermission(permission);
 
     await Swal.fire({
-      title: "멤버 권한부여 또는 삭제하기",
+      title: permission === "ACCESS_MEMBER" ? "멤버 권한부여 또는 멤버 삭제하기" : "권한 삭제 또는 멤버 삭제하기",
       showCancelButton: false,
       confirmButtonText: permission === "ACCESS_MEMBER" ? "권한 부여" : "권한 삭제",
-      denyButtonText: "삭제",
+      denyButtonText: "멤버 삭제",
       showDenyButton: true,
       confirmButtonColor: "#d1d1d1",
       denyButtonColor: "#F40240",
@@ -181,8 +181,15 @@ const useCategoryManage = () => {
                 memberId: memberId,
                 categoryName: isClickedCategory,
               })
+              .then(async () => {
+                await alimoV1Axios
+                  .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
+                  .then((res) => {
+                    setMemberData(res.data.data);
+                  });
+              })
               .then(() => {
-                showToast("success", "권한 부여 성공");
+                showToast("success", "권한 삭제 성공");
               });
           }
         } catch (error) {
