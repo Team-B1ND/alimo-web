@@ -109,7 +109,6 @@ export const TeacherWrap = styled.div`
 
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
   line-height: normal;
 
   margin-top: 2vh;
@@ -125,7 +124,7 @@ export const ParantWrap = styled.div`
 
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
+
   line-height: normal;
 
   margin-top: 2vh;

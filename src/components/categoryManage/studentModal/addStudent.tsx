@@ -167,14 +167,12 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               {student.selectedStudents &&
                 student.selectedStudents.map((std, idx) => (
                   <S.ViewSelectedStudent key={idx}>
-                    {/* <div style={{ marginLeft: "2vw" }}> */}
                     <S.ViewStudentName>{std.name}</S.ViewStudentName>
                     <S.DenyStudent
                       src={DenyStudent}
                       style={{ marginLeft: "1vw" }}
                       onClick={() => student.onClickRemoveStudent(std.id)}
                     />
-                    {/* </div>   */}
                   </S.ViewSelectedStudent>
                 ))}
             </S.ViewSelectedStudentWrap>
