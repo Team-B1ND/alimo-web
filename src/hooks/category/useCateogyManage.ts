@@ -152,7 +152,7 @@ const useCategoryManage = () => {
     await Swal.fire({
       title: "멤버 권한부여 또는 삭제하기",
       showCancelButton: false,
-      confirmButtonText: "권한 부여",
+      confirmButtonText: permission === "ACCESS_MEMBER" ? "권한 부여" : "권한 삭제",
       denyButtonText: "삭제",
       showDenyButton: true,
       confirmButtonColor: "#d1d1d1",
