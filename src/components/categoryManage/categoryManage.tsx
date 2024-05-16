@@ -7,7 +7,6 @@ import MoreImg from "src/assets/images/category/MoreImg.svg";
 import ProfileImage from "src/assets/images/common/ProfileImg.svg";
 import searchImg from "src/assets/images/category/searchImg.png";
 import CrownImage from "src/assets/images/category/king2.svg";
-import PermissionModal from "src/components/categoryManage/permissionModal/index";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 import Skeleton from "../skelton";
 
@@ -22,7 +21,6 @@ const CategoryManage = () => {
   return (
     <>
       <S.Main>
-        
         <S.CategoryMain>
           <S.CategoryManageView>
             <S.CateogyManageUtilityWrap>
@@ -40,8 +38,8 @@ const CategoryManage = () => {
               </S.CreateCategoryButton>
             </S.CateogyManageUtilityWrap>
             <S.CategoryInfoWrap>
-              <S.CategoryTitleInfo>카테고리명</S.CategoryTitleInfo>
-              <S.CategoryTitleInfo>멤버수</S.CategoryTitleInfo>
+              <S.CategoryNameInfo>카테고리명</S.CategoryNameInfo>
+              <S.CategoryMemberInfo>멤버수</S.CategoryMemberInfo>
             </S.CategoryInfoWrap>
             <S.CategoryWrap>
               {category.searchKeyword.length > 1 ? (
@@ -123,8 +121,11 @@ const CategoryManage = () => {
                   category.memberData.map((member, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
-                       
-                        <S.MemberProfile>
+                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
+                          <S.CrownImg src={CrownImage} />
+                        ) : (
+                          <></>
+                        )}
                         <S.MemeberProfileImg
                           src={
                             member.profileImage !== null && member.profileImage !== ""
@@ -132,13 +133,6 @@ const CategoryManage = () => {
                               : ProfileImage
                           }
                         />
-                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
-                          <S.CrownImg src={CrownImage} />
-                        ) : (
-                          <></>
-                        )}
-                        </S.MemberProfile>
-                        
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
                           {member.name !== null && member.room !== null
@@ -149,14 +143,12 @@ const CategoryManage = () => {
                           src={MoreImg}
                           onClick={() => category.handleMemberId(member.id, member.permission)}
                         />
-                        {category.viewPermission && <PermissionModal onClose={category.handleViewPermission} />}
                       </S.Member>
                     </S.MemberWrap>
                   ))
                 ) : (
                   <p>카테고리에 속한 멤버가 없어요.</p>
                 )}
-                
               </S.MemberList>
             </S.CategoryMemberWrap>
           )}
