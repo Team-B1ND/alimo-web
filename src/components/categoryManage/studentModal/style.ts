@@ -91,21 +91,48 @@ export const ChoiceInfoWrap = styled.div`
     display: none;
   }
 
-  gap: 10px;
+  gap: 20px;
 `;
 
 export const StudentWrap = styled.div`
-  overflow: scroll;
-
   display: flex;
   flex-direction: column;
 
-  gap: 10px;
+  margin-top: 20px;
+  gap: 20px;
 `;
 
-export const ParantWrap = styled.div``;
+export const TeacherWrap = styled.div`
+  color: #000;
 
-export const TeacherWrap = styled.div``;
+  /* Label */
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 2vh;
+  margin-left: 1vw;
+
+  cursor: pointer;
+`;
+
+export const ParantWrap = styled.div`
+  color: #000;
+
+  /* Label */
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 2vh;
+  margin: 0 0 20px 1vw;
+
+  cursor: pointer;
+`;
 
 export const GradeInfo = styled.span`
   color: #000;
@@ -142,22 +169,6 @@ export const ClassInfo = styled.div`
   span {
     margin-bottom: 1vh;
   }
-`;
-
-export const TeacherAndParentsInfo = styled.span`
-  color: #000;
-
-  /* Label */
-
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  margin-top: 2vh;
-  margin-left: 1vw;
-
-  cursor: pointer;
 `;
 
 export const StudentSelectionWrap = styled.div`
@@ -315,7 +326,6 @@ export const ViewSelectedStudent = styled.div`
   display: flex;
   align-items: center;
 
-
   & img {
     width: 30px;
     height: 30px;
@@ -324,7 +334,7 @@ export const ViewSelectedStudent = styled.div`
   }
 `;
 
-export const ViewStudentName = styled.span` 
+export const ViewStudentName = styled.span`
   font-size: 1.2rem;
   font-weight: 400;
 

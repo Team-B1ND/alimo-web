@@ -87,15 +87,11 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
                   </>
                 ))}
               </S.StudentWrap>
-              <S.TeacherWrap>
-                <S.TeacherAndParentsInfo onClick={student.onLoadTeacherInfo}>
-                  교사 ({student.memberCntList?.teacher})
-                </S.TeacherAndParentsInfo>
+              <S.TeacherWrap onClick={student.onLoadTeacherInfo}>
+                교사 ({student.memberCntList?.teacher})
               </S.TeacherWrap>
-              <S.ParantWrap>
-                <S.TeacherAndParentsInfo onClick={student.onLoadParentInfo}>
-                  학부모 ({student.memberCntList?.parent})
-                </S.TeacherAndParentsInfo>
+              <S.ParantWrap onClick={student.onLoadParentInfo}>
+                 학부모 ({student.memberCntList?.parent})
               </S.ParantWrap>
             </S.ChoiceInfoWrap>
             <S.StudentSelectionWrap>
