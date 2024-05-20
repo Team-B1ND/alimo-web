@@ -214,7 +214,6 @@ export const SendShowMember = styled.span`
   font-weight: 400;
   color: #787878;
 
-  margin-left: 2vw;
   & > span {
     color: #fece23;
   }

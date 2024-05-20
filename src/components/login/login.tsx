@@ -76,7 +76,7 @@ const Login = () => {
               </S.PasswordWrap>
             </S.LoginInputWrap>
             <S.LoginBtnWrap onClick={login.LoginButton}>
-              <S.LoginBtn>{login.Loginloading === true ? "로그인중" : "도담도담 계정으로 로그인"}</S.LoginBtn>
+              <S.LoginBtn>{login.Loginloading === true ? <S.Loding/> : "도담도담 계정으로 로그인"}</S.LoginBtn>
             </S.LoginBtnWrap>
           </S.LoginWrap>
         </S.LoginBox>

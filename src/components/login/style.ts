@@ -1,4 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const rotate = keyframes`
+  from { transform: rotate(0deg);}
+  to{  transform: rotate(360deg);}
+`;
+export const Loding = styled.div`
+  display: flex;
+  width: 25px;
+  height: 25px;
+  border: 4px solid #AAAAAA;
+        border-top: 5px solid transparent;
+        border-radius: 50%;
+  animation: ${rotate} 1s linear infinite;
+`;
 
 export const LogoPageWrap = styled.div`
   width: 100vw;
@@ -16,7 +30,7 @@ export const LoginPage = styled.div`
 export const IdKoreanError = styled.span`
   display: flex;
   margin: 5px 0px 5px 10px;
-  
+
   font-size: 0.8rem;
   font-weight: 700;
   color: red;
@@ -45,7 +59,6 @@ export const LoginWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
 `;
 
 export const LogoWrap = styled.div`
@@ -112,8 +125,16 @@ export const LoginInputWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-top: 50px;
-  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; }
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+    -webkit-text-fill-color: #000;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
 
 export const IdWrap = styled.label`
@@ -156,7 +177,6 @@ export const PasswordWrap = styled.label`
   width: 100%;
   height: 100%;
   position: relative;
-
 `;
 
 export const Password = styled.input`
@@ -190,17 +210,20 @@ export const PasswordBtn = styled.button`
 `;
 
 export const LoginBtnWrap = styled.div`
+
   width: 442px;
   height: 52px;
 `;
 
 export const LoginBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 52px;
   cursor: pointer;
   outline: none;
   color: var(--Main50, #fffefc);
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -208,6 +231,7 @@ export const LoginBtn = styled.button`
   border: none;
   border-radius: var(--Large, 12px);
   background: var(--Main500, #fece23);
+    
 `;
 
 export const MadeByB1nd = styled.p`
