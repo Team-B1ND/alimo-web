@@ -4,13 +4,14 @@ export const Main = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-
-  overflow: scroll;
 `;
 export const CategoryMain = styled.main`
   display: flex;
   margin-top: 10vh;
   width: 100%;
+  height: 90vh;
+
+  overflow: hidden;
 `;
 export const CategoryManageView = styled.div`
   width: calc(100vw - 65vw);
@@ -48,7 +49,6 @@ export const CategoryWrap = styled.div`
     left: 30%;
   }
 `;
-
 
 export const CategorySearchButton = styled.div`
   display: flex;
@@ -107,13 +107,13 @@ export const CreateCategoryButton = styled.button`
   }
 `;
 export const CategoryTitleInfo = styled.div`
-width: 50%;
-padding-left: 20px;
+  width: 50%;
+  padding-left: 20px;
   color: #aaaaaa;
-  :nth-child(2){
+  :nth-child(2) {
     padding-left: 10px;
   }
-`
+`;
 export const CategoryInfoWrap = styled.div`
   width: 90%;
   display: flex;
@@ -127,8 +127,7 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
   min-height: 80px;
   height: 80px;
 
-  background: ${({ $isclicked }) =>
-    $isclicked === "true" ? "#f4f5f9" : "#fff"};
+  background: ${({ $isclicked }) => ($isclicked === "true" ? "#f4f5f9" : "#fff")};
   border: none;
   border-radius: 15px;
   display: flex;
@@ -186,10 +185,12 @@ export const CategoryInMember = styled.span`
 
 export const CategoryMemberWrap = styled.div`
   width: 100%;
-  height: calc(100vh - 10vh);
+  height: 100%;
   overflow: hidden;
   background-color: #f4f5f9;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   p {
     display: flex;
@@ -247,18 +248,19 @@ export const AddMemberButton = styled.button`
 `;
 
 export const MemberUtilityWrap = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   justify-content: space-evenly;
+
   span {
     display: flex;
     width: 100px;
     color: #aaaaaa;
     font-size: 1rem;
     width: 50px;
-    
+
     justify-content: center;
   }
 `;
@@ -267,9 +269,9 @@ export const MemberList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
-  overflow: scroll;
-  overflow-x: hidden;
+  height: 100%;
+
+  overflow-y: scroll;
 
   position: relative;
 
@@ -319,8 +321,8 @@ export const MemberProfile = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-
 `;
+
 export const MemeberProfileImg = styled.img`
   width: calc(100vw - 97vw);
   height: calc(100vw - 97vw);

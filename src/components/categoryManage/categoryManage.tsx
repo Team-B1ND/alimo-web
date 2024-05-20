@@ -104,14 +104,12 @@ const CategoryManage = () => {
                         ) : (
                           <></>
                         )}
-                          <S.MemeberProfileImg
+                        <S.MemeberProfileImg
                           src={
-                            item.profileImage !== null && item.profileImage !== ""
-                              ? item.profileImage
-                              : ProfileImage
+                            item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
                           }
                         />
-                    
+
                         <S.MemeberName>{item.name}</S.MemeberName>
                         <span>
                           {item.name !== null && item.room !== null ? `${item.grade}학년 ${item.room}반` : "학부모"}
@@ -129,18 +127,18 @@ const CategoryManage = () => {
                     <S.MemberWrap key={idx}>
                       <S.Member>
                         <S.MemberProfile>
-                        {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
-                          <S.CrownImg src={CrownImage} />
-                        ) : (
-                          <></>
-                        )}
-                        <S.MemeberProfileImg
-                          src={
-                            member.profileImage !== null && member.profileImage !== ""
-                              ? member.profileImage
-                              : ProfileImage
-                          }
-                        />
+                          {member.permission === "ACCESS_ADMIN" || member.permission === "ACCESS_TEACHER" ? (
+                            <S.CrownImg src={CrownImage} />
+                          ) : (
+                            <></>
+                          )}
+                          <S.MemeberProfileImg
+                            src={
+                              member.profileImage !== null && member.profileImage !== ""
+                                ? member.profileImage
+                                : ProfileImage
+                            }
+                          />
                         </S.MemberProfile>
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
