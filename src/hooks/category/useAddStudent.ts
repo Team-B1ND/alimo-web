@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
+import { MemberList } from "src/types/categorys/memberList.interface";
 import { MemberCntList, MemberInfo, Student } from "src/types/categorys/add.types";
 import useCreateCategory from "./useCreateCategory";
 import { showToast } from "src/libs/toast/swal";
@@ -17,7 +18,8 @@ const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
   const [searchMember, setSearchMember] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
-  const [allSelectedStudents, setAllSelectedStudents] = useState(false);
+  const [isAllSelectedStudents, setIsAllSelectedStudents] = useState(false);
+  const [grade, setGrade] = useState<string>("");
   const [room, setRoom] = useState<string>("");
   const [showStudentList, setShowStudentList] = useRecoilState(ShowStudentList);
   const [memberCntList, setMemberCntList] = useState<MemberCntList>();
@@ -28,30 +30,43 @@ const useAddStudnet = () => {
   const setMemberData = useSetRecoilState(MemberData);
   const setCatgoryData = useSetRecoilState(CategoryDataAtom);
 
+  console.log(memberInfo);
+
   const OnLoadWasList = () => {
     const memberData = useRecoilValue(MemberData);
     setSelectedStudents(memberData.map((mebmer) => ({ id: mebmer.id, name: mebmer.name })));
   };
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
+    const AllMember = memberInfo.map((member) => ({id: member.memberId, name: member.name}));
+    const IsAllSelected = AllMember.every((member1) => (selectedStudents.some((member2) => (member2.id === member1.id))));
+    const AllSelectedCancle = selectedStudents.filter((member1) => (!AllMember.some((member2) => (member2.id === member1.id))))
+
     if (studentId === -1) {
       // 전체 멤버 선택 && 전체 멤버 선택 취소
-      if (allSelectedStudents) {
-        setAllSelectedStudents(false);
-        setSelectedStudents(memberInfo.map((member) => ({ id: member.memberId, name: member.name })));
+      if (IsAllSelected) {
+        setIsAllSelectedStudents(true);
+        setSelectedStudents(AllSelectedCancle);
       } else {
-        setAllSelectedStudents(true);
-        setSelectedStudents([]);
+        setIsAllSelectedStudents(false);
+        setSelectedStudents((prev) => [...prev, ...AllMember]);
       }
     } else if (selectedStudents.some((student) => student.id === studentId)) {
       setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
+      setIsAllSelectedStudents(true);
     } else {
       // 새로운 멤버 선택
+      if (AllMember.length-1 === selectedStudents.filter((member1) => (AllMember.some((member2) => (member2.id === member1.id)))).length) {
+        setIsAllSelectedStudents(false);
+      }
       setSelectedStudents((prev) => [...prev, { id: studentId, name: studentName }]);
     }
   };
 
   const onClickRemoveStudent = (studentId: number) => {
+    if (memberInfo.some((member) => (member.memberId === studentId))) {
+      setIsAllSelectedStudents(true);
+    }
     setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
   };
 
@@ -76,22 +91,47 @@ const useAddStudnet = () => {
           },
         })
       .then((res) => {
-        setMemberInfo(res.data.data);
+        const StudentData = res.data.data;
+        const InCludeStudent = StudentData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
+        setMemberInfo(StudentData);
+        setGrade(`${grade}학년`);
         setRoom(`${cls}반`);
-      });
+
+        if (InCludeStudent) {
+          setIsAllSelectedStudents(false);
+        } else {
+          setIsAllSelectedStudents(true);
+        }
+      })
   };
 
   const onLoadTeacherInfo = async () => {
     await alimoV1Axios.get("/member/teacher-list?page=1&size=1000").then((res) => {
-      setMemberInfo(res.data.data);
+      const TeacherData = res.data.data;
+      const InCludeTeacher = TeacherData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
+      setMemberInfo(TeacherData);
       setRoom("선생님");
+
+      if (InCludeTeacher) {
+        setIsAllSelectedStudents(false);
+      } else {
+        setIsAllSelectedStudents(true);
+      }
     });
   };
 
   const onLoadParentInfo = async () => {
     await alimoV1Axios.get(`/member/parent-list?page=1&size=1000`).then((res) => {
-      setMemberInfo(res.data.data);
+      const ParentData = res.data.data;
+      const InCludeParent = ParentData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
+      setMemberInfo(ParentData);
       setRoom("학부모");
+
+      if (InCludeParent) {
+        setIsAllSelectedStudents(false);
+      } else {
+        setIsAllSelectedStudents(true);
+      }
     });
   };
 
@@ -166,9 +206,10 @@ const useAddStudnet = () => {
 
   return {
     memberInfo,
+    grade,
     room,
     selectedStudents,
-    allSelectedStudents,
+    isAllSelectedStudents,
     memberCntList,
     showStudentList,
     searchMember,

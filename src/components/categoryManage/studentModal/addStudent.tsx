@@ -103,11 +103,11 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               />
               <S.UtilityWrap>
                 <S.Class>
-                  {student.room === "0반" ? "전체" : student.room}
+                  {student.room === "0반" ? `${student.grade} 전체` : student.room}
                 </S.Class>
                 &nbsp;
                 <S.AllSelect onClick={() => student.onClickAddStudent(-1, "")}>
-                  {student.allSelectedStudents ? "전체선택" : "전체취소"}
+                  {student.isAllSelectedStudents ? "전체선택" : "전체취소"}
                 </S.AllSelect>
               </S.UtilityWrap>
               {!student.searchMember && student.memberInfo.length > 0
