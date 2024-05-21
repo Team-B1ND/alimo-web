@@ -6,8 +6,8 @@ const rotate = keyframes`
 `;
 export const Loding = styled.div`
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border: 4px solid #ccc;
   border-top: 4px solid transparent;
   border-radius: 50%;
