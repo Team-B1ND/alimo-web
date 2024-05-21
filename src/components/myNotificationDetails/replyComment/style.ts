@@ -1,4 +1,18 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const rotate = keyframes`
+  from { transform: rotate(0deg);}
+  to{  transform: rotate(360deg);}
+`;
+export const Loding = styled.div`
+  display: flex;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: ${rotate} 1s ease-in-out infinite;
+`;
 
 export const ReplyCommentWrap = styled.div`
   width: auto;
@@ -90,6 +104,10 @@ export const ReplyCommentButton = styled.button`
   color: #fff;
   font-size: 14px;
   line-height: normal;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border: 0;
   border-radius: 6px;
   background-color: var(--Main500, #fece23);

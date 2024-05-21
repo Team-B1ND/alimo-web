@@ -6,6 +6,7 @@ import * as S from "src/components/myNotificationDetails/replyComment/style";
 
 
 const ReplyComment = ({
+  isLoding,
   commentData,
   isReplyCommentShow,
   setIsReplyCommentWriteShow,
@@ -45,7 +46,7 @@ const ReplyComment = ({
                   setIsReplyCommentWriteShow
                 )
               }>
-              등록
+              {isLoding ? <S.Loding /> : "등록"}
             </S.ReplyCommentButton>
           </S.ReplyCommentContent>
         </S.ReplyCommentContentWrap>

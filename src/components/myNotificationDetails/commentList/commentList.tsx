@@ -4,7 +4,7 @@ import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import ReplyComment from "src/components/myNotificationDetails/replyComment/replyComment";
 import * as S from "src/components/myNotificationDetails/commentList/style";
 
-const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) => {
+const CommentList = ({ comment, isLoding, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();
 
   return (
@@ -42,6 +42,7 @@ const CommentList = ({ comment, handleReplyCommentCreate }: CommentListProps) =>
       {/* 답글 달기 */}
       {CommentList.isReplyCommentWriteShow && (
         <ReplyComment
+          isLoding={isLoding}
           commentData={comment}
           isReplyCommentShow={CommentList.isReplyCommentShow}
           setIsReplyCommentWriteShow={CommentList.setIsReplyCommentWriteShow}

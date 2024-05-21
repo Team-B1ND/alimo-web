@@ -1,4 +1,5 @@
 export interface CommentProps {
+  isLoding: boolean;
   handleCommentCreate: (
     commentValue: string,
     setCommentValue: Function

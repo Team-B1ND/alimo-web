@@ -95,11 +95,14 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
+                  isLoding={MyNotificationDetail.isReplyCommentSubmit}
                   handleReplyCommentCreate={MyNotificationDetail.handleReplyCommentCreate}
                 />
               ))}
           </S.CommentListBox>
-          <Comment handleCommentCreate={MyNotificationDetail.handleCommentCreate} />
+          <Comment 
+            isLoding={MyNotificationDetail.isCommentSubmit} 
+            handleCommentCreate={MyNotificationDetail.handleCommentCreate} />
         </S.CommentListWrap>
         {/* 댓글 */}
       </S.MyNotificationDetailBox>

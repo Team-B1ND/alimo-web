@@ -10,10 +10,11 @@ const useMyNotificationDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState<any>([]);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [imageData, setImageData] = useState<ImageData[]>([]);
   const [fileData, setFileData] = useState<FileData[]>([]);
   const [commentData, setCommentData] = useState<CommentData[]>([]);
+  const [isCommentSubmit, setIsCommentSubmit] = useState(false);
+  const [isReplyCommentSubmit, setIsReplyCommentSubmit] = useState(false);
   const [isImageError, setIsImageError] = useState(true);
   const [fileSize, setFileSize] = useState<string[]>([]);
   const [commentCreateCount, setCommentCreateCount] = useState<number>(0);
@@ -49,8 +50,8 @@ const useMyNotificationDetail = () => {
     commentValue: string,
     setCommentValue: Function
   ) => {
-    if (commentValue !== "" && !isSubmit) {
-      setIsSubmit(true);
+    if (commentValue !== "" && !isCommentSubmit) {
+      setIsCommentSubmit(true);
       try {
         await alimoV1Axios
           .post(`comment/create/${id}`, {
@@ -58,12 +59,12 @@ const useMyNotificationDetail = () => {
             parentId: null,
           })
           .then(() => {
-            setIsSubmit(false);
+            setIsCommentSubmit(false);
             setCommentValue("");
             setCommentCreateCount((prev) => prev + 1);
           });
       } catch (error) {
-        setIsSubmit(false);
+        setIsCommentSubmit(false);
         console.log(error);
       }
     }
@@ -80,8 +81,8 @@ const useMyNotificationDetail = () => {
     commentId: number,
     setIsReplyCommentWriteShow: Function
   ) => {
-    if (replyCommentValue !== "" && !isSubmit) {
-      setIsSubmit(true);
+    if (replyCommentValue !== "" && !isReplyCommentSubmit) {
+      setIsReplyCommentSubmit(true);
       try {
         await alimoV1Axios
           .post(`comment/create/${id}`, {
@@ -89,12 +90,12 @@ const useMyNotificationDetail = () => {
             parentId: commentId,
           })
           .then(() => {
-            setIsSubmit(false);
+            setIsReplyCommentSubmit(false);
             setIsReplyCommentWriteShow(false);
             setCommentCreateCount((prev) => prev + 1);
           });
       } catch (error) {
-        setIsSubmit(false);
+        setIsReplyCommentSubmit(false);
         console.log(error);
       }
     }
@@ -134,10 +135,12 @@ const useMyNotificationDetail = () => {
     imageData,
     fileData,
     commentData,
-    HandleFileDownLoad,
+    isCommentSubmit,
+    isReplyCommentSubmit,
     isImageError,
-    HandleImageError,
     fileSize,
+    HandleFileDownLoad,
+    HandleImageError,
     HandleClose,
     handleCommentCreate,
     handleReplyCommentCreate,
