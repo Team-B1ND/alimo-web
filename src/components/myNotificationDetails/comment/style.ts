@@ -1,4 +1,18 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const rotate = keyframes`
+  from { transform: rotate(0deg);}
+  to{  transform: rotate(360deg);}
+`;
+export const Loding = styled.div`
+  display: flex;
+  width: 17px;
+  height: 17px;
+  border: 4px solid #ccc;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: ${rotate} 1s ease-in-out infinite;
+`;
 
 export const CommentWrap = styled.div`
   width: 100%;
@@ -34,6 +48,10 @@ export const CommentInput = styled.textarea`
 export const CommentButtonWrap = styled.button`
   width: 35px;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border: none;
   cursor: pointer;
   background-color: transparent;

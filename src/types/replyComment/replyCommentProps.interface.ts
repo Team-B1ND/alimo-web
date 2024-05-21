@@ -1,6 +1,7 @@
 import { CommentData } from "../commentList/commentList.interface";
 
 export interface ReplyCommentProps {
+  isLoding: boolean;
   commentData: CommentData;
   isReplyCommentShow: boolean;
   setIsReplyCommentWriteShow: Function;
