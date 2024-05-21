@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const Skeleton = styled.div`
+  width: 95%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+`
+
 export const AddStudentWrap = styled.div`
   position: absolute;
   left: 0;
@@ -109,7 +118,6 @@ export const TeacherWrap = styled.div`
 
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
   line-height: normal;
 
   margin-top: 2vh;
@@ -125,7 +133,7 @@ export const ParantWrap = styled.div`
 
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
+
   line-height: normal;
 
   margin-top: 2vh;
@@ -175,11 +183,13 @@ export const StudentSelectionWrap = styled.div`
   width: 50%;
   height: 100%;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   border: 1px solid #e6e6e6;
   border-top: none;
   border-left: none;
-
-  overflow-y: scroll;
 `;
 
 export const MemberSearchInput = styled.input`
@@ -256,11 +266,22 @@ export const AllSelect = styled.p`
   margin-top: 1vh;
 `;
 
+export const StudentListWrap = styled.div`
+  width: 100%;
+  height: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-y: scroll;
+`
+
 export const StudentList = styled.div`
   width: 100%;
-  height: calc(100vh - 93vh);
+  height: auto;
 
-  margin-top: 2vh;
+  margin-bottom: 4vh;
 
   display: flex;
   flex-direction: row;
@@ -369,7 +390,8 @@ export const CancleButton = styled.button`
   height: calc(100vh - 95vh);
 
   border: none;
-  background: #fff;
+  border-radius: 8px;
+  background: #f0f0f0;
   color: #787878;
 
   font-size: 1rem;

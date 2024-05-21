@@ -8,6 +8,7 @@ import DenyStudent from "src/assets/images/category/DenyStudent.svg";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 import { useRecoilValue } from "recoil";
 import { MemberData } from "src/store/category/category.store";
+import NullSkeleton from "src/components/categoryManage/studentModal/skeleton/nullSkeleton";
 
 const AddStudent = ({ onClose }: { onClose: () => void }) => {
   const { ...student } = useAddStudnet();
@@ -25,7 +26,7 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
       <S.Main>
         <S.SelectStudentDialog>
           <S.TopNav>
-            <S.SelectedStudnetTitle>학생을 선택해주세요</S.SelectedStudnetTitle>
+            <S.SelectedStudnetTitle>구성원을 선택해주세요</S.SelectedStudnetTitle>
           </S.TopNav>
           <S.SelectionWrap>
             <S.ChoiceInfoWrap>
@@ -103,78 +104,68 @@ const AddStudent = ({ onClose }: { onClose: () => void }) => {
               />
               <S.UtilityWrap>
                 <S.Class>
-                  {student.room === "0반" ? "전체" : student.room}
+                  {student.room === "0반" ? `${student.grade} 전체` : student.room}
                 </S.Class>
                 &nbsp;
                 <S.AllSelect onClick={() => student.onClickAddStudent(-1, "")}>
-                  {student.allSelectedStudents ? "전체선택" : "전체취소"}
+                  {student.isAllSelectedStudents ? "전체선택" : "전체취소"}
                 </S.AllSelect>
               </S.UtilityWrap>
-              {!student.searchMember && student.memberInfo.length > 0
-                ? student.memberInfo.map((stud, idx) => (
-                    <S.StudentList key={idx}>
-                      <img
-                        src={
-                          student.selectedStudents.some(
-                            (std) => std.id === stud.memberId
-                          )
+              <S.StudentListWrap>
+                {student.memberInfo.length > 0
+                  ? !student.searchMember
+                    ? student.memberInfo.map((stud, idx) => (
+                      <S.StudentList key={idx}>
+                        <img src={
+                          student.selectedStudents.some((std) => std.id === stud.memberId)
+                            ? CheckStudent 
+                            : NoneCheckStudent
+                          }
+                          alt="멤버선택 버튼"
+                          onClick={() =>
+                            student.onClickAddStudent(stud.memberId, stud.name)
+                          }
+                        />
+                        <S.ProfileImg
+                          src={stud.profileImage !== null ? stud.profileImage : ProfileImg}
+                        />
+                        <S.StudentName>{stud.name}</S.StudentName>
+                      </S.StudentList>
+                    ))
+                    : student.filteredMemberInfo.map((member, idx) => (
+                      <S.StudentList key={idx}>
+                        <img src={
+                          student.selectedStudents.some((std) => std.id === member.memberId)
                             ? CheckStudent
                             : NoneCheckStudent
-                        }
-                        onClick={() =>
-                          student.onClickAddStudent(stud.memberId, stud.name)
-                        }
-                      />
-                      <S.ProfileImg
-                        src={
-                          stud.profileImage !== null
-                            ? stud.profileImage
-                            : ProfileImg
-                        }
-                      />
-                      <S.StudentName>{stud.name}</S.StudentName>
-                    </S.StudentList>
-                  ))
-                : student.filteredMemberInfo.map((member, idx) => (
-                    <S.StudentList key={idx}>
-                      <img
-                        src={
-                          student.selectedStudents.some(
-                            (std) => std.id === member.memberId
-                          )
-                            ? CheckStudent
-                            : NoneCheckStudent
-                        }
-                        onClick={() =>
-                          student.onClickAddStudent(
-                            member.memberId,
-                            member.name
-                          )
-                        }
-                      />
-                      <S.ProfileImg
-                        src={
-                          member.profileImage !== null
-                            ? member.profileImage
-                            : ProfileImg
-                        }
-                      />
-                      <S.StudentName>{member.name}</S.StudentName>
-                    </S.StudentList>
-                  ))}
+                          }
+                          alt="멤버선택 버튼"
+                          onClick={() => 
+                            student.onClickAddStudent(member.memberId, member.name)}
+                        />
+                        <S.ProfileImg
+                          src={
+                            member.profileImage !== null
+                              ? member.profileImage
+                              : ProfileImg
+                          }
+                        />
+                        <S.StudentName>{member.name}</S.StudentName>
+                      </S.StudentList>
+                    ))
+                  : <NullSkeleton />}
+                </S.StudentListWrap>
             </S.StudentSelectionWrap>
             <S.ViewSelectedStudentWrap>
               {student.selectedStudents &&
                 student.selectedStudents.map((std, idx) => (
                   <S.ViewSelectedStudent key={idx}>
-                    {/* <div style={{ marginLeft: "2vw" }}> */}
                     <S.ViewStudentName>{std.name}</S.ViewStudentName>
                     <S.DenyStudent
                       src={DenyStudent}
                       style={{ marginLeft: "1vw" }}
                       onClick={() => student.onClickRemoveStudent(std.id)}
                     />
-                    {/* </div>   */}
                   </S.ViewSelectedStudent>
                 ))}
             </S.ViewSelectedStudentWrap>
