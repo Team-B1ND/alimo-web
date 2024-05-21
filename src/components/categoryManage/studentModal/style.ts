@@ -281,7 +281,7 @@ export const StudentList = styled.div`
   width: 100%;
   height: auto;
 
-  margin-bottom: 3vh;
+  margin-bottom: 4vh;
 
   display: flex;
   flex-direction: row;
