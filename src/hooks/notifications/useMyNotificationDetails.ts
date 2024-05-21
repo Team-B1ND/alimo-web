@@ -10,6 +10,7 @@ const useMyNotificationDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState<any>([]);
+  const [isSubmit, setIsSubmit] = useState(false);
   const [imageData, setImageData] = useState<ImageData[]>([]);
   const [fileData, setFileData] = useState<FileData[]>([]);
   const [commentData, setCommentData] = useState<CommentData[]>([]);
@@ -48,7 +49,8 @@ const useMyNotificationDetail = () => {
     commentValue: string,
     setCommentValue: Function
   ) => {
-    if (commentValue !== "") {
+    if (commentValue !== "" && !isSubmit) {
+      setIsSubmit(true);
       try {
         await alimoV1Axios
           .post(`comment/create/${id}`, {
@@ -56,10 +58,12 @@ const useMyNotificationDetail = () => {
             parentId: null,
           })
           .then(() => {
+            setIsSubmit(false);
             setCommentValue("");
             setCommentCreateCount((prev) => prev + 1);
           });
       } catch (error) {
+        setIsSubmit(false);
         console.log(error);
       }
     }
@@ -76,18 +80,23 @@ const useMyNotificationDetail = () => {
     commentId: number,
     setIsReplyCommentWriteShow: Function
   ) => {
-    try {
-      await alimoV1Axios
-        .post(`comment/create/${id}`, {
-          content: replyCommentValue,
-          parentId: commentId,
-        })
-        .then(() => {
-          setIsReplyCommentWriteShow(false);
-          setCommentCreateCount((prev) => prev + 1);
-        });
-    } catch (error) {
-      console.log(error);
+    if (replyCommentValue !== "" && !isSubmit) {
+      setIsSubmit(true);
+      try {
+        await alimoV1Axios
+          .post(`comment/create/${id}`, {
+            content: replyCommentValue,
+            parentId: commentId,
+          })
+          .then(() => {
+            setIsSubmit(false);
+            setIsReplyCommentWriteShow(false);
+            setCommentCreateCount((prev) => prev + 1);
+          });
+      } catch (error) {
+        setIsSubmit(false);
+        console.log(error);
+      }
     }
   };
 
