@@ -30,8 +30,6 @@ const useAddStudnet = () => {
   const setMemberData = useSetRecoilState(MemberData);
   const setCatgoryData = useSetRecoilState(CategoryDataAtom);
 
-  console.log(memberInfo);
-
   const OnLoadWasList = () => {
     const memberData = useRecoilValue(MemberData);
     setSelectedStudents(memberData.map((mebmer) => ({ id: mebmer.id, name: mebmer.name })));
