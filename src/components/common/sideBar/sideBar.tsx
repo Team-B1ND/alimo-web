@@ -50,7 +50,7 @@ const SideBar = () => {
               <S.SideBarTeacherProfileImg>
                 {sidbar.image && sidbar.image.length > 0 ? <img src={sidbar.image} /> : <img src={DefaultPrfoile} />}
               </S.SideBarTeacherProfileImg>
-              <S.SideBarTeacherName>{sidbar.Name}</S.SideBarTeacherName>
+              <span>{sidbar.Name}</span>
             </S.SidbarClickarea>
             <S.SideBarSetting src={SideBarProfileSetting} onClick={sidbar.OpenSetting} />
           </S.SideBarProfileWrap>

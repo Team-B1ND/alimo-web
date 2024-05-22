@@ -4,7 +4,6 @@ export const SideBarWrap = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 200px;
-  width: 10%;
   height: 100vh;
   overflow: hidden;
 `;
@@ -20,7 +19,7 @@ export const SideBarLogoWrap = styled.div`
 `;
 
 export const AlimoLogoTitle = styled.h1`
-  font-family: Pretendard;
+
   font-size: 2rem;
   font-weight: 700;
   color: #000;
@@ -34,7 +33,6 @@ export const AlimoLogoTitle = styled.h1`
 `;
 
 export const AlimoLogoAdmin = styled.h1`
-  font-family: Pretendard;
   font-size: 1rem;
   margin-top: 1.2vh;
   margin-left: 0.3vw;
@@ -54,12 +52,11 @@ export const SideBarMenuWrap = styled.div`
 `;
 export const SideBarMenuFlex = styled.div`
   display: flex;
+  width: 90%;
   flex-direction: column;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
   align-self: center;
-
-  margin-left: -2vw;
 `;
 export const SideBarMenuBack = styled.div`
   display: flex;
@@ -79,27 +76,16 @@ export const SideBarCategory = styled.div`
   cursor: pointer;
 
   & > img {
-    width: 30px;
-    height: 30px;
+    min-width: 20%;
+    min-height: 20%;
 
-    @media only screen and (min-width: 1080px) {
-      width: 40px;
-      height: 40px;
-    }
-    @media only screen and (min-width: 1920px) {
-      width: 45px;
-      height: 45px;
-    }
   }
 `;
 
 export const SideBarMenu = styled.span<{ $isclicked: string }>`
   color: ${({ $isclicked }) => ($isclicked === "true" ? "#000" : "#aaa")};
   margin-left: 10px;
-  font-family: Pretendard;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
   line-height: normal;
   text-align: center;
 `;
@@ -120,6 +106,9 @@ export const SidbarClickarea = styled.div`
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  span{
+    margin-left: 10px;
+  }
 `;
 export const SideBarTeacherProfileImg = styled.div`
   display: flex;
@@ -134,15 +123,9 @@ export const SideBarTeacherProfileImg = styled.div`
   }
 `;
 
-export const SideBarTeacherName = styled.span`
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 1.2rem;
-`;
-
 export const SideBarSetting = styled.img`
   display: flex;
-  width: 20%;
-  height: calc(100vw - 98vw);
+  min-height: 20px;
+  height: 30%;
   cursor: pointer;
 `;
