@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { showToast } from "src/libs/toast/swal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios,{ AxiosError } from "axios";
 import CONFIG from "src/config/config.json";
 import token from "src/libs/token/token";
 import { LoginResponse } from "src/types/login/login.type";
@@ -42,6 +42,7 @@ const Uselogin = () => {
   const LoginButton = async () => {
     SetLoginloading(true);
     if (idValue === "" || passwordValue === "") {
+      SetLoginloading(false);
       showToast("error", "아이디와 비밀번호를 입력해주세요.");
     } else {
       //DAuth
@@ -57,6 +58,8 @@ const Uselogin = () => {
           clientId: `${CONFIG.clientId}`,
           redirectUrl: `${CONFIG.redirectUrl}`,
         });
+       
+        
         const code = location.split("=")[1].split("&state")[0];
         await axios
           .post<LoginResponse>(`${CONFIG.serverUrl}/sign-in/dodam`, {
@@ -73,7 +76,14 @@ const Uselogin = () => {
           });
       } catch (error) {
         SetLoginloading(false);
-        showToast("error", "통신 오류가 발생했습니다.");
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 401) {
+            showToast("error", "알맞지 않은 id 혹은 비밀번호 입니다");
+          } else {
+            showToast("error", "통신 오류가 발생했습니다.");
+          }
+        }
+       
       }
     }
   };

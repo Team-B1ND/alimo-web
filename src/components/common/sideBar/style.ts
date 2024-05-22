@@ -107,6 +107,7 @@ export const SidbarClickarea = styled.div`
   gap: 10px;
   cursor: pointer;
   span{
+    font-size: 1.2rem;
     margin-left: 10px;
   }
 `;

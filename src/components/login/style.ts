@@ -6,11 +6,11 @@ const rotate = keyframes`
 `;
 export const Loding = styled.div`
   display: flex;
-  width: 25px;
-  height: 25px;
-  border: 4px solid #AAAAAA;
-        border-top: 5px solid transparent;
-        border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 4.5px solid #aaaaaa;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
   animation: ${rotate} 1s linear infinite;
 `;
 
@@ -210,7 +210,6 @@ export const PasswordBtn = styled.button`
 `;
 
 export const LoginBtnWrap = styled.div`
-
   width: 442px;
   height: 52px;
 `;
@@ -231,7 +230,6 @@ export const LoginBtn = styled.button`
   border: none;
   border-radius: var(--Large, 12px);
   background: var(--Main500, #fece23);
-    
 `;
 
 export const MadeByB1nd = styled.p`
