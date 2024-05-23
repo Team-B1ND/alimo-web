@@ -169,7 +169,7 @@ export const IdBtn = styled.button`
   cursor: pointer;
   position: absolute;
 
-  top: 16px;
+  top: 20px;
   right: 10px;
 `;
 
@@ -205,7 +205,7 @@ export const PasswordBtn = styled.button`
   cursor: pointer;
   position: absolute;
 
-  top: 16px;
+  top: 20px;
   right: 10px;
 `;
 
