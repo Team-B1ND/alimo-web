@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as S from "src/components/categoryManage/style";
 import useCategoryManage from "src/hooks/category/useCateogyManage";
 import AddStudent from "src/components/categoryManage/studentModal/addStudent";
@@ -95,7 +95,7 @@ const CategoryManage = () => {
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
               <S.MemberList>
-                {category.searchMember.length > 1 ? (
+                {/* {category.searchMember.length > 1 ? (
                   category.filteredMember.map((item, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
@@ -112,7 +112,11 @@ const CategoryManage = () => {
 
                         <S.MemeberName>{item.name}</S.MemeberName>
                         <span>
-                          {item.name !== null && item.room !== null ? `${item.grade}학년 ${item.room}반` : "학부모"}
+                          {item.permission === "ACCESS_TEACHER"
+                            ? "선생님"
+                            : item.grade !== null && item.room !== null
+                            ? `${item.grade}학년 ${item.room}반`
+                            : "학부모"}
                         </span>
                         <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(item.id, item.permission)} />
                       </S.Member>
@@ -142,7 +146,9 @@ const CategoryManage = () => {
                         </S.MemberProfile>
                         <S.MemeberName>{member.name}</S.MemeberName>
                         <span>
-                          {member.name !== null && member.room !== null
+                          {member.permission === "ACCESS_TEACHER"
+                            ? "선생님"
+                            : member.grade !== null && member.room !== null
                             ? `${member.grade}학년 ${member.room}반`
                             : "학부모"}
                         </span>
@@ -155,7 +161,7 @@ const CategoryManage = () => {
                   ))
                 ) : (
                   <p>카테고리에 속한 멤버가 없어요.</p>
-                )}
+                )} */}
               </S.MemberList>
             </S.CategoryMemberWrap>
           )}
