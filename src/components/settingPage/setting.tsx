@@ -11,13 +11,13 @@ const Setting = ({ onClose }: { onClose: () => void }) => {
         </S.SettingTitle>
         <S.Settingexplanation>
           <S.SettingDetail>
-            <span onClick={()=>window.open("https://ahead-yacht-97a.notion.site/e9ae676d8ecd4a9a921400ceea6c27e3")}>서비스 정책</span>
+            <span onClick={()=>window.open("https://https://alimo.b1nd.com/detailed-information/service-polic")}>서비스 정책</span>
           </S.SettingDetail>
           <S.SettingDetail>
-            <span onClick={()=>window.open("https://ahead-yacht-97a.notion.site/215ee2a6510e4cff92cff58f7c5011de")}>개인정보 이용 약관</span>
+            <span onClick={()=>window.open("https://https://alimo.b1nd.com/detailed-information/personal-information")}>개인정보 이용 약관</span>
           </S.SettingDetail>
           <S.SettingDetail>
-            <span onClick={()=>window.open("https://ahead-yacht-97a.notion.site/8bc15ee03d5c467f9be86b53cfce5b71?pvs=4")}>사용방법</span>
+            <span onClick={()=>window.open("https://https://alimo.b1nd.com/detailed-information/usage-guide")}>사용방법</span>
           </S.SettingDetail>
         </S.Settingexplanation>
       </S.SettingMain>
