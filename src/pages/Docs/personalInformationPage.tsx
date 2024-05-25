@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "src/assets/images/logo/alimoLogo.svg";
+import Logo from "src/assets/images/detailed-information/alimoLogo.svg";
 import {
   InformationBtn,
   InformationContainer,
   InformationContent,
   InformationContentContainer,
   InformationLogo,
-  InformationLogoBox,
+  InformationHeadBox,
   InformationTitle,
 } from "./style";
 
@@ -15,13 +15,14 @@ const PersonalInformation = () => {
   return (
     <>
       <InformationContainer>
-        <InformationLogoBox>
+        <InformationHeadBox>
+        <Link  to="https://alimo.b1nd.com/">
           <InformationLogo
-            onClick={() => navigate("/")}
             src={Logo}
             alt="logo"
           />
-        </InformationLogoBox>
+          </Link>
+        </InformationHeadBox>
         <InformationContentContainer>
           <InformationTitle>개인정보처리방침</InformationTitle>
         </InformationContentContainer>
@@ -264,10 +265,10 @@ const PersonalInformation = () => {
           </InformationContent>
         </InformationContentContainer>
         <InformationContentContainer>
-          
+
         </InformationContentContainer>
-        <Link to="/">
-          <InformationBtn>돌아가기</InformationBtn>
+        <Link to="https://alimo.b1nd.com/">
+          <InformationBtn>알리모 소개</InformationBtn>
         </Link>
       </InformationContainer>
     </>

@@ -11,13 +11,12 @@ export const InformationContainer = styled.div`
   row-gap: 15px;
 `;
 
-export const InformationLogoBox = styled.div`
+export const InformationHeadBox = styled.div`
   width: 100%;
   height: 100px;
 
   display: flex;
 `;
-
 export const InformationLogo = styled.img`
   width: 200px;
   height: 100%;
@@ -32,8 +31,7 @@ export const InformationContentContainer = styled.div`
   flex-direction: column;
 
   row-gap: 20px;
-  
-  
+
   margin-bottom: 50px;
 `;
 
@@ -42,8 +40,6 @@ export const InformationTitle = styled.h1`
 `;
 
 export const InformationContent = styled.p`
-  display: flex;
-
   line-height: 25px;
 `;
 
@@ -51,7 +47,7 @@ export const InformationBtn = styled.button`
   position: fixed;
   width: 105px;
   height: 40px;
-  background: #FECE23;
+  background: #fece23;
   color: #fff;
   border-radius: 100px;
   border: none;
@@ -63,5 +59,19 @@ export const InformationBtn = styled.button`
     transition: 1s;
     background-color: black;
     color: white;
+  }
+`;
+
+export const InformationImg = styled.img`
+  width: 100%;
+  min-height: 200px;
+`;
+export const InformationLinkBtn = styled.div`
+  font-size: 30px;
+  
+  color: #000;
+  &:hover {
+    transition: 0.5s;
+    color: #fece23;;
   }
 `;

@@ -6,7 +6,9 @@ import CategoryManage from "src/components/categoryManage/categoryManage";
 import PrivateRoute from "src/hooks/private/privateRoute";
 import MyNotificationDetailPage from "src/pages/myNotificationDetails/page";
 import PersonalInformationPage from "src/pages/Docs/personalInformationPage";
-
+import ServicePolicyPage from "src/pages/Docs/ServicePolicyPage";
+import UsageGuidePage from "src/pages/Docs/usageGuidePage";
+import IntroducePage from "src/pages/Docs/introducePage";
 const Router = () => {
   return (
     <Routes>
@@ -20,7 +22,19 @@ const Router = () => {
       <Route
         path="/detailed-information/personal-information"
         element={<PersonalInformationPage />}
-      ></Route>
+      />
+      <Route
+        path="/detailed-information/service-policy"
+        element={<ServicePolicyPage />}
+      />
+        <Route
+        path="/detailed-information/usage-guide"
+        element={<UsageGuidePage />}
+      />
+        <Route
+        path="/detailed-information/introduce"
+        element={<IntroducePage />}
+      />
     </Routes>
   );
 };
