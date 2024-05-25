@@ -14,10 +14,13 @@ const PageTemplate = ({ children }: ProvidersProps) => {
         pathname !== "/detailed-information/personal-information" &&
         pathname !== "/detailed-information/service-policy" &&
         pathname !== "/detailed-information/usage-guide" &&
-        pathname !== "/detailed-information/introduce" 
-        && <Header />}
+        pathname !== "/detailed-information/introduce" && <Header />}
       {pathname !== "/login" &&
-        isAuthenticated() && <SideBar />}
+        isAuthenticated() &&
+        pathname !== "/detailed-information/personal-information" &&
+        pathname !== "/detailed-information/service-policy" &&
+        pathname !== "/detailed-information/usage-guide" &&
+        pathname !== "/detailed-information/introduce" && <SideBar />}
       <Layout>{children}</Layout>
     </Container>
   );
