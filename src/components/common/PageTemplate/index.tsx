@@ -11,6 +11,7 @@ const PageTemplate = ({ children }: ProvidersProps) => {
   return (
     <Container>
       {pathname !== "/login" &&
+        isAuthenticated() &&
         pathname !== "/detailed-information/personal-information" &&
         pathname !== "/detailed-information/service-policy" &&
         pathname !== "/detailed-information/usage-guide" &&

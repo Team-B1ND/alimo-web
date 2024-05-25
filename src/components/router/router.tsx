@@ -9,6 +9,7 @@ import PersonalInformationPage from "src/pages/Docs/personalInformationPage";
 import ServicePolicyPage from "src/pages/Docs/ServicePolicyPage";
 import UsageGuidePage from "src/pages/Docs/usageGuidePage";
 import IntroducePage from "src/pages/Docs/introducePage";
+import Notfound from "src/pages/notfound/page";
 const Router = () => {
   return (
     <Routes>
@@ -27,14 +28,15 @@ const Router = () => {
         path="/detailed-information/service-policy"
         element={<ServicePolicyPage />}
       />
-        <Route
+      <Route
         path="/detailed-information/usage-guide"
         element={<UsageGuidePage />}
       />
-        <Route
+      <Route
         path="/detailed-information/introduce"
         element={<IntroducePage />}
       />
+      <Route path={"*"} element={<Notfound/>} />
     </Routes>
   );
 };
