@@ -95,7 +95,7 @@ const CategoryManage = () => {
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
               <S.MemberList>
-                {/* {category.searchMember.length > 1 ? (
+                {category.searchMember.length > 1 ? (
                   category.filteredMember.map((item, idx) => (
                     <S.MemberWrap key={idx}>
                       <S.Member>
@@ -161,7 +161,7 @@ const CategoryManage = () => {
                   ))
                 ) : (
                   <p>카테고리에 속한 멤버가 없어요.</p>
-                )} */}
+                )}
               </S.MemberList>
             </S.CategoryMemberWrap>
           )}
