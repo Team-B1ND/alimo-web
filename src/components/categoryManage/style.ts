@@ -53,6 +53,7 @@ export const CategoryWrap = styled.div`
 export const CategorySearchButton = styled.div`
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: center;
   width: 25px;
   height: 100%;
