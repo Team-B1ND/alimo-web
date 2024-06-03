@@ -100,6 +100,9 @@ const useCategoryManage = () => {
   };
 
   const OnCategoryName = async () => {
+    setMemberData([]);
+    setClickedCategory(null);
+    setIsClickedCategory("");
     setShowCategoryName((prev) => !prev);
   };
 
