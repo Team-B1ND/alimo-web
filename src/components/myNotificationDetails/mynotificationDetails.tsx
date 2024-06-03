@@ -95,6 +95,7 @@ const MyNotificationDetail = () => {
                 <CommentList
                   key={CommentData.commentId}
                   comment={CommentData}
+                  memberId={MyNotificationDetail.data.memberId}
                   isLoding={MyNotificationDetail.isReplyCommentSubmit}
                   handleCommentDelete={MyNotificationDetail.handleCommentDelete}
                   handleReplyCommentDelete={MyNotificationDetail.handleReplyCommentDelete}
