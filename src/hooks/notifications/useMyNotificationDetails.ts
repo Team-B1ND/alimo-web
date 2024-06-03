@@ -104,7 +104,7 @@ const useMyNotificationDetail = () => {
   };
 
   // 댓글 삭제
-  const handleCommentDelete = (commentId: number) => {
+  const handleCommentDelete = async (commentId: number) => {
     Swal.fire({
       title: "정말로 댓글을 삭제하시겠습니까?",
       text: "댓글을 삭제하면 다시 되돌릴 수 없습니다.",
@@ -130,7 +130,7 @@ const useMyNotificationDetail = () => {
   }
 
   // 대댓글 삭제
-  const handleReplyCommentDelete = (replyCommentId: number) => {
+  const handleReplyCommentDelete = async (replyCommentId: number) => {
     Swal.fire({
       title: "정말로 대댓글을 삭제하시겠습니까?",
       text: "대댓글을 삭제하면 다시 되돌릴 수 없습니다.",

@@ -4,8 +4,8 @@ export interface CommentListProps {
     comment: CommentData;
     isLoding: boolean;
     memberId: number;
-    handleCommentDelete: (commentId: number) => void;
-    handleReplyCommentDelete: (replyCommentId: number) => void;
+    handleCommentDelete: (commentId: number) => Promise<void>;
+    handleReplyCommentDelete: (replyCommentId: number) => Promise<void>;
     handleReplyCommentCreate: (
       replyCommentValue: string,
       parentId: number,
