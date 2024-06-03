@@ -4,9 +4,9 @@ import CONFIG from "src/config/config.json";
 import { categoryListState } from "src/store/profile/profileStores";
 import { useRecoilState } from "recoil";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
-import { NavigationProps } from "src/types/sidbar/sidebar.types";
+import { NavigationProps } from "src/types/sidebar/sidebar.types";
 
-const Sidbar = () => {
+const useSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isProfileAlert, setProfileAlert] = useState(false);
@@ -20,7 +20,7 @@ const Sidbar = () => {
   const CategoryList = async () => {
    await alimoV1Axios.get(
       `${CONFIG.serverUrl}/category/list/member`
-    ).then((res)=>{
+    ).then((res) => {
       const CategoryData = res.data.data.roles;
     setCategory(CategoryData);
     setCategoryList(CategoryData);
@@ -103,4 +103,4 @@ const Sidbar = () => {
     isClickCategory,
   };
 };
-export default Sidbar;
+export default useSidebar;

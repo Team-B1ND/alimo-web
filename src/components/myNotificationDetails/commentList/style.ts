@@ -83,6 +83,18 @@ export const ReplyCommentWriteBtn = styled.button`
   margin: 1px 0px 0px 10px;
 `;
 
+export const CommentDeleteBtn = styled.button`
+  color: var(--Red500, #F90707);
+  font-size: 14px;
+  line-height: normal;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  margin: 1px 0px 0px 8px;
+`
+
 export const ReplyCommentShowBtnWrap = styled.div`
   width: auto;
   height: auto;

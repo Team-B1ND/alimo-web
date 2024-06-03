@@ -7,12 +7,12 @@ import SideBarProfileSetting from "src/assets/images/common/sidebar/SideBarSetti
 import Profile from "src/components/profile/profileMain/profile";
 import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
 import ProfileAlert from "src/components/profile/alert/profileAlert";
-import UseSideBar from "src/hooks/sidbar/useSiebar";
+import useSideBar from "src/hooks/sidebar/useSidebar";
 import Setting from "src/components/settingPage/setting";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const { ...sidbar } = UseSideBar();
+  const { ...sidebar } = useSideBar();
   const navigate = useNavigate();
   return (
     <S.SideBarWrap>
@@ -25,39 +25,39 @@ const SideBar = () => {
         </S.SideBarLogoWrap>
         <S.SideBarMenuWrap>
           <S.SideBarMenuFlex>
-            <S.SideBarCategory onClick={() => sidbar.HandleCategoryClick("카테고리 관리")}>
+            <S.SideBarCategory onClick={() => sidebar.HandleCategoryClick("카테고리 관리")}>
               <img
                 alt="ggg"
                 src={
-                  sidbar.isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg
+                  sidebar.isClickCategory === "카테고리 관리" ? ClickSideBarCategoryManageImg : SideBarCategoryManageImg
                 }
               />
-              <S.SideBarMenu $isclicked={sidbar.isClickCategory === "카테고리 관리" ? "true" : "false"}>
+              <S.SideBarMenu $isclicked={sidebar.isClickCategory === "카테고리 관리" ? "true" : "false"}>
                 카테고리 관리
               </S.SideBarMenu>
             </S.SideBarCategory>
-            <S.SideBarCategory onClick={() => sidbar.HandleCategoryClick("내가 쓴 공지보기")}>
+            <S.SideBarCategory onClick={() => sidebar.HandleCategoryClick("내가 쓴 공지보기")}>
               <img
-                src={sidbar.isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg}
+                src={sidebar.isClickCategory === "내가 쓴 공지보기" ? ClickSideBarWriteReadImg : SideBarWriteReadImg}
               />
-              <S.SideBarMenu $isclicked={sidbar.isClickCategory === "내가 쓴 공지보기" ? "true" : "false"}>
+              <S.SideBarMenu $isclicked={sidebar.isClickCategory === "내가 쓴 공지보기" ? "true" : "false"}>
                 내가 쓴 공지보기
               </S.SideBarMenu>
             </S.SideBarCategory>
           </S.SideBarMenuFlex>
           <S.SideBarProfileWrap>
-            <S.SidbarClickarea onClick={sidbar.OpenProfileSetting}>
+            <S.SidebarClickarea onClick={sidebar.OpenProfileSetting}>
               <S.SideBarTeacherProfileImg>
-                {sidbar.image && sidbar.image.length > 0 ? <img src={sidbar.image} /> : <img src={DefaultPrfoile} />}
+                {sidebar.image && sidebar.image.length > 0 ? <img src={sidebar.image} /> : <img src={DefaultPrfoile} />}
               </S.SideBarTeacherProfileImg>
-              <span>{sidbar.Name}</span>
-            </S.SidbarClickarea>
-            <S.SideBarSetting src={SideBarProfileSetting} onClick={sidbar.OpenSetting} />
+              <span>{sidebar.Name}</span>
+            </S.SidebarClickarea>
+            <S.SideBarSetting src={SideBarProfileSetting} onClick={sidebar.OpenSetting} />
           </S.SideBarProfileWrap>
         </S.SideBarMenuWrap>
-        {sidbar.isProfileAlert && <ProfileAlert onOpen={sidbar.OpenProfile} onClose={sidbar.OpenProfileSetting} />}
-        {sidbar.isProfile && <Profile onClose={sidbar.OpenProfile} />}
-        {sidbar.isSetting && <Setting onClose={sidbar.OpenSetting} />}
+        {sidebar.isProfileAlert && <ProfileAlert onOpen={sidebar.OpenProfile} onClose={sidebar.OpenProfileSetting} />}
+        {sidebar.isProfile && <Profile onClose={sidebar.OpenProfile} />}
+        {sidebar.isSetting && <Setting onClose={sidebar.OpenSetting} />}
       </S.SideBarMenuBack>
     </S.SideBarWrap>
   );

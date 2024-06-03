@@ -4,7 +4,7 @@ import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import ReplyComment from "src/components/myNotificationDetails/replyComment/replyComment";
 import * as S from "src/components/myNotificationDetails/commentList/style";
 
-const CommentList = ({ comment, isLoding, handleReplyCommentCreate }: CommentListProps) => {
+const CommentList = ({ comment, isLoding, memberId, handleCommentDelete, handleReplyCommentDelete, handleReplyCommentCreate }: CommentListProps) => {
   const { ...CommentList } = useCommentList();
 
   return (
@@ -26,6 +26,9 @@ const CommentList = ({ comment, isLoding, handleReplyCommentCreate }: CommentLis
               <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
                 {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
               </S.ReplyCommentWriteBtn>
+              {comment.commenterId === memberId
+                ? <S.CommentDeleteBtn onClick={() => handleCommentDelete(comment.commentId)}>삭제</S.CommentDeleteBtn>
+                : ""}
             </S.CommentContentBox>
             {comment.subComments.length > 0 && (
               <S.ReplyCommentShowBtnWrap>
@@ -67,6 +70,9 @@ const CommentList = ({ comment, isLoding, handleReplyCommentCreate }: CommentLis
                 <S.ReplyCommentName>{replyCommentData.commentor}</S.ReplyCommentName>
                 <S.ReplyCommentWrap>
                   <S.ReplyCommentContent>{replyCommentData.content}</S.ReplyCommentContent>
+                  {replyCommentData.commenterId === memberId
+                    ? <S.CommentDeleteBtn onClick={() => handleReplyCommentDelete(replyCommentData.commentId)}>삭제</S.CommentDeleteBtn> 
+                    : ""}
                 </S.ReplyCommentWrap>
               </S.ReplyCommentContentWrap>
             </S.MyNotificationReplyComment>

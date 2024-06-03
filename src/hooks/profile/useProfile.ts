@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import ProfileImg from "src/assets/images/common/ProfileImg.svg";
 import { categoryListState } from "src/store/profile/profileStores";
 import { useRecoilValue } from "recoil";
-import useSidbar from "src/hooks/sidbar/useSiebar";
+import useSidebar from "src/hooks/sidebar/useSidebar";
 
-const UseProfile = () => {
-  const { Name, image } = useSidbar();
+const useProfile = () => {
+  const { Name, image } = useSidebar();
   const [Category, setCategory] = useState<string[]>([]);
   const CategoryListValue = useRecoilValue(categoryListState); // 값만
 
@@ -22,4 +22,4 @@ const UseProfile = () => {
   };
 };
 
-export default UseProfile;
+export default useProfile;
