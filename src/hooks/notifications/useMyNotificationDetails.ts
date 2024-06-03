@@ -5,6 +5,8 @@ import { FileData } from "src/types/myNotificationDetails/File.interface";
 import { FILE_SIZES } from "src/constants/data/fileSize.constants";
 import { CommentData } from "src/types/commentList/commentList.interface";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
+import Swal from "sweetalert2";
+import { showToast } from "src/libs/toast/swal";
 
 const useMyNotificationDetail = () => {
   const { id } = useParams();
@@ -17,7 +19,7 @@ const useMyNotificationDetail = () => {
   const [isReplyCommentSubmit, setIsReplyCommentSubmit] = useState(false);
   const [isImageError, setIsImageError] = useState(true);
   const [fileSize, setFileSize] = useState<string[]>([]);
-  const [commentCreateCount, setCommentCreateCount] = useState<number>(0);
+  const [commentUpdateCount, setCommentUpdateCount] = useState<number>(0);
 
   // 파일 다운로드
   const HandleFileDownLoad = (fileUrl: string, fileName: string) => {
@@ -61,7 +63,7 @@ const useMyNotificationDetail = () => {
           .then(() => {
             setIsCommentSubmit(false);
             setCommentValue("");
-            setCommentCreateCount((prev) => prev + 1);
+            setCommentUpdateCount((prev) => prev + 1);
           });
       } catch (error) {
         setIsCommentSubmit(false);
@@ -92,7 +94,7 @@ const useMyNotificationDetail = () => {
           .then(() => {
             setIsReplyCommentSubmit(false);
             setIsReplyCommentWriteShow(false);
-            setCommentCreateCount((prev) => prev + 1);
+            setCommentUpdateCount((prev) => prev + 1);
           });
       } catch (error) {
         setIsReplyCommentSubmit(false);
@@ -100,6 +102,58 @@ const useMyNotificationDetail = () => {
       }
     }
   };
+
+  // 댓글 삭제
+  const handleCommentDelete = (commentId: number) => {
+    Swal.fire({
+      title: "정말로 댓글을 삭제하시겠습니까?",
+      text: "댓글을 삭제하면 다시 되돌릴 수 없습니다.",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#D9D9D9",
+      confirmButtonText: "댓글 삭제",
+      cancelButtonText: "취소",
+      reverseButtons: false,
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await alimoV1Axios
+            .delete(`comment/delete/${commentId}`)
+            .then(() => {
+              setCommentUpdateCount((prev) => prev + 1);
+              showToast("success", "댓글 삭제 성공");
+            })
+        } catch (error) {
+          console.log(error)
+        }
+    }})
+  }
+
+  // 대댓글 삭제
+  const handleReplyCommentDelete = (replyCommentId: number) => {
+    Swal.fire({
+      title: "정말로 대댓글을 삭제하시겠습니까?",
+      text: "대댓글을 삭제하면 다시 되돌릴 수 없습니다.",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#D9D9D9",
+      confirmButtonText: "대댓글 삭제",
+      cancelButtonText: "취소",
+      reverseButtons: false,
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await alimoV1Axios
+            .delete(`comment/deleteSub/${replyCommentId}`)
+            .then(() => {
+              setCommentUpdateCount((prev) => prev + 1);
+              showToast("success", "대댓글 삭제 성공");
+            })
+        } catch (error) {
+          console.log(error)
+        }
+    }})
+  }
 
   // 공지글 디테일 데이터 요청
   useEffect(() => {
@@ -129,7 +183,7 @@ const useMyNotificationDetail = () => {
       });
     };
     NotificationRead();
-  }, [id, commentCreateCount]);
+  }, [id, commentUpdateCount]);
   return {
     data,
     imageData,
@@ -144,6 +198,8 @@ const useMyNotificationDetail = () => {
     HandleClose,
     handleCommentCreate,
     handleReplyCommentCreate,
+    handleCommentDelete,
+    handleReplyCommentDelete,
   };
 };
 
