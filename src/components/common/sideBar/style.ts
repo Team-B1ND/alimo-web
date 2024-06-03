@@ -98,7 +98,7 @@ export const SideBarProfileWrap = styled.div`
   display: flex;
   align-items: center;
 `;
-export const SidbarClickarea = styled.div`
+export const SidebarClickarea = styled.div`
   display: flex;
   width: 80%;
   height: 100%;

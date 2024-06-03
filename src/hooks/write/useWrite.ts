@@ -16,6 +16,7 @@ import axios from "axios";
 import Token from "src/libs/token/token";
 import { ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
 import CONFIG from "src/config/config.json";
+
 const useWrite = () => {
   const navigate = useNavigate();
   const ACCESS_TOKEN = Token.getToken(ACCESS_TOKEN_KEY);

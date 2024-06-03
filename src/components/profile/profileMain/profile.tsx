@@ -1,9 +1,8 @@
 import * as S from "./style";
 import CloseImg from "src/assets/images/common/Closeimg.png";
-import UseProfile from "src/hooks/profile/useProfile";
-import DefaultPrfoile from "src/assets/images/common/ProfileImg.svg";
+import useProfile from "src/hooks/profile/useProfile";
 const Profile = ({ onClose }: { onClose: () => void }) => {
-  const { Name, image, Category } = UseProfile();
+  const { Name, image, Category } = useProfile();
 
   return (
     <S.Profile>

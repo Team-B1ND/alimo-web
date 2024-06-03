@@ -1,6 +1,6 @@
 import { ReplyCommentProps } from "src/types/replyComment/replyCommentProps.interface";
 import useReplyComment from "src/hooks/comment/useReplyComment";
-import useSidebar from "src/hooks/sidbar/useSiebar";
+import useSidebar from "src/hooks/sidebar/useSidebar";
 import defaultProfile from "src/assets/images/common/ProfileImg.svg";
 import * as S from "src/components/myNotificationDetails/replyComment/style";
 
