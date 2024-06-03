@@ -31,9 +31,6 @@ const useCategoryManage = () => {
   const [GradeName, setGradeName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
-  const [memberCnt, setMemberCnt] = useState<number>();
-  const [room, setRoom] = useState<string>("");
 
   const getCategoryList = async () => {
     try {
@@ -229,6 +226,8 @@ const useCategoryManage = () => {
     });
   };
 
+
+
   return {
     GradeName,
     isClickedCategory,
@@ -242,9 +241,6 @@ const useCategoryManage = () => {
     searchMember,
     selectedStudents,
     selectAccess,
-    memberInfo,
-    memberCnt,
-    room,
     filteredCategory,
     filteredMember,
     isLoading,
