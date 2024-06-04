@@ -161,7 +161,7 @@ export const ReplyCommentConnectLine = styled.div`
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
-  width: 12%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
