@@ -19,17 +19,19 @@ const CommentList = ({ comment, isLoding, memberId, handleCommentDelete, handleR
                 <S.CommentConnectLine></S.CommentConnectLine>
               )}
           </S.CommentInfoWrap>
-          <S.CommentContentWrap>
+          <S.CommentContentContainer>
             <S.CommentName>{comment.commentor}</S.CommentName>
-            <S.CommentContentBox>
-              <S.CommentContent $reply_comment_cnt={comment.subComments.length}>{comment.content}</S.CommentContent>
-              <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
-                {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
-              </S.ReplyCommentWriteBtn>
-              {comment.commenterId === memberId
+            <S.CommentContentWrap>
+              <S.CommentContentBox>
+                <S.CommentContent $reply_comment_cnt={comment.subComments.length}>{comment.content}</S.CommentContent>
+                <S.ReplyCommentWriteBtn onClick={CommentList.handleReplyCommentWrite}>
+                  {CommentList.isReplyCommentWriteShow ? "답글 닫기" : "답글 달기"}
+                </S.ReplyCommentWriteBtn>
+              </S.CommentContentBox>
+            {comment.commenterId === memberId
                 ? <S.CommentDeleteBtn onClick={() => handleCommentDelete(comment.commentId)}>삭제</S.CommentDeleteBtn>
                 : ""}
-            </S.CommentContentBox>
+            </S.CommentContentWrap>
             {comment.subComments.length > 0 && (
               <S.ReplyCommentShowBtnWrap>
                 <S.ReplyCommentShowBtn onClick={() => CommentList.setIsReplyCommentShow((current) => !current)}>
@@ -37,7 +39,7 @@ const CommentList = ({ comment, isLoding, memberId, handleCommentDelete, handleR
                 </S.ReplyCommentShowBtn>
               </S.ReplyCommentShowBtnWrap>
             )}
-          </S.CommentContentWrap>
+          </S.CommentContentContainer>
         </S.MyNotificationComment>
       </S.MyNotificationCommentBox>
       {/* 댓글 뷰 컴포넌트 */}
