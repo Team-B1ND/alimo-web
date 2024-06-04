@@ -43,7 +43,7 @@ export const CommentConnectLine = styled.div`
   background-color: var(--Gray300, #e6e6e6);
 `;
 
-export const CommentContentWrap = styled.div`
+export const CommentContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,16 +55,23 @@ export const CommentName = styled.p`
   line-height: normal;
 `;
 
-export const CommentContentBox = styled.div`
-  width: auto;
+export const CommentContentWrap = styled.div`
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   margin-top: 5px;
+`
+
+export const CommentContentBox = styled.div`
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const CommentContent = styled.p<{ $reply_comment_cnt: number }>`
-  max-width: 70%;
+  max-width: 79%;
   font-size: 16px;
   line-height: normal;
   white-space: pre-line;
@@ -84,7 +91,7 @@ export const ReplyCommentWriteBtn = styled.button`
 `;
 
 export const CommentDeleteBtn = styled.button`
-  color: var(--Red500, #F90707);
+  color: var(--Gray600, #787878);
   font-size: 14px;
   line-height: normal;
   cursor: pointer;
@@ -93,6 +100,10 @@ export const CommentDeleteBtn = styled.button`
   display: flex;
   flex-direction: row;
   margin: 1px 0px 0px 8px;
+
+  &:hover {
+    color: var(--Red500, #F90707);
+  }
 `
 
 export const ReplyCommentShowBtnWrap = styled.div`
@@ -150,7 +161,7 @@ export const ReplyCommentConnectLine = styled.div`
 `;
 
 export const ReplyCommentInfoWrap = styled.div`
-  width: 12%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
