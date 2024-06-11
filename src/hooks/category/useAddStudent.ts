@@ -43,7 +43,7 @@ const useAddStudnet = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
-      threshold: 0,
+      threshold: 1,
     });
 
     const observerTarget = document.getElementById("observe");
@@ -141,6 +141,7 @@ const useAddStudnet = () => {
       onLoadStudentInfo(convertStudentInfo.convertGrade(grade), convertStudentInfo.convertRoom(room));
     }
   }, [grade, room, addMember]);
+
   const onLoadTeacherInfo = async () => {
     await alimoV1Axios.get("/member/teacher-list?page=1&size=1000").then((res) => {
       const TeacherData = res.data.data;
