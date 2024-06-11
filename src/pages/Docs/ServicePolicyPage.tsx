@@ -8,13 +8,13 @@ import {
   InformationLogo,
   InformationHeadBox,
   InformationTitle,
+  NullState,
 } from "./style";
 
 const ServicePolicy = () => {
-  const navigate = useNavigate();
   return (
     <>
-      <InformationContainer>
+      <InformationContainer >
         <InformationHeadBox id="agreeDetailForm-header">
         <Link  to="https://alimo.b1nd.com/">
           <InformationLogo
@@ -24,7 +24,7 @@ const ServicePolicy = () => {
           </Link>
         </InformationHeadBox>
         <InformationContentContainer>
-          <InformationTitle>운영정책 제1장 총 칙</InformationTitle>
+          <InformationTitle>운영정책 제1장 총칙</InformationTitle>
         </InformationContentContainer>
         <InformationContentContainer>
           <InformationTitle>제1조 (목적)</InformationTitle>
@@ -371,10 +371,13 @@ const ServicePolicy = () => {
             있는 지방/고등 법원 등에서 이루어집니다.
           </InformationContent>
         </InformationContentContainer>
-        <InformationContentContainer>
+        <InformationContentContainer >
           <InformationTitle>
             부칙 (시행일) 이 약관은 2024년 4월 17일부터 시행합니다.
           </InformationTitle>
+        </InformationContentContainer>
+        <InformationContentContainer>
+          <NullState></NullState>
         </InformationContentContainer>
         <Link to="/">
           <InformationBtn>돌아가기</InformationBtn>

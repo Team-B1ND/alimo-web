@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "src/assets/images/detailed-information/alimoLogo.svg";
-
+import DocsLine from "src/assets/images/common/DocsLine.svg"
 import {
   InformationBtn,
   InformationContainer,
@@ -11,22 +11,20 @@ import {
   InformationTitle,
   InformationImg,
   InformationLinkBtn,
+  NullState
 } from "./style";
 
 const IntroducePage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <InformationContainer style={{height:"150vh"}}>
+      <InformationContainer style={{ height: "150vh" }}>
         <InformationHeadBox id="agreeDetailForm-header">
-            <Link  to="https://alimo.b1nd.com/">
-          <InformationLogo
-            src={Logo}
-            alt="logo"
-          />
+          <Link to="https://alimo.b1nd.com/">
+            <InformationLogo src={Logo} alt="logo" />
           </Link>
         </InformationHeadBox>
-        <InformationContentContainer style={{ maxWidth: "900px" }}>
+        <InformationContentContainer >
           <InformationTitle style={{ color: "#e2b926" }}>
             {" "}
             다양한 학교 공지를 한번에
@@ -37,9 +35,11 @@ const IntroducePage = () => {
             자율활동과 관련된 공지도 받아보세요!
           </InformationContent>
         </InformationContentContainer>
-        <InformationContentContainer style={{ maxWidth: "800px" }}>
+        
+        <InformationContentContainer>
+        
           <InformationTitle>Why Need?</InformationTitle>
-
+          <img src={DocsLine} alt="error" />
           <InformationContent>
             저희는 항상 학교 공지사항을 카카오워크 라는, 채팅을 중점으로 하는
             플랫폼을 통해 주고받습니다.
@@ -75,14 +75,14 @@ const IntroducePage = () => {
             필요하다고 생각하게 되었습니다.
           </InformationContent>
         </InformationContentContainer>
-        <InformationContentContainer
-          style={{ maxWidth: "800px", width: "800px" }}
-        >
+        <InformationContentContainer>
+        
           <InformationTitle style={{ color: "#e2b926" }}>
             {" "}
             Our Vision
+            
           </InformationTitle>
-
+          <img src={DocsLine} alt="error" />
           <InformationContent>
             - 학부모와 학생간의{" "}
             <span style={{ fontWeight: "1000" }}>정보 불균형</span> 해소
@@ -96,7 +96,7 @@ const IntroducePage = () => {
           </InformationContent>
         </InformationContentContainer>
         <InformationContentContainer
-          style={{ maxWidth: "800px", width: "800px" }}
+          
         >
           <InformationTitle style={{ color: "#e2b926" }}>
             {" "}
@@ -121,6 +121,9 @@ const IntroducePage = () => {
             <InformationLinkBtn>ALIMO WEB</InformationLinkBtn>
           </Link>
         </InformationContentContainer>
+        <InformationContainer>
+            <NullState></NullState>
+        </InformationContainer>
       </InformationContainer>
     </>
   );

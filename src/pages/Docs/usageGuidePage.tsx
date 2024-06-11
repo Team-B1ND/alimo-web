@@ -54,7 +54,7 @@ const UsageGuidePage = () => {
         </InformationContentContainer>
 
         <Link to="https://alimo.b1nd.com/">
-          <InformationBtn>알리모</InformationBtn>
+          <InformationBtn>알리모 바로가기</InformationBtn>
         </Link>
       </InformationContainer>
     </>

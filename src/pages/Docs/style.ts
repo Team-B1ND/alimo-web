@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
 export const InformationContainer = styled.div`
+  min-width: 100px;
   width: 100%;
   height: 4800px;
-
+  @media screen and (min-width: 100px) {
+    font-size: 0.8rem;
+  }
+  @media screen and (min-width: 800px) {
+    font-size: 1.2rem;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +30,7 @@ export const InformationLogo = styled.img`
 `;
 
 export const InformationContentContainer = styled.div`
-  max-width: 700px;
-  min-width: 700px;
+  width: 70%;
 
   display: flex;
   flex-direction: column;
@@ -68,10 +73,16 @@ export const InformationImg = styled.img`
 `;
 export const InformationLinkBtn = styled.div`
   font-size: 30px;
-  
+
   color: #000;
   &:hover {
     transition: 0.5s;
-    color: #fece23;;
+    color: #fece23;
   }
+`;
+
+export const NullState = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100px;
 `;
