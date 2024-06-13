@@ -31,9 +31,8 @@ const useCategoryManage = () => {
   const [GradeName, setGradeName] = useState<string>("");
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
   const [selectAccess, setSelectAccess] = useState<string | null>(null);
-  const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
-  const [memberCnt, setMemberCnt] = useState<number>();
-  const [room, setRoom] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [isPageLoading, setIsPageLoading] = useState<boolean>(false);
 
   const getCategoryList = async () => {
     try {
@@ -46,32 +45,62 @@ const useCategoryManage = () => {
     }
   };
 
-  const handleCategoryClick = async (categoryName: string) => {
-    if (clickedCategory === categoryName) {
-      setClickedCategory(null);
-      setIsClickedCategory("");
-    } else {
-      try {
-        await alimoV1Axios
-          .get(`/category/get-member?page=1&size=1000&categoryName=${categoryName}&searchKeyword=`)
-          .then((res) => {
-            if (categoryName === "학부모") {
-              setGradeName("학부모");
-            } else if (categoryName === "선생님") {
-              setGradeName("선생님");
-            } else {
-              setGradeName("학번");
-            }
-            setMemberData(res.data.data);
-          });
-        setIsClickedCategory(categoryName);
-        setClickedCategory(categoryName);
-        setIsMemberLoading(false);
-      } catch (e) {
-        showToast("error", "서버 연결오류");
-      }
+  const handleObserver = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+
+    if (target.isIntersecting && !isPageLoading) {
+      setPage((prevPage) => prevPage + 1);
     }
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 0,
+    });
+
+    const observerTarget = document.getElementById("observe");
+
+    if (observerTarget) {
+      observer.observe(observerTarget);
+    }
+  }, []);
+
+  const handleCategoryClick = useCallback(
+    async (categoryName: string) => {
+      setIsPageLoading(true);
+      if (clickedCategory === categoryName) {
+        setClickedCategory(null);
+        setIsClickedCategory("");
+      } else {
+        try {
+          await alimoV1Axios
+            .get(`/category/get-member?page=${page}&size=25&categoryName=${categoryName}&searchKeyword=`)
+            .then((res) => {
+              if (categoryName === "학부모") {
+                setGradeName("학부모");
+              } else if (categoryName === "선생님") {
+                setGradeName("선생님");
+              } else {
+                setGradeName("학번");
+              }
+              const newData = res.data.data;
+              setMemberData((prevData) => [...prevData, ...newData]);
+            });
+          setIsClickedCategory(categoryName);
+          setClickedCategory(categoryName);
+          setIsMemberLoading(false);
+        } catch (e) {
+          showToast("error", "서버 연결오류");
+        }
+      }
+      setIsPageLoading(false);
+    },
+    [page, isClickedCategory],
+  );
+
+  useEffect(() => {
+    handleCategoryClick(isClickedCategory);
+  }, [page]);
 
   const onSearchMemberName = (value: string) => {
     setSearchMember(value);
@@ -245,9 +274,6 @@ const useCategoryManage = () => {
     searchMember,
     selectedStudents,
     selectAccess,
-    memberInfo,
-    memberCnt,
-    room,
     filteredCategory,
     filteredMember,
     isLoading,

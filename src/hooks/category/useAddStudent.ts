@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import { MemberList } from "src/types/categorys/memberList.interface";
 import { MemberCntList, MemberInfo, Student } from "src/types/categorys/add.types";
@@ -13,6 +13,7 @@ import {
   ShowStudentList,
   newSelectedData,
 } from "src/store/category/category.store";
+import convertStudentInfo from "src/utils/convert/convertStudentInfo";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
@@ -26,9 +27,31 @@ const useAddStudnet = () => {
   const [addMember, setAddMember] = useRecoilState(AddMember);
   const SelctedCategory = useRecoilValue(newSelectedData);
   const showCategoryName = useSetRecoilState(ShowCategoryName);
+  const [page, setPage] = useState(1);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const { createCategoryName } = useCreateCategory();
   const setMemberData = useSetRecoilState(MemberData);
   const setCatgoryData = useSetRecoilState(CategoryDataAtom);
+
+  const handleObserver = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+
+    if (target.isIntersecting && !isPageLoading) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 1,
+    });
+
+    const observerTarget = document.getElementById("observe");
+
+    if (observerTarget) {
+      observer.observe(observerTarget);
+    }
+  }, []);
 
   const OnLoadWasList = () => {
     const memberData = useRecoilValue(MemberData);
@@ -36,9 +59,11 @@ const useAddStudnet = () => {
   };
 
   const onClickAddStudent = (studentId: number, studentName: string) => {
-    const AllMember = memberInfo.map((member) => ({id: member.memberId, name: member.name}));
-    const IsAllSelected = AllMember.every((member1) => (selectedStudents.some((member2) => (member2.id === member1.id))));
-    const AllSelectedCancle = selectedStudents.filter((member1) => (!AllMember.some((member2) => (member2.id === member1.id))))
+    const AllMember = memberInfo.map((member) => ({ id: member.memberId, name: member.name }));
+    const IsAllSelected = AllMember.every((member1) => selectedStudents.some((member2) => member2.id === member1.id));
+    const AllSelectedCancle = selectedStudents.filter(
+      (member1) => !AllMember.some((member2) => member2.id === member1.id),
+    );
 
     if (studentId === -1) {
       // 전체 멤버 선택 && 전체 멤버 선택 취소
@@ -54,7 +79,10 @@ const useAddStudnet = () => {
       setIsAllSelectedStudents(true);
     } else {
       // 새로운 멤버 선택
-      if (AllMember.length-1 === selectedStudents.filter((member1) => (AllMember.some((member2) => (member2.id === member1.id)))).length) {
+      if (
+        AllMember.length - 1 ===
+        selectedStudents.filter((member1) => AllMember.some((member2) => member2.id === member1.id)).length
+      ) {
         setIsAllSelectedStudents(false);
       }
       setSelectedStudents((prev) => [...prev, { id: studentId, name: studentName }]);
@@ -62,7 +90,7 @@ const useAddStudnet = () => {
   };
 
   const onClickRemoveStudent = (studentId: number) => {
-    if (memberInfo.some((member) => (member.memberId === studentId))) {
+    if (memberInfo.some((member) => member.memberId === studentId)) {
       setIsAllSelectedStudents(true);
     }
     setSelectedStudents(selectedStudents.filter((student) => student.id !== studentId));
@@ -78,35 +106,48 @@ const useAddStudnet = () => {
     }
   };
 
-  const onLoadStudentInfo = async (grade: number, cls: number) => {
-    await alimoV1Axios
-      .get(`/member/student-list`, {
-        params: {
-          page: 1,
-          size: 1000,
-          grade: grade,
-          room: cls,
+  const onLoadStudentInfo = useCallback(
+    (grade: number, cls: number) => {
+      alimoV1Axios
+        .get(`/member/student-list`, {
+          params: {
+            page: page,
+            size: 20,
+            grade: grade,
+            room: cls,
           },
         })
-      .then((res) => {
-        const StudentData = res.data.data;
-        const InCludeStudent = StudentData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
-        setMemberInfo(StudentData);
-        setGrade(`${grade}학년`);
-        setRoom(`${cls}반`);
+        .then((res) => {
+          const StudentData = res.data.data;
+          const InCludeStudent = StudentData.every((member1: MemberList) =>
+            selectedStudents.some((member2) => member2.id === member1.memberId),
+          );
+          setMemberInfo(StudentData);
+          setGrade(`${grade}학년`);
+          setRoom(`${cls}반`);
 
-        if (InCludeStudent) {
-          setIsAllSelectedStudents(false);
-        } else {
-          setIsAllSelectedStudents(true);
-        }
-      })
-  };
+          if (InCludeStudent) {
+            setIsAllSelectedStudents(false);
+          } else {
+            setIsAllSelectedStudents(true);
+          }
+        });
+    },
+    [page, selectedStudents],
+  );
+
+  useEffect(() => {
+    if (addMember === true) {
+      onLoadStudentInfo(convertStudentInfo.convertGrade(grade), convertStudentInfo.convertRoom(room));
+    }
+  }, [grade, room, addMember]);
 
   const onLoadTeacherInfo = async () => {
     await alimoV1Axios.get("/member/teacher-list?page=1&size=1000").then((res) => {
       const TeacherData = res.data.data;
-      const InCludeTeacher = TeacherData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
+      const InCludeTeacher = TeacherData.every((member1: MemberList) =>
+        selectedStudents.some((member2) => member2.id === member1.memberId),
+      );
       setMemberInfo(TeacherData);
       setRoom("선생님");
 
@@ -121,7 +162,9 @@ const useAddStudnet = () => {
   const onLoadParentInfo = async () => {
     await alimoV1Axios.get(`/member/parent-list?page=1&size=1000`).then((res) => {
       const ParentData = res.data.data;
-      const InCludeParent = ParentData.every((member1: MemberList) => (selectedStudents.some((member2) => (member2.id === member1.memberId))))
+      const InCludeParent = ParentData.every((member1: MemberList) =>
+        selectedStudents.some((member2) => member2.id === member1.memberId),
+      );
       setMemberInfo(ParentData);
       setRoom("학부모");
 

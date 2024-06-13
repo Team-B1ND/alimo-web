@@ -94,7 +94,7 @@ const CategoryManage = () => {
                 <span>이름</span>
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
-              <S.MemberList>
+              <S.MemberList id="observe">
                 {category.searchMember.length > 1 ? (
                   category.filteredMember.map((item, idx) => (
                     <S.MemberWrap key={idx}>
