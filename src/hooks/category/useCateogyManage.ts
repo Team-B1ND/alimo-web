@@ -85,7 +85,7 @@ const useCategoryManage = () => {
             } else {
               setGradeName("학번");
             }
-            setMemberData(SortMember(res.data.data));
+            setMemberData(SortMember(res.data.data)!!);
           });
         setIsClickedCategory(categoryName);
         setClickedCategory(categoryName);
@@ -110,9 +110,9 @@ const useCategoryManage = () => {
       const filteredData = memberData.filter((item) => {
         return Object.values(item).join("").toLowerCase().includes(searchMember.toLowerCase());
       });
-      setFilteredMember(SortMember(filteredData));
+      setFilteredMember(SortMember(filteredData)!!);
     } else {
-      setFilteredMember(SortMember(memberData));
+      setFilteredMember(SortMember(memberData)!!);
     }
   };
 
