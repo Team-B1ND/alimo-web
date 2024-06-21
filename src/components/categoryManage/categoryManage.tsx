@@ -14,7 +14,6 @@ import { SortMember } from "src/utils/sort/memberSort";
 const CategoryManage = () => {
   const { ...category } = useCategoryManage();
   const { showStudentList, handlePopUp, onClose } = useAddStudnet();
-  // console.log(SortAndFilterMember(category.memberData));
 
   useEffect(() => {
     category.getCategoryList();
