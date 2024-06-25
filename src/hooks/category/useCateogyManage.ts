@@ -13,6 +13,7 @@ import {
 } from "src/store/category/category.store";
 import { CategoryData, MemberInCategoryData } from "src/types/categorys/interface";
 import { MemberInfo, Student } from "src/types/categorys/add.types";
+import { SortMember } from "src/utils/sort/memberSort";
 
 const useCategoryManage = () => {
   const [isClickedCategory, setIsClickedCategory] = useRecoilState(newSelectedData);
@@ -65,38 +66,36 @@ const useCategoryManage = () => {
     }
   }, []);
 
-  const handleCategoryClick = useCallback(
-    async (categoryName: string) => {
-      setIsPageLoading(true);
-      if (clickedCategory === categoryName) {
-        setClickedCategory(null);
-        setIsClickedCategory("");
-      } else {
-        try {
-          await alimoV1Axios
-            .get(`/category/get-member?page=${page}&size=25&categoryName=${categoryName}&searchKeyword=`)
-            .then((res) => {
-              if (categoryName === "학부모") {
-                setGradeName("학부모");
-              } else if (categoryName === "선생님") {
-                setGradeName("선생님");
-              } else {
-                setGradeName("학번");
-              }
-              const newData = res.data.data;
-              setMemberData((prevData) => [...prevData, ...newData]);
-            });
-          setIsClickedCategory(categoryName);
-          setClickedCategory(categoryName);
-          setIsMemberLoading(false);
-        } catch (e) {
-          showToast("error", "서버 연결오류");
-        }
+  const handleCategoryClick = async (categoryName: string) => {
+    setIsPageLoading(true);
+    if (clickedCategory === categoryName) {
+      setClickedCategory(null);
+      setIsClickedCategory("");
+    } else if (categoryName === "" || categoryName === undefined) {
+      return;
+    } else {
+      try {
+        await alimoV1Axios
+          .get(`/category/get-member?page=${page}&size=200&categoryName=${categoryName}&searchKeyword=`)
+          .then((res) => {
+            if (categoryName === "학부모") {
+              setGradeName("학부모");
+            } else if (categoryName === "선생님") {
+              setGradeName("선생님");
+            } else {
+              setGradeName("학번");
+            }
+            setMemberData(SortMember(res.data.data)!!);
+          });
+        setIsClickedCategory(categoryName);
+        setClickedCategory(categoryName);
+        setIsMemberLoading(false);
+      } catch (e) {
+        showToast("error", "서버 연결오류");
       }
-      setIsPageLoading(false);
-    },
-    [page, isClickedCategory],
-  );
+    }
+    setIsPageLoading(false);
+  };
 
   useEffect(() => {
     handleCategoryClick(isClickedCategory);
@@ -111,9 +110,9 @@ const useCategoryManage = () => {
       const filteredData = memberData.filter((item) => {
         return Object.values(item).join("").toLowerCase().includes(searchMember.toLowerCase());
       });
-      setFilteredMember(filteredData);
+      setFilteredMember(SortMember(filteredData)!!);
     } else {
-      setFilteredMember(memberData);
+      setFilteredMember(SortMember(memberData)!!);
     }
   };
 

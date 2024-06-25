@@ -9,6 +9,7 @@ import searchImg from "src/assets/images/category/searchImg.png";
 import CrownImage from "src/assets/images/category/king2.svg";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 import Skeleton from "../skelton";
+import { SortMember } from "src/utils/sort/memberSort";
 
 const CategoryManage = () => {
   const { ...category } = useCategoryManage();

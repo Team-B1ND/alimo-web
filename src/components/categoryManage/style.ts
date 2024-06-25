@@ -132,7 +132,7 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
   border: none;
   border-radius: 15px;
   display: flex;
-  flex-direction: row;
+
   justify-content: space-evenly;
   align-items: center;
   align-self: center;
@@ -164,6 +164,8 @@ export const CategoryInfo = styled.div<{ $isclicked: string }>`
 
   transition: background 0.2s ease;
   transition: scale 0.4s;
+
+  
 `;
 
 export const CategoryName = styled.span`
@@ -280,6 +282,10 @@ export const MemberList = styled.div`
     position: absolute;
 
     top: 30%;
+  }
+
+  span {
+    width: 150px;
   }
 `;
 
