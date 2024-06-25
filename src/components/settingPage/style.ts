@@ -4,11 +4,10 @@ export const Setting = styled.div`
   position: absolute;
   width: 100vw;
   height: 100vh;
-  display: flex;
 `;
 export const SettingMain = styled.div`
   position: absolute;
-  z-index: 5;
+  z-index: 8;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -40,7 +39,6 @@ export const SettingTitle = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
   height: 100px;
   span {
