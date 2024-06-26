@@ -9,7 +9,6 @@ import searchImg from "src/assets/images/category/searchImg.png";
 import CrownImage from "src/assets/images/category/king2.svg";
 import useAddStudnet from "src/hooks/category/useAddStudent";
 import Skeleton from "../skelton";
-import { SortMember } from "src/utils/sort/memberSort";
 
 const CategoryManage = () => {
   const { ...category } = useCategoryManage();
@@ -95,34 +94,37 @@ const CategoryManage = () => {
                 <span>이름</span>
                 <span>{category.GradeName}</span>
               </S.MemberUtilityWrap>
-              <S.MemberList id="observe">
+              <S.MemberList>
                 {category.searchMember.length > 1 ? (
-                  category.filteredMember.map((item, idx) => (
-                    <S.MemberWrap key={idx}>
-                      <S.Member>
-                        {item.permission === "ACCESS_ADMIN" || item.permission === "ACCESS_TEACHER" ? (
-                          <S.CrownImg src={CrownImage} />
-                        ) : (
-                          <></>
-                        )}
-                        <S.MemeberProfileImg
-                          src={
-                            item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
-                          }
-                        />
+                  <>
+                    {category.filteredMember.map((item, idx) => (
+                      <S.MemberWrap key={idx}>
+                        <S.Member>
+                          {item.permission === "ACCESS_ADMIN" || item.permission === "ACCESS_TEACHER" ? (
+                            <S.CrownImg src={CrownImage} />
+                          ) : (
+                            <></>
+                          )}
+                          <S.MemeberProfileImg
+                            src={
+                              item.profileImage !== null && item.profileImage !== "" ? item.profileImage : ProfileImage
+                            }
+                          />
 
-                        <S.MemeberName>{item.name}</S.MemeberName>
-                        <span>
-                          {item.permission === "ACCESS_TEACHER"
-                            ? "선생님"
-                            : item.grade !== null && item.room !== null
-                            ? `${item.grade}학년 ${item.room}반`
-                            : "학부모"}
-                        </span>
-                        <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(item.id, item.permission)} />
-                      </S.Member>
-                    </S.MemberWrap>
-                  ))
+                          <S.MemeberName>{item.name}</S.MemeberName>
+                          <span>
+                            {item.permission === "ACCESS_TEACHER"
+                              ? "선생님"
+                              : item.grade !== null && item.room !== null
+                              ? `${item.grade}학년 ${item.room}반`
+                              : "학부모"}
+                          </span>
+                          <S.MoreImg src={MoreImg} onClick={() => category.handleMemberId(item.id, item.permission)} />
+                        </S.Member>
+                      </S.MemberWrap>
+                    ))}
+                    <div id="observe"></div>
+                  </>
                 ) : category.isMemberLoading === true ? (
                   <S.MemberWrap>
                     <Skeleton height={85} />
