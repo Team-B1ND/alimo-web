@@ -14,6 +14,7 @@ import {
   newSelectedData,
 } from "src/store/category/category.store";
 import convertStudentInfo from "src/utils/convert/convertStudentInfo";
+import { SortMember } from "src/utils/sort/memberSort";
 
 const useAddStudnet = () => {
   const [memberInfo, setMemberInfo] = useState<MemberInfo[]>([]);
@@ -106,9 +107,9 @@ const useAddStudnet = () => {
     }
   };
 
-  const onLoadStudentInfo = useCallback(
-    (grade: number, cls: number) => {
-      alimoV1Axios
+  const onLoadStudentInfo = async (grade: number, cls: number) => {
+    if (addMember === true) {
+      await alimoV1Axios
         .get(`/member/student-list`, {
           params: {
             page: page,
@@ -132,15 +133,8 @@ const useAddStudnet = () => {
             setIsAllSelectedStudents(true);
           }
         });
-    },
-    [page, selectedStudents],
-  );
-
-  useEffect(() => {
-    if (addMember === true) {
-      onLoadStudentInfo(convertStudentInfo.convertGrade(grade), convertStudentInfo.convertRoom(room));
     }
-  }, [grade, room, addMember]);
+  };
 
   const onLoadTeacherInfo = async () => {
     await alimoV1Axios.get("/member/teacher-list?page=1&size=1000").then((res) => {
@@ -218,7 +212,7 @@ const useAddStudnet = () => {
               await alimoV1Axios
                 .get(`/category/get-member?page=1&size=1000&categoryName=${SelctedCategory}&searchKeyword=`)
                 .then((res) => {
-                  setMemberData(res.data.data);
+                  setMemberData(SortMember(res.data.data)!!);
                   console.log(res.data.data);
                 });
               await alimoV1Axios

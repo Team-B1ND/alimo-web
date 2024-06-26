@@ -176,4 +176,4 @@ const CategoryManage = () => {
   );
 };
 
-export default CategoryManage;
+export default React.memo(CategoryManage);

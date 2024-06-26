@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { showToast } from "src/libs/toast/swal";
 import { alimoV1Axios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
@@ -200,7 +200,7 @@ const useCategoryManage = () => {
                 await alimoV1Axios
                   .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
                   .then((res) => {
-                    setMemberData(res.data.data);
+                    setMemberData(SortMember(res.data.data)!!);
                   });
               })
               .then(() => {
@@ -216,7 +216,7 @@ const useCategoryManage = () => {
                 await alimoV1Axios
                   .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
                   .then((res) => {
-                    setMemberData(res.data.data);
+                    setMemberData(SortMember(res.data.data)!!);
                   });
               })
               .then(() => {
@@ -241,7 +241,7 @@ const useCategoryManage = () => {
                 await alimoV1Axios
                   .get(`/category/get-member?page=1&size=1000&categoryName=${isClickedCategory}&searchKeyword=`)
                   .then((res) => {
-                    setMemberData(res.data.data);
+                    setMemberData(SortMember(res.data.data)!!);
                   });
                 await alimoV1Axios.get(`/category/get-category?page=1&size=1000&searchKeyword=`).then((res) => {
                   setCategoryData(res.data.data);
