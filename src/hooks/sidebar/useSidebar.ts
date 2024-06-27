@@ -25,9 +25,9 @@ const useSidebar = () => {
     });
   };
 
-  const ProfileInfo = useCallback(() => {
+  const ProfileInfo = () => {
     try {
-      alimoV1Axios.get(`${CONFIG.serverUrl}/member/info`).then((res) => {
+      alimoV1Axios.get("/member/info").then((res) => {
         const userData = res.data.data;
         setName(userData.name);
         setimage(userData.image);
@@ -35,7 +35,7 @@ const useSidebar = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  };
 
   useEffect(() => {
     ProfileInfo();
