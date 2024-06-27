@@ -18,15 +18,11 @@ const useSidebar = () => {
   const [, setCategoryList] = useRecoilState(categoryListState);
   const [isClickCategory, setIsClickCategory] = useState<string | null>(null);
   const CategoryList = async () => {
-   await alimoV1Axios.get(
-      `${CONFIG.serverUrl}/category/list/member`
-    ).then((res) => {
+    await alimoV1Axios.get(`${CONFIG.serverUrl}/category/list/member`).then((res) => {
       const CategoryData = res.data.data.roles;
-    setCategory(CategoryData);
-    setCategoryList(CategoryData);
-    })
-
-    
+      setCategory(CategoryData);
+      setCategoryList(CategoryData);
+    });
   };
 
   const ProfileInfo = useCallback(() => {
@@ -39,8 +35,12 @@ const useSidebar = () => {
     } catch (error) {
       console.log(error);
     }
-  },[]);
-  
+  }, []);
+
+  useEffect(() => {
+    ProfileInfo();
+  }, []);
+
   //프로필 설정
   const OpenProfileSetting = () => {
     setProfileAlert((prev) => !prev);
